@@ -1,6 +1,10 @@
+a {
+  color: black;
+}
+
 .App {
   text-align: center;
-  margin: 1%;
+  margin: 3%;
 }
 
 .heading-name {
@@ -13,6 +17,16 @@
 
 .links {
   font-size: 1.5em;
+}
+
+.links a {
+  text-decoration: none;
+}
+
+.links-about:hover,
+.links-projects:hover,
+.links-contact:hover {
+  border-bottom: 2px solid black;
 }
 
 .links-about {
@@ -39,8 +53,39 @@
   margin: 3em 0;
 }
 
+.contact a {
+  display: table;
+  margin: 3% auto;
+  padding: 0 1%;
+  font-size: 1.5em;
+  border: 1px solid black;
+  border-radius: 10%;
+  box-shadow: 5px 5px darkgray;
+  text-decoration: none;
+}
+
+.contact-resume:hover,
+.contact-linkedin:hover,
+.contact-github:hover,
+.contact-email:hover {
+  background-color: lightgray;
+}
+
+.fa-file-pdf {
+  color: red;
+}
+
+.fa-linkedin-in {
+  color: #007bb5;
+}
+
+.fa-envelope {
+  color: indigo;
+}
+
 .foot-left {
   float: left;
+  text-align: left;
 }
 
 .foot-react-img {
@@ -49,4 +94,5 @@
 
 .foot-right {
   float: right;
+  text-align: right;
 }
