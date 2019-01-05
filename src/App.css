@@ -3,8 +3,12 @@
   margin: 1%;
 }
 
-.heading {
-  font: bold 3em Arial, Sans-serif
+.heading-name {
+  font: Arial, Sans-serif
+}
+
+.heading-headline {
+  font: normal 1em Arial, Sans-serif;
 }
 
 .links {
