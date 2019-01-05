@@ -1,20 +1,32 @@
 .App {
   text-align: center;
-}
-
-hr {
   margin: 1%;
 }
 
-.about {
-  margin: 1%;
+.heading {
+  font: bold 3em Arial, Sans-serif
+}
+
+.links {
+  font-size: 1.5em;
+}
+
+.links-about {
+  float: left;
+  margin-left: 10%;
+}
+
+.links-contact {
+  float: right;
+  margin-right: 10%;
 }
 
 .about-headshot {
   transform: rotate(90deg);
-  width: 50%;
+  /*width: 50%;
   max-width: 300px;
-  height: auto;
+  height: auto;*/
+  max-height: 100px;
   float: left;
   border-radius: 100%;
 }
@@ -23,6 +35,14 @@ hr {
   margin: 3em 0;
 }
 
-.foot {
-  margin: 1%;
+.foot-left {
+  float: left;
+}
+
+.foot-react-img {
+  width: 10%;
+}
+
+.foot-right {
+  float: right;
 }
