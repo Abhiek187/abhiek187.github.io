@@ -22,6 +22,7 @@ class App extends Component {
           <img className="about-headshot" src={headshot} alt="Headshot of Abhishek"/>
           <p className="about-bio">{bio}</p>
         </main>
+        <hr/>
         <footer className="foot">Made using React</footer>
       </div>
     );
