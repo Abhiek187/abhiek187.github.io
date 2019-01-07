@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 class Contact extends Component {
 	render() {
+    document.getElementsByTagName('title')[0].textContent = 'Abhishek Chaudhuri - Contact';
+
 		return (
 			<main className="contact">
         <h3 className="contact-heading">Contact</h3>

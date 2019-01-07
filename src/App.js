@@ -8,6 +8,8 @@ import Contact from './Contact';
 
 class App extends Component {
   render() {
+    document.getElementsByTagName('title')[0].textContent = 'Abhishek Chaudhuri - Home';
+
     return (
       <div className="App">
         <header className="heading">
