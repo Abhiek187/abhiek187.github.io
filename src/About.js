@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import headshot from './img/IMG_0987.JPG';
 
 class About extends Component {
 	render() {
@@ -15,7 +14,7 @@ class About extends Component {
 		return (
       <main className="about">
         <h3 className="about-heading">About</h3>
-        <img className="about-headshot" src={headshot} alt="Headshot of Abhishek"/>
+        <img className="about-headshot" src="/img/IMG_0987.JPG" alt="Headshot of Abhishek"/>
         <p className="about-bio">{bio}</p>
       </main>
 		);

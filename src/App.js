@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import logo from './img/logo.svg';
 import './App.css';
 import About from './About';
 import Projects from './Projects';
@@ -45,7 +44,7 @@ class App extends Component {
           <span className="foot-left">
             Made using <a className="foot-react" href="https://reactjs.org/" target="_blank"
               rel="noopener noreferrer">React</a>
-            <img className="foot-react-img" src={logo} alt="React logo (an atom)"/>
+            <img className="foot-react-img" src="/img/logo.svg" alt="React logo (an atom)"/>
           </span>
           <span className="foot-right">
             <a className="foot-mit" target="_blank" rel="noopener noreferrer"

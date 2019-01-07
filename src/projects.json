@@ -1,7 +1,8 @@
 [
 	{
+    "id": "captain-conundrum",
     "name": "Captain Conundrum",
-    "image": "img/App Icon.png",
+    "image": "/img/App Icon.png",
     "about": "iOS game created at Make School Summer Academy in just 8 weeks. It is a top-down space shooter designed around the GameKit library in Swift. The game features motion controls, a high and low score system, power-ups, and various customization options.",
     "technology": [
       "Swift",
@@ -11,8 +12,9 @@
     "repo": "https://github.com/Abhiek187/Captain-Conundrum"
 	},
   {
+    "id": "giphy-gif-search",
     "name": "Giphy GIF Search",
-    "image": "img/Gif Search.gif",
+    "image": "/img/Gif Search.gif",
     "about": "A search engine for GIFs powered by the Giphy API and runs on a node.js server",
     "technology": [
       "Giphy",
@@ -25,8 +27,9 @@
     "repo": "https://github.com/Abhiek187/Giphy-GIF-Search"
   },
   {
+    "id": "concentration",
     "name": "Memory Game",
-    "image": "img/Memory Game.PNG",
+    "image": "/img/Memory Game.PNG",
     "about": "Built a complete browser-based card matching game (also known as Concentration). But this isn’t just any memory game! It’s a snazzy, well-designed, feature-packed memory game!",
     "technology": [
       "HTML",
@@ -38,8 +41,9 @@
     "repo": "https://github.com/Abhiek187/Memory-Game"
   },
   {
+    "id": "frogger",
     "name": "Classic Arcade Game Clone (Frogger)",
-    "image": "img/Frogger.PNG",
+    "image": "/img/Frogger.PNG",
     "about": "An HTML5 Canvas powered video game based on the popular arcade game Frogger, developed using the best practices in Object Oriented JavaScript.",
     "technology": [
       "HTML",
@@ -50,8 +54,9 @@
     "repo": "https://github.com/Abhiek187/frontend-nanodegree-arcade-game"
   },
   {
+    "id": "restaurant-reviews",
     "name": "Restaurant Reviews",
-    "image": "img/Restaurant Reviews.PNG",
+    "image": "/img/Restaurant Reviews.PNG",
     "about": "A website that shows information about restaurants in New York City. It is responsive on all devices and contains standard accessibility features. In addition, all visited pages can work offline by caching requests through a Service Worker.",
     "technology": [
       "HTML",
@@ -63,8 +68,9 @@
     "repo": "https://github.com/Abhiek187/mws-restaurant-stage-1"
   },
   {
+    "id": "neighborhood-map",
     "name": "Neighborhood Map",
-    "image": "img/Neighborhood Map.PNG",
+    "image": "/img/Neighborhood Map.PNG",
     "about": "A project built from scratch using React and Google Maps. This site allows users to select from predetermined locations and read reviews through Yelp. It contains a culmination of all skills learned throughout the nanodegree program, including accessibility, responsiveness, and offline functionality.",
     "technology": [
       "HTML",

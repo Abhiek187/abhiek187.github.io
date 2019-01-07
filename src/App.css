@@ -1,3 +1,4 @@
+/* General styles */
 a {
   color: black;
 }
@@ -7,6 +8,7 @@ a {
   margin: 3%;
 }
 
+/* Heading */
 .heading-name {
   font: Arial, Sans-serif
 }
@@ -15,6 +17,7 @@ a {
   font: normal 1em Arial, Sans-serif;
 }
 
+/* Nav */
 .links {
   font-size: 1.5em;
 }
@@ -39,6 +42,7 @@ a {
   margin-right: 10%;
 }
 
+/* About section */
 .about-headshot {
   transform: rotate(90deg);
   /*width: 50%;
@@ -53,6 +57,26 @@ a {
   margin: 3em 0;
 }
 
+/* Projects section */
+.projects-list {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.projects-list li {
+  list-style-type: none;
+  border: 1px solid black;
+  border-radius: 10%;
+  margin: 3%;
+  width: 40%;
+}
+
+.projects-image {
+  width: 30%;
+}
+
+/* Contact section */
 .contact a {
   display: table;
   margin: 3% auto;
@@ -83,6 +107,7 @@ a {
   color: indigo;
 }
 
+/* Footer */
 .foot-left {
   float: left;
   text-align: left;
