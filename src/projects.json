@@ -14,7 +14,7 @@
   {
     "id": "giphy-gif-search",
     "name": "Giphy GIF Search",
-    "image": "/img/Gif Search.gif",
+    "image": "/img/GIF Search.gif",
     "about": "A search engine for GIFs powered by the Giphy API and runs on a node.js server",
     "technology": [
       "Giphy",
