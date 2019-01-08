@@ -15,13 +15,13 @@ class Projects extends Component {
               <h4 className="projects-name">{project.name}</h4>
               <img className="projects-image" src={project.image} alt={project.name}/>
               <p className="projects-about">{project.about}</p>
-              <p className="projects-technology">{project.technology}</p>
-                {/*{project.technology.map(tech => (
-                  {tech}
-                ))}
-              </p>*/}
-              <a className="projects-website" href={project.website} target="_blank"
+              <p className="projects-technology">Made Using: {project.technology.join(', ')}</p>
+              {project.website ? (
+                <a className="projects-website" href={project.website} target="_blank"
                 rel="noopener noreferrer">View Project</a>
+              ) : (
+                <p className="projects-website">&darr; See GitHub link below &darr;</p>
+              )}
               <a className="projects-repo" href={project.repo} target="_blank"
                 rel="noopener noreferrer">View on GitHub</a>
             </li>

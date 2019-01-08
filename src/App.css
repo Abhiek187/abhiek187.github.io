@@ -68,12 +68,24 @@ a {
   list-style-type: none;
   border: 1px solid black;
   border-radius: 10%;
-  margin: 3%;
+  margin: 3% auto;
   width: 40%;
+}
+
+@media screen and (max-width: 600px) {
+  .projects-list li {
+    width: 100%;
+  }
 }
 
 .projects-image {
   width: 30%;
+}
+
+.projects-website,
+.projects-repo {
+  display: table;
+  margin: 3% auto;
 }
 
 /* Contact section */
@@ -108,16 +120,29 @@ a {
 }
 
 /* Footer */
-.foot-left {
-  float: left;
-  text-align: left;
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.foot-left,
+.foot-right {
+  width: 100%;
 }
 
 .foot-react-img {
-  width: 10%;
+  width: 1.7em;
 }
 
-.foot-right {
-  float: right;
-  text-align: right;
+@media screen and (min-width: 400px) {
+  .foot-left {
+    width: 50%;
+    text-align: left;
+  }
+
+  .foot-right {
+    width: 50%;
+    text-align: right;
+  }
 }
