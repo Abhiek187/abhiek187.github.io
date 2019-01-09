@@ -6,7 +6,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-	<BrowserRouter><App /></BrowserRouter>,
+	// Enable react router and work in GitHub Pages
+	<BrowserRouter basename={process.env.PUBLIC_URL}><App /></BrowserRouter>,
 	document.getElementById('root')
 );
 
