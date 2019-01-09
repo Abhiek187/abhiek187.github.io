@@ -44,8 +44,8 @@ a {
 
 /* About section */
 .about-headshot {
-  transform: rotate(90deg);
-  /*width: 50%;
+  /*transform: rotate(90deg);
+  width: 50%;
   max-width: 300px;
   height: auto;*/
   max-height: 100px;
