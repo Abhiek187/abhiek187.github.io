@@ -15,7 +15,7 @@ Since this is a user page, GitHub Pages must be deployed in the master branch. A
 Normally, this would be the branch GitHub Pages would deploy your site in, but because this is a user page, it doesn't do anything. Instead, think of this as a backup for master.
 
 ## About
-This is my own personal website created using React. Inspired by Udacity's Front-End Web Development Course, I decided to use my React skills to create a website that encapsulates what I've accomplished over the years in an environment I have a passion for. You can check out [this site](https://abhiek187.github.io) to learn more and get in contact with me.
+This is my own personal website created using React. Inspired by Udacity's Front-End Web Development Course, I decided to use my React skills to create a website that encapsulates what I've accomplished over the years in an environment I have a passion for. It is responsive, accessible, and works offline. You can check out [this site](https://abhiek187.github.io) to learn more and get in contact with me.
 
 ## Dependencies
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br>
