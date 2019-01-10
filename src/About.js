@@ -13,9 +13,10 @@ class About extends Component {
 
 		return (
       <main className="about">
-        <h3 className="about-heading">About</h3>
-        <img className="about-headshot" src="/img/Headshot.png" alt="Headshot of Abhishek"/>
-        <p className="about-bio">{bio}</p>
+        <h3 className="about-heading" tabIndex={0}>About</h3>
+        <img className="about-headshot" tabIndex={0}
+          src="/img/Headshot.png" alt="Headshot of Abhishek"/>
+        <p className="about-bio" tabIndex={0}>{bio}</p>
       </main>
 		);
 	}
