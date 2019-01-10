@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import About from './About';
 import Projects from './Projects';
@@ -12,8 +12,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="heading">
-          <h1 className="heading-name">Abhishek Chaudhuri</h1>
-          <h2 className="heading-headline">
+          <h1 className="heading-name" tabIndex={0}>Abhishek Chaudhuri</h1>
+          <h2 className="heading-headline" tabIndex={0}>
             Computer Engineering & Science Student at Rutgers University - New Brunswick
           </h2>
         </header>
@@ -23,31 +23,34 @@ class App extends Component {
           <a className="links-contact" href="/contact">Contact</a>
         </nav>
         <hr/>
-        <Switch>
-          <Route exact path={process.env.PUBLIC_URL + '/'} render={() => (
-            <main className="home">
-              <p className="home-info">
-                Hello and welcome to my website! Please click the links above for more info about me.
-              </p>
-            </main>
-          )}/>
-          <Route path={process.env.PUBLIC_URL + '/about'} render={() => (
-            <About/>
-          )}/>
-          <Route path={process.env.PUBLIC_URL + '/projects'} render={() => (
-            <Projects/>
-          )}/>
-          <Route path={process.env.PUBLIC_URL + '/contact'} render={() => (
-            <Contact/>
-          )}/>
-          <Route render={() => (
-            <main className="error">
-              <p className="error-message">
-                Whoops! That path is invalid. Please click the links above.
-              </p>
-            </main>
-          )}/>
-        </Switch>
+        <Route exact path={process.env.PUBLIC_URL + '/'} render={() => (
+          <main className="home">
+            <p className="home-info" tabIndex={0}>
+              Hello and welcome to my website! Please click the links above for more info about me.
+            </p>
+          </main>
+        )}/>
+        <Route path={process.env.PUBLIC_URL + '/about'} render={() => (
+          <About/>
+        )}/>
+        <Route path={process.env.PUBLIC_URL + '/projects'} render={() => (
+          <Projects/>
+        )}/>
+        <Route path={process.env.PUBLIC_URL + '/contact'} render={() => (
+          <Contact/>
+        )}/>
+        {/* Ignore paths that take you to other repos */}
+        {window.location.pathname !== '/' && window.location.pathname !== '/about' &&
+          window.location.pathname !== '/projects' && window.location.pathname !== '/contact' &&
+          window.location.pathname !== '/Memory-Game' &&
+          window.location.pathname !== '/frontend-nanodegree-arcade-game' &&
+          window.location.pathname !== '/Neighborhood-Map' && <Route render={() => (
+          <main className="error">
+            <p className="error-message" tabIndex={0}>
+              Whoops! That path is invalid. Please click the links above.
+            </p>
+          </main>
+        )}/>}
         <hr/>
         <footer className="foot">
           <span className="foot-left">

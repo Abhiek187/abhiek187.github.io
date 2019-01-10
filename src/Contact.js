@@ -6,7 +6,7 @@ class Contact extends Component {
 
 		return (
 			<main className="contact">
-        <h3 className="contact-heading">Contact</h3>
+        <h3 className="contact-heading" tabIndex={0}>Contact</h3>
         <a className="contact-resume"
           href="https://www.dropbox.com/s/05i2g7mmehfck9u/Resume%20v2.pdf?dl=0" target="_blank"
           rel="noopener noreferrer">
