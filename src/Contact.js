@@ -7,6 +7,7 @@ class Contact extends Component {
 		return (
 			<main className="contact">
         <h3 className="contact-heading" tabIndex={0}>Contact</h3>
+        {/* Each link opens in a new tab */}
         <a className="contact-resume"
           href="https://www.dropbox.com/s/05i2g7mmehfck9u/Resume%20v2.pdf?dl=0" target="_blank"
           rel="noopener noreferrer">
@@ -20,6 +21,7 @@ class Contact extends Component {
           target="_blank" rel="noopener noreferrer">
           <i className="fab fa-github"/> GitHub
         </a>
+        {/* Opens default email program */}
         <a className="contact-email" href="mailto:achaudhuri2011@yahoo.com"
           target="_top">
           <i className="fas fa-envelope"/> Email

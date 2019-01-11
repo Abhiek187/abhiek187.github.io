@@ -1,6 +1,6 @@
 /* General styles */
 a {
-  color: black;
+  color: black; /* Remove default blue color */
 }
 
 .App {
@@ -10,7 +10,7 @@ a {
 
 /* Heading */
 .heading-name {
-  font: Arial, Sans-serif
+  font: Arial, Sans-serif;
 }
 
 .heading-headline {
@@ -23,13 +23,13 @@ a {
 }
 
 .links a {
-  text-decoration: none;
+  text-decoration: none; /* No underline normally */
 }
 
 .links-about:hover,
 .links-projects:hover,
 .links-contact:hover {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid black; /* Show underline when selected */
 }
 
 .links-about {
@@ -60,7 +60,7 @@ a {
 /* Projects section */
 .projects-list {
   padding: 0;
-  display: flex;
+  display: flex; /* List all projects as cards */
   flex-wrap: wrap;
 }
 
@@ -68,13 +68,13 @@ a {
   list-style-type: none;
   border: 1px solid black;
   border-radius: 10%;
-  margin: 3% auto;
+  margin: 3% auto; /* Centers cards among each other */
   width: 40%;
 }
 
 @media screen and (max-width: 600px) {
   .projects-list li {
-    width: 100%;
+    width: 100%; /* If viewport is too small, have one card per row */
   }
 }
 
@@ -84,7 +84,7 @@ a {
 
 .projects-website,
 .projects-repo {
-  display: table;
+  display: table; /* Display links separated by newline */
   margin: 3% auto;
 }
 
@@ -104,7 +104,7 @@ a {
 .contact-linkedin:hover,
 .contact-github:hover,
 .contact-email:hover {
-  background-color: lightgray;
+  background-color: lightgray; /* Show link as selected */
 }
 
 .fa-file-pdf {
@@ -112,7 +112,7 @@ a {
 }
 
 .fa-linkedin-in {
-  color: #007bb5;
+  color: #007bb5; /* LinkedIn blue */
 }
 
 .fa-envelope {
@@ -136,6 +136,7 @@ a {
 }
 
 @media screen and (min-width: 400px) {
+  /* Footer text on same line in big viewport */
   .foot-left {
     width: 50%;
     text-align: left;

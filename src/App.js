@@ -7,12 +7,14 @@ import Contact from './Contact';
 
 class App extends Component {
   render() {
+    // Change title of tab every page change
     document.getElementsByTagName('title')[0].textContent = 'Abhishek Chaudhuri - Home';
 
     return (
       <div className="App">
         <header className="heading">
           <h1 className="heading-name" tabIndex={0}>Abhishek Chaudhuri</h1>
+          {/* Add tabIndex to important information */}
           <h2 className="heading-headline" tabIndex={0}>
             Computer Engineering & Science Student at Rutgers University - New Brunswick
           </h2>
@@ -23,7 +25,9 @@ class App extends Component {
           <a className="links-contact" href="/contact">Contact</a>
         </nav>
         <hr/>
+        {/* Ensure route works with any website url */}
         <Route exact path={process.env.PUBLIC_URL + '/'} render={() => (
+          /* Default page */
           <main className="home">
             <p className="home-info" tabIndex={0}>
               Hello and welcome to my website! Please click the links above for more info about me.
@@ -39,7 +43,7 @@ class App extends Component {
         <Route path={process.env.PUBLIC_URL + '/contact'} render={() => (
           <Contact/>
         )}/>
-        {/* Ignore paths that take you to other repos */}
+        {/* Ignore paths that take you to other repos, otherwise redirect to error page */}
         {window.location.pathname !== '/' && window.location.pathname !== '/about' &&
           window.location.pathname !== '/projects' && window.location.pathname !== '/contact' &&
           window.location.pathname !== '/Memory-Game' &&

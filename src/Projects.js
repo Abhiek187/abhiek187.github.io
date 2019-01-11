@@ -3,6 +3,7 @@ import projectData from './projects.json';
 
 class Projects extends Component {
 	render() {
+    // Extract JSON data as an array
     const projects = JSON.parse(JSON.stringify(projectData));
     document.getElementsByTagName('title')[0].textContent = 'Abhishek Chaudhuri - Projects';
 
@@ -11,6 +12,7 @@ class Projects extends Component {
 			  <h3 className="projects-heading" tabIndex={0}>Projects</h3>
         <ul className="projects-list">
           {projects.map(project => (
+            /* Each list item needs a key */
             <li key={project.id}>
               <h4 className="projects-name" tabIndex={0}>{project.name}</h4>
               <img className="projects-image" tabIndex={0} src={project.image}
@@ -19,6 +21,7 @@ class Projects extends Component {
               <p className="projects-technology" tabIndex={0}>
                 Made Using: {project.technology.join(', ')}
               </p>
+              {/* If no project link is directly available, follow directions on GitHub */}
               {project.website ? (
                 <a className="projects-website" href={project.website} target="_blank"
                 rel="noopener noreferrer">View Project</a>
