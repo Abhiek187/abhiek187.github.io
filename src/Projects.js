@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import projectData from './projects.json';
 
 class Projects extends Component {
+  componentDidMount() {
+    document.querySelector('title').textContent = 'Abhishek Chaudhuri - Projects';
+    document.querySelector('.links-projects').classList.add('selected');
+  }
+
 	render() {
     // Extract JSON data as an array
     const projects = JSON.parse(JSON.stringify(projectData));
-    document.getElementsByTagName('title')[0].textContent = 'Abhishek Chaudhuri - Projects';
 
 		return (
       <main className="projects">

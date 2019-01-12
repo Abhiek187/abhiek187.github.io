@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
 class Contact extends Component {
-	render() {
-    document.getElementsByTagName('title')[0].textContent = 'Abhishek Chaudhuri - Contact';
+  componentDidMount() {
+    document.querySelector('title').textContent = 'Abhishek Chaudhuri - Contact';
+    document.querySelector('.links-contact').classList.add('selected');
+  }
 
+	render() {
 		return (
 			<main className="contact">
         <h3 className="contact-heading" tabIndex={0}>Contact</h3>

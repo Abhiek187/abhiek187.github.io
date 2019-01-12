@@ -5,10 +5,35 @@ import About from './About';
 import Projects from './Projects';
 import Contact from './Contact';
 
+let navbar;
+let navPosition;
+
 class App extends Component {
-  render() {
+  componentDidMount() {
     // Change title of tab every page change
-    document.getElementsByTagName('title')[0].textContent = 'Abhishek Chaudhuri - Home';
+    if (window.location.pathname === '/')
+      document.querySelector('title').textContent = 'Abhishek Chaudhuri - Home';
+    else if (window.location.pathname !== '/about' && window.location.pathname !== '/projects' &&
+      window.location.pathname !== '/contact' && window.location.pathname !== '/Memory-Game' &&
+      window.location.pathname !== '/frontend-nanodegree-arcade-game' &&
+      window.location.pathname !== '/Neighborhood-Map')
+      document.querySelector('title').textContent = 'Abhishek Chaudhuri - Error';
+    // Check where web scroll is for sticky navbar
+    navbar = document.querySelector('.links');
+    navPosition = navbar.offsetTop;
+  }
+
+  checkScroll = () => {
+    // If scroll position is beyond the navbar, make it sticky
+    navbar = document.querySelector('.links');
+    // Don't set navPosition to 0
+    navPosition = navbar.offsetTop === 0 ? navPosition : navbar.offsetTop;
+    window.pageYOffset >= navPosition ?
+      navbar.classList.add('sticky') : navbar.classList.remove('sticky');
+  };
+
+  render() {
+    window.onscroll = this.checkScroll;
 
     return (
       <div className="App">
