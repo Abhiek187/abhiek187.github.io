@@ -3,7 +3,7 @@
     "id": "captain-conundrum",
     "name": "Captain Conundrum",
     "image": "/img/App Icon.png",
-    "about": "iOS game created at Make School Summer Academy in just 8 weeks. It is a top-down space shooter designed around the GameKit library in Swift. The game features motion controls, a high and low score system, power-ups, and various customization options.",
+    "about": "An iOS game created at Make School Summer Academy in just 8 weeks. It is a top-down space shooter designed around the GameKit library in Swift. The game features motion controls, a high and low score system, power-ups, and various customization options.",
     "technology": [
       "Swift",
       "GameKit"
@@ -15,7 +15,7 @@
     "id": "giphy-gif-search",
     "name": "Giphy GIF Search",
     "image": "/img/GIF Search.gif",
-    "about": "A search engine for GIFs powered by the Giphy API and runs on a node.js server",
+    "about": "A search engine for GIFs powered by the Giphy API and running on a node.js server. Created at a local hackathon at Rutgers.",
     "technology": [
       "Giphy",
       "node.js",

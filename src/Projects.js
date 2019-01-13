@@ -37,6 +37,7 @@ class Projects extends Component {
             </li>
           ))}
         </ul>
+        <p className="projects-addendum" tabIndex={0}>...And much more on GitHub!</p>
       </main>
 		);
 	}
