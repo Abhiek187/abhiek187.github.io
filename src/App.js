@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+/*import SwipeableRoutes from 'react-swipeable-routes';*/
 import './App.css';
 import About from './About';
 import Projects from './Projects';
@@ -45,9 +46,10 @@ class App extends Component {
           </h2>
         </header>
         <nav className="links">
-          <a className="links-about" href="/about">About</a>
-          <a className="links-projects" href="/projects">Projects</a>
-          <a className="links-contact" href="/contact">Contact</a>
+          {/* Redirect routes without reloading the browser */}
+          <Link className="links-about" to="/about">About</Link>
+          <Link className="links-projects" to="/projects">Projects</Link>
+          <Link className="links-contact" to="/contact">Contact</Link>
         </nav>
         <hr/>
         {/* Ensure route works with any website url */}

@@ -4,7 +4,9 @@ import projectData from './projects.json';
 class Projects extends Component {
   componentDidMount() {
     document.querySelector('title').textContent = 'Abhishek Chaudhuri - Projects';
+    document.querySelector('.links-about').classList.remove('selected');
     document.querySelector('.links-projects').classList.add('selected');
+    document.querySelector('.links-contact').classList.remove('selected');
   }
 
 	render() {

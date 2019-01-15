@@ -21,6 +21,10 @@ footer {
   padding: 0.5%; /* Create space between words and white rectangles */
 }
 
+main {
+  border-radius: 5%;
+}
+
 /* Heading */
 .heading {
   padding-bottom: 0;
@@ -162,6 +166,11 @@ footer {
 }
 
 /* Contact section */
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .contact a {
   display: table;
   margin: 3% auto;
@@ -178,6 +187,14 @@ footer {
 .contact-github:hover,
 .contact-email:hover {
   background-color: lightgray; /* Show link as selected */
+}
+
+.contact-resume:active,
+.contact-linkedin:active,
+.contact-github:active,
+.contact-email:active {
+  transform: translateY(4px); /* Push down on buttons */
+  box-shadow: 2px 2px black;
 }
 
 .fa-file-pdf {

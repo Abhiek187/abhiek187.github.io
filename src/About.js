@@ -4,6 +4,8 @@ class About extends Component {
   componentDidMount() {
     document.querySelector('title').textContent = 'Abhishek Chaudhuri - About';
     document.querySelector('.links-about').classList.add('selected');
+    document.querySelector('.links-projects').classList.remove('selected');
+    document.querySelector('.links-contact').classList.remove('selected');
   }
 
 	render() {
