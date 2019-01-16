@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Route, Link, Switch, withRouter } from 'react-router-dom';
 /*import SwipeableRoutes from 'react-swipeable-routes';*/
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import './App.css';
 import About from './About';
 import Projects from './Projects';
@@ -10,6 +12,12 @@ let navbar;
 let navPosition;
 
 class App extends Component {
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
+
   componentDidMount() {
     // Change title of tab every page change
     if (window.location.pathname === '/')
@@ -34,6 +42,7 @@ class App extends Component {
   };
 
   render() {
+    const location = this.props.location;
     window.onscroll = this.checkScroll;
 
     return (
@@ -52,24 +61,32 @@ class App extends Component {
           <Link className="links-contact" to="/contact">Contact</Link>
         </nav>
         <hr/>
-        {/* Ensure route works with any website url */}
-        <Route exact path={process.env.PUBLIC_URL + '/'} render={() => (
-          /* Default page */
-          <main className="home">
-            <p className="home-info" tabIndex={0}>
-              Hello and welcome to my website! Please click the links above for more info about me.
-            </p>
-          </main>
-        )}/>
-        <Route path={process.env.PUBLIC_URL + '/about'} render={() => (
-          <About/>
-        )}/>
-        <Route path={process.env.PUBLIC_URL + '/projects'} render={() => (
-          <Projects/>
-        )}/>
-        <Route path={process.env.PUBLIC_URL + '/contact'} render={() => (
-          <Contact/>
-        )}/>
+        <TransitionGroup className="transition-group">
+          <CSSTransition key={location.key} timeout={{ enter: 600, exit: 600 }}
+            classNames={'slide'}>
+            <Switch location={location}>
+              {/* Ensure route works with any website url */}
+              <Route exact path={process.env.PUBLIC_URL + '/'} render={() => (
+                /* Default page */
+                <main className="home">
+                  <p className="home-info" tabIndex={0}>
+                    Hello and welcome to my website!
+                    Please click the links above for more info about me.
+                  </p>
+                </main>
+              )}/>
+              <Route path={process.env.PUBLIC_URL + '/about'} render={() => (
+                <About/>
+              )}/>
+              <Route path={process.env.PUBLIC_URL + '/projects'} render={() => (
+                <Projects/>
+              )}/>
+              <Route path={process.env.PUBLIC_URL + '/contact'} render={() => (
+                <Contact/>
+              )}/>
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
         {/* Ignore paths that take you to other repos, otherwise redirect to error page */}
         {window.location.pathname !== '/' && window.location.pathname !== '/about' &&
           window.location.pathname !== '/projects' && window.location.pathname !== '/contact' &&
@@ -100,4 +117,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App); // Get access to match, location, and history

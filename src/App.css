@@ -25,6 +25,28 @@ main {
   border-radius: 5%;
 }
 
+/* Transition effects */
+.slide-enter {
+  transform: translate(110%);
+}
+
+.slide-enter.slide-enter-active {
+  transform: translate(0%);
+  transition: 600ms ease-in-out;
+  position: fixed;
+  width: 100%; /* Match contact's width with other components */
+}
+
+.slide-exit {
+  transform: translate(0%);
+}
+
+.slide-exit.slide-exit-active {
+  transform: translate(-110%);
+  transition: 600ms ease-in-out;
+  position: relative;
+}
+
 /* Heading */
 .heading {
   padding-bottom: 0;
@@ -114,8 +136,6 @@ main {
   width: 50%;
   max-width: 300px;
   height: auto;*/
-  /*width: 50%;*/
-  /*height: auto;*/
   max-height: 175px;
   /*float: left;*/
   border-radius: 100%;
@@ -155,8 +175,16 @@ main {
   }
 }
 
+.projects-name {
+  font-size: 1.3em;
+}
+
 .projects-image {
   width: 30%;
+}
+
+.projects-technology {
+  color: blue;
 }
 
 .projects-website,
