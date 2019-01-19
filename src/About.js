@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class About extends Component {
   componentDidMount() {
@@ -19,12 +20,17 @@ class About extends Component {
 
 		return (
       <main className="about">
-        <h3 className="about-heading" tabIndex={0}>About</h3>
-        <div className="about-container">
-          <img className="about-headshot" tabIndex={0}
-            src="/img/Headshot.png" alt="Headshot of Abhishek"/>
-          <p className="about-bio" tabIndex={0}>{bio}</p>
+        <div className="about-wrapper">
+          <h3 className="about-heading" tabIndex={0}>About</h3>
+          <div className="about-container">
+            <img className="about-headshot" tabIndex={0}
+              src="/img/Headshot.png" alt="Headshot of Abhishek"/>
+            <p className="about-bio" tabIndex={0}>{bio}</p>
+          </div>
         </div>
+        <Link className="arrow-right" to="/projects" aria-label="Go to Projects">
+          <i className="fas fa-arrow-right"/>
+        </Link>
       </main>
 		);
 	}
