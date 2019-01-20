@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class About extends Component {
+  static propTypes = {
+    onClickLink: PropTypes.func.isRequired
+  };
+
   componentDidMount() {
     document.querySelector('title').textContent = 'Abhishek Chaudhuri - About';
     document.querySelector('.links-about').classList.add('selected');
@@ -10,6 +15,8 @@ class About extends Component {
   }
 
 	render() {
+    const { onClickLink } = this.props;
+
     const bio = 'Abhishek Chaudhuri is a college student from North Brunswick, New Jersey. He studies' +
       ' at Rutgers University-New Brunswick, majors in Computer Engineering, and minors in Computer' +
       ' Science. He excels in subjects like math and science and has a strong penchant for' +
@@ -28,7 +35,8 @@ class About extends Component {
             <p className="about-bio" tabIndex={0}>{bio}</p>
           </div>
         </div>
-        <Link className="arrow-right" to="/projects" aria-label="Go to Projects">
+        <Link className="arrow-right" to="/projects" aria-label="Go to Projects"
+          onClick={() => onClickLink('projects')}>
           <i className="fas fa-arrow-right"/>
         </Link>
       </main>

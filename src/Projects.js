@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import projectData from './projects.json';
 
 class Projects extends Component {
+  static propTypes = {
+    onClickLink: PropTypes.func.isRequired
+  };
+
   componentDidMount() {
     document.querySelector('title').textContent = 'Abhishek Chaudhuri - Projects';
     document.querySelector('.links-about').classList.remove('selected');
@@ -11,12 +16,14 @@ class Projects extends Component {
   }
 
 	render() {
+    const { onClickLink } = this.props;
     // Extract JSON data as an array
     const projects = JSON.parse(JSON.stringify(projectData));
 
 		return (
       <main className="projects">
-        <Link className="arrow-left" to="/about" aria-label="Go to About">
+        <Link className="arrow-left" to="/about" aria-label="Go to About"
+          onClick={() => onClickLink('about')}>
           <i className="fas fa-arrow-left"/>
         </Link>
         <div className="projects-wrapper">
@@ -46,7 +53,8 @@ class Projects extends Component {
           </ul>
           <p className="projects-addendum" tabIndex={0}>...And much more on GitHub!</p>
         </div>
-        <Link className="arrow-right" to="/contact" aria-label="Go to Contact">
+        <Link className="arrow-right" to="/contact" aria-label="Go to Contact"
+          onClick={() => onClickLink('contact')}>
           <i className="fas fa-arrow-right"/>
         </Link>
       </main>

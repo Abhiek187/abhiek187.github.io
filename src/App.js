@@ -18,6 +18,10 @@ class App extends Component {
     history: PropTypes.object.isRequired
   };
 
+  state = {
+    slideDirection: 'left' // Determines which direction to slide components
+  };
+
   componentDidMount() {
     // Change title of tab every page change
     if (window.location.pathname === '/')
@@ -41,7 +45,26 @@ class App extends Component {
       navbar.classList.add('sticky') : navbar.classList.remove('sticky');
   };
 
+  setSlider = dest => {
+    // Check where to slide the components
+    if (window.location.pathname === '/contact') {
+      // At Contact, always slide right
+      this.setState({slideDirection: 'right'});
+    } else if (window.location.pathname === '/projects') {
+      // At Projects, check which link was clicked
+      if (dest === 'about') {
+        this.setState({slideDirection: 'right'});
+      } else {
+        this.setState({slideDirection: 'left'});
+      }
+    } else {
+      // At About, always slide left (default)
+      this.setState({slideDirection: 'left'});
+    }
+  };
+
   render() {
+    const slideDirection = this.state.slideDirection;
     const location = this.props.location;
     window.onscroll = this.checkScroll;
 
@@ -56,12 +79,15 @@ class App extends Component {
         </header>
         <nav className="links">
           {/* Redirect routes without reloading the browser */}
-          <Link className="links-about" to="/about">About</Link>
-          <Link className="links-projects" to="/projects">Projects</Link>
-          <Link className="links-contact" to="/contact">Contact</Link>
+          <Link className="links-about" to="/about"
+            onClick={() => this.setSlider('about')}>About</Link>
+          <Link className="links-projects" to="/projects"
+            onClick={() => this.setSlider('projects')}>Projects</Link>
+          <Link className="links-contact" to="/contact"
+            onClick={() => this.setSlider('contact')}>Contact</Link>
         </nav>
         <hr/>
-        <TransitionGroup className="transition-group">
+        <TransitionGroup className={'transition-group ' + slideDirection}>
           <CSSTransition key={location.key} timeout={{ enter: 600, exit: 600 }}
             classNames={'slide'}>
             <Switch location={location}>
@@ -76,13 +102,13 @@ class App extends Component {
                 </main>
               )}/>
               <Route path={process.env.PUBLIC_URL + '/about'} render={() => (
-                <About/>
+                <About onClickLink={this.setSlider}/>
               )}/>
               <Route path={process.env.PUBLIC_URL + '/projects'} render={() => (
-                <Projects/>
+                <Projects onClickLink={this.setSlider}/>
               )}/>
               <Route path={process.env.PUBLIC_URL + '/contact'} render={() => (
-                <Contact/>
+                <Contact onClickLink={this.setSlider}/>
               )}/>
             </Switch>
           </CSSTransition>

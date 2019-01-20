@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class Contact extends Component {
+  static propTypes = {
+    onClickLink: PropTypes.func.isRequired
+  };
+
   componentDidMount() {
     document.querySelector('title').textContent = 'Abhishek Chaudhuri - Contact';
     document.querySelector('.links-about').classList.remove('selected');
@@ -10,9 +15,12 @@ class Contact extends Component {
   }
 
 	render() {
+    const { onClickLink } = this.props;
+
 		return (
 			<main className="contact">
-        <Link className="arrow-left" to="/projects" aria-label="Go to Projects">
+        <Link className="arrow-left" to="/projects" aria-label="Go to Projects"
+          onClick={() => onClickLink('projects')}>
           <i className="fas fa-arrow-left"/>
         </Link>
         <div className="contact-wrapper">

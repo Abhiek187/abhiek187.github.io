@@ -27,23 +27,35 @@ main {
 }
 
 /* Transition effects */
-.slide-enter {
+.left .slide-enter {
   transform: translate(110%);
 }
 
-.slide-enter.slide-enter-active {
+.right .slide-enter {
+  transform: translate(-110%);
+}
+
+.left .slide-enter.slide-enter-active,
+.right .slide-enter.slide-enter-active {
   transform: translate(0%);
   transition: 600ms ease-in-out;
   position: fixed;
   width: 100%; /* Match contact's width with other components */
 }
 
-.slide-exit {
+.left .slide-exit,
+.right .slide-exit {
   transform: translate(0%);
 }
 
-.slide-exit.slide-exit-active {
+.left .slide-exit.slide-exit-active {
   transform: translate(-110%);
+  transition: 600ms ease-in-out;
+  position: relative;
+}
+
+.right .slide-exit.slide-exit-active {
+  transform: translate(110%);
   transition: 600ms ease-in-out;
   position: relative;
 }
@@ -177,12 +189,6 @@ main {
   margin: auto;
 }
 
-@media screen and (max-width: 500px) {
-  .about-bio {
-    width: 100%;
-  }
-}
-
 /* Projects section */
 .projects-list {
   padding: 0 5%;
@@ -200,7 +206,7 @@ main {
   padding-right: 1%;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .projects-list li {
     width: 100%; /* If viewport is too small, have one card per row */
   }
@@ -211,7 +217,7 @@ main {
 }
 
 .projects-image {
-  width: 30%;
+  width: 70%;
 }
 
 .projects-technology {
