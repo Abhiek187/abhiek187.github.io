@@ -28,7 +28,7 @@ class Contact extends Component {
           {/* Each link opens in a new tab */}
           <span className="contact-row">
             <a className="contact-resume"
-              href="https://www.dropbox.com/s/05i2g7mmehfck9u/Resume%20v2.pdf?dl=0" target="_blank"
+              href="https://www.dropbox.com/s/daivoubtkiyvupl/Resume%20v4.pdf?dl=0" target="_blank"
               rel="noopener noreferrer">
               <i className="fas fa-file-pdf"/> Resume
             </a>

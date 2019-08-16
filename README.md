@@ -1,19 +1,5 @@
 # My Website
 
-### Due to the way GitHub Pages is set up for user pages, this project has been split into 4 branches:
-
-### dev
-This is the default branch for this repo, where all developmental work takes place.
-
-### backup
-A backup branch in case something goes wrong in dev (i.e. trying to migrate all files away from master).
-
-### master
-Since this is a user page, GitHub Pages must be deployed in the master branch. As such, developmental work was hard to manage on this branch, so I switched over to working in **dev** as my "master" branch. This branch now has all the minified content needed to properly deploy this on [abhiek187.github.io](https://abhiek187.github.io).
-
-### gh-pages
-Normally, this would be the branch GitHub Pages would deploy your site in, but because this is a user page, it doesn't do anything. Instead, think of this as a backup for master.
-
 ## About
 This is my own personal website created using React. Inspired by Udacity's Front-End Web Development Course, I decided to use my React skills to create a website that encapsulates what I've accomplished over the years in an environment I have a passion for. It is responsive and accessible. You can check out [this site](https://abhiek187.github.io) to learn more and get in contact with me.
 
@@ -38,10 +24,12 @@ Click on [this link](https://abhiek187.github.io) to view my website on GitHub P
 
 Start by setting up the local environment:
 ```
-git clone https://github.com/Abhiek187/abhiek187.github.io.git)
+git clone https://github.com/Abhiek187/abhiek187.github.io.git
 cd abhiek187.github.io
 npm install
 ```
+
+Make sure to keep in the mind the [branches](#branches) when doing development work. If just running the program, stick to the **dev** branch.
 
 ## Available Scripts
 
@@ -90,7 +78,24 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+## Branches
+
+Due to the way GitHub Pages is set up for user pages, this project has been split into 4 branches:
+
+### dev
+This is the default branch for this repo, where all developmental work takes place.
+
+### backup
+A backup branch in case something goes wrong in dev (i.e. trying to migrate all files away from master).
+
+### master
+Since this is a user page, GitHub Pages must be deployed in the master branch. As such, developmental work was hard to manage on this branch, so I switched over to working in **dev** as my "master" branch. This branch now has all the minified content needed to properly deploy this on [abhiek187.github.io](https://abhiek187.github.io).
+
+### gh-pages
+Normally, this would be the branch GitHub Pages would deploy your site in, but because this is a user page, it doesn't do anything. Instead, think of this as a backup for master.
+
 ## Miscellaneous
+
 - [Code of conduct](https://github.com/Abhiek187/abhiek187.github.io/blob/dev/CODE_OF_CONDUCT.md)
 - [Contributing](https://github.com/Abhiek187/abhiek187.github.io/blob/dev/CONTRIBUTING.md)
 - [License](https://github.com/Abhiek187/abhiek187.github.io/blob/dev/LICENSE)
