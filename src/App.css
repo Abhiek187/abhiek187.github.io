@@ -91,7 +91,7 @@ main {
 .links-about:hover,
 .links-projects:hover,
 .links-contact:hover {
-  border-bottom: 2px solid black;
+  /*border-bottom: 2px solid black;*/
   background-color: lightgray;
 }
 
@@ -185,7 +185,7 @@ main {
 /* About section */
 .about-headshot {
   max-height: 175px;
-  border-radius: 100%;
+  border-radius: 10%;
   margin: auto;
 }
 
