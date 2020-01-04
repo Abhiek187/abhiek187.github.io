@@ -54,20 +54,6 @@
     "repo": "https://github.com/Abhiek187/frontend-nanodegree-arcade-game"
   },
   {
-    "id": "restaurant-reviews",
-    "name": "Restaurant Reviews",
-    "image": "/img/Restaurant Reviews.PNG",
-    "about": "A website that shows information about restaurants in New York City. It is responsive on all devices and contains standard accessibility features. In addition, all visited pages can work offline by caching requests through a Service Worker.",
-    "technology": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Mapbox"
-    ],
-    "website": null,
-    "repo": "https://github.com/Abhiek187/mws-restaurant-stage-1"
-  },
-  {
     "id": "neighborhood-map",
     "name": "Neighborhood Map",
     "image": "/img/Neighborhood Map.PNG",
@@ -82,5 +68,19 @@
     ],
     "website": "https://abhiek187.github.io/Neighborhood-Map",
     "repo": "https://github.com/Abhiek187/Neighborhood-Map"
+  },
+  {
+    "id": "area-advice",
+    "name": "Area Advice",
+    "image": "/img/Area advice.png",
+    "about": "An Android app that recommends places based on sensor data, user input, distance, and ratings.  This app features a quality user interface using navigation bars, explores the Google Places API, and makes use of light and temperature sensors to give users the best mobile experience.",
+    "technology": [
+      "Kotlin",
+      "Google Places",
+      "Google Maps",
+      "SQLite"
+    ],
+    "website": null,
+    "repo": "https://github.com/Abhiek187/AreaAdvice"
   }
 ]
