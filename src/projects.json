@@ -72,7 +72,7 @@
   {
     "id": "area-advice",
     "name": "Area Advice",
-    "image": "/img/Area advice.png",
+    "image": "/img/Area Advice.png",
     "about": "An Android app that recommends places based on sensor data, user input, distance, and ratings.  This app features a quality user interface using navigation bars, explores the Google Places API, and makes use of light and temperature sensors to give users the best mobile experience.",
     "technology": [
       "Kotlin",
