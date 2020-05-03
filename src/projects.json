@@ -1,4 +1,17 @@
 [
+  {
+    "id": "3d-collectathon",
+    "name": "3D Collectathon",
+    "image": "/img/3D Collectathon (Compressed).png",
+    "about": "A game created in Unity where the player has to collect 5 Mega Gems scattered across the land. The Mega Gems can be gotten by solving puzzles or clearing platforming challenges. The player is free to explore the 5 open terrains in first person and collect Mini Gems along the way. The player is scored at the end based on their time and Mini Gem count.",
+    "technology": [
+      "Unity",
+      "Blender",
+      "C#"
+    ],
+    "website": "https://abhiek187.github.io/3d-collectathon/WebGL",
+    "repo": "https://github.com/Abhiek187/3d-collectathon"
+  },
 	{
     "id": "captain-conundrum",
     "name": "Captain Conundrum",
@@ -11,6 +24,20 @@
     "website": "https://appsite.skygear.io/captain_conundrum/",
     "repo": "https://github.com/Abhiek187/Captain-Conundrum"
 	},
+  {
+    "id": "area-advice",
+    "name": "Area Advice",
+    "image": "/img/Area Advice.png",
+    "about": "An Android app that recommends places based on sensor data, user input, distance, and ratings.  This app features a quality user interface using navigation bars, explores the Google Places API, and makes use of light and temperature sensors to give users the best mobile experience.",
+    "technology": [
+      "Kotlin",
+      "Google Places",
+      "Google Maps",
+      "SQLite"
+    ],
+    "website": null,
+    "repo": "https://github.com/Abhiek187/AreaAdvice"
+  },
   {
     "id": "giphy-gif-search",
     "name": "Giphy GIF Search",
@@ -52,35 +79,5 @@
     ],
     "website": "https://abhiek187.github.io/frontend-nanodegree-arcade-game",
     "repo": "https://github.com/Abhiek187/frontend-nanodegree-arcade-game"
-  },
-  {
-    "id": "neighborhood-map",
-    "name": "Neighborhood Map",
-    "image": "/img/Neighborhood Map.PNG",
-    "about": "A project built from scratch using React and Google Maps. This site allows users to select from predetermined locations and read reviews through Yelp. It contains a culmination of all skills learned throughout the nanodegree program, including accessibility, responsiveness, and offline functionality.",
-    "technology": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "React",
-      "Google Maps",
-      "Yelp"
-    ],
-    "website": "https://abhiek187.github.io/Neighborhood-Map",
-    "repo": "https://github.com/Abhiek187/Neighborhood-Map"
-  },
-  {
-    "id": "area-advice",
-    "name": "Area Advice",
-    "image": "/img/Area Advice.png",
-    "about": "An Android app that recommends places based on sensor data, user input, distance, and ratings.  This app features a quality user interface using navigation bars, explores the Google Places API, and makes use of light and temperature sensors to give users the best mobile experience.",
-    "technology": [
-      "Kotlin",
-      "Google Places",
-      "Google Maps",
-      "SQLite"
-    ],
-    "website": null,
-    "repo": "https://github.com/Abhiek187/AreaAdvice"
   }
 ]
