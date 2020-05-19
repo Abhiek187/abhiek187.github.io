@@ -135,7 +135,7 @@ class App extends Component {
           <span className="foot-right">
             <a className="foot-mit" target="_blank" rel="noopener noreferrer"
               href="https://github.com/Abhiek187/abhiek187.github.io/blob/dev/LICENSE">
-              MIT License</a> Copyright (c) 2019 Abhishek Chaudhuri
+              MIT License</a> Copyright &copy; 2019 Abhishek Chaudhuri
           </span>
         </footer>
       </div>
