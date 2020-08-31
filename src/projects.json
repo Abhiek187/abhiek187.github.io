@@ -1,5 +1,30 @@
 [
   {
+    "id": "coding-cheat-sheets",
+    "name": "Coding Cheat Sheets",
+    "image": "/img/Cheat Sheets (Upscaled).png",
+    "about": "A collection of programs that showcases basic functionalities in each programming language (that I know of). It is designed to help aspiring coders to learn a new language and give experienced developers a refresher on a language.",
+    "technology": [
+      "C#",
+      "C++",
+      "C",
+      "CSS",
+      "HTML",
+      "JSON",
+      "Java",
+      "JavaScript",
+      "Kotlin",
+      "Markdown",
+      "Python",
+      "Ruby",
+      "SQL",
+      "Swift",
+      "TypeScript"
+    ],
+    "website": null,
+    "repo": "https://github.com/Abhiek187/coding-cheat-sheets"
+  },
+  {
     "id": "3d-collectathon",
     "name": "3D Collectathon",
     "image": "/img/3D Collectathon (Compressed).png",
@@ -15,7 +40,7 @@
 	{
     "id": "captain-conundrum",
     "name": "Captain Conundrum",
-    "image": "/img/App Icon.png",
+    "image": "/img/Main Menu.PNG",
     "about": "An iOS game created at Make School Summer Academy in just 8 weeks. It is a top-down space shooter designed around the GameKit library in Swift. The game features motion controls, a high and low score system, power-ups, and various customization options.",
     "technology": [
       "Swift",
@@ -66,18 +91,5 @@
     ],
     "website": "https://abhiek187.github.io/Memory-Game",
     "repo": "https://github.com/Abhiek187/Memory-Game"
-  },
-  {
-    "id": "frogger",
-    "name": "Classic Arcade Game Clone (Frogger)",
-    "image": "/img/Frogger.PNG",
-    "about": "An HTML5 Canvas powered video game based on the popular arcade game Frogger, developed using the best practices in Object Oriented JavaScript.",
-    "technology": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "website": "https://abhiek187.github.io/frontend-nanodegree-arcade-game",
-    "repo": "https://github.com/Abhiek187/frontend-nanodegree-arcade-game"
   }
 ]
