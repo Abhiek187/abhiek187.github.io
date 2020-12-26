@@ -14,11 +14,11 @@ class Contact extends Component {
     document.querySelector('.links-contact').classList.add('selected');
   }
 
-	render() {
+  render() {
     const { onClickLink } = this.props;
 
-		return (
-			<main className="contact">
+    return (
+      <main className="contact">
         <Link className="arrow-left" to="/projects" aria-label="Go to Projects"
           onClick={() => onClickLink('projects')}>
           <i className="fas fa-arrow-left"/>
@@ -46,8 +46,8 @@ class Contact extends Component {
           </span>
         </div>
       </main>
-		);
-	}
+    );
+  }
 }
 
 export default Contact;

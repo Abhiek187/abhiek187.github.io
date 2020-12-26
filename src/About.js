@@ -14,7 +14,7 @@ class About extends Component {
     document.querySelector('.links-contact').classList.remove('selected');
   }
 
-	render() {
+  render() {
     const { onClickLink } = this.props;
 
     const bio = 'Abhishek Chaudhuri is a college student from North Brunswick, New Jersey. He studies' +
@@ -25,7 +25,7 @@ class About extends Component {
       ' for everyone. He can put his technical skills to good use by gaining experience from working' +
       ' with other companies who value his ambitions.';
 
-		return (
+    return (
       <main className="about">
         <div className="about-wrapper">
           <h3 className="about-heading" tabIndex={0}>About</h3>
@@ -40,8 +40,8 @@ class About extends Component {
           <i className="fas fa-arrow-right"/>
         </Link>
       </main>
-		);
-	}
+    );
+  }
 }
 
 export default About;

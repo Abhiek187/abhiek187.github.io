@@ -15,19 +15,19 @@ class Projects extends Component {
     document.querySelector('.links-contact').classList.remove('selected');
   }
 
-	render() {
+  render() {
     const { onClickLink } = this.props;
     // Extract JSON data as an array
     const projects = JSON.parse(JSON.stringify(projectData));
 
-		return (
+    return (
       <main className="projects">
         <Link className="arrow-left" to="/about" aria-label="Go to About"
           onClick={() => onClickLink('about')}>
           <i className="fas fa-arrow-left"/>
         </Link>
         <div className="projects-wrapper">
-			    <h3 className="projects-heading" tabIndex={0}>Projects</h3>
+          <h3 className="projects-heading" tabIndex={0}>Projects</h3>
           <ul className="projects-list">
             {projects.map(project => (
               /* Each list item needs a key */
@@ -58,8 +58,8 @@ class Projects extends Component {
           <i className="fas fa-arrow-right"/>
         </Link>
       </main>
-		);
-	}
+    );
+  }
 }
 
 export default Projects;
