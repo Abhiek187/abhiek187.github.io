@@ -8,9 +8,6 @@ import About from './About';
 import Projects from './Projects';
 import Contact from './Contact';
 
-let navbar;
-let navPosition;
-
 const App = ({ match, location, history }) => {
   // Determines which direction to slide the components
   const [slideDirection, setSlideDirection] = useState('left');
@@ -27,20 +24,18 @@ const App = ({ match, location, history }) => {
     }
 
     // Check where web scroll is for sticky navbar
-    navbar = document.querySelector('.links');
-    navPosition = navbar.offsetTop;
+    let navbar = document.querySelector('.links');
+    let navPosition = navbar.offsetTop;
+
+    window.onscroll = () => {
+      // If the scroll position is beyond the navbar, make it sticky
+      navbar = document.querySelector('.links');
+      // Don't set navPosition to 0
+      navPosition = navbar.offsetTop === 0 ? navPosition : navbar.offsetTop;
+      window.pageYOffset >= navPosition ?
+        navbar.classList.add('sticky') : navbar.classList.remove('sticky');
+    };
   }, []); // only componentDidMount()
-
-  const checkScroll = () => {
-    // If scroll position is beyond the navbar, make it sticky
-    navbar = document.querySelector('.links');
-    // Don't set navPosition to 0
-    navPosition = navbar.offsetTop === 0 ? navPosition : navbar.offsetTop;
-    window.pageYOffset >= navPosition ?
-      navbar.classList.add('sticky') : navbar.classList.remove('sticky');
-  };
-
-  window.onscroll = checkScroll;
 
   const setSlider = dest => {
     // Check where to slide the components
