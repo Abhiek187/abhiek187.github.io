@@ -1,0 +1,54 @@
+/* Projects section */
+.projects-heading {
+  margin-top: 0.5rem;
+}
+
+.projects-list {
+  padding: 0 5%;
+  display: flex; /* List all projects as cards */
+  flex-wrap: wrap;
+}
+
+.projects-list li {
+  list-style-type: none; /* Remove bullet points */
+  border: 1px solid black;
+  border-radius: 10%;
+  margin: 3% auto; /* Centers cards among each other */
+  width: 45%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .projects-list li {
+    width: 100%; /* If viewport is too small, have one card per row */
+  }
+}
+
+.projects-name {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 5%;
+}
+
+.projects-image {
+  width: 90%;
+}
+
+.projects-about {
+  margin: 1rem 1%; /* 1rem top-bottom & 1% left-right */
+}
+
+.projects-technology-header {
+  color: blue;
+}
+
+.projects-technology {
+  margin: 1%;
+}
+
+.projects-website,
+.projects-repo {
+  display: table; /* Display links separated by newline */
+  margin: 3% auto;
+}

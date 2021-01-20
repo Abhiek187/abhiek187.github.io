@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import App from './js/App';
+import * as serviceWorker from './js/serviceWorker';
 
 ReactDOM.render(
   // Enable react router and work in GitHub Pages

@@ -1,0 +1,43 @@
+/* Contact section */
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.contact-row a {
+  display: table;
+  margin: 3% auto;
+  padding: 0 1%;
+  font-size: 1.5em;
+  border: 1px solid black;
+  border-radius: 10%;
+  box-shadow: 5px 5px darkgray;
+  text-decoration: none;
+}
+
+.contact-resume:hover,
+.contact-linkedin:hover,
+.contact-github:hover,
+.contact-email:hover {
+  background-color: lightgray; /* Show link as selected */
+}
+
+.contact-resume:active,
+.contact-linkedin:active,
+.contact-github:active,
+.contact-email:active {
+  transform: translateY(4px); /* Push down on buttons */
+  box-shadow: 2px 2px black;
+}
+
+.fa-file-pdf {
+  color: red;
+}
+
+.fa-linkedin-in {
+  color: #007bb5; /* LinkedIn blue */
+}
+
+.fa-envelope {
+  color: indigo;
+}

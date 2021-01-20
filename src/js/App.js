@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { Route, Link, Switch, withRouter } from 'react-router-dom';
 //import SwipeableRoutes from 'react-swipeable-routes';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import './App.css';
+
+import '../css/App.css';
 import About from './About';
 import Projects from './Projects';
 import Contact from './Contact';

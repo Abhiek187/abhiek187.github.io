@@ -1,0 +1,10 @@
+/* About section */
+.about-headshot {
+  max-height: 175px;
+  border-radius: 10%;
+  margin: auto;
+}
+
+.about-bio {
+  margin-top: 1rem;
+}

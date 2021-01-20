@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import '../css/Contact.css';
+
 const Contact = ({ onClickLink }) => {
   useEffect(() => {
     document.querySelector('title').textContent = 'Abhishek Chaudhuri - Contact';
