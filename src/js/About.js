@@ -7,9 +7,9 @@ import '../css/About.css';
 const About = ({ onClickLink }) => {
   useEffect(() => {
     document.querySelector('title').textContent = 'Abhishek Chaudhuri - About';
-    document.querySelector('.links-about').classList.add('selected');
-    document.querySelector('.links-projects').classList.remove('selected');
-    document.querySelector('.links-contact').classList.remove('selected');
+    document.querySelector('.links-about').classList.add('active');
+    document.querySelector('.links-projects').classList.remove('active');
+    document.querySelector('.links-contact').classList.remove('active');
   }, []);
 
   const bio = 'Abhishek Chaudhuri is a college student from North Brunswick, New Jersey. He studies' +

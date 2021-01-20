@@ -65,13 +65,13 @@ const App = ({ match, location, history }) => {
           Computer Engineering & Science Student at Rutgers University - New Brunswick
         </h2>
       </header>
-      <nav className="links container-fluid">
+      <nav className="links container-fluid btn-group">
         {/* Redirect routes without reloading the browser */}
-        <Link className="links-about" to="/about"
+        <Link className="links-about btn btn-danger" to="/about"
           onClick={() => setSlider('about')}>About</Link>
-        <Link className="links-projects" to="/projects"
+        <Link className="links-projects btn btn-warning" to="/projects"
           onClick={() => setSlider('projects')}>Projects</Link>
-        <Link className="links-contact" to="/contact"
+        <Link className="links-contact btn btn-success" to="/contact"
           onClick={() => setSlider('contact')}>Contact</Link>
       </nav>
       <hr/>
@@ -107,7 +107,7 @@ const App = ({ match, location, history }) => {
         window.location.pathname !== '/Memory-Game' &&
         window.location.pathname !== '/frontend-nanodegree-arcade-game' &&
         window.location.pathname !== '/Neighborhood-Map' && <Route render={() => (
-        <main className="error">
+        <main className="error container-fluid">
           <p className="error-message text-danger" tabIndex={0}>
             Whoops! That path is invalid. Please click the links above.
           </p>

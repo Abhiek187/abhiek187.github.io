@@ -82,15 +82,11 @@ main {
   padding-top: 5px;
   padding-bottom: 5px;
   background-color: khaki;
+  display: flex;
 }
 
 .links a {
   text-decoration: none; /* No underline normally */
-}
-
-.selected {
-  border-bottom: 2px solid black; /* Show underline when selected */
-  background-color: lightgreen;
 }
 
 .links-about:hover,
@@ -101,36 +97,14 @@ main {
 }
 
 .sticky {
-  position: fixed; /* Keep navbar at top of page */
+  position: fixed; /* Keep navbar at the top of the page */
   top: 0;
   left: 0;
-  width: 100%;
-  padding-bottom: 1%;
 }
 
 /* Style main if sticky */
 .sticky ~ main {
   padding-top: 20px; /* Transition smoothly between sticky and non-sticky */
-}
-
-.links-about {
-  float: left;
-  margin-left: 10%;
-}
-
-.links-contact {
-  float: right;
-  margin-right: 10%;
-}
-
-@media screen and (max-width: 400px) {
-  .links-about {
-    margin-left: 5%;
-  }
-
-  .links-contact {
-    margin-right: 5%;
-  }
 }
 
 /* Arrows */

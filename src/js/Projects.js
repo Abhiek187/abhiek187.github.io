@@ -9,9 +9,9 @@ import projectData from '../models/projects.json';
 const Projects = ({ onClickLink }) => {
   useEffect(() => {
     document.querySelector('title').textContent = 'Abhishek Chaudhuri - Projects';
-    document.querySelector('.links-about').classList.remove('selected');
-    document.querySelector('.links-projects').classList.add('selected');
-    document.querySelector('.links-contact').classList.remove('selected');
+    document.querySelector('.links-about').classList.remove('active');
+    document.querySelector('.links-projects').classList.add('active');
+    document.querySelector('.links-contact').classList.remove('active');
   }, []);
 
   // Extract JSON data as an array

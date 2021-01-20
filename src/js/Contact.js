@@ -7,9 +7,9 @@ import '../css/Contact.css';
 const Contact = ({ onClickLink }) => {
   useEffect(() => {
     document.querySelector('title').textContent = 'Abhishek Chaudhuri - Contact';
-    document.querySelector('.links-about').classList.remove('selected');
-    document.querySelector('.links-projects').classList.remove('selected');
-    document.querySelector('.links-contact').classList.add('selected');
+    document.querySelector('.links-about').classList.remove('active');
+    document.querySelector('.links-projects').classList.remove('active');
+    document.querySelector('.links-contact').classList.add('active');
   }, []);
 
   return (
