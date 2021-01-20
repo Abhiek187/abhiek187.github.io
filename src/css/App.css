@@ -83,6 +83,7 @@ main {
   padding-bottom: 5px;
   background-color: khaki;
   display: flex;
+  justify-content: center;
 }
 
 .links a {
