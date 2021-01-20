@@ -29,18 +29,20 @@ const Projects = ({ onClickLink }) => {
         <ul className="projects-list">
           {projects.map(project => (
             /* Each list item needs a key */
-            <li key={project.id}>
-              <h4 className="projects-name" tabIndex={0}>{project.name}</h4>
-              <img className="projects-image" tabIndex={0} src={project.image}
+            <li key={project.id} className="card">
+              <h4 className="projects-name card-title" tabIndex={0}>{project.name}</h4>
+              <img className="projects-image card-img-top" tabIndex={0} src={project.image}
                 alt={project.name}/>
-              <p className="projects-about" tabIndex={0}>{project.about}</p>
+              <p className="projects-about card-text" tabIndex={0}>{project.about}</p>
               <p className="projects-technology-header" tabIndex={0}
                 aria-label={`Made using: ${project.technology}`}>
                 Made Using:
               </p>
-              {project.technology.map(tech => (
-                <p key={tech} className={`projects-technology badge bg-${colors[tech]}`}>{tech}</p>
-              ))}
+              <div className="projects-technology-container">
+                {project.technology.map(tech => (
+                  <p key={tech} className={`projects-technology badge bg-${colors[tech]}`}>{tech}</p>
+                ))}
+              </div>
               {/* If no project link is directly available, follow directions on GitHub */}
               {project.website ? (
                 <a className="projects-website" href={project.website} target="_blank"

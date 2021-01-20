@@ -11,12 +11,10 @@
 
 .projects-list li {
   list-style-type: none; /* Remove bullet points */
+  position: static; /* Put behind the sticky navbar */
   border: 1px solid black;
-  border-radius: 10%;
   margin: 3% auto; /* Centers cards among each other */
   width: 45%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 @media screen and (max-width: 800px) {
@@ -33,6 +31,8 @@
 
 .projects-image {
   width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .projects-about {
@@ -41,6 +41,11 @@
 
 .projects-technology-header {
   color: blue;
+  margin-bottom: 0;
+}
+
+.projects-technology-container {
+  margin-bottom: 3%;
 }
 
 .projects-technology {
@@ -49,6 +54,5 @@
 
 .projects-website,
 .projects-repo {
-  display: table; /* Display links separated by newline */
-  margin: 3% auto;
+  margin: 2% auto;
 }
