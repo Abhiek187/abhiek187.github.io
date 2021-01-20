@@ -11,7 +11,7 @@ const Contact = ({ onClickLink }) => {
   }, []);
 
   return (
-    <main className="contact">
+    <main className="contact container-fluid">
       <Link className="arrow-left" to="/projects" aria-label="Go to Projects"
         onClick={() => onClickLink('projects')}>
         <i className="fas fa-arrow-left"/>

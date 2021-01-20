@@ -19,7 +19,7 @@ const About = ({ onClickLink }) => {
     ' with other companies who value his ambitions.';
 
   return (
-    <main className="about">
+    <main className="about container-fluid">
       <div className="about-wrapper">
         <h3 className="about-heading" tabIndex={0}>About</h3>
         <div className="about-container">

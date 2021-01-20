@@ -70,7 +70,7 @@
     "about": "A search engine for GIFs powered by the Giphy API and running on a node.js server. Created at a local hackathon at Rutgers.",
     "technology": [
       "Giphy",
-      "node.js",
+      "Node.js",
       "Handlebars",
       "CSS",
       "JavaScript"

@@ -57,14 +57,14 @@ const App = ({ match, location, history }) => {
 
   return (
     <div className="App">
-      <header className="heading">
+      <header className="heading container-fluid">
         <h1 className="heading-name" tabIndex={0}>Abhishek Chaudhuri</h1>
         {/* Add tabIndex to important information */}
         <h2 className="heading-headline" tabIndex={0}>
           Computer Engineering & Science Student at Rutgers University - New Brunswick
         </h2>
       </header>
-      <nav className="links">
+      <nav className="links container-fluid">
         {/* Redirect routes without reloading the browser */}
         <Link className="links-about" to="/about"
           onClick={() => setSlider('about')}>About</Link>
@@ -81,10 +81,10 @@ const App = ({ match, location, history }) => {
             {/* Ensure route works with any website url */}
             <Route exact path={`${process.env.PUBLIC_URL}/`} render={() => (
               /* Default page */
-              <main className="home">
+              <main className="home container-fluid">
                 <p className="home-info" tabIndex={0}>
                   Hello and welcome to my website!
-                  Please click the links above for more info about me.
+                  Please click the links above to learn more about me.
                 </p>
               </main>
             )}/>
@@ -107,13 +107,13 @@ const App = ({ match, location, history }) => {
         window.location.pathname !== '/frontend-nanodegree-arcade-game' &&
         window.location.pathname !== '/Neighborhood-Map' && <Route render={() => (
         <main className="error">
-          <p className="error-message" tabIndex={0}>
+          <p className="error-message text-danger" tabIndex={0}>
             Whoops! That path is invalid. Please click the links above.
           </p>
         </main>
       )}/>}
       <hr/>
-      <footer className="foot">
+      <footer className="foot container-fluid">
         <span className="foot-left">
           Made using <a className="foot-react" href="https://reactjs.org/" target="_blank"
             rel="noopener noreferrer">React</a>

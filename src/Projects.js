@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import colorData from './colors.json';
 import projectData from './projects.json';
 
 const Projects = ({ onClickLink }) => {
@@ -12,10 +13,11 @@ const Projects = ({ onClickLink }) => {
   }, []);
 
   // Extract JSON data as an array
+  const colors = JSON.parse(JSON.stringify(colorData));
   const projects = JSON.parse(JSON.stringify(projectData));
 
   return (
-    <main className="projects">
+    <main className="projects container-fluid">
       <Link className="arrow-left" to="/about" aria-label="Go to About"
         onClick={() => onClickLink('about')}>
         <i className="fas fa-arrow-left"/>
@@ -30,13 +32,17 @@ const Projects = ({ onClickLink }) => {
               <img className="projects-image" tabIndex={0} src={project.image}
                 alt={project.name}/>
               <p className="projects-about" tabIndex={0}>{project.about}</p>
-              <p className="projects-technology" tabIndex={0}>
-                Made Using: {project.technology.join(', ')}
+              <p className="projects-technology-header" tabIndex={0}
+                aria-label={`Made using: ${project.technology}`}>
+                Made Using:
               </p>
+              {project.technology.map(tech => (
+                <p key={tech} className={`projects-technology badge bg-${colors[tech]}`}>{tech}</p>
+              ))}
               {/* If no project link is directly available, follow directions on GitHub */}
               {project.website ? (
                 <a className="projects-website" href={project.website} target="_blank"
-                rel="noopener noreferrer">View Project</a>
+                  rel="noopener noreferrer">View Project</a>
               ) : (
                 <p className="projects-website" tabIndex={0}>&darr; See GitHub link below &darr;</p>
               )}
