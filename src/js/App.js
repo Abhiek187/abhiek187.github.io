@@ -69,9 +69,9 @@ const App = ({ match, location, history }) => {
         {/* Redirect routes without reloading the browser */}
         <Link className="links-about btn btn-danger" to="/about"
           onClick={() => setSlider('about')}>About</Link>
-        <Link className="links-projects btn btn-success" to="/projects"
+        <Link className="links-projects btn btn-warning" to="/projects"
           onClick={() => setSlider('projects')}>Projects</Link>
-        <Link className="links-contact btn btn-primary" to="/contact"
+        <Link className="links-contact btn btn-success" to="/contact"
           onClick={() => setSlider('contact')}>Contact</Link>
       </nav>
       <hr/>
