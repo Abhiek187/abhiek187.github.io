@@ -8,7 +8,7 @@ import projectData from '../models/projects.json';
 
 const Projects = ({ onClickLink }) => {
   useEffect(() => {
-    document.querySelector('title').textContent = 'Abhishek Chaudhuri - Projects';
+    document.title = 'Abhishek Chaudhuri - Projects';
     document.querySelector('.links-about').classList.remove('active');
     document.querySelector('.links-projects').classList.add('active');
     document.querySelector('.links-contact').classList.remove('active');

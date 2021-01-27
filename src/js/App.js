@@ -16,12 +16,12 @@ const App = ({ match, location, history }) => {
   useEffect(() => {
     // Change the title of the tab every page change
     if (window.location.pathname === '/') {
-      document.querySelector('title').textContent = 'Abhishek Chaudhuri - Home';
+      document.title = 'Abhishek Chaudhuri - Home';
     } else if (window.location.pathname !== '/about' && window.location.pathname !== '/projects' &&
       window.location.pathname !== '/contact' && window.location.pathname !== '/Memory-Game' &&
       window.location.pathname !== '/frontend-nanodegree-arcade-game' &&
       window.location.pathname !== '/Neighborhood-Map') {
-      document.querySelector('title').textContent = 'Abhishek Chaudhuri - Error';
+      document.title = 'Abhishek Chaudhuri - Error';
     }
 
     // Check where web scroll is for sticky navbar

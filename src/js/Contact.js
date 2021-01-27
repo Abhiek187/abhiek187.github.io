@@ -6,7 +6,7 @@ import '../css/Contact.css';
 
 const Contact = ({ onClickLink }) => {
   useEffect(() => {
-    document.querySelector('title').textContent = 'Abhishek Chaudhuri - Contact';
+    document.title = 'Abhishek Chaudhuri - Contact';
     document.querySelector('.links-about').classList.remove('active');
     document.querySelector('.links-projects').classList.remove('active');
     document.querySelector('.links-contact').classList.add('active');
