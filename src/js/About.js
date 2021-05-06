@@ -12,13 +12,14 @@ const About = ({ onClickLink }) => {
     document.querySelector('.links-contact').classList.remove('active');
   }, []);
 
-  const bio = 'Abhishek Chaudhuri is a college student from North Brunswick, New Jersey. He studies' +
-    ' at Rutgers University-New Brunswick, majors in Computer Engineering, and minors in Computer' +
-    ' Science. He excels in subjects like math and science and has a strong penchant for' +
-    ' programming and technology. Some of his hobbies include doing taekwondo, playing the flute &' +
-    ' piccolo, and playing video games. His ultimate goal in life is to help make society better' +
-    ' for everyone. He can put his technical skills to good use by gaining experience from working' +
-    ' with other companies who value his ambitions.';
+  const bio = "Abhishek Chaudhuri is a recent graduate of Rutgers University-New Brunswick. " +
+    "He studied Electrical & Computer Engineering as an undergraduate and Software Engineering " +
+    "as a graduate. His interests include machine learning and front-end web and mobile " +
+    "development (with plans of expanding to full-stack development). Some of his hobbies include " +
+    "exercising, playing the flute, and playing video games. His ultimate goal in life is to " +
+    "improve society by bringing innovation to a collaborative environment. He can put his " +
+    "technical skills to good use by gaining experience and constantly growing from other " +
+    "companies that value his ambitions.";
 
   return (
     <main className="about container-fluid">
