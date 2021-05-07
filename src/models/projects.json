@@ -2,7 +2,7 @@
   {
     "id": "coding-cheat-sheets",
     "name": "Coding Cheat Sheets",
-    "image": "/img/Cheat Sheets (Upscaled).png",
+    "image": "/img/Cheat Sheets.png",
     "about": "A collection of programs that showcases basic functionalities in each programming language (that I know of). It is designed to help aspiring coders to learn a new language and give experienced developers a refresher on a language.",
     "technology": [
       "C#",
@@ -25,9 +25,27 @@
     "repo": "https://github.com/Abhiek187/coding-cheat-sheets"
   },
   {
+    "id": "how-to-stock",
+    "name": "How to Stock",
+    "image": "/img/How to Stock.png",
+    "about": "A full-stack web application built using Django. This web service allows newcomers to the stock market to learn about various financial terms and practice trading stocks. The app uses data analysis to predict future stock prices and recommend whether to buy or sell a stock.",
+    "technology": [
+      "Django",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap",
+      "Chart.js",
+      "Financial Modeling Prep",
+      "SQLite"
+    ],
+    "website": null,
+    "repo": "https://github.com/Abhiek187/how-to-stock"
+  },
+  {
     "id": "3d-collectathon",
     "name": "3D Collectathon",
-    "image": "/img/3D Collectathon (Compressed).png",
+    "image": "/img/3D Collectathon.png",
     "about": "A game created in Unity where the player has to collect 5 Mega Gems scattered across the land. The Mega Gems can be gotten by solving puzzles or clearing platforming challenges. The player is free to explore the 5 open terrains in first person and collect Mini Gems along the way. The player is scored at the end based on their time and Mini Gem count.",
     "technology": [
       "Unity",
@@ -50,6 +68,19 @@
     "repo": "https://github.com/Abhiek187/Captain-Conundrum"
 	},
   {
+    "id": "mini-brain-age",
+    "name": "Mini Brain Age",
+    "image": "/img/brainage.png",
+    "about": "An Android game inspired by Nintendo's Brain Age where the player has to quickly and correctly solve each math problem by handwriting the correct digit. It uses a TensorFlow Lite model trained using the MNIST dataset to make inferences on the device.",
+    "technology": [
+      "Kotlin",
+      "Keras",
+      "TensorFlow Lite"
+    ],
+    "website": null,
+    "repo": "https://github.com/Abhiek187/MiniBrainAge"
+  },
+  {
     "id": "area-advice",
     "name": "Area Advice",
     "image": "/img/Area Advice.png",
@@ -62,34 +93,5 @@
     ],
     "website": null,
     "repo": "https://github.com/Abhiek187/AreaAdvice"
-  },
-  {
-    "id": "giphy-gif-search",
-    "name": "Giphy GIF Search",
-    "image": "/img/GIF Search.gif",
-    "about": "A search engine for GIFs powered by the Giphy API and running on a node.js server. Created at a local hackathon at Rutgers.",
-    "technology": [
-      "Giphy",
-      "Node.js",
-      "Handlebars",
-      "CSS",
-      "JavaScript"
-    ],
-    "website": null,
-    "repo": "https://github.com/Abhiek187/Giphy-GIF-Search"
-  },
-  {
-    "id": "concentration",
-    "name": "Memory Game",
-    "image": "/img/Memory Game.PNG",
-    "about": "Built a complete browser-based card matching game (also known as Concentration). But this isn’t just any memory game! It’s a snazzy, well-designed, feature-packed memory game!",
-    "technology": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Font Awesome"
-    ],
-    "website": "https://abhiek187.github.io/Memory-Game",
-    "repo": "https://github.com/Abhiek187/Memory-Game"
   }
 ]

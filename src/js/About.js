@@ -27,7 +27,7 @@ const About = ({ onClickLink }) => {
         <h3 className="about-heading" tabIndex={0}>About</h3>
         <div className="about-container">
           <img className="about-headshot" tabIndex={0}
-            src="/img/Headshot.png" alt="Headshot of Abhishek"/>
+            src="/img/Headshot.png" alt="Headshot of Abhishek" width="233.33" height="175"/>
           <p className="about-bio" tabIndex={0}>{bio}</p>
         </div>
       </div>

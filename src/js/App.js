@@ -62,7 +62,7 @@ const App = ({ match, location, history }) => {
         <h1 className="heading-name" tabIndex={0}>Abhishek Chaudhuri</h1>
         {/* Add tabIndex to important information */}
         <h2 className="heading-headline" tabIndex={0}>
-          Computer Engineering & Science Student at Rutgers University - New Brunswick
+          Software Engineer | Always Learning and Growing
         </h2>
       </header>
       <nav className="links container-fluid btn-group">
@@ -118,7 +118,8 @@ const App = ({ match, location, history }) => {
         <span className="foot-left">
           Made using <a className="foot-react" href="https://reactjs.org/" target="_blank"
             rel="noopener noreferrer">React</a>
-          <img className="foot-react-img" src="/img/logo.svg" alt="React logo (an atom)"/>
+          <img className="foot-react-img" src="/img/logo.svg" alt="React logo (an atom)"
+            width="20" height="20"/>
         </span>
         <span className="foot-right">
           <a className="foot-mit" target="_blank" rel="noopener noreferrer"
