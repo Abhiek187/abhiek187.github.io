@@ -1,14 +1,11 @@
-import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
-import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import { render, unmountComponentAtNode } from "react-dom";
+import { act } from "react-dom/test-utils";
+import { BrowserRouter } from "react-router-dom";
 
-import App from '../js/App';
-import About from '../js/About';
-import Projects from '../js/Projects';
-import Contact from '../js/Contact';
+import App from "../js/App";
 
-import projectData from '../models/projects.json';
+import projectData from "../models/projects.json";
 
 let container = null;
 let buttonAbout = null;
@@ -17,13 +14,18 @@ let buttonContact = null;
 
 beforeEach(() => {
   // Add a div to hold all the React components
-  container = document.createElement('div');
+  container = document.createElement("div");
   document.body.appendChild(container);
   // App must be wrapped in a BrowserRouter
-  render(<BrowserRouter basename={process.env.PUBLIC_URL}><App /></BrowserRouter>, container);
-  buttonAbout = container.querySelector('.links-about');
-  buttonProjects = container.querySelector('.links-projects');
-  buttonContact = container.querySelector('.links-contact');
+  render(
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <App />
+    </BrowserRouter>,
+    container
+  );
+  buttonAbout = container.querySelector(".links-about");
+  buttonProjects = container.querySelector(".links-projects");
+  buttonContact = container.querySelector(".links-contact");
 });
 
 afterEach(() => {
@@ -34,73 +36,73 @@ afterEach(() => {
 });
 
 const testFocusAbout = () => {
-  expect(window.location.pathname).toBe('/about');
-  expect(buttonAbout.classList).toContain('active');
-  expect(buttonProjects.classList).not.toContain('active');
-  expect(buttonContact.classList).not.toContain('active');
+  expect(window.location.pathname).toBe("/about");
+  expect(buttonAbout.classList).toContain("active");
+  expect(buttonProjects.classList).not.toContain("active");
+  expect(buttonContact.classList).not.toContain("active");
 };
 
 const testFocusProjects = () => {
-  expect(window.location.pathname).toBe('/projects');
-  expect(buttonAbout.classList).not.toContain('active');
-  expect(buttonProjects.classList).toContain('active');
-  expect(buttonContact.classList).not.toContain('active');
+  expect(window.location.pathname).toBe("/projects");
+  expect(buttonAbout.classList).not.toContain("active");
+  expect(buttonProjects.classList).toContain("active");
+  expect(buttonContact.classList).not.toContain("active");
 };
 
 const testFocusContact = () => {
-  expect(window.location.pathname).toBe('/contact');
-  expect(buttonAbout.classList).not.toContain('active');
-  expect(buttonProjects.classList).not.toContain('active');
-  expect(buttonContact.classList).toContain('active');
+  expect(window.location.pathname).toBe("/contact");
+  expect(buttonAbout.classList).not.toContain("active");
+  expect(buttonProjects.classList).not.toContain("active");
+  expect(buttonContact.classList).toContain("active");
 };
 
-const testNavbar = source => {
+const testNavbar = (source) => {
   // Tests to ensure the nav buttons navigate to the correct component
-  it('navigates to About after clicking About', () => {
+  it("navigates to About after clicking About", () => {
     // Fire a click event before testing
     act(() => {
-      buttonAbout.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      buttonAbout.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
     // Check that the correct button is active
     testFocusAbout();
-    const transitionGroup = container.querySelector('.transition-group');
+    const transitionGroup = container.querySelector(".transition-group");
 
     // Check that the next component slides in the correct direction
-    if (source === 'Projects' || source === 'Contact') {
-      expect(transitionGroup.classList).toContain('right');
+    if (source === "Projects" || source === "Contact") {
+      expect(transitionGroup.classList).toContain("right");
     } else {
-      expect(transitionGroup.classList).toContain('left');
+      expect(transitionGroup.classList).toContain("left");
     }
   });
 
-  it('navigates to Projects after clicking Projects', () => {
+  it("navigates to Projects after clicking Projects", () => {
     act(() => {
-      buttonProjects.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      buttonProjects.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
     testFocusProjects();
-    const transitionGroup = container.querySelector('.transition-group');
+    const transitionGroup = container.querySelector(".transition-group");
 
-    if (source === 'Contact') {
-      expect(transitionGroup.classList).toContain('right');
+    if (source === "Contact") {
+      expect(transitionGroup.classList).toContain("right");
     } else {
-      expect(transitionGroup.classList).toContain('left');
+      expect(transitionGroup.classList).toContain("left");
     }
   });
 
-  it('navigates to Contact after clicking Contact', () => {
+  it("navigates to Contact after clicking Contact", () => {
     act(() => {
-      buttonContact.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      buttonContact.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
     testFocusContact();
-    const transitionGroup = container.querySelector('.transition-group');
+    const transitionGroup = container.querySelector(".transition-group");
 
-    if (source === 'Contact') {
-      expect(transitionGroup.classList).toContain('right');
+    if (source === "Contact") {
+      expect(transitionGroup.classList).toContain("right");
     } else {
-      expect(transitionGroup.classList).toContain('left');
+      expect(transitionGroup.classList).toContain("left");
     }
   });
 };
@@ -135,68 +137,82 @@ const testNavbar = source => {
  * - The error message should show
  * - Click on About, Projects, and Contact
  */
-describe('App', () => {
-  it('renders without crashing', () => {
+describe("App", () => {
+  it("renders without crashing", () => {
     // The home page should show up
-    expect(window.location.pathname).toBe('/');
-    expect(container.querySelector('.home')).not.toBeNull();
-    expect(container.querySelector('.home-info').textContent).toContain('welcome');
+    expect(window.location.pathname).toBe("/");
+    expect(container.querySelector(".home")).not.toBeNull();
+    expect(container.querySelector(".home-info").textContent).toContain(
+      "welcome"
+    );
   });
 
-  testNavbar('App');
+  testNavbar("App");
 });
 
-describe('About', () => {
+describe("About", () => {
   beforeEach(() => {
-    buttonAbout.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    buttonAbout.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
 
-  it('shows a headshot and bio', () => {
+  it("shows a headshot and bio", () => {
     // The About page should show the relevant information
-    expect(window.location.pathname).toBe('/about');
-    expect(container.querySelector('.about')).not.toBeNull();
-    expect(container.querySelector('.about-headshot').getAttribute('src')).toBe('/img/Headshot.png');
-    expect(container.querySelector('.about-bio').textContent).toContain('Abhishek Chaudhuri');
+    expect(window.location.pathname).toBe("/about");
+    expect(container.querySelector(".about")).not.toBeNull();
+    expect(container.querySelector(".about-headshot").getAttribute("src")).toBe(
+      "/img/Headshot.png"
+    );
+    expect(container.querySelector(".about-bio").textContent).toContain(
+      "Abhishek Chaudhuri"
+    );
   });
 
-  testNavbar('About');
+  testNavbar("About");
 
   // Check that the arrow button navigates to the correct page with the correct slide transition
-  it('navigates to Projects after clicking the right arrow', () => {
+  it("navigates to Projects after clicking the right arrow", () => {
     act(() => {
-      const rightArrow = container.querySelector('.arrow-right');
-      rightArrow.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      const rightArrow = container.querySelector(".arrow-right");
+      rightArrow.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
     testFocusProjects();
-    const transitionGroup = container.querySelector('.transition-group');
-    expect(transitionGroup.classList).toContain('left');
+    const transitionGroup = container.querySelector(".transition-group");
+    expect(transitionGroup.classList).toContain("left");
   });
 });
 
-describe('Projects', () => {
+describe("Projects", () => {
   beforeEach(() => {
-    buttonProjects.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    buttonProjects.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
 
   // Check that all the project cards show the proper information
-  it('shows six projects', () => {
-    expect(window.location.pathname).toBe('/projects');
-    const projectsList = container.querySelector('.projects-list');
+  it("shows six projects", () => {
+    expect(window.location.pathname).toBe("/projects");
+    const projectsList = container.querySelector(".projects-list");
     expect(projectsList.children).toHaveLength(6);
   });
 
-  it('shows all data about a project', () => {
+  it("shows all data about a project", () => {
     const projects = JSON.parse(JSON.stringify(projectData));
-    const projectsList = container.querySelector('.projects-list');
+    const projectsList = container.querySelector(".projects-list");
 
     for (const [projectIndex, project] of projects.entries()) {
       // The project's name, image, and description should be shown
       const projectCard = projectsList.children[projectIndex];
-      expect(projectCard.querySelector('.projects-name').textContent).toBe(project.name);
-      expect(projectCard.querySelector('.projects-image').getAttribute('src')).toBe(project.image);
-      expect(projectCard.querySelector('.projects-about').textContent).toBe(project.about);
-      const technologyContainer = projectCard.querySelector('.projects-technology-container');
+      expect(projectCard.querySelector(".projects-name").textContent).toBe(
+        project.name
+      );
+      expect(
+        projectCard.querySelector(".projects-image").getAttribute("src")
+      ).toBe(project.image);
+      expect(projectCard.querySelector(".projects-about").textContent).toBe(
+        project.about
+      );
+      const technologyContainer = projectCard.querySelector(
+        ".projects-technology-container"
+      );
 
       // All technologies used should be shown
       for (const [techIndex, tech] of project.technology.entries()) {
@@ -205,130 +221,140 @@ describe('Projects', () => {
 
       if (project.website === null) {
         // If there's no website for the project, the text should mention to view the repo below
-        expect(projectCard.querySelector('.projects-website').textContent)
-          .toContain('See GitHub link below');
+        expect(
+          projectCard.querySelector(".projects-website").textContent
+        ).toContain("See GitHub link below");
       } else {
         // Otherwise, show a link for the website
-        expect(projectCard.querySelector('.projects-website').getAttribute('href'))
-          .toBe(project.website);
+        expect(
+          projectCard.querySelector(".projects-website").getAttribute("href")
+        ).toBe(project.website);
       }
 
       // Always display the repo link for the project
-      expect(projectCard.querySelector('.projects-repo').getAttribute('href')).toBe(project.repo);
+      expect(
+        projectCard.querySelector(".projects-repo").getAttribute("href")
+      ).toBe(project.repo);
     }
   });
 
-  it('makes the navbar sticky when scrolling down', () => {
+  it("makes the navbar sticky when scrolling down", () => {
     // Test that the navbar is sticky after scrolling down far enough
-    const navbar = container.querySelector('.links');
+    const navbar = container.querySelector(".links");
     expect(window.pageYOffset).toBe(0);
-    expect(navbar.classList).not.toContain('sticky');
+    expect(navbar.classList).not.toContain("sticky");
 
     // Simulate a scroll by changing the pageYOffset and activating a scroll event
     window.pageYOffset = 1000;
-    window.dispatchEvent(new Event('scroll'));
+    window.dispatchEvent(new Event("scroll"));
     expect(window.pageYOffset).toBeGreaterThan(0);
-    expect(navbar.classList).toContain('sticky');
+    expect(navbar.classList).toContain("sticky");
 
     // navbar.offsetTop is 0, so make pageYOffset less than that to force the navbar to not be sticky
     window.pageYOffset = -1;
-    window.dispatchEvent(new Event('scroll'));
+    window.dispatchEvent(new Event("scroll"));
     expect(window.pageYOffset).toBeLessThan(0);
-    expect(navbar.classList).not.toContain('sticky');
+    expect(navbar.classList).not.toContain("sticky");
     window.pageYOffset = 0;
   });
 
-  testNavbar('Projects');
+  testNavbar("Projects");
 
-  it('navigates to About after clicking the left arrow', () => {
+  it("navigates to About after clicking the left arrow", () => {
     act(() => {
-      const rightArrow = container.querySelector('.arrow-left');
-      rightArrow.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      const rightArrow = container.querySelector(".arrow-left");
+      rightArrow.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
     testFocusAbout();
-    const transitionGroup = container.querySelector('.transition-group');
-    expect(transitionGroup.classList).toContain('right');
+    const transitionGroup = container.querySelector(".transition-group");
+    expect(transitionGroup.classList).toContain("right");
   });
 
-  it('navigates to Contact after clicking the right arrow', () => {
+  it("navigates to Contact after clicking the right arrow", () => {
     act(() => {
-      const rightArrow = container.querySelector('.arrow-right');
-      rightArrow.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      const rightArrow = container.querySelector(".arrow-right");
+      rightArrow.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
     testFocusContact();
-    const transitionGroup = container.querySelector('.transition-group');
-    expect(transitionGroup.classList).toContain('left');
+    const transitionGroup = container.querySelector(".transition-group");
+    expect(transitionGroup.classList).toContain("left");
   });
 });
 
-describe('Contact', () => {
+describe("Contact", () => {
   let buttonResume = null;
   let buttonLinkedin = null;
   let buttonGithub = null;
   let buttonEmail = null;
 
   beforeEach(() => {
-    buttonContact.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    buttonContact.dispatchEvent(new MouseEvent("click", { bubbles: true }));
 
-    buttonResume = container.querySelector('.contact-resume');
-    buttonLinkedin = container.querySelector('.contact-linkedin');
-    buttonGithub = container.querySelector('.contact-github');
-    buttonEmail = container.querySelector('.contact-email');
+    buttonResume = container.querySelector(".contact-resume");
+    buttonLinkedin = container.querySelector(".contact-linkedin");
+    buttonGithub = container.querySelector(".contact-github");
+    buttonEmail = container.querySelector(".contact-email");
   });
 
   // Test that the resume, LinkedIn, GitHub, and email links are valid
-  it('shows all contact information', () => {
-    expect(window.location.pathname).toBe('/contact');
+  it("shows all contact information", () => {
+    expect(window.location.pathname).toBe("/contact");
     expect(buttonResume).not.toBeNull();
     expect(buttonLinkedin).not.toBeNull();
     expect(buttonGithub).not.toBeNull();
     expect(buttonEmail).not.toBeNull();
   });
 
-  it('can view the resume', () => {
+  it("can view the resume", () => {
     act(() => {
-      buttonResume.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      buttonResume.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(buttonResume.getAttribute('href')).toBe('resume.pdf');
+    expect(buttonResume.getAttribute("href")).toBe("resume.pdf");
   });
 
-  it('can view the LinkedIn profile', () => {
+  it("can view the LinkedIn profile", () => {
     act(() => {
-      buttonLinkedin.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      buttonLinkedin.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(buttonLinkedin.getAttribute('href')).toBe('https://www.linkedin.com/in/abhiek187');
+    expect(buttonLinkedin.getAttribute("href")).toBe(
+      "https://www.linkedin.com/in/abhiek187"
+    );
   });
 
-  it('can view the GitHub profile', () => {
+  it("can view the GitHub profile", () => {
     act(() => {
-      buttonGithub.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      buttonGithub.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(buttonGithub.getAttribute('href')).toBe('https://github.com/abhiek187');
+    expect(buttonGithub.getAttribute("href")).toBe(
+      "https://github.com/abhiek187"
+    );
   });
 
-  it('can create an email', () => {
+  it("can create an email", () => {
     act(() => {
-      buttonEmail.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      buttonEmail.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(buttonEmail.getAttribute('href')).toBe('mailto:achaudhuri2011@yahoo.com');
+    expect(buttonEmail.getAttribute("href")).toBe(
+      "mailto:achaudhuri2011@yahoo.com"
+    );
   });
 
-  testNavbar('Contact');
+  testNavbar("Contact");
 
-  it('navigates to Projects after clicking the left arrow', () => {
+  it("navigates to Projects after clicking the left arrow", () => {
     act(() => {
-      const rightArrow = container.querySelector('.arrow-left');
-      rightArrow.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      const rightArrow = container.querySelector(".arrow-left");
+      rightArrow.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
     testFocusProjects();
-    const transitionGroup = container.querySelector('.transition-group');
-    expect(transitionGroup.classList).toContain('right');
+    const transitionGroup = container.querySelector(".transition-group");
+    expect(transitionGroup.classList).toContain("right");
   });
 });

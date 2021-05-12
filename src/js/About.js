@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-import '../css/About.css';
+import "../css/About.css";
 
 const About = ({ onClickLink }) => {
   useEffect(() => {
-    document.title = 'Abhishek Chaudhuri - About';
-    document.querySelector('.links-about').classList.add('active');
-    document.querySelector('.links-projects').classList.remove('active');
-    document.querySelector('.links-contact').classList.remove('active');
+    document.title = "Abhishek Chaudhuri - About";
+    document.querySelector(".links-about").classList.add("active");
+    document.querySelector(".links-projects").classList.remove("active");
+    document.querySelector(".links-contact").classList.remove("active");
   }, []);
 
-  const bio = "Abhishek Chaudhuri is a recent graduate of Rutgers University-New Brunswick. " +
+  const bio =
+    "Abhishek Chaudhuri is a recent graduate of Rutgers University-New Brunswick. " +
     "He studied Electrical & Computer Engineering as an undergraduate and Software Engineering " +
     "as a graduate. His interests include machine learning and front-end web and mobile " +
     "development (with plans of expanding to full-stack development). Some of his hobbies include " +
@@ -24,23 +25,37 @@ const About = ({ onClickLink }) => {
   return (
     <main className="about container-fluid">
       <div className="about-wrapper">
-        <h3 className="about-heading" tabIndex={0}>About</h3>
+        <h3 className="about-heading" tabIndex={0}>
+          About
+        </h3>
         <div className="about-container">
-          <img className="about-headshot" tabIndex={0}
-            src="/img/Headshot.png" alt="Headshot of Abhishek" width="233.33" height="175"/>
-          <p className="about-bio" tabIndex={0}>{bio}</p>
+          <img
+            className="about-headshot"
+            tabIndex={0}
+            src="/img/Headshot.png"
+            alt="Headshot of Abhishek"
+            width="233.33"
+            height="175"
+          />
+          <p className="about-bio" tabIndex={0}>
+            {bio}
+          </p>
         </div>
       </div>
-      <Link className="arrow-right" to="/projects" aria-label="Go to Projects"
-        onClick={() => onClickLink('projects')}>
-        <i className="fas fa-arrow-right"/>
+      <Link
+        className="arrow-right"
+        to="/projects"
+        aria-label="Go to Projects"
+        onClick={() => onClickLink("projects")}
+      >
+        <i className="fas fa-arrow-right" />
       </Link>
     </main>
   );
 };
 
 About.propTypes = {
-  onClickLink: PropTypes.func.isRequired
+  onClickLink: PropTypes.func.isRequired,
 };
 
 export default About;
