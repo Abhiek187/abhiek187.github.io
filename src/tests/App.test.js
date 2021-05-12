@@ -35,6 +35,19 @@ afterEach(() => {
   container = null;
 });
 
+const testBaseContent = () => {
+  // Check that the header, navbar, and footer are present in every page
+  expect(container.querySelector(".heading")).not.toBeNull();
+  expect(container.querySelector(".heading-name").textContent).toBe("Abhishek Chaudhuri");
+  expect(container.querySelector(".heading-headline").textContent).toContain("Software Engineer");
+  
+  expect(container.querySelector(".links")).not.toBeNull();
+
+  expect(container.querySelector(".foot")).not.toBeNull();
+  expect(container.querySelector(".foot-left").textContent).toContain("React");
+  expect(container.querySelector(".foot-right").textContent).toContain("MIT License");
+};
+
 const testFocusAbout = () => {
   expect(window.location.pathname).toBe("/about");
   expect(buttonAbout.classList).toContain("active");
@@ -110,7 +123,7 @@ const testNavbar = (source) => {
 /* Testing Procedure:
  * - Start by rendering the App -> it should render without crashing
  * From App:
- * - The welcome message should show
+ * - The name, headline, navbar, welcome message, and footer should show
  * - Click on About -> it should render the About component (button is active)
  * - (OR) Click on Projects -> it should render the Projects component (button is active)
  * - (OR) Click on Contact -> it should render the Contact component (button is active)
@@ -141,6 +154,7 @@ describe("App", () => {
   it("renders without crashing", () => {
     // The home page should show up
     expect(window.location.pathname).toBe("/");
+    testBaseContent();
     expect(container.querySelector(".home")).not.toBeNull();
     expect(container.querySelector(".home-info").textContent).toContain(
       "welcome"
@@ -158,6 +172,7 @@ describe("About", () => {
   it("shows a headshot and bio", () => {
     // The About page should show the relevant information
     expect(window.location.pathname).toBe("/about");
+    testBaseContent();
     expect(container.querySelector(".about")).not.toBeNull();
     expect(container.querySelector(".about-headshot").getAttribute("src")).toBe(
       "/img/Headshot.png"
@@ -190,6 +205,7 @@ describe("Projects", () => {
   // Check that all the project cards show the proper information
   it("shows six projects", () => {
     expect(window.location.pathname).toBe("/projects");
+    testBaseContent();
     const projectsList = container.querySelector(".projects-list");
     expect(projectsList.children).toHaveLength(6);
   });
@@ -301,6 +317,7 @@ describe("Contact", () => {
   // Test that the resume, LinkedIn, GitHub, and email links are valid
   it("shows all contact information", () => {
     expect(window.location.pathname).toBe("/contact");
+    testBaseContent();
     expect(buttonResume).not.toBeNull();
     expect(buttonLinkedin).not.toBeNull();
     expect(buttonGithub).not.toBeNull();

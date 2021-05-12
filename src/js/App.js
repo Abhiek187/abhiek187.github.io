@@ -9,7 +9,7 @@ import About from "./About";
 import Projects from "./Projects";
 import Contact from "./Contact";
 
-const App = ({ match, location, history }) => {
+const App = ({ location }) => {
   // Determines which direction to slide the components
   const [slideDirection, setSlideDirection] = useState("left");
 
