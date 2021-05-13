@@ -26,53 +26,58 @@ main {
 }
 
 /* Transition effects */
-.left .slide-enter {
-  transform: translate(110%);
+.left {
+  .slide-enter {
+    transform: translate(110%);
+  }
+
+  .slide-exit.slide-exit-active {
+    transform: translate(-110%);
+    transition: 600ms ease-in-out;
+    position: relative;
+  }
 }
 
-.right .slide-enter {
-  transform: translate(-110%);
+.right {
+  .slide-enter {
+    transform: translate(-110%);
+  }
+
+  .slide-exit.slide-exit-active {
+    transform: translate(110%);
+    transition: 600ms ease-in-out;
+    position: relative;
+  }
 }
 
-.left .slide-enter.slide-enter-active,
-.right .slide-enter.slide-enter-active {
-  transform: translate(0%);
-  transition: 600ms ease-in-out;
-  position: fixed;
-  width: 100%; /* Match contact's width with other components */
-}
+.left,
+.right {
+  .slide-enter.slide-enter-active {
+    transform: translate(0%);
+    transition: 600ms ease-in-out;
+    position: fixed;
+    width: 100%; /* Match contact's width with other components */
+  }
 
-.left .slide-exit,
-.right .slide-exit {
-  transform: translate(0%);
-}
-
-.left .slide-exit.slide-exit-active {
-  transform: translate(-110%);
-  transition: 600ms ease-in-out;
-  position: relative;
-}
-
-.right .slide-exit.slide-exit-active {
-  transform: translate(110%);
-  transition: 600ms ease-in-out;
-  position: relative;
+  .slide-exit {
+    transform: translate(0%);
+  }
 }
 
 /* Heading */
 .heading {
   padding-bottom: 0;
-}
 
-.heading-name {
-  font-size: 2em;
-  font-weight: bold;
-}
+  .heading-name {
+    font-size: 2em;
+    font-weight: bold;
+  }
 
-.heading-headline {
-  font-weight: normal; /* Remove bold */
-  font-size: 1.5em;
-  padding-bottom: 0.5%;
+  .heading-headline {
+    font-weight: normal; /* Remove bold */
+    font-size: 1.5em;
+    padding-bottom: 0.5%;
+  }
 }
 
 /* Nav */
@@ -80,16 +85,16 @@ main {
   display: flex;
   justify-content: center;
   padding: 0;
-}
 
-.links a {
-  text-decoration: none; /* No underline normally */
-}
+  a {
+    text-decoration: none; /* No underline normally */
+  }
 
-.links-about:hover,
-.links-projects:hover,
-.links-contact:hover {
-  background-color: lightgray;
+  .links-about:hover,
+  .links-projects:hover,
+  .links-contact:hover {
+    background-color: lightgray;
+  }
 }
 
 .sticky {
@@ -159,15 +164,15 @@ main {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
-}
 
-.foot-left,
-.foot-right {
-  width: 100%;
-}
+  .foot-left,
+  .foot-right {
+    width: 100%;
+  }
 
-.foot-react-img {
-  width: 1.7em;
+  .foot-react-img {
+    width: 1.7em;
+  }
 }
 
 @media screen and (min-width: 400px) {

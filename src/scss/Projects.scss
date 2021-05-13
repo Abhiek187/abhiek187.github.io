@@ -7,14 +7,14 @@
   padding: 0 5%;
   display: flex; /* List all projects as cards */
   flex-wrap: wrap;
-}
 
-.projects-list li {
-  list-style-type: none; /* Remove bullet points */
-  position: static; /* Put behind the sticky navbar */
-  border: 1px solid black;
-  margin: 3% auto; /* Centers cards among each other */
-  width: 45%;
+  li {
+    list-style-type: none; /* Remove bullet points */
+    position: static; /* Put behind the sticky navbar */
+    border: 1px solid black;
+    margin: 3% auto; /* Centers cards among each other */
+    width: 45%;
+  }
 }
 
 @media screen and (max-width: 800px) {

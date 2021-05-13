@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import "../css/Projects.css";
+import "../scss/Projects.scss";
 import colorData from "../models/colors.json";
 import projectData from "../models/projects.json";
 import { OnClickProp } from "./App";

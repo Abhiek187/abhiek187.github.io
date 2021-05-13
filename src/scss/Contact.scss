@@ -2,17 +2,17 @@
 .contact-row {
   display: flex;
   flex-wrap: wrap;
-}
 
-.contact-row a {
-  display: table;
-  margin: 3% auto;
-  padding: 0 1%;
-  font-size: 1.5em;
-  border: 1px solid black;
-  border-radius: 10%;
-  box-shadow: 5px 5px darkgray;
-  text-decoration: none;
+  a {
+    display: table;
+    margin: 3% auto;
+    padding: 0 1%;
+    font-size: 1.5em;
+    border: 1px solid black;
+    border-radius: 10%;
+    box-shadow: 5px 5px darkgray;
+    text-decoration: none;
+  }
 }
 
 .contact-resume:hover,

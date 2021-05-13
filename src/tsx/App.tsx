@@ -9,7 +9,7 @@ import {
 //import SwipeableRoutes from 'react-swipeable-routes';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import "../css/App.css";
+import "../scss/App.scss";
 import About from "./About";
 import Projects from "./Projects";
 import Contact from "./Contact";

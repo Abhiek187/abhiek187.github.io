@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import "../css/About.css";
+import "../scss/About.scss";
 import { OnClickProp } from "./App";
 
 const About: React.FC<OnClickProp> = ({ onClickLink }) => {
