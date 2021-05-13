@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import "../css/About.css";
+import { OnClickProp } from "./App";
 
-const About = ({ onClickLink }) => {
+const About: React.FC<OnClickProp> = ({ onClickLink }) => {
   useEffect(() => {
     document.title = "Abhishek Chaudhuri - About";
-    document.querySelector(".links-about").classList.add("active");
-    document.querySelector(".links-projects").classList.remove("active");
-    document.querySelector(".links-contact").classList.remove("active");
+    document.querySelector(".links-about")?.classList.add("active");
+    document.querySelector(".links-projects")?.classList.remove("active");
+    document.querySelector(".links-contact")?.classList.remove("active");
   }, []);
 
-  const bio =
+  const bio: string =
     "Abhishek Chaudhuri is a recent graduate of Rutgers University-New Brunswick. " +
     "He studied Electrical & Computer Engineering as an undergraduate and Software Engineering " +
     "as a graduate. His interests include machine learning and front-end web and mobile " +
@@ -52,10 +52,6 @@ const About = ({ onClickLink }) => {
       </Link>
     </main>
   );
-};
-
-About.propTypes = {
-  onClickLink: PropTypes.func.isRequired,
 };
 
 export default About;

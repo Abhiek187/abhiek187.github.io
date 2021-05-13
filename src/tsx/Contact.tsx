@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import "../css/Contact.css";
+import { OnClickProp } from "./App";
 
-const Contact = ({ onClickLink }) => {
+const Contact: React.FC<OnClickProp> = ({ onClickLink }) => {
   useEffect(() => {
     document.title = "Abhishek Chaudhuri - Contact";
-    document.querySelector(".links-about").classList.remove("active");
-    document.querySelector(".links-projects").classList.remove("active");
-    document.querySelector(".links-contact").classList.add("active");
+    document.querySelector(".links-about")?.classList.remove("active");
+    document.querySelector(".links-projects")?.classList.remove("active");
+    document.querySelector(".links-contact")?.classList.add("active");
   }, []);
 
   return (
@@ -64,10 +64,6 @@ const Contact = ({ onClickLink }) => {
       </div>
     </main>
   );
-};
-
-Contact.propTypes = {
-  onClickLink: PropTypes.func.isRequired,
 };
 
 export default Contact;

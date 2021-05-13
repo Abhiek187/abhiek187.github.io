@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { Route, Link, Switch, withRouter } from "react-router-dom";
+import {
+  Route,
+  Link,
+  Switch,
+  withRouter,
+  RouteComponentProps,
+} from "react-router-dom";
 //import SwipeableRoutes from 'react-swipeable-routes';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -9,9 +14,14 @@ import About from "./About";
 import Projects from "./Projects";
 import Contact from "./Contact";
 
-const App = ({ location }) => {
+// Prop type passed to all the child components
+export interface OnClickProp {
+  onClickLink: (dest: string) => void;
+}
+
+const App: React.FC<RouteComponentProps> = ({ location }) => {
   // Determines which direction to slide the components
-  const [slideDirection, setSlideDirection] = useState("left");
+  const [slideDirection, setSlideDirection] = useState<string>("left");
 
   useEffect(() => {
     // Change the title of the tab every page change
@@ -29,12 +39,14 @@ const App = ({ location }) => {
     }
 
     // Check where web scroll is for sticky navbar
-    let navbar = document.querySelector(".links");
-    let navPosition = navbar.offsetTop;
+    let navbar: HTMLElement | null = document.querySelector(".links");
+    if (navbar === null) return;
+    let navPosition: number = navbar.offsetTop;
 
     window.onscroll = () => {
       // If the scroll position is beyond the navbar, make it sticky
       navbar = document.querySelector(".links");
+      if (navbar === null) return;
       // Don't set navPosition to 0
       navPosition = navbar.offsetTop === 0 ? navPosition : navbar.offsetTop;
       window.pageYOffset >= navPosition
@@ -43,7 +55,7 @@ const App = ({ location }) => {
     };
   }, []); // only componentDidMount()
 
-  const setSlider = (dest) => {
+  const setSlider = (dest: string): void => {
     // Check where to slide the components
     if (window.location.pathname === "/contact") {
       // At Contact, always slide right
@@ -185,12 +197,6 @@ const App = ({ location }) => {
       </footer>
     </div>
   );
-};
-
-App.propTypes = {
-  match: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
 };
 
 export default withRouter(App); // Get access to match, location, and history

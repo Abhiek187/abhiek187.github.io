@@ -1,22 +1,36 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import "../css/Projects.css";
 import colorData from "../models/colors.json";
 import projectData from "../models/projects.json";
+import { OnClickProp } from "./App";
 
-const Projects = ({ onClickLink }) => {
+// Type definitions of the JSON files
+interface Project {
+  id: string;
+  name: string;
+  image: string;
+  about: string;
+  technology: [string];
+  website: string | null;
+  repo: string;
+}
+
+export type ColorsJSON = { [key: string]: string };
+export type ProjectsJSON = [Project];
+
+const Projects: React.FC<OnClickProp> = ({ onClickLink }) => {
   useEffect(() => {
     document.title = "Abhishek Chaudhuri - Projects";
-    document.querySelector(".links-about").classList.remove("active");
-    document.querySelector(".links-projects").classList.add("active");
-    document.querySelector(".links-contact").classList.remove("active");
+    document.querySelector(".links-about")?.classList.remove("active");
+    document.querySelector(".links-projects")?.classList.add("active");
+    document.querySelector(".links-contact")?.classList.remove("active");
   }, []);
 
   // Extract JSON data as an array
-  const colors = JSON.parse(JSON.stringify(colorData));
-  const projects = JSON.parse(JSON.stringify(projectData));
+  const colors: ColorsJSON = JSON.parse(JSON.stringify(colorData));
+  const projects: ProjectsJSON = JSON.parse(JSON.stringify(projectData));
 
   return (
     <main className="projects container-fluid">
@@ -105,10 +119,6 @@ const Projects = ({ onClickLink }) => {
       </Link>
     </main>
   );
-};
-
-Projects.propTypes = {
-  onClickLink: PropTypes.func.isRequired,
 };
 
 export default Projects;

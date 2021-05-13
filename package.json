@@ -4,13 +4,20 @@
   "private": true,
   "homepage": "https://abhiek187.github.io",
   "dependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.0.3",
+    "@types/react": "^17.0.5",
+    "@types/react-dom": "^17.0.4",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-transition-group": "^4.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^4.0.1",
     "react-swipeable-routes": "^0.8.0",
-    "react-transition-group": "^2.9.0"
+    "react-transition-group": "^2.9.0",
+    "typescript": "^4.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
