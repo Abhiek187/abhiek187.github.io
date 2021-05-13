@@ -164,15 +164,15 @@ main {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
+}
 
-  .foot-left,
-  .foot-right {
-    width: 100%;
-  }
+.foot-left,
+.foot-right {
+  width: 100%;
+}
 
-  .foot-react-img {
-    width: 1.7em;
-  }
+.foot-react-img {
+  width: 1.7em;
 }
 
 @media screen and (min-width: 400px) {
