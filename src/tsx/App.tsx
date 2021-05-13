@@ -19,9 +19,17 @@ export interface OnClickProp {
   onClickLink: (dest: string) => void;
 }
 
+// Possible sliding directions
+enum Direction {
+  Left = "left",
+  Right = "right",
+}
+
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   // Determines which direction to slide the components
-  const [slideDirection, setSlideDirection] = useState<string>("left");
+  const [slideDirection, setSlideDirection] = useState<Direction>(
+    Direction.Left
+  );
 
   useEffect(() => {
     // Change the title of the tab every page change
@@ -59,17 +67,17 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
     // Check where to slide the components
     if (window.location.pathname === "/contact") {
       // At Contact, always slide right
-      setSlideDirection("right");
+      setSlideDirection(Direction.Right);
     } else if (window.location.pathname === "/projects") {
       // At Projects, check which link was clicked
       if (dest === "about") {
-        setSlideDirection("right");
+        setSlideDirection(Direction.Right);
       } else {
-        setSlideDirection("left");
+        setSlideDirection(Direction.Left);
       }
     } else {
       // At About, always slide left (default)
-      setSlideDirection("left");
+      setSlideDirection(Direction.Left);
     }
   };
 
