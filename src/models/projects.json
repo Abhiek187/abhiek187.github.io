@@ -9,6 +9,7 @@
       "C++",
       "C",
       "CSS",
+      "Dart",
       "HTML",
       "JSON",
       "Java",
@@ -47,36 +48,25 @@
     "name": "3D Collectathon",
     "image": "/img/3D Collectathon.png",
     "about": "A game created in Unity where the player has to collect 5 Mega Gems scattered across the land. The Mega Gems can be gotten by solving puzzles or clearing platforming challenges. The player is free to explore the 5 open terrains in first person and collect Mini Gems along the way. The player is scored at the end based on their time and Mini Gem count.",
-    "technology": [
-      "Unity",
-      "Blender",
-      "C#"
-    ],
+    "technology": ["Unity", "Blender", "C#"],
     "website": "https://abhiek187.github.io/3d-collectathon/WebGL",
     "repo": "https://github.com/Abhiek187/3d-collectathon"
   },
-	{
+  {
     "id": "captain-conundrum",
     "name": "Captain Conundrum",
     "image": "/img/Main Menu.PNG",
     "about": "An iOS game created at Make School Summer Academy in just 8 weeks. It is a top-down space shooter designed around the GameKit library in Swift. The game features motion controls, a high and low score system, power-ups, and various customization options.",
-    "technology": [
-      "Swift",
-      "GameKit"
-    ],
+    "technology": ["Swift", "GameKit"],
     "website": "https://appsite.skygear.io/captain_conundrum/",
     "repo": "https://github.com/Abhiek187/Captain-Conundrum"
-	},
+  },
   {
     "id": "mini-brain-age",
     "name": "Mini Brain Age",
     "image": "/img/brainage.png",
     "about": "An Android game inspired by Nintendo's Brain Age where the player has to quickly and correctly solve each math problem by handwriting the correct digit. It uses a TensorFlow Lite model trained using the MNIST dataset to make inferences on the device.",
-    "technology": [
-      "Kotlin",
-      "Keras",
-      "TensorFlow Lite"
-    ],
+    "technology": ["Kotlin", "Keras", "TensorFlow Lite"],
     "website": null,
     "repo": "https://github.com/Abhiek187/MiniBrainAge"
   },
@@ -85,12 +75,7 @@
     "name": "Area Advice",
     "image": "/img/Area Advice.png",
     "about": "An Android app that recommends places based on sensor data, user input, distance, and ratings.  This app features a quality user interface using navigation bars, explores the Google Places API, and makes use of light and temperature sensors to give users the best mobile experience.",
-    "technology": [
-      "Kotlin",
-      "Google Places",
-      "Google Maps",
-      "SQLite"
-    ],
+    "technology": ["Kotlin", "Google Places", "Google Maps", "SQLite"],
     "website": null,
     "repo": "https://github.com/Abhiek187/AreaAdvice"
   }
