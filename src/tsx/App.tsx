@@ -6,7 +6,7 @@ import {
   withRouter,
   RouteComponentProps,
 } from "react-router-dom";
-//import SwipeableRoutes from 'react-swipeable-routes';
+// import SwipeableRoutes from "react-swipeable-routes";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import "../scss/App.scss";
@@ -20,7 +20,7 @@ export interface OnClickProp {
 }
 
 // Possible sliding directions
-enum Direction {
+export enum Direction {
   Left = "left",
   Right = "right",
 }

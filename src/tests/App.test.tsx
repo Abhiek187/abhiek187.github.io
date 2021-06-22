@@ -2,7 +2,7 @@ import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 import { BrowserRouter } from "react-router-dom";
 
-import App from "../tsx/App";
+import App, { Direction } from "../tsx/App";
 import { ProjectsJSON } from "../tsx/Projects";
 import projectData from "../models/projects.json";
 
@@ -92,11 +92,9 @@ const testNavbar = (source: string): void => {
       container?.querySelector(".transition-group");
 
     // Check that the next component slides in the correct direction
-    if (source === "Projects" || source === "Contact") {
-      expect(transitionGroup?.classList).toContain("right");
-    } else {
-      expect(transitionGroup?.classList).toContain("left");
-    }
+    const slideDirection: Direction = source === "Projects" || source === "Contact"
+      ? Direction.Right : Direction.Left;
+    expect(transitionGroup?.classList).toContain(slideDirection);
   });
 
   it("navigates to Projects after clicking Projects", () => {
@@ -108,11 +106,8 @@ const testNavbar = (source: string): void => {
     const transitionGroup: HTMLDivElement | null | undefined =
       container?.querySelector(".transition-group");
 
-    if (source === "Contact") {
-      expect(transitionGroup?.classList).toContain("right");
-    } else {
-      expect(transitionGroup?.classList).toContain("left");
-    }
+    const slideDirection: Direction = source === "Contact" ? Direction.Right : Direction.Left;
+    expect(transitionGroup?.classList).toContain(slideDirection);
   });
 
   it("navigates to Contact after clicking Contact", () => {
@@ -124,11 +119,8 @@ const testNavbar = (source: string): void => {
     const transitionGroup: HTMLDivElement | null | undefined =
       container?.querySelector(".transition-group");
 
-    if (source === "Contact") {
-      expect(transitionGroup?.classList).toContain("right");
-    } else {
-      expect(transitionGroup?.classList).toContain("left");
-    }
+    const slideDirection: Direction = source === "Contact" ? Direction.Right : Direction.Left;
+    expect(transitionGroup?.classList).toContain(slideDirection);
   });
 };
 
@@ -207,7 +199,7 @@ describe("About", () => {
     testFocusProjects();
     const transitionGroup: HTMLDivElement | null | undefined =
       container?.querySelector(".transition-group");
-    expect(transitionGroup?.classList).toContain("left");
+    expect(transitionGroup?.classList).toContain(Direction.Left);
   });
 });
 
@@ -229,14 +221,11 @@ describe("Projects", () => {
     const projects: ProjectsJSON = JSON.parse(JSON.stringify(projectData));
     const projectsList: HTMLUListElement | null | undefined =
       container?.querySelector(".projects-list");
-    if (!projectsList) {
-      expect("The list of projects is missing.").toBeFalsy(); // guaranteed failure
-      return; // to please TypeScript :)
-    }
+    expect(projectsList).toBeTruthy();
 
     for (const [projectIndex, project] of projects.entries()) {
       // The project's name, image, and description should be shown
-      const projectCard = projectsList.children[projectIndex] as HTMLLIElement;
+      const projectCard = projectsList?.children[projectIndex] as HTMLLIElement;
       expect(projectCard.querySelector(".projects-name")?.textContent).toBe(
         project.name
       );
@@ -254,17 +243,15 @@ describe("Projects", () => {
         expect(technologyContainer?.children[techIndex].textContent).toBe(tech);
       }
 
-      if (project.website === null) {
-        // If there's no website for the project, the text should mention to view the repo below
-        expect(
-          projectCard.querySelector(".projects-website")?.textContent
-        ).toContain("See GitHub link below");
-      } else {
-        // Otherwise, show a link for the website
-        expect(
-          projectCard.querySelector(".projects-website")?.getAttribute("href")
-        ).toBe(project.website);
-      }
+      // If there's no website for the project, the text should mention to view the repo below
+      // Otherwise, show a link for the website
+      const projectWebsite: HTMLAnchorElement | HTMLParagraphElement | null =
+        projectCard.querySelector(".projects-website");
+
+      expect(projectWebsite?.textContent).toContain(
+        project.website === null ? "See GitHub link below" : "View Project"
+      );
+      expect(projectWebsite?.getAttribute("href")).toBe(project.website); // no href === null
 
       // Always display the repo link for the project
       expect(
@@ -306,7 +293,7 @@ describe("Projects", () => {
     testFocusAbout();
     const transitionGroup: HTMLDivElement | null | undefined =
       container?.querySelector(".transition-group");
-    expect(transitionGroup?.classList).toContain("right");
+    expect(transitionGroup?.classList).toContain(Direction.Right);
   });
 
   it("navigates to Contact after clicking the right arrow", () => {
@@ -319,7 +306,7 @@ describe("Projects", () => {
     testFocusContact();
     const transitionGroup: HTMLDivElement | null | undefined =
       container?.querySelector(".transition-group");
-    expect(transitionGroup?.classList).toContain("left");
+    expect(transitionGroup?.classList).toContain(Direction.Left);
   });
 });
 
@@ -398,6 +385,6 @@ describe("Contact", () => {
     testFocusProjects();
     const transitionGroup: HTMLDivElement | null | undefined =
       container?.querySelector(".transition-group");
-    expect(transitionGroup?.classList).toContain("right");
+    expect(transitionGroup?.classList).toContain(Direction.Right);
   });
 });
