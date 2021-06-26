@@ -38,10 +38,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
     } else if (
       window.location.pathname !== "/about" &&
       window.location.pathname !== "/projects" &&
-      window.location.pathname !== "/contact" &&
-      window.location.pathname !== "/Memory-Game" &&
-      window.location.pathname !== "/frontend-nanodegree-arcade-game" &&
-      window.location.pathname !== "/Neighborhood-Map"
+      window.location.pathname !== "/contact"
     ) {
       document.title = "Abhishek Chaudhuri - Error";
     }
@@ -127,50 +124,38 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             {/* Ensure route works with any website url */}
             <Route
               exact
-              path={`${process.env.PUBLIC_URL}/`}
-              render={() => (
-                /* Default page */
-                <main className="home container-fluid">
-                  <p className="home-info" tabIndex={0}>
-                    Hello and welcome to my website! Please click the links
-                    above to learn more about me.
+              path={`${process.env.PUBLIC_URL}/`}>
+              {/* Default page */}
+              <main className="home container-fluid">
+                <p className="home-info" tabIndex={0}>
+                  Hello and welcome to my website! Please click the links
+                  above to learn more about me.
                   </p>
-                </main>
-              )}
-            />
+              </main>
+            </Route>
             <Route
-              path={`${process.env.PUBLIC_URL}/about`}
-              render={() => <About onClickLink={setSlider} />}
-            />
+              path={`${process.env.PUBLIC_URL}/about`}>
+              <About onClickLink={setSlider} />
+            </Route>
             <Route
-              path={`${process.env.PUBLIC_URL}/projects`}
-              render={() => <Projects onClickLink={setSlider} />}
-            />
+              path={`${process.env.PUBLIC_URL}/projects`}>
+              <Projects onClickLink={setSlider} />
+            </Route>
             <Route
-              path={`${process.env.PUBLIC_URL}/contact`}
-              render={() => <Contact onClickLink={setSlider} />}
-            />
-          </Switch>
-        </CSSTransition>
-      </TransitionGroup>
-      {/* Ignore paths that take you to other repos, otherwise redirect to error page */}
-      {window.location.pathname !== "/" &&
-        window.location.pathname !== "/about" &&
-        window.location.pathname !== "/projects" &&
-        window.location.pathname !== "/contact" &&
-        window.location.pathname !== "/Memory-Game" &&
-        window.location.pathname !== "/frontend-nanodegree-arcade-game" &&
-        window.location.pathname !== "/Neighborhood-Map" && (
-          <Route
-            render={() => (
+              path={`${process.env.PUBLIC_URL}/contact`}>
+              <Contact onClickLink={setSlider} />
+            </Route>
+            {/* Ignore paths that take you to other repos, otherwise redirect to error page */}
+            <Route>
               <main className="error container-fluid">
                 <p className="error-message text-danger" tabIndex={0}>
                   Whoops! That path is invalid. Please click the links above.
                 </p>
               </main>
-            )}
-          />
-        )}
+            </Route>
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
       <hr />
       <footer className="foot container-fluid">
         <span className="foot-left">

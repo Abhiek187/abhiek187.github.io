@@ -1,3 +1,4 @@
+import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./index.scss";
@@ -6,9 +7,11 @@ import * as serviceWorker from "./tsx/serviceWorker";
 
 ReactDOM.render(
   // Enable react router and work in GitHub Pages
-  <BrowserRouter basename={process.env.PUBLIC_URL}>
-    <App />
-  </BrowserRouter>,
+  <React.StrictMode>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
   document.getElementById("root")
 );
 
