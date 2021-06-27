@@ -1,6 +1,5 @@
-import { setupTests, cleanupTests, testBaseContent, testNavbar } from "./test-util";
-
-let container: HTMLDivElement | null = null;
+import { screen } from "@testing-library/react";
+import { setupTests, testBaseContent, testNavbar } from "./test-util";
 
 /* Testing Procedure:
  * - Start by rendering the App -> it should render without crashing
@@ -34,21 +33,16 @@ let container: HTMLDivElement | null = null;
  */
 describe("App", () => {
   beforeEach(() => {
-    ({ container } = setupTests()); // parentheses required for redeclaration
-  });
-
-  afterEach(() => {
-    cleanupTests();
+    setupTests();
   });
 
   it("renders without crashing", () => {
     // The home page should show up
     expect(window.location.pathname).toBe("/");
     testBaseContent();
-    expect(container?.querySelector(".home")).not.toBeNull();
-    expect(container?.querySelector(".home-info")?.textContent).toContain(
-      "welcome"
-    );
+
+    const welcomeMessage = screen.getByText(/welcome/) as HTMLParagraphElement;
+    expect(welcomeMessage).toBeInTheDocument();
   });
 
   testNavbar("App");

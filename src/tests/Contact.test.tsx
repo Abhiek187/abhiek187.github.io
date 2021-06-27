@@ -1,74 +1,71 @@
-import { act } from "react-dom/test-utils";
+import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import { Direction } from "../tsx/App";
-import { setupTests, cleanupTests, testBaseContent, testNavbar, testFocusProjects } from "./test-util";
-
-let container: HTMLDivElement | null = null;
-let buttonContact: HTMLAnchorElement | null = null;
+import { setupTests, testBaseContent, testNavbar, testFocusProjects } from "./test-util";
 
 describe("Contact", () => {
-  let buttonResume: HTMLAnchorElement | null | undefined = null;
-  let buttonLinkedin: HTMLAnchorElement | null | undefined = null;
-  let buttonGithub: HTMLAnchorElement | null | undefined = null;
-  let buttonEmail: HTMLAnchorElement | null | undefined = null;
+  let buttonContact: HTMLAnchorElement;
+  let buttonResume: HTMLAnchorElement;
+  let buttonLinkedin: HTMLAnchorElement;
+  let buttonGithub: HTMLAnchorElement;
+  let buttonEmail: HTMLAnchorElement;
 
-  beforeEach(() => {
-    ({ container, buttonContact } = setupTests());
-    buttonContact?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  beforeEach(async () => {
+    ({ buttonContact } = setupTests());
+    fireEvent.click(buttonContact);
 
-    buttonResume = container?.querySelector(".contact-resume");
-    buttonLinkedin = container?.querySelector(".contact-linkedin");
-    buttonGithub = container?.querySelector(".contact-github");
-    buttonEmail = container?.querySelector(".contact-email");
-  });
-
-  afterEach(() => {
-    cleanupTests();
+    await waitFor(() => {
+      // Wait until the slide transition ends so there's only one match
+      buttonResume = screen.getByRole("link", { name: /resume/i }) as HTMLAnchorElement;
+      buttonLinkedin = screen.getByRole("link", { name: /linkedin/i }) as HTMLAnchorElement;
+      buttonGithub = screen.getByRole("link", { name: /github/i }) as HTMLAnchorElement;
+      buttonEmail = screen.getByRole("link", { name: /email/i }) as HTMLAnchorElement;
+    });
   });
 
   // Test that the resume, LinkedIn, GitHub, and email links are valid
   it("shows all contact information", () => {
     expect(window.location.pathname).toBe("/contact");
     testBaseContent();
-    expect(buttonResume).not.toBeNull();
-    expect(buttonLinkedin).not.toBeNull();
-    expect(buttonGithub).not.toBeNull();
-    expect(buttonEmail).not.toBeNull();
+    expect(buttonResume).toBeInTheDocument();
+    expect(buttonLinkedin).toBeInTheDocument();
+    expect(buttonGithub).toBeInTheDocument();
+    expect(buttonEmail).toBeInTheDocument();
   });
 
   it("can view the resume", () => {
     act(() => {
-      buttonResume?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      fireEvent.click(buttonResume);
     });
 
-    expect(buttonResume?.getAttribute("href")).toBe("resume.pdf");
+    expect(buttonResume.href).toBe(`${window.location.origin}/resume.pdf`);
   });
 
   it("can view the LinkedIn profile", () => {
     act(() => {
-      buttonLinkedin?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      fireEvent.click(buttonLinkedin);
     });
 
-    expect(buttonLinkedin?.getAttribute("href")).toBe(
+    expect(buttonLinkedin.href).toBe(
       "https://www.linkedin.com/in/abhiek187"
     );
   });
 
   it("can view the GitHub profile", () => {
     act(() => {
-      buttonGithub?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      fireEvent.click(buttonGithub);
     });
 
-    expect(buttonGithub?.getAttribute("href")).toBe(
+    expect(buttonGithub.href).toBe(
       "https://github.com/abhiek187"
     );
   });
 
   it("can create an email", () => {
     act(() => {
-      buttonEmail?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      fireEvent.click(buttonEmail);
     });
 
-    expect(buttonEmail?.getAttribute("href")).toBe(
+    expect(buttonEmail.href).toBe(
       "mailto:achaudhuri2011@yahoo.com"
     );
   });
@@ -77,14 +74,12 @@ describe("Contact", () => {
 
   it("navigates to Projects after clicking the left arrow", () => {
     act(() => {
-      const leftArrow: HTMLAnchorElement | null | undefined =
-        container?.querySelector(".arrow-left");
-      leftArrow?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      const leftArrow = screen.getByLabelText(/Go to/) as HTMLAnchorElement;
+      fireEvent.click(leftArrow);
     });
 
     testFocusProjects();
-    const transitionGroup: HTMLDivElement | null | undefined =
-      container?.querySelector(".transition-group");
-    expect(transitionGroup?.classList).toContain(Direction.Right);
+    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
+    expect(transitionGroup.classList).toContain(Direction.Right);
   });
 });

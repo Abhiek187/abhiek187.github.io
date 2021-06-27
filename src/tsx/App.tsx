@@ -114,7 +114,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
         </Link>
       </nav>
       <hr />
-      <TransitionGroup className={`transition-group ${slideDirection}`}>
+      <TransitionGroup className={`transition-group ${slideDirection}`} data-testid="transition">
         <CSSTransition
           key={location.key}
           timeout={{ enter: 600, exit: 600 }}

@@ -1,46 +1,41 @@
-import { act } from "react-dom/test-utils";
+import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import { Direction } from "../tsx/App";
-import { setupTests, cleanupTests, testBaseContent, testNavbar, testFocusProjects } from "./test-util";
-
-let container: HTMLDivElement | null = null;
-let buttonAbout: HTMLAnchorElement | null = null;
+import { setupTests, testBaseContent, testNavbar, testFocusProjects } from "./test-util";
 
 describe("About", () => {
-  beforeEach(() => {
-    ({ container, buttonAbout } = setupTests());
-    buttonAbout?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-  });
+  let buttonAbout: HTMLAnchorElement;
 
-  afterEach(() => {
-    cleanupTests();
+  beforeEach(() => {
+    ({ buttonAbout } = setupTests()); // parentheses required for redeclaration
+    fireEvent.click(buttonAbout);
   });
 
   it("shows a headshot and bio", () => {
     // The About page should show the relevant information
     expect(window.location.pathname).toBe("/about");
     testBaseContent();
-    expect(container?.querySelector(".about")).not.toBeNull();
-    expect(
-      container?.querySelector(".about-headshot")?.getAttribute("src")
-    ).toBe("/img/Headshot.png");
-    expect(container?.querySelector(".about-bio")?.textContent).toContain(
-      "Abhishek Chaudhuri"
-    );
+
+    const headshot = screen.getByAltText("Headshot of Abhishek") as HTMLImageElement;
+    const bio = screen.getByText(/Abhishek Chaudhuri is/);
+
+    expect(headshot).toBeInTheDocument();
+    expect(headshot.src).toBe(`${window.location.origin}/img/Headshot.png`);
+    expect(bio).toBeInTheDocument();
   });
 
   testNavbar("About");
 
   // Check that the arrow button navigates to the correct page with the correct slide transition
-  it("navigates to Projects after clicking the right arrow", () => {
-    act(() => {
-      const rightArrow: HTMLAnchorElement | null | undefined =
-        container?.querySelector(".arrow-right");
-      rightArrow?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  it("navigates to Projects after clicking the right arrow", async () => {
+    await act(async () => {
+      await waitFor(() => {
+        const rightArrow = screen.getByLabelText(/Go to/) as HTMLAnchorElement;
+        fireEvent.click(rightArrow);
+      });
     });
 
     testFocusProjects();
-    const transitionGroup: HTMLDivElement | null | undefined =
-      container?.querySelector(".transition-group");
-    expect(transitionGroup?.classList).toContain(Direction.Left);
+    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
+    expect(transitionGroup.classList).toContain(Direction.Left);
   });
 });

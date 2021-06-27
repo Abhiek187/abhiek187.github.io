@@ -46,7 +46,7 @@ const Projects: React.FC<OnClickProp> = ({ onClickLink }) => {
         <h3 className="projects-heading" tabIndex={0}>
           Projects
         </h3>
-        <ul className="projects-list">
+        <ul className="projects-list" data-testid="projects-list">
           {projects.map((project) => (
             /* Each list item needs a key */
             <li key={project.id} className="card">

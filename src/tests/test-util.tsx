@@ -1,89 +1,75 @@
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import App, { Direction } from "../tsx/App";
 
-let container: HTMLDivElement | null = null;
-let buttonAbout: HTMLAnchorElement | null = null;
-let buttonProjects: HTMLAnchorElement | null = null;
-let buttonContact: HTMLAnchorElement | null = null;
+let buttonAbout: HTMLAnchorElement;
+let buttonProjects: HTMLAnchorElement;
+let buttonContact: HTMLAnchorElement;
 
 type DOMElements = {
-  container: HTMLDivElement,
-  buttonAbout: HTMLAnchorElement | null,
-  buttonProjects: HTMLAnchorElement | null,
-  buttonContact: HTMLAnchorElement | null
+  buttonAbout: HTMLAnchorElement,
+  buttonProjects: HTMLAnchorElement,
+  buttonContact: HTMLAnchorElement
 };
 
 // Helper functions for testing
 const setupTests = (): DOMElements => {
-  // Add a div to hold all the React components
-  container = document.createElement("div");
-  document.body.appendChild(container);
-
   // App must be wrapped in a BrowserRouter
   render(
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <App />
-    </BrowserRouter>,
-    container
+    </BrowserRouter>
   );
 
-  buttonAbout = container.querySelector(".links-about");
-  buttonProjects = container.querySelector(".links-projects");
-  buttonContact = container.querySelector(".links-contact");
-  return { container, buttonAbout, buttonProjects, buttonContact };
-};
-
-const cleanupTests = (): void => {
-  // Unmount the root div container
-  if (container !== null) {
-    unmountComponentAtNode(container);
-    container.remove();
-    container = null;
-  }
+  // Specify a button, not text
+  buttonAbout = screen.getByRole("link", { name: "About" }) as HTMLAnchorElement;
+  buttonProjects = screen.getByRole("link", { name: "Projects" }) as HTMLAnchorElement;
+  buttonContact = screen.getByRole("link", { name: "Contact" }) as HTMLAnchorElement;
+  return { buttonAbout, buttonProjects, buttonContact };
 };
 
 const testBaseContent = (): void => {
   // Check that the header, navbar, and footer are present in every page
-  expect(container?.querySelector(".heading")).not.toBeNull();
-  expect(container?.querySelector(".heading-name")?.textContent).toBe(
-    "Abhishek Chaudhuri"
-  );
-  expect(container?.querySelector(".heading-headline")?.textContent).toContain(
-    "Software Engineer"
-  );
+  const headingName = screen.getByText("Abhishek Chaudhuri") as HTMLHeadingElement;
+  const headingHeadline = screen.getByText(
+    /Software Engineer \| Always Learning and Growing/
+  ) as HTMLHeadingElement;
 
-  expect(container?.querySelector(".links")).not.toBeNull();
+  expect(headingName).toBeInTheDocument();
+  expect(headingName.tagName).toBe("H1");
+  expect(headingHeadline).toBeInTheDocument();
+  expect(headingHeadline.tagName).toBe("H2");
 
-  expect(container?.querySelector(".foot")).not.toBeNull();
-  expect(container?.querySelector(".foot-left")?.textContent).toContain(
-    "React"
-  );
-  expect(container?.querySelector(".foot-right")?.textContent).toContain(
-    "MIT License"
-  );
+  expect(buttonAbout).toBeInTheDocument();
+  expect(buttonProjects).toBeInTheDocument();
+  expect(buttonContact).toBeInTheDocument();
+
+  const footerLeft = screen.getByText("React") as HTMLAnchorElement;
+  const footerRight = screen.getByText("MIT License") as HTMLAnchorElement;
+
+  expect(footerLeft).toBeInTheDocument();
+  expect(footerRight).toBeInTheDocument();
 };
 
 const testFocusAbout = (): void => {
   expect(window.location.pathname).toBe("/about");
-  expect(buttonAbout?.classList).toContain("active");
-  expect(buttonProjects?.classList).not.toContain("active");
-  expect(buttonContact?.classList).not.toContain("active");
+  expect(buttonAbout.classList).toContain("active");
+  expect(buttonProjects.classList).not.toContain("active");
+  expect(buttonContact.classList).not.toContain("active");
 };
 
 const testFocusProjects = (): void => {
   expect(window.location.pathname).toBe("/projects");
-  expect(buttonAbout?.classList).not.toContain("active");
-  expect(buttonProjects?.classList).toContain("active");
-  expect(buttonContact?.classList).not.toContain("active");
+  expect(buttonAbout.classList).not.toContain("active");
+  expect(buttonProjects.classList).toContain("active");
+  expect(buttonContact.classList).not.toContain("active");
 };
 
 const testFocusContact = (): void => {
   expect(window.location.pathname).toBe("/contact");
-  expect(buttonAbout?.classList).not.toContain("active");
-  expect(buttonProjects?.classList).not.toContain("active");
-  expect(buttonContact?.classList).toContain("active");
+  expect(buttonAbout.classList).not.toContain("active");
+  expect(buttonProjects.classList).not.toContain("active");
+  expect(buttonContact.classList).toContain("active");
 };
 
 const testNavbar = (source: string): void => {
@@ -91,50 +77,46 @@ const testNavbar = (source: string): void => {
   it("navigates to About after clicking About", () => {
     // Fire a click event before testing
     act(() => {
-      buttonAbout?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      fireEvent.click(buttonAbout);
     });
 
     // Check that the correct button is active
     testFocusAbout();
-    const transitionGroup: HTMLDivElement | null | undefined =
-      container?.querySelector(".transition-group");
+    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
 
     // Check that the next component slides in the correct direction
     const slideDirection: Direction = source === "Projects" || source === "Contact"
       ? Direction.Right : Direction.Left;
-    expect(transitionGroup?.classList).toContain(slideDirection);
+    expect(transitionGroup.classList).toContain(slideDirection);
   });
 
   it("navigates to Projects after clicking Projects", () => {
     act(() => {
-      buttonProjects?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      fireEvent.click(buttonProjects);
     });
 
     testFocusProjects();
-    const transitionGroup: HTMLDivElement | null | undefined =
-      container?.querySelector(".transition-group");
 
+    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
     const slideDirection: Direction = source === "Contact" ? Direction.Right : Direction.Left;
-    expect(transitionGroup?.classList).toContain(slideDirection);
+    expect(transitionGroup.classList).toContain(slideDirection);
   });
 
   it("navigates to Contact after clicking Contact", () => {
     act(() => {
-      buttonContact?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      fireEvent.click(buttonContact);
     });
 
     testFocusContact();
-    const transitionGroup: HTMLDivElement | null | undefined =
-      container?.querySelector(".transition-group");
 
+    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
     const slideDirection: Direction = source === "Contact" ? Direction.Right : Direction.Left;
-    expect(transitionGroup?.classList).toContain(slideDirection);
+    expect(transitionGroup.classList).toContain(slideDirection);
   });
 };
 
 export {
   setupTests,
-  cleanupTests,
   testBaseContent,
   testFocusAbout,
   testFocusProjects,
