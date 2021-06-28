@@ -25,19 +25,18 @@ const About: React.FC<OnClickProp> = ({ onClickLink }) => {
   return (
     <main className="about container-fluid">
       <div className="about-wrapper">
-        <h3 className="about-heading" tabIndex={0}>
+        <h3 className="about-heading">
           About
         </h3>
         <div className="about-container">
           <img
             className="about-headshot"
-            tabIndex={0}
             src="/img/Headshot.png"
             alt="Headshot of Abhishek"
             width="233.33"
             height="175"
           />
-          <p className="about-bio" tabIndex={0}>
+          <p className="about-bio">
             {bio}
           </p>
         </div>

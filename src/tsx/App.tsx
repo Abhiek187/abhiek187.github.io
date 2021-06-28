@@ -81,11 +81,10 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   return (
     <div className="App">
       <header className="heading container-fluid">
-        <h1 className="heading-name" tabIndex={0}>
+        <h1 className="heading-name">
           Abhishek Chaudhuri
         </h1>
-        {/* Add tabIndex to important information */}
-        <h2 className="heading-headline" tabIndex={0}>
+        <h2 className="heading-headline">
           Software Engineer | Always Learning and Growing
         </h2>
       </header>
@@ -127,7 +126,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
               path={`${process.env.PUBLIC_URL}/`}>
               {/* Default page */}
               <main className="home container-fluid">
-                <p className="home-info" tabIndex={0}>
+                <p className="home-info">
                   Hello and welcome to my website! Please click the links
                   above to learn more about me.
                   </p>
@@ -148,7 +147,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             {/* Ignore paths that take you to other repos, otherwise redirect to error page */}
             <Route>
               <main className="error container-fluid">
-                <p className="error-message text-danger" tabIndex={0}>
+                <p className="error-message text-danger">
                   Whoops! That path is invalid. Please click the links above.
                 </p>
               </main>

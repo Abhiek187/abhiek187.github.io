@@ -23,7 +23,7 @@ const Contact: React.FC<OnClickProp> = ({ onClickLink }) => {
         <i className="fas fa-arrow-left" />
       </Link>
       <div className="contact-wrapper">
-        <h3 className="contact-heading" tabIndex={0}>
+        <h3 className="contact-heading">
           Contact
         </h3>
         {/* Each link opens in a new tab */}

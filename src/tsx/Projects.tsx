@@ -43,28 +43,26 @@ const Projects: React.FC<OnClickProp> = ({ onClickLink }) => {
         <i className="fas fa-arrow-left" />
       </Link>
       <div className="projects-wrapper">
-        <h3 className="projects-heading" tabIndex={0}>
+        <h3 className="projects-heading">
           Projects
         </h3>
         <ul className="projects-list" data-testid="projects-list">
           {projects.map((project) => (
             /* Each list item needs a key */
             <li key={project.id} className="card">
-              <h4 className="projects-name card-title" tabIndex={0}>
+              <h4 className="projects-name card-title">
                 {project.name}
               </h4>
               <img
                 className="projects-image card-img-top"
-                tabIndex={0}
                 src={project.image}
                 alt={project.name}
               />
-              <p className="projects-about card-text" tabIndex={0}>
+              <p className="projects-about card-text">
                 {project.about}
               </p>
               <p
                 className="projects-technology-header"
-                tabIndex={0}
                 aria-label={`Made using: ${project.technology}`}
               >
                 Made Using:
@@ -90,7 +88,7 @@ const Projects: React.FC<OnClickProp> = ({ onClickLink }) => {
                   View Project
                 </a>
               ) : (
-                <p className="projects-website" tabIndex={0}>
+                <p className="projects-website">
                   &darr; See GitHub link below &darr;
                 </p>
               )}
@@ -105,7 +103,7 @@ const Projects: React.FC<OnClickProp> = ({ onClickLink }) => {
             </li>
           ))}
         </ul>
-        <p className="projects-addendum" tabIndex={0}>
+        <p className="projects-addendum">
           ...And much more on GitHub!
         </p>
       </div>
