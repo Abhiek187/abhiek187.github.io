@@ -4,11 +4,6 @@
   "private": true,
   "homepage": "https://abhiek187.github.io",
   "dependencies": {
-    "@types/node": "^15.0.3",
-    "@types/react": "^17.0.5",
-    "@types/react-dom": "^17.0.4",
-    "@types/react-router-dom": "^5.1.7",
-    "@types/react-transition-group": "^4.4.1",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -21,6 +16,11 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.5",
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.8",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-transition-group": "^4.4.1",
     "gh-pages": "^2.2.0"
   },
   "scripts": {
