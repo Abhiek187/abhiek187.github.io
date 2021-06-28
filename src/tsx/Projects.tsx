@@ -77,34 +77,33 @@ const Projects: React.FC<OnClickProp> = ({ onClickLink }) => {
                   </p>
                 ))}
               </div>
-              {/* If no project link is directly available, follow directions on GitHub */}
-              {project.website ? (
-                <a
-                  className="projects-website"
-                  href={project.website}
+              {/* If no project link is directly available, follow the directions on GitHub */}
+              <div className="projects-links">
+                {project.website && (
+                  <a className="projects-website btn btn-outline-success"
+                    href={project.website}
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <i className="fas fa-external-link-alt" /> Demo
+                  </a>
+                )}
+                <a className="projects-repo btn btn-outline-primary"
+                  href={project.repo}
                   target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Project
-                </a>
-              ) : (
-                <p className="projects-website">
-                  &darr; See GitHub link below &darr;
-                </p>
-              )}
-              <a
-                className="projects-repo"
-                href={project.repo}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View on GitHub
-              </a>
+                  rel="noopener noreferrer">
+                  <i className="fab fa-github" /> GitHub
+                  </a>
+              </div>
             </li>
           ))}
         </ul>
         <p className="projects-addendum">
-          ...And much more on GitHub!
+          ...And much more on <a
+            className="projects-github-link"
+            href="https://github.com/abhiek187"
+            target="_blank"
+            rel="noopener noreferrer"
+          >GitHub!</a>
         </p>
       </div>
       <Link

@@ -56,20 +56,20 @@ describe("Projects", () => {
         expect(technologyContainer.children[techIndex]).toHaveTextContent(tech);
       }
 
-      // If there's no website for the project, the text should mention to view the repo below
-      // Otherwise, show a link for the website
-      let projectWebsite: HTMLAnchorElement | HTMLParagraphElement;
+      const projectLinks = projectCard.children[5] as HTMLDivElement;
 
-      if (project.website === null) {
-        projectWebsite = projectCard.children[5] as HTMLParagraphElement;
-      } else {
-        projectWebsite = projectCard.children[5] as HTMLAnchorElement;
+      // If there's no website for the project, the website link shouldn't be present
+      expect(projectLinks.children).toHaveLength(project.website === null ? 1 : 2);
+      let projectWebsite: HTMLAnchorElement | null = null;
+
+      if (project.website !== null) {
+        projectWebsite = projectLinks.firstElementChild as HTMLAnchorElement;
       }
 
-      expect(projectWebsite.getAttribute("href")).toBe(project.website); // no href === null
+      expect(projectWebsite?.href).toBe(project.website ?? undefined);
 
       // Always display the repo link for the project
-      const projectRepo = projectCard.children[6] as HTMLAnchorElement;
+      const projectRepo = projectLinks.lastElementChild as HTMLAnchorElement;
       expect(projectRepo.href).toBe(project.repo);
     }
   });

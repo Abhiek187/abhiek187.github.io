@@ -117,8 +117,11 @@ main {
 
 .arrow-left,
 .arrow-right {
-  width: 10%;
-  margin: 0 auto;
+  /* Center the arrows vertically and horizontally in the containers */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
 .arrow-left:hover,
@@ -126,30 +129,25 @@ main {
   background-color: lightgray;
 }
 
-.arrow-left {
-  float: left;
-}
-
-.arrow-right {
-  float: right;
-}
-
 .about,
 .projects,
 .contact {
+  /* Place the arrows near the edges and the main content in the middle */
   display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  justify-content: space-between;
+}
+
+.projects {
+  .arrow-left,
+  .arrow-right {
+    flex: 1;
+  }
 }
 
 .about-wrapper,
 .contact-wrapper {
   width: 75%;
   margin: auto;
-}
-
-.projects-wrapper {
-  width: 65%;
 }
 
 /* Home & Error */

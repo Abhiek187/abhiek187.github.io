@@ -1,25 +1,35 @@
+$card-width-breakpoint: 600px;
+$two-card-breakpoint: 800px;
+
 /* Projects section */
 .projects-heading {
   margin-top: 0.5rem;
 }
 
 .projects-list {
-  padding: 0 5%;
+  padding: 0;
   display: flex; /* List all projects as cards */
   flex-wrap: wrap;
+  justify-content: center;
 
   li {
     list-style-type: none; /* Remove bullet points */
     position: static; /* Put behind the sticky navbar */
     border: 1px solid black;
-    margin: 3% auto; /* Centers cards among each other */
+    margin: 1%;
     width: 45%;
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: $card-width-breakpoint) {
   .projects-list li {
-    width: 100%; /* If viewport is too small, have one card per row */
+    width: 95%; /* If the viewport is too small, have one card per row */
+  }
+}
+
+@media screen and (min-width: $card-width-breakpoint) and (max-width: $two-card-breakpoint) {
+  .projects-list li {
+    width: 80%; /* Don't make the card widths too wide */
   }
 }
 
@@ -30,7 +40,8 @@
 }
 
 .projects-image {
-  width: 90%;
+  width: 350px;
+  max-width: 90%; /* Don't extend past the card's borders */
   margin-left: auto;
   margin-right: auto;
 }
@@ -52,7 +63,11 @@
   margin: 1%;
 }
 
+.projects-links {
+  margin-bottom: 2%;
+}
+
 .projects-website,
 .projects-repo {
-  margin: 2% auto;
+  margin: 2%;
 }
