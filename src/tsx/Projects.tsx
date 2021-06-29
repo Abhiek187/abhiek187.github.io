@@ -56,15 +56,12 @@ const Projects: React.FC<OnClickProp> = ({ onClickLink }) => {
               <img
                 className="projects-image card-img-top"
                 src={project.image}
-                alt={project.name}
+                alt={`Screenshot of ${project.name}`}
               />
               <p className="projects-about card-text">
                 {project.about}
               </p>
-              <p
-                className="projects-technology-header"
-                aria-label={`Made using: ${project.technology}`}
-              >
+              <p className="projects-technology-header">
                 Made Using:
               </p>
               <div className="projects-technology-container">

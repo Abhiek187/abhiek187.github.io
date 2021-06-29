@@ -44,7 +44,7 @@ describe("Projects", () => {
       const projectImage = projectCard.children[1] as HTMLImageElement;;
       // If there are any special characters in the image's url, encode them
       expect(projectImage.src).toBe(`${window.location.origin}${encodeURI(project.image)}`);
-      expect(projectImage.alt).toBe(project.name);
+      expect(projectImage.alt).toBe(`Screenshot of ${project.name}`);
 
       const projectAbout = projectCard.children[2] as HTMLParagraphElement;
       expect(projectAbout).toHaveTextContent(project.about);
