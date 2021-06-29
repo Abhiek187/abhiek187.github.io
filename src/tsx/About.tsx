@@ -12,15 +12,32 @@ const About: React.FC<OnClickProp> = ({ onClickLink }) => {
     document.querySelector(".links-contact")?.classList.remove("active");
   }, []);
 
-  const bio: string =
-    "Abhishek Chaudhuri is a recent graduate of Rutgers University-New Brunswick. " +
-    "He studied Electrical & Computer Engineering as an undergraduate and Software Engineering " +
-    "as a graduate. His interests include machine learning and front-end web and mobile " +
-    "development (with plans of expanding to full-stack development). Some of his hobbies include " +
-    "exercising, playing the flute, and playing video games. His ultimate goal in life is to " +
-    "improve society by bringing innovation to a collaborative environment. He can put his " +
-    "technical skills to good use by gaining experience and constantly growing from other " +
-    "companies that value his ambitions.";
+  // Forward slashes (\) prevent all the newlines from being rendered
+  const bio: string = `
+  Why hello there! My name is Abhishek. I'm a software engineer with a desire to innovate and \
+  improve society one line of code at a time. Whether it's a website, a mobile app, or an API, I \
+  enjoy building applications that benefit the end-user.
+
+  The three words I live by are dream, conquer, and inspire. I dream of the opportunities that lie \
+  ahead. I conquer the challenges that come my way. And I inspire others by helping them go through a \
+  similar journey. The cycle always repeats itself as new challenges present themselves.
+
+  I'm a recent graduate of Rutgers University-New Brunswick. I studied Electrical & Computer \
+  Engineering as an undergraduate and Software Engineering as a graduate. During my time, I joined \
+  the N2E coding club where I taught students how to code from Novice 2 Expert. Pretty soon, I was \
+  promoted to being the marketing director to increase the outreach of the club. After that, I became \
+  the president of N2E, where I handled the process of recruiting instructors and managing their \
+  workshops. Through my time and commitment, I increased workshop attendance by 40% and earned a \
+  Leadership & Service Award from Rutgers.
+  
+  My interests include front-end web and mobile development and machine learning. I regularly work on \
+  and improve my projects on GitHub. Some of my past projects include a space shooter created in iOS, \
+  an Android game that uses machine learning to recognize handwritten digits, a cheat sheet of all \
+  the languages I know, and of course, this very website!
+  
+  In the future, I plan to expand my horizons and become a full-stack developer. Outside of coding, I \
+  enjoy exercising, playing the flute, and playing video games.
+  `;
 
   return (
     <main className="about container-fluid">

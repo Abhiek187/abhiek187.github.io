@@ -16,7 +16,7 @@ describe("About", () => {
     testBaseContent();
 
     const headshot = screen.getByAltText("Headshot of Abhishek") as HTMLImageElement;
-    const bio = screen.getByText(/Abhishek Chaudhuri is/);
+    const bio = screen.getByText(/My name is Abhishek/);
 
     expect(headshot).toBeInTheDocument();
     expect(headshot.src).toBe(`${window.location.origin}/img/Headshot.png`);
