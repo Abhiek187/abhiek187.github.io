@@ -3,6 +3,16 @@
 ## About
 This is my own personal website created using React. Inspired by Udacity's Front-End Web Development Course, I decided to use my React skills to create a website that encapsulates what I've accomplished over the years in an environment I have a passion for. It is responsive and accessible. You can check out [this site](https://abhiek187.github.io) to learn more and get in contact with me.
 
+## Features
+- React as the web framework
+- TypeScript for added type safety
+- SCSS for enhanced CSS syntax
+- Bootstrap to improve the UI
+- 20+ tests for the 4 main views using the React Testing Library
+- Accessible and responsive web design
+- Best practices for Progressive Web Apps
+- Continuous updates and improvements
+
 ## Dependencies
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br>
 [React Router](https://reacttraining.com/react-router) was used to create the single-page experience.<br>
