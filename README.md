@@ -1,7 +1,7 @@
 # My Website
 
 ## About
-This is my own personal website created using React. Inspired by Udacity's Front-End Web Development Course, I decided to use my React skills to create a website that encapsulates what I've accomplished over the years in an environment I have a passion for. It is responsive and accessible. You can check out [this site](https://abhiek187.github.io) to learn more and get in contact with me.
+This is my portfolio website created in React, inspired by Udacity's Front-End Web Development course. It showcases the projects I'm most passionate about with the creative freedom of developing a website. This repo will always be updated whenever I gain new experiences or come up with ideas to further improve the website. You can check out [my website](https://abhiek187.github.io) to learn more and get in touch with me.
 
 ## Features
 - React as the web framework
