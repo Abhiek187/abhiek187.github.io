@@ -19,6 +19,7 @@
   "Keras": "danger",
   "Kotlin": "warning text-dark",
   "Markdown": "secondary",
+  "MATLAB": "danger",
   "Python": "primary",
   "Ruby": "danger",
   "SQL": "success",
