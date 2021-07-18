@@ -30,6 +30,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   const [slideDirection, setSlideDirection] = useState<Direction>(
     Direction.Left
   );
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
     // Change the title of the tab every page change
@@ -60,6 +61,12 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
     };
   }, []); // only componentDidMount()
 
+  const htmlDecode = (input: string): string | null => {
+    // Unescape HTML characters (https://stackoverflow.com/a/34064434)
+    const doc = new DOMParser().parseFromString(input, "text/html");
+    return doc.documentElement.textContent;
+  };
+
   const setSlider = (dest: string): void => {
     // Check where to slide the components
     if (window.location.pathname === "/contact") {
@@ -79,11 +86,21 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   };
 
   return (
-    <div className="App">
+    <div className={`App ${isDarkMode ? "dark" : ""}`}>
+      {/* Switch to toggle between light and dark mode */}
+      <div className="form-check form-switch">
+        <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+          {isDarkMode ? htmlDecode("&#x1F31C;") : htmlDecode("&#x1F31E;")}
+        </label>
+        <input
+          className="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          onClick={() => setIsDarkMode(!isDarkMode)}
+        />
+      </div>
       <header className="heading container-fluid">
-        <h1 className="heading-name">
-          Abhishek Chaudhuri
-        </h1>
+        <h1 className="heading-name">Abhishek Chaudhuri</h1>
         <h2 className="heading-headline">
           Software Engineer | Always Learning and Growing
         </h2>
@@ -113,7 +130,10 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
         </Link>
       </nav>
       <hr />
-      <TransitionGroup className={`transition-group ${slideDirection}`} data-testid="transition">
+      <TransitionGroup
+        className={`transition-group ${slideDirection}`}
+        data-testid="transition"
+      >
         <CSSTransition
           key={location.key}
           timeout={{ enter: 600, exit: 600 }}
@@ -121,27 +141,22 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
         >
           <Switch location={location}>
             {/* Ensure route works with any website url */}
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/`}>
+            <Route exact path={`${process.env.PUBLIC_URL}/`}>
               {/* Default page */}
               <main className="home container-fluid">
                 <p className="home-info">
-                  Hello and welcome to my website! Please click the links
-                  above to learn more about me.
-                  </p>
+                  Hello and welcome to my website! Please click the links above
+                  to learn more about me.
+                </p>
               </main>
             </Route>
-            <Route
-              path={`${process.env.PUBLIC_URL}/about`}>
+            <Route path={`${process.env.PUBLIC_URL}/about`}>
               <About onClickLink={setSlider} />
             </Route>
-            <Route
-              path={`${process.env.PUBLIC_URL}/projects`}>
-              <Projects onClickLink={setSlider} />
+            <Route path={`${process.env.PUBLIC_URL}/projects`}>
+              <Projects onClickLink={setSlider} isDarkMode={isDarkMode} />
             </Route>
-            <Route
-              path={`${process.env.PUBLIC_URL}/contact`}>
+            <Route path={`${process.env.PUBLIC_URL}/contact`}>
               <Contact onClickLink={setSlider} />
             </Route>
             {/* Ignore paths that take you to other repos, otherwise redirect to error page */}

@@ -20,7 +20,12 @@ interface Project {
 export type ColorsJSON = { [key: string]: string };
 export type ProjectsJSON = [Project];
 
-const Projects: React.FC<OnClickProp> = ({ onClickLink }) => {
+// Extend the OnClickProp interface
+type ProjectsProps = OnClickProp & {
+  isDarkMode: boolean;
+};
+
+const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
   useEffect(() => {
     document.title = "Abhishek Chaudhuri - Projects";
     document.querySelector(".links-about")?.classList.remove("active");
@@ -43,25 +48,30 @@ const Projects: React.FC<OnClickProp> = ({ onClickLink }) => {
         <i className="fas fa-arrow-left" />
       </Link>
       <div className="projects-wrapper">
-        <h3 className="projects-heading">
-          Projects
-        </h3>
+        <h3 className="projects-heading">Projects</h3>
         <ul className="projects-list" data-testid="projects-list">
           {projects.map((project) => (
             /* Each list item needs a key */
-            <li key={project.id} className="card">
-              <h4 className="projects-name card-title">
-                {project.name}
-              </h4>
+            <li
+              key={project.id}
+              className={`card ${
+                isDarkMode
+                  ? "text-light bg-dark border-light"
+                  : "text-dark bg-light border-dark"
+              }`}
+            >
+              <h4 className="projects-name card-title">{project.name}</h4>
               <img
                 className="projects-image card-img-top"
                 src={project.image}
                 alt={`Screenshot of ${project.name}`}
               />
-              <p className="projects-about card-text">
-                {project.about}
-              </p>
-              <p className="projects-technology-header">
+              <p className="projects-about card-text">{project.about}</p>
+              <p
+                className={`projects-technology-header ${
+                  isDarkMode ? "text-info" : ""
+                }`}
+              >
                 Made Using:
               </p>
               <div className="projects-technology-container">
@@ -77,30 +87,37 @@ const Projects: React.FC<OnClickProp> = ({ onClickLink }) => {
               {/* If no project link is directly available, follow the directions on GitHub */}
               <div className="projects-links">
                 {project.website && (
-                  <a className="projects-website btn btn-outline-success"
+                  <a
+                    className="projects-website btn btn-outline-success"
                     href={project.website}
                     target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer"
+                  >
                     <i className="fas fa-external-link-alt" /> Demo
                   </a>
                 )}
-                <a className="projects-repo btn btn-outline-primary"
+                <a
+                  className="projects-repo btn btn-outline-primary"
                   href={project.repo}
                   target="_blank"
-                  rel="noopener noreferrer">
+                  rel="noopener noreferrer"
+                >
                   <i className="fab fa-github" /> GitHub
-                  </a>
+                </a>
               </div>
             </li>
           ))}
         </ul>
         <p className="projects-addendum">
-          ...And much more on <a
+          ...And much more on{" "}
+          <a
             className="projects-github-link"
             href="https://github.com/abhiek187"
             target="_blank"
             rel="noopener noreferrer"
-          >GitHub!</a>
+          >
+            GitHub!
+          </a>
         </p>
       </div>
       <Link

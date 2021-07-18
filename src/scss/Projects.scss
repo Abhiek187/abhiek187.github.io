@@ -15,7 +15,6 @@ $two-card-breakpoint: 800px;
   li {
     list-style-type: none; /* Remove bullet points */
     position: static; /* Put behind the sticky navbar */
-    border: 1px solid black;
     margin: 1%;
     width: 45%;
   }
@@ -51,7 +50,7 @@ $two-card-breakpoint: 800px;
 }
 
 .projects-technology-header {
-  color: blue;
+  color: blue; /* light theme only */
   margin-bottom: 0;
 }
 

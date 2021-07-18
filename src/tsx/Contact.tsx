@@ -45,7 +45,7 @@ const Contact: React.FC<OnClickProp> = ({ onClickLink }) => {
             <i className="fab fa-linkedin-in" /> LinkedIn
           </a>
           <a
-            className="contact-github btn btn-outline-dark"
+            className="contact-github btn btn-outline-secondary"
             href="https://github.com/abhiek187"
             target="_blank"
             rel="noopener noreferrer"
