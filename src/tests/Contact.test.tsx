@@ -1,6 +1,11 @@
 import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import { Direction } from "../tsx/App";
-import { setupTests, testBaseContent, testNavbar, testFocusProjects } from "./test-util";
+import {
+  setupTests,
+  testBaseContent,
+  testNavbar,
+  testFocusProjects,
+} from "./test-util";
 
 describe("Contact", () => {
   let buttonContact: HTMLAnchorElement;
@@ -15,10 +20,18 @@ describe("Contact", () => {
 
     await waitFor(() => {
       // Wait until the slide transition ends so there's only one match
-      buttonResume = screen.getByRole("link", { name: /resume/i }) as HTMLAnchorElement;
-      buttonLinkedin = screen.getByRole("link", { name: /linkedin/i }) as HTMLAnchorElement;
-      buttonGithub = screen.getByRole("link", { name: /github/i }) as HTMLAnchorElement;
-      buttonEmail = screen.getByRole("link", { name: /email/i }) as HTMLAnchorElement;
+      buttonResume = screen.getByRole("link", {
+        name: /resume/i,
+      }) as HTMLAnchorElement;
+      buttonLinkedin = screen.getByRole("link", {
+        name: /linkedin/i,
+      }) as HTMLAnchorElement;
+      buttonGithub = screen.getByRole("link", {
+        name: /github/i,
+      }) as HTMLAnchorElement;
+      buttonEmail = screen.getByRole("link", {
+        name: /email/i,
+      }) as HTMLAnchorElement;
     });
   });
 
@@ -45,9 +58,7 @@ describe("Contact", () => {
       fireEvent.click(buttonLinkedin);
     });
 
-    expect(buttonLinkedin.href).toBe(
-      "https://www.linkedin.com/in/abhiek187"
-    );
+    expect(buttonLinkedin.href).toBe("https://www.linkedin.com/in/abhiek187");
   });
 
   it("can view the GitHub profile", () => {
@@ -55,9 +66,7 @@ describe("Contact", () => {
       fireEvent.click(buttonGithub);
     });
 
-    expect(buttonGithub.href).toBe(
-      "https://github.com/abhiek187"
-    );
+    expect(buttonGithub.href).toBe("https://github.com/abhiek187");
   });
 
   it("can create an email", () => {
@@ -65,9 +74,7 @@ describe("Contact", () => {
       fireEvent.click(buttonEmail);
     });
 
-    expect(buttonEmail.href).toBe(
-      "mailto:achaudhuri2011@yahoo.com"
-    );
+    expect(buttonEmail.href).toBe("mailto:achaudhuri2011@yahoo.com");
   });
 
   testNavbar("Contact");

@@ -42,9 +42,7 @@ const About: React.FC<OnClickProp> = ({ onClickLink }) => {
   return (
     <main className="about container-fluid">
       <div className="about-wrapper">
-        <h3 className="about-heading">
-          About
-        </h3>
+        <h3 className="about-heading">About</h3>
         <div className="about-container">
           <img
             className="about-headshot"
@@ -53,9 +51,7 @@ const About: React.FC<OnClickProp> = ({ onClickLink }) => {
             width="233.33"
             height="175"
           />
-          <p className="about-bio">
-            {bio}
-          </p>
+          <p className="about-bio">{bio}</p>
         </div>
       </div>
       <Link

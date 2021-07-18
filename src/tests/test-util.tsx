@@ -7,9 +7,9 @@ let buttonProjects: HTMLAnchorElement;
 let buttonContact: HTMLAnchorElement;
 
 type DOMElements = {
-  buttonAbout: HTMLAnchorElement,
-  buttonProjects: HTMLAnchorElement,
-  buttonContact: HTMLAnchorElement
+  buttonAbout: HTMLAnchorElement;
+  buttonProjects: HTMLAnchorElement;
+  buttonContact: HTMLAnchorElement;
 };
 
 // Helper functions for testing
@@ -22,15 +22,23 @@ const setupTests = (): DOMElements => {
   );
 
   // Specify a button, not text
-  buttonAbout = screen.getByRole("link", { name: "About" }) as HTMLAnchorElement;
-  buttonProjects = screen.getByRole("link", { name: "Projects" }) as HTMLAnchorElement;
-  buttonContact = screen.getByRole("link", { name: "Contact" }) as HTMLAnchorElement;
+  buttonAbout = screen.getByRole("link", {
+    name: "About",
+  }) as HTMLAnchorElement;
+  buttonProjects = screen.getByRole("link", {
+    name: "Projects",
+  }) as HTMLAnchorElement;
+  buttonContact = screen.getByRole("link", {
+    name: "Contact",
+  }) as HTMLAnchorElement;
   return { buttonAbout, buttonProjects, buttonContact };
 };
 
 const testBaseContent = (): void => {
   // Check that the header, navbar, and footer are present in every page
-  const headingName = screen.getByText("Abhishek Chaudhuri") as HTMLHeadingElement;
+  const headingName = screen.getByText(
+    "Abhishek Chaudhuri"
+  ) as HTMLHeadingElement;
   const headingHeadline = screen.getByText(
     /Software Engineer \| Always Learning and Growing/
   ) as HTMLHeadingElement;
@@ -85,8 +93,10 @@ const testNavbar = (source: string): void => {
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
 
     // Check that the next component slides in the correct direction
-    const slideDirection: Direction = source === "Projects" || source === "Contact"
-      ? Direction.Right : Direction.Left;
+    const slideDirection: Direction =
+      source === "Projects" || source === "Contact"
+        ? Direction.Right
+        : Direction.Left;
     expect(transitionGroup.classList).toContain(slideDirection);
   });
 
@@ -98,7 +108,8 @@ const testNavbar = (source: string): void => {
     testFocusProjects();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    const slideDirection: Direction = source === "Contact" ? Direction.Right : Direction.Left;
+    const slideDirection: Direction =
+      source === "Contact" ? Direction.Right : Direction.Left;
     expect(transitionGroup.classList).toContain(slideDirection);
   });
 
@@ -110,7 +121,8 @@ const testNavbar = (source: string): void => {
     testFocusContact();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    const slideDirection: Direction = source === "Contact" ? Direction.Right : Direction.Left;
+    const slideDirection: Direction =
+      source === "Contact" ? Direction.Right : Direction.Left;
     expect(transitionGroup.classList).toContain(slideDirection);
   });
 };
@@ -121,5 +133,5 @@ export {
   testFocusAbout,
   testFocusProjects,
   testFocusContact,
-  testNavbar
+  testNavbar,
 };

@@ -1,6 +1,11 @@
 import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import { Direction } from "../tsx/App";
-import { setupTests, testBaseContent, testNavbar, testFocusProjects } from "./test-util";
+import {
+  setupTests,
+  testBaseContent,
+  testNavbar,
+  testFocusProjects,
+} from "./test-util";
 
 describe("About", () => {
   let buttonAbout: HTMLAnchorElement;
@@ -15,7 +20,9 @@ describe("About", () => {
     expect(window.location.pathname).toBe("/about");
     testBaseContent();
 
-    const headshot = screen.getByAltText("Headshot of Abhishek") as HTMLImageElement;
+    const headshot = screen.getByAltText(
+      "Headshot of Abhishek"
+    ) as HTMLImageElement;
     const bio = screen.getByText(/My name is Abhishek/);
 
     expect(headshot).toBeInTheDocument();

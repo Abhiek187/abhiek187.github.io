@@ -1,7 +1,11 @@
 import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import { Direction } from "../tsx/App";
 import {
-  setupTests, testBaseContent, testNavbar, testFocusAbout, testFocusContact
+  setupTests,
+  testBaseContent,
+  testNavbar,
+  testFocusAbout,
+  testFocusContact,
 } from "./test-util";
 import { ProjectsJSON } from "../tsx/Projects";
 import projectData from "../models/projects.json";
@@ -19,7 +23,9 @@ describe("Projects", () => {
     await waitFor(() => {
       projectsList = screen.getByTestId("projects-list") as HTMLUListElement;
       // Substring match
-      [leftArrow, rightArrow] = screen.getAllByLabelText(/Go to/) as HTMLAnchorElement[];
+      [leftArrow, rightArrow] = screen.getAllByLabelText(
+        /Go to/
+      ) as HTMLAnchorElement[];
     });
   });
 
@@ -41,9 +47,11 @@ describe("Projects", () => {
       const projectName = projectCard.children[0] as HTMLHeadingElement;
       expect(projectName).toHaveTextContent(project.name);
 
-      const projectImage = projectCard.children[1] as HTMLImageElement;;
+      const projectImage = projectCard.children[1] as HTMLImageElement;
       // If there are any special characters in the image's url, encode them
-      expect(projectImage.src).toBe(`${window.location.origin}${encodeURI(project.image)}`);
+      expect(projectImage.src).toBe(
+        `${window.location.origin}${encodeURI(project.image)}`
+      );
       expect(projectImage.alt).toBe(`Screenshot of ${project.name}`);
 
       const projectAbout = projectCard.children[2] as HTMLParagraphElement;
@@ -59,7 +67,9 @@ describe("Projects", () => {
       const projectLinks = projectCard.children[5] as HTMLDivElement;
 
       // If there's no website for the project, the website link shouldn't be present
-      expect(projectLinks.children).toHaveLength(project.website === null ? 1 : 2);
+      expect(projectLinks.children).toHaveLength(
+        project.website === null ? 1 : 2
+      );
       let projectWebsite: HTMLAnchorElement | null = null;
 
       if (project.website !== null) {
@@ -76,7 +86,9 @@ describe("Projects", () => {
 
   it("makes the navbar sticky when scrolling down", () => {
     // Test that the navbar is sticky after scrolling down far enough
-    const navbar: HTMLElement | null = (screen.getByText("About") as HTMLAnchorElement).parentElement;
+    const navbar: HTMLElement | null = (
+      screen.getByText("About") as HTMLAnchorElement
+    ).parentElement;
     expect(window.pageYOffset).toBe(0);
     expect(navbar?.classList).not.toContain("sticky");
 
