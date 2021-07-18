@@ -29,7 +29,7 @@ const Contact: React.FC<OnClickProp> = ({ onClickLink }) => {
         {/* Each link opens in a new tab */}
         <span className="contact-row">
           <a
-            className="contact-resume"
+            className="contact-resume btn btn-outline-danger"
             href="resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
@@ -37,7 +37,7 @@ const Contact: React.FC<OnClickProp> = ({ onClickLink }) => {
             <i className="fas fa-file-pdf" /> Resume
           </a>
           <a
-            className="contact-linkedin"
+            className="contact-linkedin btn btn-outline-primary"
             href="https://www.linkedin.com/in/abhiek187"
             target="_blank"
             rel="noopener noreferrer"
@@ -45,7 +45,7 @@ const Contact: React.FC<OnClickProp> = ({ onClickLink }) => {
             <i className="fab fa-linkedin-in" /> LinkedIn
           </a>
           <a
-            className="contact-github"
+            className="contact-github btn btn-outline-dark"
             href="https://github.com/abhiek187"
             target="_blank"
             rel="noopener noreferrer"
@@ -54,7 +54,7 @@ const Contact: React.FC<OnClickProp> = ({ onClickLink }) => {
           </a>
           {/* Opens default email program */}
           <a
-            className="contact-email"
+            className="contact-email btn"
             href="mailto:achaudhuri2011@yahoo.com"
             target="_top"
           >

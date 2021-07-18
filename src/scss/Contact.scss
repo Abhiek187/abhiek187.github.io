@@ -7,19 +7,9 @@
   a {
     margin: 3% 0;
     padding: 0 1%;
-    font-size: 1.5em;
-    border: 1px solid black;
-    border-radius: 10%;
+    font-size: 1.25em;
     box-shadow: 5px 5px darkgray;
-    text-decoration: none;
   }
-}
-
-.contact-resume:hover,
-.contact-linkedin:hover,
-.contact-github:hover,
-.contact-email:hover {
-  background-color: lightgray; /* Show link as selected */
 }
 
 .contact-resume:active,
@@ -30,14 +20,18 @@
   box-shadow: 2px 2px black;
 }
 
-.fa-file-pdf {
-  color: red;
-}
-
-.fa-linkedin-in {
-  color: #007bb5; /* LinkedIn blue */
-}
-
-.fa-envelope {
+/* Mimic Bootstrap's button outline */
+.contact-email {
   color: indigo;
+  border-color: indigo;
+}
+
+.contact-email:hover {
+  color: white;
+  background-color: indigo;
+  border-color: indigo;
+}
+
+.contact-email:focus {
+  box-shadow: 0 0 0 0.25rem rgba(75, 0, 130, 0.5); /* indigo = #4B0082 */
 }
