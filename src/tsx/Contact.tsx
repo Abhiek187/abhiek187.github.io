@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import "../scss/Contact.scss";
 import { OnClickProp } from "./App";
 
-const Contact: React.FC<OnClickProp> = ({ onClickLink }) => {
+type ContactProps = OnClickProp & {
+  isDarkMode: boolean;
+};
+
+const Contact: React.FC<ContactProps> = ({ onClickLink, isDarkMode }) => {
   useEffect(() => {
     document.title = "Abhishek Chaudhuri - Contact";
     document.querySelector(".links-about")?.classList.remove("active");
@@ -43,7 +47,9 @@ const Contact: React.FC<OnClickProp> = ({ onClickLink }) => {
             <i className="fab fa-linkedin-in" /> LinkedIn
           </a>
           <a
-            className="contact-github btn btn-outline-secondary"
+            className={`contact-github btn btn-outline-${
+              isDarkMode ? "light" : "dark"
+            }`}
             href="https://github.com/abhiek187"
             target="_blank"
             rel="noopener noreferrer"
@@ -52,7 +58,7 @@ const Contact: React.FC<OnClickProp> = ({ onClickLink }) => {
           </a>
           {/* Opens default email program */}
           <a
-            className="contact-email btn"
+            className={`contact-email btn ${isDarkMode ? "dark" : ""}`}
             href="mailto:achaudhuri2011@yahoo.com"
             target="_top"
           >

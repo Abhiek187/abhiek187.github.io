@@ -161,7 +161,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
               <Projects onClickLink={setSlider} isDarkMode={isDarkMode} />
             </Route>
             <Route path={`${process.env.PUBLIC_URL}/contact`}>
-              <Contact onClickLink={setSlider} />
+              <Contact onClickLink={setSlider} isDarkMode={isDarkMode} />
             </Route>
             {/* Ignore paths that take you to other repos, otherwise redirect to error page */}
             <Route>

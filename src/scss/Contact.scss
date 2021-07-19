@@ -35,3 +35,20 @@
 .contact-email:focus {
   box-shadow: 0 0 0 0.25rem rgba(75, 0, 130, 0.5); /* indigo = #4B0082 */
 }
+
+$indigo-400: #8540f5;
+
+.contact-email.dark {
+  color: $indigo-400;
+  border-color: $indigo-400;
+}
+
+.contact-email.dark:hover {
+  color: black;
+  background-color: $indigo-400;
+  border-color: $indigo-400;
+}
+
+.contact-email.dark:focus {
+  box-shadow: 0 0 0 0.25rem rgba(133, 64, 245, 0.5);
+}
