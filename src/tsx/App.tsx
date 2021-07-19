@@ -166,7 +166,11 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             {/* Ignore paths that take you to other repos, otherwise redirect to error page */}
             <Route>
               <main className="error container-fluid">
-                <p className="error-message text-danger">
+                <p
+                  className={`error-message ${
+                    isDarkMode ? "text-warning" : "text-danger"
+                  }`}
+                >
                   Whoops! That path is invalid. Please click the links above.
                 </p>
               </main>
