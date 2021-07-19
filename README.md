@@ -8,6 +8,7 @@ This is my portfolio website created in React, inspired by Udacity's Front-End W
 - TypeScript for added type safety
 - SCSS for enhanced CSS syntax
 - Bootstrap to improve the UI
+- Light and dark mode
 - 20+ tests for the 4 main views using the React Testing Library
 - Accessible and responsive web design
 - Best practices for Progressive Web Apps
