@@ -88,14 +88,18 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   return (
     <div className={`App ${isDarkMode ? "dark" : ""}`}>
       {/* Switch to toggle between light and dark mode */}
-      <div className="form-check form-switch">
-        <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+      <div className="theme-container form-check form-switch">
+        <label
+          className="theme-label form-check-label"
+          htmlFor="theme-switch"
+          aria-label={isDarkMode ? "dark mode on" : "dark mode off"}
+        >
           {isDarkMode ? htmlDecode("&#x1F31C;") : htmlDecode("&#x1F31E;")}
         </label>
         <input
           className="form-check-input"
           type="checkbox"
-          id="flexSwitchCheckDefault"
+          id="theme-switch"
           onClick={() => setIsDarkMode(!isDarkMode)}
         />
       </div>

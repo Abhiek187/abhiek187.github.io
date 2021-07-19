@@ -24,6 +24,7 @@ main {
 .App {
   text-align: center;
   margin: 3%;
+  margin-top: 1%;
 }
 
 .App.dark {
@@ -33,6 +34,21 @@ main {
   footer {
     color: $light-color;
     background-color: $dark-color;
+  }
+}
+
+.theme-container {
+  display: flex;
+  padding-left: 0; /* remove default padding */
+
+  .theme-label {
+    flex: 1;
+    padding-right: 10px;
+    text-align: right;
+  }
+
+  #theme-switch {
+    margin-left: 0;
   }
 }
 
