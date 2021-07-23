@@ -24,6 +24,7 @@
   "Ruby": "danger",
   "SQL": "success",
   "SQLite": "success",
+  "Shell": "success",
   "Swift": "warning text-dark",
   "TensorFlow Lite": "warning text-dark",
   "TypeScript": "primary",
