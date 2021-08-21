@@ -26,17 +26,19 @@ const About: React.FC<OnClickProp> = ({ onClickLink }) => {
   Engineering as an undergraduate and Software Engineering as a graduate. During my time, I joined \
   the N2E coding club where I taught students how to code from Novice 2 Expert. Pretty soon, I was \
   promoted to being the marketing director to increase the outreach of the club. After that, I became \
-  the president of N2E, where I handled the process of recruiting instructors and managing their \
-  workshops. Through my time and commitment, I increased workshop attendance by 40% and earned a \
-  Leadership & Service Award from Rutgers.
+  the president of N2E, where I handled the process of recruiting 11 instructors and managing \
+  workshops in 7 different languages. Through my time and commitment, I increased workshop attendance \
+  by 40% and earned a Leadership & Service Award from Rutgers.
   
   My interests include front-end web and mobile development and machine learning. I regularly work on \
   and improve my projects on GitHub. Some of my past projects include a space shooter created in iOS, \
   an Android game that uses machine learning to recognize handwritten digits, a cheat sheet of all \
   the languages I know, and of course, this very website!
+
+  Besides coding, I enjoy exercising, playing the flute, and playing video games in my spare time.
   
-  In the future, I plan to expand my horizons and become a full-stack developer. Outside of coding, I \
-  enjoy exercising, playing the flute, and playing video games.
+  In the future, I plan to expand my knowledge of front-end and back-end development and become a \
+  full-stack developer.
   `;
 
   return (
