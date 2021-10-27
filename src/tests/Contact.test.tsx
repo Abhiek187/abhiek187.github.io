@@ -37,7 +37,7 @@ describe("Contact", () => {
 
   // Test that the resume, LinkedIn, GitHub, and email links are valid
   it("shows all contact information", () => {
-    expect(window.location.pathname).toBe("/contact");
+    expect(window.location.hash).toBe("#/contact");
     testBaseContent();
     expect(buttonResume).toBeInTheDocument();
     expect(buttonLinkedin).toBeInTheDocument();

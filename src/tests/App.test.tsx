@@ -38,7 +38,7 @@ describe("App", () => {
 
   it("renders without crashing", () => {
     // The home page should show up
-    expect(window.location.pathname).toBe("/");
+    expect(window.location.hash).toBe("#/");
     testBaseContent();
 
     const welcomeMessage = screen.getByText(/welcome/) as HTMLParagraphElement;

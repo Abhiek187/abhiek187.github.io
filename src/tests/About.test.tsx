@@ -17,7 +17,7 @@ describe("About", () => {
 
   it("shows a headshot and bio", () => {
     // The About page should show the relevant information
-    expect(window.location.pathname).toBe("/about");
+    expect(window.location.hash).toBe("#/about");
     testBaseContent();
 
     const headshot = screen.getByAltText(

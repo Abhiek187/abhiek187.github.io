@@ -31,7 +31,7 @@ describe("Projects", () => {
 
   // Check that all the project cards show the proper information
   it("shows six projects", () => {
-    expect(window.location.pathname).toBe("/projects");
+    expect(window.location.hash).toBe("#/projects");
     testBaseContent();
     expect(projectsList.children).toHaveLength(6);
   });

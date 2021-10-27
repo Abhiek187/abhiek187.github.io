@@ -34,12 +34,13 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
 
   useEffect(() => {
     // Change the title of the tab every page change
-    if (window.location.pathname === "/") {
+    // With a HashRouter, the pathname will always be /
+    if (window.location.hash === "#/") {
       document.title = "Abhishek Chaudhuri - Home";
     } else if (
-      window.location.pathname !== "/about" &&
-      window.location.pathname !== "/projects" &&
-      window.location.pathname !== "/contact"
+      window.location.hash !== "#/about" &&
+      window.location.hash !== "#/projects" &&
+      window.location.hash !== "#/contact"
     ) {
       document.title = "Abhishek Chaudhuri - Error";
     }
@@ -69,10 +70,10 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
 
   const setSlider = (dest: string): void => {
     // Check where to slide the components
-    if (window.location.pathname === "/contact") {
+    if (window.location.hash === "#/contact") {
       // At Contact, always slide right
       setSlideDirection(Direction.Right);
-    } else if (window.location.pathname === "/projects") {
+    } else if (window.location.hash === "#/projects") {
       // At Projects, check which link was clicked
       if (dest === "about") {
         setSlideDirection(Direction.Right);
@@ -110,11 +111,13 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
         </h2>
       </header>
       <nav className="links container-fluid btn-group">
-        {/* Redirect routes without reloading the browser */}
+        {/* Redirect routes without reloading the browser
+         * Use replace to click on a link to a page with the same hash */}
         <Link
           className="links-about btn btn-danger"
           to="/about"
           onClick={() => setSlider("about")}
+          replace
         >
           About
         </Link>
@@ -122,6 +125,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
           className="links-projects btn btn-warning"
           to="/projects"
           onClick={() => setSlider("projects")}
+          replace
         >
           Projects
         </Link>
@@ -129,6 +133,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
           className="links-contact btn btn-success"
           to="/contact"
           onClick={() => setSlider("contact")}
+          replace
         >
           Contact
         </Link>
@@ -139,7 +144,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
         data-testid="transition"
       >
         <CSSTransition
-          key={location.key}
+          key={location.pathname}
           timeout={{ enter: 600, exit: 600 }}
           classNames={"slide"}
         >

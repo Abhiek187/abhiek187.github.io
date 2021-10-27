@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import App, { Direction } from "../tsx/App";
 
 let buttonAbout: HTMLAnchorElement;
@@ -14,11 +14,11 @@ type DOMElements = {
 
 // Helper functions for testing
 const setupTests = (): DOMElements => {
-  // App must be wrapped in a BrowserRouter
+  // App must be wrapped in a HashRouter
   render(
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   );
 
   // Specify a button, not text
@@ -80,21 +80,21 @@ const testBaseContent = (): void => {
 };
 
 const testFocusAbout = (): void => {
-  expect(window.location.pathname).toBe("/about");
+  expect(window.location.hash).toBe("#/about");
   expect(buttonAbout.classList).toContain("active");
   expect(buttonProjects.classList).not.toContain("active");
   expect(buttonContact.classList).not.toContain("active");
 };
 
 const testFocusProjects = (): void => {
-  expect(window.location.pathname).toBe("/projects");
+  expect(window.location.hash).toBe("#/projects");
   expect(buttonAbout.classList).not.toContain("active");
   expect(buttonProjects.classList).toContain("active");
   expect(buttonContact.classList).not.toContain("active");
 };
 
 const testFocusContact = (): void => {
-  expect(window.location.pathname).toBe("/contact");
+  expect(window.location.hash).toBe("#/contact");
   expect(buttonAbout.classList).not.toContain("active");
   expect(buttonProjects.classList).not.toContain("active");
   expect(buttonContact.classList).toContain("active");
