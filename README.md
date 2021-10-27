@@ -17,7 +17,7 @@ This is my portfolio website created in React, inspired by Udacity's Front-End W
 ## Dependencies
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br>
 [React Router](https://reacttraining.com/react-router) was used to create the single-page experience.<br>
-[gh-pages](https://github.com/tschaub/gh-pages) was used to deploy the website in the master branch.
+[gh-pages](https://github.com/tschaub/gh-pages) was used to deploy the website in the main branch.
 
 To create a local copy, you'll need the following command line programs:
 - git: `apt-get install git`
@@ -97,13 +97,13 @@ Due to the way GitHub Pages is set up for user pages, this project has been spli
 This is the default branch for this repo, where all developmental work takes place.
 
 ### backup
-A backup branch in case something goes wrong in dev (i.e. trying to migrate all files away from master).
+A backup branch in case something goes wrong in dev (i.e. trying to migrate all files away from main).
 
-### master
-Since this is a user page, GitHub Pages must be deployed in the master branch. As such, developmental work was hard to manage on this branch, so I switched over to working in **dev** as my "master" branch. This branch now has all the minified content needed to properly deploy this on [abhiek187.github.io](https://abhiek187.github.io).
+### main
+Since this is a user page, GitHub Pages must be deployed in the main branch. As such, developmental work was hard to manage on this branch, so I switched over to working in **dev** as my "main" branch. This branch now has all the minified content needed to properly deploy this on [abhiek187.github.io](https://abhiek187.github.io).
 
 ### gh-pages
-Normally, this would be the branch GitHub Pages would deploy your site in, but because this is a user page, it doesn't do anything. Instead, think of this as a backup for master.
+Normally, this would be the branch GitHub Pages would deploy your site in, but because this is a user page, it doesn't do anything. Instead, think of this as a backup for main.
 
 ## Miscellaneous
 
