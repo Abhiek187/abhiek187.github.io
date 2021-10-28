@@ -111,13 +111,11 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
         </h2>
       </header>
       <nav className="links container-fluid btn-group">
-        {/* Redirect routes without reloading the browser
-         * Use replace to click on a link to a page with the same hash */}
+        {/* Redirect routes without reloading the browser */}
         <Link
           className="links-about btn btn-danger"
           to="/about"
           onClick={() => setSlider("about")}
-          replace
         >
           About
         </Link>
@@ -125,7 +123,6 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
           className="links-projects btn btn-warning"
           to="/projects"
           onClick={() => setSlider("projects")}
-          replace
         >
           Projects
         </Link>
@@ -133,7 +130,6 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
           className="links-contact btn btn-success"
           to="/contact"
           onClick={() => setSlider("contact")}
-          replace
         >
           Contact
         </Link>
