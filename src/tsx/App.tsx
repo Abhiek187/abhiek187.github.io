@@ -204,7 +204,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             className="foot-mit"
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/Abhiek187/abhiek187.github.io/blob/dev/LICENSE"
+            href="https://github.com/Abhiek187/abhiek187.github.io/blob/main/LICENSE"
           >
             MIT License
           </a>{" "}
