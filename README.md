@@ -1,9 +1,11 @@
 # My Website
 
 ## About
+
 This is my portfolio website created in React, inspired by Udacity's Front-End Web Development course. It showcases the projects I'm most passionate about with the creative freedom of developing a website. This repo will always be updated whenever I gain new experiences or come up with ideas to further improve the website. You can check out [my website](https://abhiek187.github.io) to learn more and get in touch with me.
 
 ## Features
+
 - React as the web framework
 - TypeScript for added type safety
 - SCSS for enhanced CSS syntax
@@ -15,32 +17,38 @@ This is my portfolio website created in React, inspired by Udacity's Front-End W
 - Continuous updates and improvements
 
 ## Dependencies
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br>
 [React Router](https://reacttraining.com/react-router) was used to create the single-page experience.<br>
-[gh-pages](https://github.com/tschaub/gh-pages) was used to deploy the website in the main branch.
+[gh-pages](https://github.com/tschaub/gh-pages) was used to deploy the website to the gh-pages branch.
 
 To create a local copy, you'll need the following command line programs:
+
 - git: `apt-get install git`
 - npm (part of Node.js):
+
 ```
 sudo apt update
 sudo apt install nodejs npm
 ```
+
 - serve: `npm i serve`
 
 ## Running the Program
+
 Click on [this link](https://abhiek187.github.io) to view my website on GitHub Pages.
 
 -OR-
 
 Start by setting up the local environment:
+
 ```
 git clone https://github.com/Abhiek187/abhiek187.github.io.git
 cd abhiek187.github.io
 npm install
 ```
 
-Make sure to keep in the mind the [branches](#branches) when doing development work. If just running the program, stick to the **dev** branch.
+Make sure to keep in the mind the [branches](#branches) when doing development work. If just running the program, stick to the **main** branch.
 
 ## Available Scripts
 
@@ -93,22 +101,26 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 Due to the way GitHub Pages is set up for user pages, this project has been split into 4 branches:
 
-### dev
+### main
+
 This is the default branch for this repo, where all developmental work takes place.
 
 ### backup
-A backup branch in case something goes wrong in dev (i.e. trying to migrate all files away from main).
 
-### main
-Since this is a user page, GitHub Pages must be deployed in the main branch. As such, developmental work was hard to manage on this branch, so I switched over to working in **dev** as my "main" branch. This branch now has all the minified content needed to properly deploy this on [abhiek187.github.io](https://abhiek187.github.io).
+A backup branch in case something goes wrong in main (i.e. trying to migrate all files away from gh-pages).
 
 ### gh-pages
-Normally, this would be the branch GitHub Pages would deploy your site in, but because this is a user page, it doesn't do anything. Instead, think of this as a backup for main.
+
+This is the default branch gh-pages uses for deployment. It has all the minified content needed to properly deploy this on [abhiek187.github.io](https://abhiek187.github.io).
+
+### master
+
+GitHub used to require that all user pages be deployed to master. But as of 2020, any branch can host a user page. However, gh-pages will still throw an error if there isn't a master branch. So, this branch is used as a backup for gh-pages.
 
 ## Miscellaneous
 
-- [Code of conduct](https://github.com/Abhiek187/abhiek187.github.io/blob/dev/CODE_OF_CONDUCT.md)
-- [Contributing](https://github.com/Abhiek187/abhiek187.github.io/blob/dev/CONTRIBUTING.md)
-- [License](https://github.com/Abhiek187/abhiek187.github.io/blob/dev/LICENSE)
-- [Issue templates](https://github.com/Abhiek187/abhiek187.github.io/tree/dev/.github/ISSUE_TEMPLATE)
-- [Pull request template](https://github.com/Abhiek187/abhiek187.github.io/blob/dev/PULL_REQUEST_TEMPLATE.md)
+- [Code of conduct](https://github.com/Abhiek187/abhiek187.github.io/blob/main/CODE_OF_CONDUCT.md)
+- [Contributing](https://github.com/Abhiek187/abhiek187.github.io/blob/main/CONTRIBUTING.md)
+- [License](https://github.com/Abhiek187/abhiek187.github.io/blob/main/LICENSE)
+- [Issue templates](https://github.com/Abhiek187/abhiek187.github.io/tree/main/.github/ISSUE_TEMPLATE)
+- [Pull request template](https://github.com/Abhiek187/abhiek187.github.io/blob/main/PULL_REQUEST_TEMPLATE.md)
