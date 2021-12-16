@@ -26,7 +26,7 @@ describe("About", () => {
     const bio = screen.getByText(/My name is Abhishek/);
 
     expect(headshot).toBeInTheDocument();
-    expect(headshot.src).toBe(`${window.location.origin}/img/Headshot.png`);
+    expect(headshot.src).toBe(`${window.location.origin}/img/Headshot.webp`);
     expect(bio).toBeInTheDocument();
   });
 

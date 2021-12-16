@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "../scss/Projects.scss";
-import colorData from "../models/colors.json";
 import projectData from "../models/projects.json";
 import { OnClickProp } from "./App";
 
@@ -17,13 +16,17 @@ interface Project {
   repo: string;
 }
 
-export type ColorsJSON = { [key: string]: string };
-export type ProjectsJSON = [Project];
+export type ProjectsJSON = {
+  [type: string]: [Project];
+};
 
 // Extend the OnClickProp interface
 type ProjectsProps = OnClickProp & {
   isDarkMode: boolean;
 };
+
+const capitalize = (str: string): string =>
+  str.charAt(0).toUpperCase() + str.slice(1);
 
 const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
   useEffect(() => {
@@ -34,7 +37,6 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
   }, []);
 
   // Extract JSON data as an array
-  const colors: ColorsJSON = JSON.parse(JSON.stringify(colorData));
   const projects: ProjectsJSON = JSON.parse(JSON.stringify(projectData));
 
   return (
@@ -49,62 +51,84 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
       </Link>
       <div className="projects-wrapper">
         <h3 className="projects-heading">Projects</h3>
-        <ul className="projects-list" data-testid="projects-list">
-          {projects.map((project) => (
+        <ul className="projects-full-list">
+          {Object.keys(projects).map((type) => (
             /* Each list item needs a key */
-            <li
-              key={project.id}
-              className={`card ${
-                isDarkMode
-                  ? "text-light bg-dark border-light"
-                  : "text-dark bg-light border-dark"
-              }`}
-            >
-              <h4 className="projects-name card-title">{project.name}</h4>
-              <img
-                className="projects-image card-img-top"
-                src={project.image}
-                alt={`Screenshot of ${project.name}`}
-              />
-              <p className="projects-about card-text">{project.about}</p>
-              <p
-                className={`projects-technology-header ${
-                  isDarkMode ? "text-info" : ""
-                }`}
-              >
-                Made Using:
-              </p>
-              <div className="projects-technology-container">
-                {project.technology.map((tech) => (
-                  <p
-                    key={tech}
-                    className={`projects-technology badge bg-${colors[tech]}`}
+            <li key={type} className="projects-type-list">
+              {/* Apple does what others don't */}
+              <h4 className="projects-type">
+                {type === "ios" ? "iOS" : capitalize(type)}
+              </h4>
+              {/* Show a horizontal list of cards */}
+              <ul className="projects-list" data-testid="projects-list">
+                {projects[type].map((project) => (
+                  <li
+                    key={project.id}
+                    className={`card ${
+                      isDarkMode
+                        ? "text-light bg-dark border-light"
+                        : "text-dark bg-light border-dark"
+                    }`}
                   >
-                    {tech}
-                  </p>
+                    <h4 className="projects-name card-title">{project.name}</h4>
+                    {/* If the image is a video, make it behave like a gif */}
+                    {project.image.endsWith(".webp") ? (
+                      <img
+                        className="projects-image card-img-top"
+                        src={project.image}
+                        alt={`Screenshot of ${project.name}`}
+                      />
+                    ) : (
+                      <video autoPlay loop muted playsInline>
+                        <source
+                          src={`${project.image}.webm`}
+                          type="video/webm"
+                        />
+                        <source src={`${project.image}.mp4`} type="video/mp4" />
+                      </video>
+                    )}
+                    <p className="projects-about card-text">{project.about}</p>
+                    <p
+                      className={`projects-technology-header ${
+                        isDarkMode ? "text-info" : ""
+                      }`}
+                    >
+                      Made Using:
+                    </p>
+                    <div className="projects-technology-container">
+                      {project.technology.map((tech) => (
+                        <p
+                          key={tech}
+                          className={`projects-technology badge bg-primary`}
+                        >
+                          {tech}
+                        </p>
+                      ))}
+                    </div>
+                    {/* If no project link is directly available, follow the directions on GitHub */}
+                    <div className="projects-links">
+                      {project.website && (
+                        <a
+                          className="projects-website btn btn-outline-success"
+                          href={project.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fas fa-external-link-alt" /> Demo
+                        </a>
+                      )}
+                      <a
+                        className="projects-repo btn btn-outline-primary"
+                        href={project.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <i className="fab fa-github" /> GitHub
+                      </a>
+                    </div>
+                  </li>
                 ))}
-              </div>
-              {/* If no project link is directly available, follow the directions on GitHub */}
-              <div className="projects-links">
-                {project.website && (
-                  <a
-                    className="projects-website btn btn-outline-success"
-                    href={project.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fas fa-external-link-alt" /> Demo
-                  </a>
-                )}
-                <a
-                  className="projects-repo btn btn-outline-primary"
-                  href={project.repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i className="fab fa-github" /> GitHub
-                </a>
-              </div>
+              </ul>
             </li>
           ))}
         </ul>

@@ -1,84 +1,202 @@
-[
-  {
-    "id": "coding-cheat-sheets",
-    "name": "Coding Cheat Sheets",
-    "image": "/img/Cheat Sheets.png",
-    "about": "A collection of programs that showcases basic functionalities in each programming language (that I know of). It is designed to help aspiring coders to learn a new language and give experienced developers a refresher on a language.",
-    "technology": [
-      "C#",
-      "C++",
-      "C",
-      "CSS",
-      "Dart",
-      "HTML",
-      "JSON",
-      "Java",
-      "JavaScript",
-      "Kotlin",
-      "Markdown",
-      "MATLAB",
-      "Python",
-      "Ruby",
-      "SQL",
-      "Shell",
-      "Swift",
-      "TypeScript"
-    ],
-    "website": null,
-    "repo": "https://github.com/Abhiek187/coding-cheat-sheets"
-  },
-  {
-    "id": "how-to-stock",
-    "name": "How to Stock",
-    "image": "/img/How to Stock.png",
-    "about": "A full-stack web application built using Django. This web service allows newcomers to the stock market to learn about various financial terms and practice trading stocks. The app uses data analysis to predict future stock prices and recommend whether to buy or sell a stock.",
-    "technology": [
-      "Django",
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Bootstrap",
-      "Chart.js",
-      "Financial Modeling Prep",
-      "SQLite"
-    ],
-    "website": "https://how-to-stock.herokuapp.com",
-    "repo": "https://github.com/Abhiek187/how-to-stock"
-  },
-  {
-    "id": "3d-collectathon",
-    "name": "3D Collectathon",
-    "image": "/img/3D Collectathon.png",
-    "about": "A game created in Unity where the player has to collect 5 Mega Gems scattered across the land. The Mega Gems can be gotten by solving puzzles or clearing platforming challenges. The player is free to explore the 5 open terrains in first person and collect Mini Gems along the way. The player is scored at the end based on their time and Mini Gem count.",
-    "technology": ["Unity", "Blender", "C#"],
-    "website": "https://abhiek187.github.io/3d-collectathon/WebGL",
-    "repo": "https://github.com/Abhiek187/3d-collectathon"
-  },
-  {
-    "id": "captain-conundrum",
-    "name": "Captain Conundrum",
-    "image": "/img/Main Menu.PNG",
-    "about": "An iOS game created at Make School Summer Academy in just 8 weeks. It is a top-down space shooter designed around the GameKit library in Swift. The game features motion controls, a high and low score system, power-ups, and various customization options.",
-    "technology": ["Swift", "GameKit"],
-    "website": null,
-    "repo": "https://github.com/Abhiek187/Captain-Conundrum"
-  },
-  {
-    "id": "mini-brain-age",
-    "name": "Mini Brain Age",
-    "image": "/img/brainage.png",
-    "about": "An Android game inspired by Nintendo's Brain Age where the player has to quickly and correctly solve each math problem by handwriting the correct digit. It uses a TensorFlow Lite model trained using the MNIST dataset to make inferences on the device.",
-    "technology": ["Kotlin", "Keras", "TensorFlow Lite"],
-    "website": "https://play.google.com/store/apps/details?id=com.abhi.minibrainage",
-    "repo": "https://github.com/Abhiek187/MiniBrainAge"
-  },
-  {
-    "id": "area-advice",
-    "name": "Area Advice",
-    "image": "/img/Area Advice.png",
-    "about": "An Android app that recommends places based on sensor data, user input, distance, and ratings. This app features a quality user interface using navigation bars, explores the Google Places API, and makes use of light and temperature sensors to give users the best mobile experience.",
-    "technology": ["Kotlin", "Google Places", "Google Maps", "SQLite"],
-    "website": null,
-    "repo": "https://github.com/Abhiek187/AreaAdvice"
-  }
-]
+{
+  "ios": [
+    {
+      "id": "captain-conundrum",
+      "name": "Captain Conundrum",
+      "image": "/img/ios/Main Menu.webp",
+      "about": "An iOS game created at Make School Summer Academy in just 8 weeks. It is a top-down space shooter designed around the GameKit library in Swift. The game features motion controls, a high and low score system, power-ups, and various customization options.",
+      "technology": ["Swift", "GameKit"],
+      "website": null,
+      "repo": "https://github.com/Abhiek187/Captain-Conundrum"
+    },
+    {
+      "id": "makestagram",
+      "name": "Makestagram",
+      "image": "/img/ios/makestagram.webp",
+      "about": "A Make School clone of Instagram featuring SSO, chats, and data management using Firebase",
+      "technology": ["Swift", "Firebase", "Cocoapods"],
+      "website": null,
+      "repo": "https://github.com/Abhiek187/Makestagram"
+    },
+    {
+      "id": "sweet-trip",
+      "name": "Sweet Trip",
+      "image": "/img/ios/sweet-trip",
+      "about": "A hackathon game created in one week that involves a cookie 🍪, a person 🧑, and a spaceship 🚀. The goal is to collect as many cookies as you can as you perpetually move to the right to save your special one.",
+      "technology": ["Swift", "GameKit"],
+      "website": null,
+      "repo": "https://github.com/Abhiek187/sweet-trip"
+    },
+    {
+      "id": "sushi-neko",
+      "name": "Sushi Neko",
+      "image": "/img/ios/sushi-neko",
+      "about": "A Timberman clone created at Make School where you quickly chop as much sushi and you can.",
+      "technology": ["Swift", "GameKit"],
+      "website": null,
+      "repo": "https://github.com/Abhiek187/SushiNeko"
+    },
+    {
+      "id": "hoppy-bunny",
+      "name": "Hoppy Bunny",
+      "image": "/img/ios/hoppy-bunny",
+      "about": "A Flappy Bird clone created at Make School where you hop through as many carrots as possible.",
+      "technology": ["Swift", "GameKit"],
+      "website": null,
+      "repo": "https://github.com/Abhiek187/Hoppy-Bunny"
+    },
+    {
+      "id": "peeved-penguins",
+      "name": "Peeved Penguins",
+      "image": "/img/ios/peeved-penguins",
+      "about": "An Angry Birds clone created at Make School where you topple over the seals' structures with your army of penguins.",
+      "technology": ["Swift", "GameKit"],
+      "website": null,
+      "repo": "https://github.com/Abhiek187/PeevedPenguins"
+    }
+  ],
+  "android": [
+    {
+      "id": "mini-brain-age",
+      "name": "Mini Brain Age",
+      "image": "/img/android/brainage.webp",
+      "about": "An Android game inspired by Nintendo's Brain Age where the player has to quickly and correctly solve each math problem by handwriting the correct digit. It uses a TensorFlow Lite model trained using the MNIST dataset to make inferences on the device.",
+      "technology": ["Kotlin", "Python", "Keras", "TensorFlow Lite"],
+      "website": "https://play.google.com/store/apps/details?id=com.abhi.minibrainage",
+      "repo": "https://github.com/Abhiek187/MiniBrainAge"
+    },
+    {
+      "id": "floor-printing-robot",
+      "name": "Floor Printing Robot",
+      "image": "/img/android/floor-printing-robot",
+      "about": "My senior capstone project. We designed a robot that can automate printing on the ground to reduce the cost and labor of industrial workers. The user can draw the design on an Android app and send the image to the bot for printing. The bot is powered by a Raspberry Pi 3 that runs commands in Python. Attached is a motor hat that supports two 12V DC motors, an ultrasonic sensor, and a servo. These allow the bot to maneuver, detect obstacles, and dot a marker down on the ground.",
+      "technology": ["Kotlin", "Python", "Raspberry Pi"],
+      "website": null,
+      "repo": "https://github.com/Abhiek187/floor-printing-robot"
+    },
+    {
+      "id": "area-advice",
+      "name": "Area Advice",
+      "image": "/img/android/area-advice.webp",
+      "about": "An Android app that recommends places based on sensor data, user input, distance, and ratings. This app features a quality user interface using navigation bars, explores the Google Places API, and makes use of light and temperature sensors to give users the best mobile experience.",
+      "technology": ["Kotlin", "Google Places", "Google Maps", "SQLite"],
+      "website": null,
+      "repo": "https://github.com/Abhiek187/AreaAdvice"
+    }
+  ],
+  "web": [
+    {
+      "id": "how-to-stock",
+      "name": "How to Stock",
+      "image": "/img/web/How to Stock.webp",
+      "about": "A full-stack web application built using Django. This web service allows newcomers to the stock market to learn about various financial terms and practice trading stocks. The app uses data analysis to predict future stock prices and recommend whether to buy or sell a stock.",
+      "technology": [
+        "Django",
+        "Python",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Bootstrap",
+        "Chart.js",
+        "Financial Modeling Prep",
+        "SQLite"
+      ],
+      "website": "https://how-to-stock.herokuapp.com",
+      "repo": "https://github.com/Abhiek187/how-to-stock"
+    },
+    {
+      "id": "minesweeper",
+      "name": "Minesweeper",
+      "image": "/img/web/giphy-gif-search",
+      "about": "A minesweeper game created in React. The size and difficulty of the board can be configured. Players can either play as normal or have an AI solve the board for them.",
+      "technology": ["React", "TypeScript"],
+      "website": "https://abhiek187.github.io/minesweeper/",
+      "repo": "https://github.com/Abhiek187/minesweeper"
+    },
+    {
+      "id": "memory-game",
+      "name": "Memory Game",
+      "image": "/img/web/memory-game",
+      "about": "A memory game where you're scored based on how quickly and efficiently you match all the cards.",
+      "technology": ["HTML", "CSS", "JavaScript"],
+      "website": "https://abhiek187.github.io/Memory-Game",
+      "repo": "https://github.com/Abhiek187/Memory-Game"
+    },
+    {
+      "id": "frogger-clone",
+      "name": "Frogger Clone",
+      "image": "/img/web/Frogger.webp",
+      "about": "An HTML5 Canvas-powered video game based on the popular arcade game Frogger, developed using the best practices in Object-Oriented JavaScript.",
+      "technology": ["HTML", "CSS", "JavaScript"],
+      "website": "https://abhiek187.github.io/frontend-nanodegree-arcade-game",
+      "repo": "https://github.com/Abhiek187/frontend-nanodegree-arcade-game"
+    },
+    {
+      "id": "giphy-gif-search",
+      "name": "GIPHY GIF Search",
+      "image": "/img/web/giphy-gif-search",
+      "about": "A showcase of the GIPHY API created at HackRU Spring 2018. By default, the trending GIFs are shown, but users can also search by keyword.",
+      "technology": ["Node.js", "Handlebars", "CSS", "GIPHY"],
+      "website": "https://glacial-garden-54215.herokuapp.com/",
+      "repo": "https://github.com/Abhiek187/Giphy-Gif-Search"
+    }
+  ],
+  "other": [
+    {
+      "id": "coding-cheat-sheets",
+      "name": "Coding Cheat Sheets",
+      "image": "/img/other/Cheat Sheets.webp",
+      "about": "A collection of programs that showcases basic functionalities in each programming language (that I know of). It is designed to help aspiring coders to learn a new language and give experienced developers a refresher on a language.",
+      "technology": [
+        "C#",
+        "C++",
+        "C",
+        "CSS",
+        "Dart",
+        "HTML",
+        "JSON",
+        "Java",
+        "JavaScript",
+        "Kotlin",
+        "Markdown",
+        "MATLAB",
+        "Python",
+        "Ruby",
+        "SQL",
+        "Shell",
+        "Swift",
+        "TypeScript"
+      ],
+      "website": null,
+      "repo": "https://github.com/Abhiek187/coding-cheat-sheets"
+    },
+    {
+      "id": "calculators",
+      "name": "Calculators",
+      "image": "/img/other/calculators",
+      "about": "These are simple calculator apps designed for all web and mobile devices using a variety of app development tools. It's a showcase for how the same logic can apply to multiple development environments and how to write unit and UI tests on all these platforms.",
+      "technology": [
+        "Swift",
+        "SwiftUI",
+        "XCTest",
+        "Kotlin",
+        "Jetpack Compose",
+        "JUnit",
+        "React Native",
+        "Jest",
+        "Flutter"
+      ],
+      "website": null,
+      "repo": "https://github.com/Abhiek187/calculators"
+    },
+    {
+      "id": "3d-collectathon",
+      "name": "3D Collectathon",
+      "image": "/img/other/3D Collectathon.webp",
+      "about": "A game created in Unity where the player has to collect 5 Mega Gems scattered across the land. The Mega Gems can be gotten by solving puzzles or clearing platforming challenges. The player is free to explore the 5 open terrains in first person and collect Mini Gems along the way. The player is scored at the end based on their time and Mini Gem count.",
+      "technology": ["Unity", "Blender", "C#"],
+      "website": "https://abhiek187.github.io/3d-collectathon/WebGL",
+      "repo": "https://github.com/Abhiek187/3d-collectathon"
+    }
+  ]
+}

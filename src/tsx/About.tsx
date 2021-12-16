@@ -48,7 +48,7 @@ const About: React.FC<OnClickProp> = ({ onClickLink }) => {
         <div className="about-container">
           <img
             className="about-headshot"
-            src="/img/Headshot.png"
+            src="/img/Headshot.webp"
             alt="Headshot of Abhishek"
             width="233.33"
             height="175"
