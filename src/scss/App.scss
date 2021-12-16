@@ -177,6 +177,10 @@ main {
   margin: 0; /* Remove the default margins for paragraphs from Bootstrap */
 }
 
+.error-message {
+  color: #d32f2f; /* red-700 */
+}
+
 /* Footer */
 .foot {
   display: flex;
@@ -187,6 +191,24 @@ main {
 .foot-left,
 .foot-right {
   width: 100%;
+}
+
+.foot-react,
+.foot-mit,
+.projects-github-link {
+  color: var(--bs-indigo);
+}
+
+.dark .foot-react,
+.dark .foot-mit,
+.dark .projects-github-link {
+  color: var(--bs-cyan);
+}
+
+.dark .foot-react:hover,
+.dark .foot-mit:hover,
+.dark .projects-github-link:hover {
+  color: #0aa8bd; /* slightly darker than cyan */
 }
 
 .foot-react-img {
