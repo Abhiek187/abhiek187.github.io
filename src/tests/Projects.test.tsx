@@ -39,48 +39,54 @@ describe("Projects", () => {
   it("shows all data about a project", () => {
     const projects: ProjectsJSON = JSON.parse(JSON.stringify(projectData));
 
-    for (const [projectIndex, project] of projects.entries()) {
-      // The project's name, image, and description should be shown
-      const projectCard = projectsList.children[projectIndex] as HTMLLIElement;
-      expect(projectCard).toBeInTheDocument();
+    for (const type of Object.keys(projects)) {
+      for (const [projectIndex, project] of projects[type].entries()) {
+        // The project's name, image, and description should be shown
+        const projectCard = projectsList.children[
+          projectIndex
+        ] as HTMLLIElement;
+        expect(projectCard).toBeInTheDocument();
 
-      const projectName = projectCard.children[0] as HTMLHeadingElement;
-      expect(projectName).toHaveTextContent(project.name);
+        const projectName = projectCard.children[0] as HTMLHeadingElement;
+        expect(projectName).toHaveTextContent(project.name);
 
-      const projectImage = projectCard.children[1] as HTMLImageElement;
-      // If there are any special characters in the image's url, encode them
-      expect(projectImage.src).toBe(
-        `${window.location.origin}${encodeURI(project.image)}`
-      );
-      expect(projectImage.alt).toBe(`Screenshot of ${project.name}`);
+        const projectImage = projectCard.children[1] as HTMLImageElement;
+        // If there are any special characters in the image's url, encode them
+        expect(projectImage.src).toBe(
+          `${window.location.origin}${encodeURI(project.image)}`
+        );
+        expect(projectImage.alt).toBe(`Screenshot of ${project.name}`);
 
-      const projectAbout = projectCard.children[2] as HTMLParagraphElement;
-      expect(projectAbout).toHaveTextContent(project.about);
+        const projectAbout = projectCard.children[2] as HTMLParagraphElement;
+        expect(projectAbout).toHaveTextContent(project.about);
 
-      const technologyContainer = projectCard.children[4] as HTMLDivElement;
+        const technologyContainer = projectCard.children[4] as HTMLDivElement;
 
-      // All technologies used should be shown
-      for (const [techIndex, tech] of project.technology.entries()) {
-        expect(technologyContainer.children[techIndex]).toHaveTextContent(tech);
+        // All technologies used should be shown
+        for (const [techIndex, tech] of project.technology.entries()) {
+          expect(technologyContainer.children[techIndex]).toHaveTextContent(
+            tech
+          );
+        }
+
+        const projectLinks = projectCard.children[5] as HTMLDivElement;
+
+        // If there's no website for the project, the website link shouldn't be present
+        expect(projectLinks.children).toHaveLength(
+          project.website === null ? 1 : 2
+        );
+        let projectWebsite: HTMLAnchorElement | null = null;
+
+        if (project.website !== null) {
+          projectWebsite = projectLinks.firstElementChild as HTMLAnchorElement;
+        }
+
+        expect(projectWebsite?.href).toBe(project.website ?? undefined);
+
+        // Always display the repo link for the project
+        const projectRepo = projectLinks.lastElementChild as HTMLAnchorElement;
+        expect(projectRepo.href).toBe(project.repo);
       }
-
-      const projectLinks = projectCard.children[5] as HTMLDivElement;
-
-      // If there's no website for the project, the website link shouldn't be present
-      expect(projectLinks.children).toHaveLength(
-        project.website === null ? 1 : 2
-      );
-      let projectWebsite: HTMLAnchorElement | null = null;
-
-      if (project.website !== null) {
-        projectWebsite = projectLinks.firstElementChild as HTMLAnchorElement;
-      }
-
-      expect(projectWebsite?.href).toBe(project.website ?? undefined);
-
-      // Always display the repo link for the project
-      const projectRepo = projectLinks.lastElementChild as HTMLAnchorElement;
-      expect(projectRepo.href).toBe(project.repo);
     }
   });
 
