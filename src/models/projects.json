@@ -107,7 +107,7 @@
     {
       "id": "minesweeper",
       "name": "Minesweeper",
-      "image": "/img/web/giphy-gif-search",
+      "image": "/img/web/minesweeper",
       "about": "A minesweeper game created in React. The size and difficulty of the board can be configured. Players can either play as normal or have an AI solve the board for them.",
       "technology": ["React", "TypeScript"],
       "website": "https://abhiek187.github.io/minesweeper/",
