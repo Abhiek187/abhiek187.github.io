@@ -6,67 +6,93 @@ $two-card-breakpoint: 800px;
   margin-top: 0.5rem;
 }
 
+.projects-full-list {
+  /* Remove bullet points and the padding they add to the left */
+  list-style-type: none;
+  padding-left: 0;
+}
+
 .projects-list {
-  padding: 0;
-  display: flex; /* List all projects as cards */
-  flex-wrap: wrap;
-  justify-content: center;
+  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: auto;
 
   li {
-    list-style-type: none; /* Remove bullet points */
     position: static; /* Put behind the sticky navbar */
-    margin: 1%;
-    width: 45%;
+    width: 300px;
   }
 }
 
-@media screen and (max-width: $card-width-breakpoint) {
-  .projects-list li {
-    width: 95%; /* If the viewport is too small, have one card per row */
-  }
-}
+// .projects-list {
+//   padding: 0;
+//   display: flex; /* List all projects as cards */
+//   flex-wrap: wrap;
+//   justify-content: center;
 
-@media screen and (min-width: $card-width-breakpoint) and (max-width: $two-card-breakpoint) {
-  .projects-list li {
-    width: 80%; /* Don't make the card widths too wide */
-  }
-}
+//   li {
+//     list-style-type: none; /* Remove bullet points */
+//     position: static; /* Put behind the sticky navbar */
+//     margin: 1%;
+//     width: 45%;
+//   }
+// }
+
+// @media screen and (max-width: $card-width-breakpoint) {
+//   .projects-list li {
+//     width: 95%; /* If the viewport is too small, have one card per row */
+//   }
+// }
+
+// @media screen and (min-width: $card-width-breakpoint) and (max-width: $two-card-breakpoint) {
+//   .projects-list li {
+//     width: 80%; /* Don't make the card widths too wide */
+//   }
+// }
 
 .projects-name {
   font-size: 1.3em;
   font-weight: bold;
-  margin: 5%;
 }
 
 .projects-image {
-  width: 350px;
-  max-width: 90%; /* Don't extend past the card's borders */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.projects-about {
-  margin: 1rem 1%; /* 1rem top-bottom & 1% left-right */
+  width: 280px; /* Repeating the width property to ensure Bootstrap doesn't overwrite it */
 }
 
 .projects-technology-header {
   color: blue; /* light theme only */
-  margin-bottom: 0;
 }
 
-.projects-technology-container {
-  margin-bottom: 3%;
-}
+// .projects-image {
+//   width: 350px;
+//   max-width: 90%; /* Don't extend past the card's borders */
+//   margin-left: auto;
+//   margin-right: auto;
+// }
 
-.projects-technology {
-  margin: 1%;
-}
+// .projects-about {
+//   margin: 1rem 1%; /* 1rem top-bottom & 1% left-right */
+// }
 
-.projects-links {
-  margin-bottom: 2%;
-}
+// .projects-technology-header {
+//   color: blue; /* light theme only */
+//   margin-bottom: 0;
+// }
 
-.projects-website,
-.projects-repo {
-  margin: 2%;
-}
+// .projects-technology-container {
+//   margin-bottom: 3%;
+// }
+
+// .projects-technology {
+//   margin: 1%;
+// }
+
+// .projects-links {
+//   margin-bottom: 2%;
+// }
+
+// .projects-website,
+// .projects-repo {
+//   margin: 2%;
+// }

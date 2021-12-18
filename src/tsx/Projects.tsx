@@ -10,6 +10,7 @@ interface Project {
   id: string;
   name: string;
   image: string;
+  gif: string | null;
   about: string;
   technology: [string];
   website: string | null;
@@ -64,19 +65,22 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                 {projects[type].map((project) => (
                   <li
                     key={project.id}
-                    className={`card ${
+                    className={`card mx-2 ${
                       isDarkMode
                         ? "text-light bg-dark border-light"
                         : "text-dark bg-light border-dark"
                     }`}
                   >
-                    <h4 className="projects-name card-title">{project.name}</h4>
+                    <h4 className="projects-name card-title m-2">
+                      {project.name}
+                    </h4>
                     {/* If the image is a video, make it behave like a gif */}
                     {project.image.endsWith(".webp") ? (
                       <img
-                        className="projects-image card-img-top"
+                        className="projects-image card-img-top mx-auto"
                         src={project.image}
                         alt={`Screenshot of ${project.name}`}
+                        width="280"
                       />
                     ) : (
                       <video autoPlay loop muted playsInline>
@@ -87,29 +91,31 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                         <source src={`${project.image}.mp4`} type="video/mp4" />
                       </video>
                     )}
-                    <p className="projects-about card-text">{project.about}</p>
+                    <p className="projects-about card-text mx-1 my-2">
+                      {project.about}
+                    </p>
                     <p
-                      className={`projects-technology-header ${
+                      className={`projects-technology-header mb-0 ${
                         isDarkMode ? "text-info" : ""
                       }`}
                     >
                       Made Using:
                     </p>
-                    <div className="projects-technology-container">
+                    <div className="projects-technology-container mb-2">
                       {project.technology.map((tech) => (
                         <p
                           key={tech}
-                          className={`projects-technology badge bg-primary`}
+                          className={`projects-technology badge bg-primary m-1`}
                         >
                           {tech}
                         </p>
                       ))}
                     </div>
                     {/* If no project link is directly available, follow the directions on GitHub */}
-                    <div className="projects-links">
+                    <div className="projects-links mb-2">
                       {project.website && (
                         <a
-                          className="projects-website btn btn-outline-success"
+                          className="projects-website btn btn-outline-success m-1"
                           href={project.website}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -118,7 +124,7 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                         </a>
                       )}
                       <a
-                        className="projects-repo btn btn-outline-primary"
+                        className="projects-repo btn btn-outline-primary m-2"
                         href={project.repo}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -129,6 +135,7 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                   </li>
                 ))}
               </ul>
+              <hr />
             </li>
           ))}
         </ul>
