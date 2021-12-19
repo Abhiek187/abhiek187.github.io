@@ -94,7 +94,7 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                     <p className="projects-about card-text mx-1 my-2">
                       {project.about}
                     </p>
-                    <p
+                    {/* <p
                       className={`projects-technology-header mb-0 ${
                         isDarkMode ? "text-info" : ""
                       }`}
@@ -110,9 +110,9 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                           {tech}
                         </p>
                       ))}
-                    </div>
+                    </div> */}
                     {/* If no project link is directly available, follow the directions on GitHub */}
-                    <div className="projects-links mb-2">
+                    {/* <div className="projects-links mb-2">
                       {project.website && (
                         <a
                           className="projects-website btn btn-outline-success m-1"
@@ -131,7 +131,7 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                       >
                         <i className="fab fa-github" /> GitHub
                       </a>
-                    </div>
+                    </div> */}
                   </li>
                 ))}
               </ul>

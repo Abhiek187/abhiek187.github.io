@@ -2,6 +2,10 @@ $card-width-breakpoint: 600px;
 $two-card-breakpoint: 800px;
 
 /* Projects section */
+.projects-wrapper {
+  max-width: 90%; /* If the width of the cards extends further, add scrolling (using overflow) */
+}
+
 .projects-heading {
   margin-top: 0.5rem;
 }
@@ -21,7 +25,9 @@ $two-card-breakpoint: 800px;
 
   li {
     position: static; /* Put behind the sticky navbar */
-    width: 300px;
+    min-width: 300px; /* min-width forces the cards to be at least this wide */
+    max-width: 300px; /* seriously, keep this width */
+    margin-bottom: 0.25rem;
   }
 }
 
