@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { HashRouter } from "react-router-dom";
 import "./index.scss";
 import App from "./tsx/App";
-import * as serviceWorker from "./tsx/serviceWorker";
+import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   // Enable react router and work in GitHub Pages
