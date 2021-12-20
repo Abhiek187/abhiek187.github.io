@@ -7,7 +7,7 @@ import {
   testFocusAbout,
   testFocusContact,
 } from "./test-util";
-import { ProjectsJSON } from "../tsx/Projects";
+import { ProjectsJSON, ProjectTypes } from "../tsx/Projects";
 import projectData from "../models/projects.json";
 
 describe("Projects", () => {
@@ -39,7 +39,7 @@ describe("Projects", () => {
   it("shows all data about a project", () => {
     const projects: ProjectsJSON = JSON.parse(JSON.stringify(projectData));
 
-    for (const type of Object.keys(projects)) {
+    for (const type of Object.keys(projects) as [ProjectTypes]) {
       for (const [projectIndex, project] of projects[type].entries()) {
         // The project's name, image, and description should be shown
         const projectCard = projectsList.children[
