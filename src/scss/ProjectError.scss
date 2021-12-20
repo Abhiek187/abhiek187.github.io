@@ -1,0 +1,5 @@
+@use "variables";
+
+.project-error {
+  color: variables.$red-700;
+}

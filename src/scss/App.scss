@@ -1,3 +1,5 @@
+@use "variables";
+
 /* Bootstrap variables */
 $light-color: var(--bs-light);
 $dark-color: var(--bs-dark);
@@ -179,7 +181,7 @@ main {
 }
 
 .error-message {
-  color: #d32f2f; /* red-700 */
+  color: variables.$red-700;
 }
 
 /* Footer */

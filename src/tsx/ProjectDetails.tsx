@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 
 import "../scss/ProjectDetails.scss";
 import { Project, ProjectTypes } from "./Projects";
+import ProjectError from "./ProjectError";
 import projectData from "../models/projects.json";
 
 type ProjectDetailsProps = {
   isDarkMode: Boolean;
 };
 
-type ProjectParams = {
+export type ProjectParams = {
   projectType: ProjectTypes;
   projectId: string;
 };
@@ -17,9 +18,10 @@ type ProjectParams = {
 const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
   // Get the project object (cool rhyme) from the project type and id
   const { projectType, projectId } = useParams<ProjectParams>();
-  const project: Project | undefined = (
-    projectData[projectType] as [Project]
-  ).find((proj) => proj.id === projectId);
+  const projects: [Project] | undefined = projectData[projectType] as [Project];
+  const project: Project | undefined = projects?.find(
+    (proj) => proj.id === projectId
+  );
 
   useEffect(() => {
     document.title = `Abhishek Chaudhuri - Project: ${
@@ -27,24 +29,12 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
     }`;
   });
 
-  if (project === undefined) {
-    return (
-      <main
-        className={`project-details container-fluid card mx-2 ${
-          isDarkMode
-            ? "text-light bg-dark border-light"
-            : "text-dark bg-light border-dark"
-        }`}
-      >
-        <h4 className="projects-error card-title m-2">
-          Error: Project with ID {projectId} doesn't exist.
-        </h4>
-      </main>
-    );
+  if (projects === undefined || project === undefined) {
+    return <ProjectError isDarkMode={isDarkMode} />;
   } else {
     return (
-      <main
-        className={`project-details container-fluid card mx-2 ${
+      <section
+        className={`project-details container-fluid card mx-auto mb-2 ${
           isDarkMode
             ? "text-light bg-dark border-light"
             : "text-dark bg-light border-dark"
@@ -60,7 +50,13 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
             width="280"
           />
         ) : (
-          <video autoPlay loop muted playsInline>
+          <video
+            className="projects-video card-img-top mx-auto"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
             <source src={`${project.gif}.webm`} type="video/webm" />
             <source src={`${project.gif}.mp4`} type="video/mp4" />
           </video>
@@ -104,7 +100,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
             <i className="fab fa-github" /> GitHub
           </a>
         </div>
-      </main>
+      </section>
     );
   }
 };

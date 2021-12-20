@@ -5,6 +5,7 @@ import "../scss/Projects.scss";
 import projectData from "../models/projects.json";
 import { OnClickProp } from "./App";
 import ProjectDetails from "./ProjectDetails";
+import ProjectError from "./ProjectError";
 
 // Type definitions of the JSON files
 export interface Project {
@@ -113,6 +114,10 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
           </Route>
           <Route path={`${path}/:projectType/:projectId`}>
             <ProjectDetails isDarkMode={isDarkMode} />
+          </Route>
+          {/* Otherwise this is not a valid path */}
+          <Route path={`${path}/:projectType`}>
+            <ProjectError isDarkMode={isDarkMode} />
           </Route>
         </Switch>
       </div>
