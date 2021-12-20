@@ -1,9 +1,5 @@
 @use "variables";
 
-/* Bootstrap variables */
-$light-color: var(--bs-light);
-$dark-color: var(--bs-dark);
-
 /* General styles */
 body {
   /* Background fills entire screen */
@@ -14,8 +10,8 @@ body {
 header,
 main,
 footer {
-  color: $dark-color;
-  background-color: $light-color;
+  color: variables.$dark-color;
+  background-color: variables.$light-color;
   padding: 0.5%; /* Create space between words and white rectangles */
 }
 
@@ -34,8 +30,8 @@ main {
   header,
   main,
   footer {
-    color: $light-color;
-    background-color: $dark-color;
+    color: variables.$light-color;
+    background-color: variables.$dark-color;
   }
 }
 
