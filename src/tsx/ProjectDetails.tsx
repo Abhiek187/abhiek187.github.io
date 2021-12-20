@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import "../scss/ProjectDetails.scss";
 import { Project, ProjectTypes } from "./Projects";
@@ -22,6 +22,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
   const project: Project | undefined = projects?.find(
     (proj) => proj.id === projectId
   );
+  const history = useHistory();
 
   useEffect(() => {
     document.title = `Abhishek Chaudhuri - Project: ${
@@ -40,6 +41,15 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
             : "text-dark bg-light border-dark"
         }`}
       >
+        {/* Button to return to the projects list */}
+        <button
+          type="button"
+          className="projects-back btn"
+          aria-label="Go back"
+          onClick={() => history.goBack()}
+        >
+          <i className="fas fa-arrow-left" />
+        </button>
         <h4 className="projects-name card-title m-2">{project.name}</h4>
         {/* If the image is a video, make it behave like a gif */}
         {project.gif === null ? (

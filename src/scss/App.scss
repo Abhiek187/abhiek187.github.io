@@ -110,6 +110,7 @@ main {
   display: flex;
   justify-content: center;
   padding: 0;
+  z-index: 10;
 
   a {
     text-decoration: none; /* No underline normally */

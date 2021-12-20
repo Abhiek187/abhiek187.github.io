@@ -1,3 +1,11 @@
+.projects-back {
+  position: absolute; /* position the back button at the top left of the card */
+
+  > i {
+    padding: 0;
+  }
+}
+
 .project-details {
   position: static;
 }
