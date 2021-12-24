@@ -71,7 +71,11 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                       /* View more details about each project by clicking on the card */
                       <Link
                         key={project.id}
-                        to={`${url}/${type}/${project.id}`}
+                        to={{
+                          pathname: `${url}/${type}/${project.id}`,
+                          state: { from: window.location.hash },
+                        }}
+                        aria-label={`Card for ${project.name}, click to learn more`}
                       >
                         <li
                           className={`card mx-2 ${

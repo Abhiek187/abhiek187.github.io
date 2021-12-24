@@ -15,6 +15,10 @@ export type ProjectParams = {
   projectId: string;
 };
 
+type UseHistoryProps = {
+  from: string;
+};
+
 const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
   // Get the project object (cool rhyme) from the project type and id
   const { projectType, projectId } = useParams<ProjectParams>();
@@ -22,7 +26,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
   const project: Project | undefined = projects?.find(
     (proj) => proj.id === projectId
   );
-  const history = useHistory();
+  const history = useHistory<UseHistoryProps>();
 
   useEffect(() => {
     document.title = `Abhishek Chaudhuri - Project: ${
@@ -44,9 +48,16 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
         {/* Button to return to the projects list */}
         <button
           type="button"
-          className="projects-back btn"
+          className={`projects-back btn ${
+            isDarkMode ? "text-light" : "text-dark"
+          }`}
           aria-label="Go back"
-          onClick={() => history.goBack()}
+          onClick={() => {
+            // Go back if the previous page was projects or push to go to projects
+            history.location?.state?.from === "#/projects"
+              ? history.goBack()
+              : history.push("/projects");
+          }}
         >
           <i className="fas fa-arrow-left" />
         </button>
@@ -66,6 +77,8 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
             loop
             muted
             playsInline
+            poster={project.image}
+            aria-hidden={true}
           >
             <source src={`${project.gif}.webm`} type="video/webm" />
             <source src={`${project.gif}.mp4`} type="video/mp4" />
