@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { HashRouter } from "react-router-dom";
 import App, { Direction } from "../tsx/App";
 
@@ -103,10 +103,7 @@ const testFocusContact = (): void => {
 const testNavbar = (source: string): void => {
   // Tests to ensure the nav buttons navigate to the correct component
   it("navigates to About after clicking About", () => {
-    // Fire a click event before testing
-    act(() => {
-      fireEvent.click(buttonAbout);
-    });
+    fireEvent.click(buttonAbout);
 
     // Check that the correct button is active
     testFocusAbout();
@@ -121,10 +118,7 @@ const testNavbar = (source: string): void => {
   });
 
   it("navigates to Projects after clicking Projects", () => {
-    act(() => {
-      fireEvent.click(buttonProjects);
-    });
-
+    fireEvent.click(buttonProjects);
     testFocusProjects();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
@@ -134,10 +128,7 @@ const testNavbar = (source: string): void => {
   });
 
   it("navigates to Contact after clicking Contact", () => {
-    act(() => {
-      fireEvent.click(buttonContact);
-    });
-
+    fireEvent.click(buttonContact);
     testFocusContact();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;

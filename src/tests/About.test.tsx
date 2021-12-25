@@ -1,4 +1,4 @@
-import { act, fireEvent, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { Direction } from "../tsx/App";
 import {
   setupTests,
@@ -23,7 +23,7 @@ describe("About", () => {
     const headshot = screen.getByAltText(
       "Headshot of Abhishek"
     ) as HTMLImageElement;
-    const bio = screen.getByText(/My name is Abhishek/);
+    const bio = screen.getByText(/My name is Abhishek/) as HTMLParagraphElement;
 
     expect(headshot).toBeInTheDocument();
     expect(headshot.src).toBe(`${window.location.origin}/img/Headshot.webp`);
@@ -34,12 +34,11 @@ describe("About", () => {
 
   // Check that the arrow button navigates to the correct page with the correct slide transition
   it("navigates to Projects after clicking the right arrow", async () => {
-    await act(async () => {
-      await waitFor(() => {
-        const rightArrow = screen.getByLabelText(/Go to/) as HTMLAnchorElement;
-        fireEvent.click(rightArrow);
-      });
-    });
+    // Wait until there's only one right arrow
+    const rightArrow = (await screen.findByLabelText(
+      /Go to Projects/
+    )) as HTMLAnchorElement;
+    fireEvent.click(rightArrow);
 
     testFocusProjects();
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;

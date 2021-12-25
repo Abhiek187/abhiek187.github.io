@@ -1,4 +1,4 @@
-import { act, fireEvent, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { Direction } from "../tsx/App";
 import {
   setupTests,
@@ -20,13 +20,13 @@ describe("Projects", () => {
     ({ buttonProjects } = setupTests());
     fireEvent.click(buttonProjects);
 
-    await waitFor(() => {
-      projectsList = screen.getByTestId("projects-list") as HTMLUListElement;
-      // Substring match
-      [leftArrow, rightArrow] = screen.getAllByLabelText(
-        /Go to/
-      ) as HTMLAnchorElement[];
-    });
+    projectsList = (await screen.findByTestId(
+      "projects-list"
+    )) as HTMLUListElement;
+    // Substring match
+    [leftArrow, rightArrow] = (await screen.findAllByLabelText(
+      /Go to/
+    )) as HTMLAnchorElement[];
   });
 
   // Check that all the project cards show the proper information
@@ -115,21 +115,17 @@ describe("Projects", () => {
   testNavbar("Projects");
 
   it("navigates to About after clicking the left arrow", () => {
-    act(() => {
-      fireEvent.click(leftArrow);
-    });
-
+    fireEvent.click(leftArrow);
     testFocusAbout();
+
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
     expect(transitionGroup.classList).toContain(Direction.Right);
   });
 
   it("navigates to Contact after clicking the right arrow", () => {
-    act(() => {
-      fireEvent.click(rightArrow);
-    });
-
+    fireEvent.click(rightArrow);
     testFocusContact();
+
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
     expect(transitionGroup.classList).toContain(Direction.Left);
   });
