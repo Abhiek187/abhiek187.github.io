@@ -27,7 +27,7 @@ type ProjectsProps = OnClickProp & {
   isDarkMode: boolean;
 };
 
-const capitalize = (str: string): string =>
+export const capitalize = (str: string): string =>
   str.charAt(0).toUpperCase() + str.slice(1);
 
 const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
@@ -66,7 +66,7 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                     {type === "ios" ? "iOS" : capitalize(type)}
                   </h4>
                   {/* Show a horizontal list of cards */}
-                  <ul className="projects-list" data-testid="projects-list">
+                  <ul className="projects-list">
                     {projects[type].map((project) => (
                       /* View more details about each project by clicking on the card */
                       <Link
@@ -84,9 +84,9 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                               : "text-dark bg-light border-dark"
                           }`}
                         >
-                          <h4 className="projects-name card-title m-2">
+                          <h5 className="projects-name card-title m-2">
                             {project.name}
-                          </h4>
+                          </h5>
                           <img
                             className="projects-image card-img-top mx-auto"
                             src={project.image}
