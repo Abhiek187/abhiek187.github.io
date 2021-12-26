@@ -2,7 +2,7 @@
 
 ## About
 
-This is my portfolio website created in React, inspired by Udacity's Front-End Web Development course. It showcases the projects I'm most passionate about with the creative freedom of developing a website. This repo will always be updated whenever I gain new experiences or come up with ideas to further improve the website. You can check out [my website](https://abhiek187.github.io) to learn more and get in touch with me.
+This is my portfolio website created in React, inspired by Udacity's Front-End Web Development course. It showcases the projects I'm most passionate about with the creative freedom of developing a website. This repo will always be updated as I learn more about the best web practices and come up with ideas to further improve the website. You can check out [my website](https://abhiek187.github.io) to learn more and get in touch with me.
 
 ## Features
 
@@ -11,9 +11,11 @@ This is my portfolio website created in React, inspired by Udacity's Front-End W
 - SCSS for enhanced CSS syntax
 - Bootstrap to improve the UI
 - Light and dark mode
-- 20+ tests for the 4 main views using the React Testing Library
+- 40+ tests for the 5 main views using the React Testing Library
 - Accessible and responsive web design
 - Best practices for Progressive Web Apps
+- Efficient delivery of static content by utilizing WebP images and WebM videos
+- Search Engine Optimization (SEO)
 - Continuous updates and improvements
 
 ## Dependencies
@@ -22,7 +24,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 [React Router](https://reacttraining.com/react-router) was used to create the single-page experience.<br>
 [gh-pages](https://github.com/tschaub/gh-pages) was used to deploy the website to the gh-pages branch.
 
-To create a local copy, you'll need the following command line programs:
+To create a local copy, you'll need the following command-line programs:
 
 - git: `apt-get install git`
 - npm (part of Node.js):
