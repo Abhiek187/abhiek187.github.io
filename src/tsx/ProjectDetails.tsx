@@ -62,28 +62,29 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
           <i className="fas fa-arrow-left" />
         </button>
         <h4 className="projects-name card-title m-2">{project.name}</h4>
-        {/* If the image is a video, make it behave like a gif */}
-        {project.gif === null ? (
-          <img
-            className="projects-image card-img-top mx-auto"
-            src={project.image}
-            alt={`Screenshot of ${project.name}`}
-            width="280"
+        {/* If the image is a video, make it behave like a gif, otherwise leave the poster as-is */}
+        <video
+          className="projects-video card-img-top mx-auto"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={project.image}
+          role="application"
+          aria-hidden={true}
+        >
+          <source
+            src={`${project.gif}.webm`}
+            type="video/webm"
+            data-testid="video-webm"
           />
-        ) : (
-          <video
-            className="projects-video card-img-top mx-auto"
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster={project.image}
-            aria-hidden={true}
-          >
-            <source src={`${project.gif}.webm`} type="video/webm" />
-            <source src={`${project.gif}.mp4`} type="video/mp4" />
-          </video>
-        )}
+          <source
+            src={`${project.gif}.mp4`}
+            type="video/mp4"
+            data-testid="video-mp4"
+          />
+          Your browser doesn't support the video tag.
+        </video>
         <p className="projects-about card-text mx-1 my-2">{project.about}</p>
         <p
           className={`projects-technology-header mb-0 ${

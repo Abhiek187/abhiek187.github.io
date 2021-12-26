@@ -40,7 +40,7 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
   // path is the URL relative to the parent (/projects), while URL is the entire URL
   const { path, url } = useRouteMatch();
   // Set the type of the imported JSON
-  const projects: ProjectsJSON = projectData as ProjectsJSON;
+  const projects = projectData as ProjectsJSON;
 
   return (
     <main className="projects container-fluid">
