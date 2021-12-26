@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { createRef, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 import "../scss/ProjectDetails.scss";
@@ -27,11 +27,20 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
     (proj) => proj.id === projectId
   );
   const history = useHistory<UseHistoryProps>();
+  const videoRef = createRef<HTMLVideoElement>();
 
   useEffect(() => {
     document.title = `Abhishek Chaudhuri - Project: ${
       project?.name ?? "unknown"
     }`;
+
+    // Fixes a bug with the muted property of a video in React
+    // https://stackoverflow.com/questions/62732346/test-exception-unstable-flushdiscreteupdates
+    const { current: video } = videoRef;
+
+    if (video !== null) {
+      video.muted = true;
+    }
   });
 
   if (projects === undefined || project === undefined) {
@@ -64,10 +73,10 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
         <h4 className="projects-name card-title m-2">{project.name}</h4>
         {/* If the image is a video, make it behave like a gif, otherwise leave the poster as-is */}
         <video
+          ref={videoRef}
           className="projects-video card-img-top mx-auto"
           autoPlay
           loop
-          muted
           playsInline
           poster={project.image}
           role="application"

@@ -79,9 +79,9 @@ describe("Projects", () => {
 
   it("makes the navbar sticky when scrolling down", () => {
     // Test that the navbar is sticky after scrolling down far enough
-    const navbar: HTMLElement | null = (
-      screen.getByText("About") as HTMLAnchorElement
-    ).parentElement;
+    const navbar: HTMLElement | null =
+      // eslint-disable-next-line testing-library/no-node-access
+      (screen.getByText("About") as HTMLAnchorElement).parentElement;
     expect(window.pageYOffset).toBe(0);
     expect(navbar?.classList).not.toContain("sticky");
 

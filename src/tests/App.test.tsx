@@ -18,7 +18,7 @@ import { setupTests, testBaseContent, testNavbar } from "./test-util";
  * - Go to some invalid page -> it should show the error message
  * From Projects:
  * - Scroll down -> the navbar should be sticky
- * - There should be 6 projects
+ * - All projects should be listed under each category
  * - Each project's name, image, about, technology, website, and repo should be shown
  * - Click on About, Projects, Contact, invalid, left, and right arrows
  * From Contact:
