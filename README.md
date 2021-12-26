@@ -101,15 +101,11 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Branches
 
-Due to the way GitHub Pages is set up for user pages, this project has been split into 4 branches:
+Due to the way GitHub Pages is set up for user pages, this project has been split into 3 branches:
 
 ### main
 
-This is the default branch for this repo, where all developmental work takes place.
-
-### backup
-
-A backup branch in case something goes wrong in main (i.e. trying to migrate all files away from gh-pages).
+This is the default branch for this repo, where all production code is held. See [Contributing](https://github.com/Abhiek187/abhiek187.github.io/blob/main/CONTRIBUTING.md) for info on how to create the other branches.
 
 ### gh-pages
 

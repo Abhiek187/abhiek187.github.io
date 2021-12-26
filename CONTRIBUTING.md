@@ -1,1 +1,1 @@
-Since this project is mainly reflective of myself, major changes to the site will not be accepted. However, if you have an idea to improve a certain functionality or improve the overall style of the site, feel free to submit a pull request.
+Since this project is mainly reflective of myself, major changes to the site will not be accepted. However, if you have an idea to improve a certain functionality or improve the overall style of the site, feel free to submit a pull request. Changes should be made off the main branch and use prefixes like wip/, bug/, feat/, or junk/.
