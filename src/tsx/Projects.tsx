@@ -90,11 +90,13 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                           <h5 className="projects-name card-title m-2">
                             {project.name}
                           </h5>
+                          {/* Specifying the width and height will reduce CLS (2:3 for portrait) */}
                           <img
                             className="projects-image card-img-top mx-auto"
                             src={project.image}
                             alt={`Screenshot of ${project.name}`}
                             width="280"
+                            height="420"
                           />
                           <p className="projects-about card-text mx-1 my-2">
                             {project.about}

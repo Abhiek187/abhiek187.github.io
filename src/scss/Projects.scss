@@ -38,7 +38,9 @@
 }
 
 .projects-image {
-  width: 280px; /* Repeating the width property to ensure Bootstrap doesn't overwrite it */
+  /* Scale the images so they fit within their cards */
+  max-width: 95%;
+  height: auto;
 }
 
 .projects-technology-header {
