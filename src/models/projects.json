@@ -35,7 +35,7 @@
       "name": "Sushi Neko",
       "image": "/img/ios/sushi-neko.webp",
       "gif": "/img/ios/sushi-neko",
-      "about": "A Timberman clone created at Make School where you quickly chop as much sushi and you can.",
+      "about": "A Timberman clone created at Make School where you quickly chop as much sushi as you can.",
       "technology": ["Swift", "GameKit"],
       "website": null,
       "repo": "https://github.com/Abhiek187/SushiNeko"
@@ -210,7 +210,7 @@
       "name": "3D Collectathon",
       "image": "/img/other/3d-collectathon.webp",
       "gif": "/img/other/3d-collectathon",
-      "about": "A game created in Unity where the player has to collect 5 Mega Gems scattered across the land. The Mega Gems can be gotten by solving puzzles or clearing platforming challenges. The player is free to explore the 5 open terrains in first person and collect Mini Gems along the way. The player is scored at the end based on their time and Mini Gem count.",
+      "about": "A game created in Unity where the player has to collect 5 Mega Gems scattered across the land. The Mega Gems are obtained by solving puzzles or clearing platforming challenges. The player is free to explore the 5 open terrains in first-person and collect Mini Gems along the way. The player is scored at the end based on their time and Mini Gem count.",
       "technology": ["Unity", "Blender", "C#"],
       "website": "https://abhiek187.github.io/3d-collectathon/WebGL",
       "repo": "https://github.com/Abhiek187/3d-collectathon"
