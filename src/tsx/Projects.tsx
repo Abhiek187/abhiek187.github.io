@@ -68,21 +68,24 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                   {/* Show a horizontal list of cards */}
                   <ul className="projects-list">
                     {projects[type].map((project) => (
-                      /* View more details about each project by clicking on the card */
-                      <Link
+                      <li
                         key={project.id}
-                        to={{
-                          pathname: `${url}/${type}/${project.id}`,
-                          state: { from: window.location.hash },
-                        }}
-                        aria-label={`Card for ${project.name}, click to learn more`}
+                        className={`card mx-2 ${
+                          isDarkMode
+                            ? "bg-dark border-light"
+                            : "bg-light border-dark"
+                        }`}
                       >
-                        <li
-                          className={`card mx-2 ${
-                            isDarkMode
-                              ? "text-light bg-dark border-light"
-                              : "text-dark bg-light border-dark"
+                        {/* View more details about each project by clicking on the card */}
+                        <Link
+                          to={{
+                            pathname: `${url}/${type}/${project.id}`,
+                            state: { from: window.location.hash },
+                          }}
+                          className={`projects-link ${
+                            isDarkMode ? "text-light" : "text-dark"
                           }`}
+                          aria-label={`Card for ${project.name}, click to learn more`}
                         >
                           <h5 className="projects-name card-title m-2">
                             {project.name}
@@ -96,8 +99,8 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                           <p className="projects-about card-text mx-1 my-2">
                             {project.about}
                           </p>
-                        </li>
-                      </Link>
+                        </Link>
+                      </li>
                     ))}
                   </ul>
                   <hr />

@@ -20,16 +20,15 @@
   flex-wrap: nowrap;
   overflow: auto;
 
-  > a {
-    text-decoration: none;
-  }
-
   li {
     position: static; /* Put behind the sticky navbar */
     min-width: 300px; /* min-width forces the cards to be at least this wide */
     max-width: 300px; /* seriously, keep this width */
     margin-bottom: 0.25rem;
-    height: 99%; /* leave a small gap between the cards and the horizontal scroll bar */
+  }
+
+  .projects-link {
+    text-decoration: none;
   }
 }
 
