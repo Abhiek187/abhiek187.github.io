@@ -68,7 +68,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
               : history.push("/projects");
           }}
         >
-          <i className="fas fa-arrow-left" />
+          <i className="fas fa-times" />
         </button>
         <h4 className="projects-name card-title m-2">{project.name}</h4>
         {/* If the image is a video, make it behave like a gif, otherwise leave the poster as-is */}
