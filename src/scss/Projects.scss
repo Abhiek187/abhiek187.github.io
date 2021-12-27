@@ -14,8 +14,13 @@
 }
 
 .projects-scrolling-list {
-  display: flex;
-  align-items: center;
+  /* Allow the scrolling buttons to overlap the projects list */
+  display: grid;
+
+  > * {
+    grid-row-start: 1;
+    grid-column-start: 1;
+  }
 }
 
 .projects-scroll-left,
@@ -24,8 +29,10 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  position: relative; /* Move the buttons about halfway into the left and rightmost cards */
   opacity: 0.75;
+  /* Move the buttons about halfway into the left and rightmost cards */
+  align-self: center;
+  z-index: 2;
 
   .fa-arrow-left,
   .fa-arrow-right {
@@ -40,19 +47,21 @@
 }
 
 .projects-scroll-left {
-  left: 25px;
+  justify-self: start;
+  margin-left: -15px;
 }
 
 .projects-scroll-right {
-  right: 25px;
+  justify-self: end;
+  margin-right: -15px;
 }
 
 .projects-list {
   padding-left: 0;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   overflow: auto;
+  margin-left: 10px;
+  margin-right: 10px;
 
   /* Remove the margin at the edges to keep the scroll buttons aligned properly */
   :not(:first-child) {
