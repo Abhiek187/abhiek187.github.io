@@ -13,6 +13,40 @@
   padding-left: 0;
 }
 
+.projects-scrolling-list {
+  display: flex;
+  align-items: center;
+}
+
+.projects-scroll-left,
+.projects-scroll-right {
+  /* Make the buttons circular */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: relative; /* Move the buttons about halfway into the left and rightmost cards */
+  opacity: 0.75;
+
+  .fa-arrow-left,
+  .fa-arrow-right {
+    font-size: 1.5em;
+    padding: 0;
+  }
+}
+
+.projects-scroll-left:hover,
+.projects-scroll-right:hover {
+  opacity: 1;
+}
+
+.projects-scroll-left {
+  left: 25px;
+}
+
+.projects-scroll-right {
+  right: 25px;
+}
+
 .projects-list {
   padding-left: 0;
   display: flex;
@@ -20,11 +54,20 @@
   flex-wrap: nowrap;
   overflow: auto;
 
+  /* Remove the margin at the edges to keep the scroll buttons aligned properly */
+  :not(:first-child) {
+    margin-left: 0.5rem;
+  }
+
   li {
     position: static; /* Put behind the sticky navbar */
     min-width: 300px; /* min-width forces the cards to be at least this wide */
-    max-width: 300px; /* seriously, keep this width */
+    max-width: 300px; /* Seriously, keep this width */
     margin-bottom: 0.25rem;
+  }
+
+  :not(:last-child) {
+    margin-right: 0.5rem;
   }
 
   .projects-link {

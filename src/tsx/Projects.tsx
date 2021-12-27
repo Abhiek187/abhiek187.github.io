@@ -66,45 +66,65 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                     {type === "ios" ? "iOS" : capitalize(type)}
                   </h4>
                   {/* Show a horizontal list of cards */}
-                  <ul className="projects-list">
-                    {projects[type].map((project) => (
-                      <li
-                        key={project.id}
-                        className={`card mx-2 ${
-                          isDarkMode
-                            ? "bg-dark border-light"
-                            : "bg-light border-dark"
-                        }`}
-                      >
-                        {/* View more details about each project by clicking on the card */}
-                        <Link
-                          to={{
-                            pathname: `${url}/${type}/${project.id}`,
-                            state: { from: window.location.hash },
-                          }}
-                          className={`projects-link ${
-                            isDarkMode ? "text-light" : "text-dark"
+                  <div className="projects-scrolling-list">
+                    <button
+                      type="button"
+                      className={`projects-scroll-left btn ${
+                        isDarkMode ? "btn-info" : "btn-primary"
+                      }`}
+                      aria-label={`Scroll ${type} projects left`}
+                    >
+                      <i className="fas fa-arrow-left" />
+                    </button>
+                    <ul className="projects-list">
+                      {projects[type].map((project) => (
+                        <li
+                          key={project.id}
+                          className={`card ${
+                            isDarkMode
+                              ? "bg-dark border-light"
+                              : "bg-light border-dark"
                           }`}
-                          aria-label={`Card for ${project.name}, click to learn more`}
                         >
-                          <h5 className="projects-name card-title m-2">
-                            {project.name}
-                          </h5>
-                          {/* Specifying the width and height will reduce CLS (2:3 for portrait) */}
-                          <img
-                            className="projects-image card-img-top mx-auto"
-                            src={project.image}
-                            alt={`Screenshot of ${project.name}`}
-                            width="280"
-                            height="420"
-                          />
-                          <p className="projects-about card-text mx-1 my-2">
-                            {project.about}
-                          </p>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                          {/* View more details about each project by clicking on the card */}
+                          <Link
+                            to={{
+                              pathname: `${url}/${type}/${project.id}`,
+                              state: { from: window.location.hash },
+                            }}
+                            className={`projects-link ${
+                              isDarkMode ? "text-light" : "text-dark"
+                            }`}
+                            aria-label={`Card for ${project.name}, click to learn more`}
+                          >
+                            <h5 className="projects-name card-title m-2">
+                              {project.name}
+                            </h5>
+                            {/* Specifying the width and height will reduce CLS (2:3 for portrait) */}
+                            <img
+                              className="projects-image card-img-top mx-auto"
+                              src={project.image}
+                              alt={`Screenshot of ${project.name}`}
+                              width="280"
+                              height="420"
+                            />
+                            <p className="projects-about card-text mx-1 my-2">
+                              {project.about}
+                            </p>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <button
+                      type="button"
+                      className={`projects-scroll-right btn ${
+                        isDarkMode ? "btn-info" : "btn-primary"
+                      }`}
+                      aria-label={`Scroll ${type} projects right`}
+                    >
+                      <i className="fas fa-arrow-right" />
+                    </button>
+                  </div>
                   <hr />
                 </li>
               ))}
