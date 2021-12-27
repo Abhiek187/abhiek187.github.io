@@ -13,18 +13,70 @@
   padding-left: 0;
 }
 
+.projects-scrolling-list {
+  /* Allow the scrolling buttons to overlap the projects list */
+  display: grid;
+
+  > * {
+    grid-row-start: 1;
+    grid-column-start: 1;
+  }
+}
+
+.projects-scroll-left,
+.projects-scroll-right {
+  /* Make the buttons circular */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  opacity: 0.75;
+  /* Move the buttons about halfway into the left and rightmost cards */
+  align-self: center;
+  z-index: 2;
+
+  .fa-arrow-left,
+  .fa-arrow-right {
+    font-size: 1.5em;
+    padding: 0;
+  }
+}
+
+.projects-scroll-left:hover,
+.projects-scroll-right:hover {
+  opacity: 1;
+}
+
+.projects-scroll-left {
+  justify-self: start;
+  margin-left: -15px;
+}
+
+.projects-scroll-right {
+  justify-self: end;
+  margin-right: -15px;
+}
+
 .projects-list {
   padding-left: 0;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   overflow: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  /* Remove the margin at the edges to keep the scroll buttons aligned properly */
+  :not(:first-child) {
+    margin-left: 0.5rem;
+  }
 
   li {
     position: static; /* Put behind the sticky navbar */
     min-width: 300px; /* min-width forces the cards to be at least this wide */
-    max-width: 300px; /* seriously, keep this width */
+    max-width: 300px; /* Seriously, keep this width */
     margin-bottom: 0.25rem;
+  }
+
+  :not(:last-child) {
+    margin-right: 0.5rem;
   }
 
   .projects-link {
@@ -41,8 +93,4 @@
   /* Scale the images so they fit within their cards */
   max-width: 95%;
   height: auto;
-}
-
-.projects-technology-header {
-  color: blue; /* light theme only */
 }
