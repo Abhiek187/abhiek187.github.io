@@ -77,6 +77,27 @@ describe("Projects", () => {
     }
   });
 
+  it("scrolls each list after clicking the horizontal scroll buttons", () => {
+    // Test that the position of each horizontal list changes when clicking the scroll buttons
+    const scrollButtons = screen.getAllByLabelText(
+      /Scroll/
+    ) as HTMLButtonElement[];
+    const projectsLists = screen.getAllByRole("list") as HTMLUListElement[];
+    // Mock the scrollBy method since it's not defined by default
+    HTMLUListElement.prototype.scrollBy = jest.fn();
+
+    for (const [index, scrollButton] of scrollButtons.entries()) {
+      // [0, 1] -> 1, [2, 3] -> 2, etc.
+      const projectsList: HTMLUListElement =
+        projectsLists[Math.floor(index / 2) + 1];
+      fireEvent.click(scrollButton);
+
+      expect(projectsList.scrollBy).toHaveBeenCalled();
+    }
+
+    jest.resetAllMocks();
+  });
+
   it("makes the navbar sticky when scrolling down", () => {
     // Test that the navbar is sticky after scrolling down far enough
     const navbar: HTMLElement | null =
