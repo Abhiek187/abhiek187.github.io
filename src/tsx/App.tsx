@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createRef } from "react";
 import {
   Route,
   Link,
@@ -17,6 +17,7 @@ import Contact from "./Contact";
 // Prop type passed to all the child components
 export interface OnClickProp {
   onClickLink: (dest: string) => void;
+  innerRef: React.RefObject<HTMLDivElement>;
 }
 
 // Possible sliding directions
@@ -31,6 +32,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
     Direction.Left
   );
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const nodeRef = createRef<HTMLDivElement>(); // removes the need for CSSTransition to call findDOMNode
 
   useEffect(() => {
     // Change the title of the tab every page change
@@ -141,14 +143,15 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
       >
         <CSSTransition
           key={location.pathname}
+          nodeRef={nodeRef}
           timeout={{ enter: 600, exit: 600 }}
-          classNames={"slide"}
+          classNames="slide"
         >
           <Switch location={location}>
             {/* Ensure route works with any website url */}
             <Route exact path={`${process.env.PUBLIC_URL}/`}>
               {/* Default page */}
-              <main className="home container-fluid">
+              <main className="home container-fluid" ref={nodeRef}>
                 <p className="home-info">
                   Hello and welcome to my website! Please click the links above
                   to learn more about me.
@@ -156,17 +159,25 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
               </main>
             </Route>
             <Route path={`${process.env.PUBLIC_URL}/about`}>
-              <About onClickLink={setSlider} />
+              <About onClickLink={setSlider} innerRef={nodeRef} />
             </Route>
             <Route path={`${process.env.PUBLIC_URL}/projects`}>
-              <Projects onClickLink={setSlider} isDarkMode={isDarkMode} />
+              <Projects
+                onClickLink={setSlider}
+                isDarkMode={isDarkMode}
+                innerRef={nodeRef}
+              />
             </Route>
             <Route path={`${process.env.PUBLIC_URL}/contact`}>
-              <Contact onClickLink={setSlider} isDarkMode={isDarkMode} />
+              <Contact
+                onClickLink={setSlider}
+                isDarkMode={isDarkMode}
+                innerRef={nodeRef}
+              />
             </Route>
             {/* Ignore paths that take you to other repos, otherwise redirect to error page */}
             <Route>
-              <main className="error container-fluid">
+              <main className="error container-fluid" ref={nodeRef}>
                 <p className={`error-message ${isDarkMode && "text-warning"}`}>
                   Whoops! That path is invalid. Please click the links above.
                 </p>

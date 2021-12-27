@@ -8,7 +8,11 @@ type ContactProps = OnClickProp & {
   isDarkMode: boolean;
 };
 
-const Contact: React.FC<ContactProps> = ({ onClickLink, isDarkMode }) => {
+const Contact: React.FC<ContactProps> = ({
+  onClickLink,
+  innerRef,
+  isDarkMode,
+}) => {
   useEffect(() => {
     document.title = "Abhishek Chaudhuri - Contact";
     document.querySelector(".links-about")?.classList.remove("active");
@@ -17,7 +21,7 @@ const Contact: React.FC<ContactProps> = ({ onClickLink, isDarkMode }) => {
   }, []);
 
   return (
-    <main className="contact container-fluid">
+    <main className="contact container-fluid" ref={innerRef}>
       <Link
         className="arrow-left"
         to="/projects"

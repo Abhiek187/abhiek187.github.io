@@ -30,7 +30,11 @@ type ProjectsProps = OnClickProp & {
 export const capitalize = (str: string): string =>
   str.charAt(0).toUpperCase() + str.slice(1);
 
-const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
+const Projects: React.FC<ProjectsProps> = ({
+  onClickLink,
+  innerRef,
+  isDarkMode,
+}) => {
   // path is the URL relative to the parent (/projects), while URL is the entire URL
   const { path, url } = useRouteMatch();
   // Set the type of the imported JSON
@@ -109,7 +113,7 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
   };
 
   return (
-    <main className="projects container-fluid">
+    <main className="projects container-fluid" ref={innerRef}>
       <Link
         className="arrow-left"
         to="/about"

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../scss/About.scss";
 import { OnClickProp } from "./App";
 
-const About: React.FC<OnClickProp> = ({ onClickLink }) => {
+const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
   useEffect(() => {
     document.title = "Abhishek Chaudhuri - About";
     document.querySelector(".links-about")?.classList.add("active");
@@ -42,7 +42,7 @@ const About: React.FC<OnClickProp> = ({ onClickLink }) => {
   `;
 
   return (
-    <main className="about container-fluid">
+    <main className="about container-fluid" ref={innerRef}>
       <div className="about-wrapper">
         <h3 className="about-heading">About</h3>
         <div className="about-container">
