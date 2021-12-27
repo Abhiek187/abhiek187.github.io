@@ -45,17 +45,67 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
     document.querySelector(".links-about")?.classList.remove("active");
     document.querySelector(".links-projects")?.classList.add("active");
     document.querySelector(".links-contact")?.classList.remove("active");
+
+    // Hide the scrolling buttons if possible on startup
+    for (const list of projectsListRef.current) {
+      if (list !== null && list !== undefined) {
+        updateScrollButtonVisibility(list);
+      }
+    }
   }, []);
 
   const scrollList = (index: number, direction: Direction) => {
     const { current: projectsLists } = projectsListRef;
+    if (projectsLists[index] === null) return;
+
+    // Scroll multiple cards if the viewport is wide enough
+    const cardLength: number = 316;
+    let cardsToScroll: number = Math.floor(
+      projectsLists[index]!.clientWidth / cardLength
+    );
+
+    if (cardsToScroll === 0) {
+      cardsToScroll = 1; // still scroll if the full card doesn't fit in the viewport
+    }
 
     // The cards have a width of 300px + 8px * 2 of margin
-    projectsLists[index]?.scrollBy({
+    projectsLists[index]!.scrollBy({
       top: 0,
-      left: direction === Direction.Right ? 316 : -316,
+      left:
+        direction === Direction.Right
+          ? cardsToScroll * cardLength
+          : -cardsToScroll * cardLength,
       behavior: "smooth",
     });
+
+    // Call this in case onScroll isn't triggered
+    updateScrollButtonVisibility(projectsLists[index]!);
+  };
+
+  const updateScrollButtonVisibility = (projectsList: HTMLUListElement) => {
+    const leftScrollingButton =
+      projectsList.previousElementSibling as HTMLButtonElement | null;
+    const rightScrollingButton =
+      projectsList.nextElementSibling as HTMLButtonElement | null;
+
+    // Hide the scrolling buttons if the user can't scroll in that direction
+    if (projectsList.scrollLeft === 0) {
+      leftScrollingButton?.classList.add("d-none");
+    } else {
+      leftScrollingButton?.classList.remove("d-none");
+    }
+
+    if (
+      Math.abs(
+        projectsList.scrollLeft +
+          projectsList.clientWidth -
+          projectsList.scrollWidth
+      ) <= 1
+    ) {
+      rightScrollingButton?.classList.add("d-none");
+    } else {
+      rightScrollingButton?.classList.remove("d-none");
+    }
   };
 
   return (
@@ -96,6 +146,11 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
                     <ul
                       className="projects-list"
                       ref={(el) => (projectsListRef.current[index] = el)}
+                      onScroll={(event) =>
+                        updateScrollButtonVisibility(
+                          event.target as HTMLUListElement
+                        )
+                      }
                     >
                       {projects[type].map((project) => (
                         <li
