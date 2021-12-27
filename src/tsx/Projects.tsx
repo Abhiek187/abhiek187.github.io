@@ -52,7 +52,7 @@ const Projects: React.FC<ProjectsProps> = ({ onClickLink, isDarkMode }) => {
         updateScrollButtonVisibility(list);
       }
     }
-  }, []);
+  }, [isDarkMode]);
 
   const scrollList = (index: number, direction: Direction) => {
     const { current: projectsLists } = projectsListRef;
