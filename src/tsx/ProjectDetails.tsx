@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { createRef, useEffect } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Badge, Button, Card } from "react-bootstrap";
 import {
   NavigateFunction,
   useLocation,
@@ -67,9 +67,9 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
       >
         {/* Button to return to the projects list */}
         <Button
-          variant={isDarkMode ? "light" : "dark"}
+          variant=""
           type="button"
-          className="projects-back"
+          className={`projects-back ${isDarkMode ? "text-light" : "text-dark"}`}
           aria-label="Go back"
           onClick={() => {
             // Go back if the previous page was projects or push to go to projects
@@ -120,12 +120,14 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
         </p>
         <div className="projects-technology-container mb-2">
           {project.technology.map((tech) => (
-            <p
+            <Badge
               key={tech}
-              className={`projects-technology badge bg-primary m-1`}
+              bg="primary"
+              pill
+              className={`projects-technology m-1`}
             >
               {tech}
-            </p>
+            </Badge>
           ))}
         </div>
         {/* If no project link is directly available, follow the directions on GitHub */}

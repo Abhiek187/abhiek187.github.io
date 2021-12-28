@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createRef } from "react";
-import { Button, ButtonGroup } from "react-bootstrap";
+import { Button, ButtonGroup, Form, FormCheck } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Route, Routes, useLocation } from "react-router-dom";
 // import SwipeableRoutes from "react-swipeable-routes";
@@ -63,7 +63,7 @@ const App: React.FC = () => {
 
   const htmlDecode = (input: string): string | null => {
     // Unescape HTML characters (https://stackoverflow.com/a/34064434)
-    const doc = new DOMParser().parseFromString(input, "text/html");
+    const doc: Document = new DOMParser().parseFromString(input, "text/html");
     return doc.documentElement.textContent;
   };
 
@@ -88,28 +88,27 @@ const App: React.FC = () => {
   return (
     <div className={`App ${isDarkMode ? "dark" : ""}`}>
       {/* Switch to toggle between light and dark mode */}
-      <div className="theme-container form-check form-switch">
-        <label
-          className="theme-label form-check-label"
+      <Form.Check type="switch" className="theme-container">
+        <FormCheck.Label
+          className="theme-label"
           htmlFor="theme-switch"
           aria-label={isDarkMode ? "dark mode on" : "dark mode off"}
         >
           {isDarkMode ? htmlDecode("&#x1F31C;") : htmlDecode("&#x1F31E;")}
-        </label>
-        <input
-          className="form-check-input"
+        </FormCheck.Label>
+        <FormCheck.Input
           type="checkbox"
           id="theme-switch"
           onClick={() => setIsDarkMode(!isDarkMode)}
         />
-      </div>
+      </Form.Check>
       <header className="heading container-fluid">
         <h1 className="heading-name">Abhishek Chaudhuri</h1>
         <h2 className="heading-headline">
           Software Engineer | Always Learning and Growing
         </h2>
       </header>
-      <ButtonGroup as="nav" className="links container-fluid btn-group">
+      <ButtonGroup as="nav" className="links container-fluid">
         {/* Redirect routes without reloading the browser */}
         <LinkContainer to="about">
           <Button
