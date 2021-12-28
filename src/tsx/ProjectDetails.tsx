@@ -1,11 +1,17 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { createRef, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { Button, Card } from "react-bootstrap";
+import {
+  NavigateFunction,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 import "../scss/ProjectDetails.scss";
 import { Project, ProjectTypes } from "./Projects";
 import ProjectError from "./ProjectError";
 import projectData from "../models/projects.json";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type ProjectDetailsProps = {
   isDarkMode: Boolean;
@@ -16,18 +22,21 @@ export type ProjectParams = {
   projectId: string;
 };
 
-type UseHistoryProps = {
+type LocationStateProps = {
   from: string;
 };
 
 const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
   // Get the project object (cool rhyme) from the project type and id
-  const { projectType, projectId } = useParams<ProjectParams>();
+  const { projectType, projectId } = useParams<
+    keyof ProjectParams
+  >() as ProjectParams;
   const projects: [Project] | undefined = projectData[projectType] as [Project];
   const project: Project | undefined = projects?.find(
     (proj) => proj.id === projectId
   );
-  const history = useHistory<UseHistoryProps>();
+  const navigate: NavigateFunction = useNavigate();
+  const locationState = useLocation().state as LocationStateProps | null;
   const videoRef = createRef<HTMLVideoElement>();
 
   useEffect(() => {
@@ -48,34 +57,38 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
     return <ProjectError isDarkMode={isDarkMode} />;
   } else {
     return (
-      <section
-        className={`project-details container-fluid card mx-auto mb-2 ${
+      <Card
+        as="section"
+        className={`project-details container-fluid mx-auto mb-2 ${
           isDarkMode
             ? "text-light bg-dark border-light"
             : "text-dark bg-light border-dark"
         }`}
       >
         {/* Button to return to the projects list */}
-        <button
+        <Button
+          variant={isDarkMode ? "light" : "dark"}
           type="button"
-          className={`projects-back btn ${
-            isDarkMode ? "text-light" : "text-dark"
-          }`}
+          className="projects-back"
           aria-label="Go back"
           onClick={() => {
             // Go back if the previous page was projects or push to go to projects
-            history.location?.state?.from === "#/projects"
-              ? history.goBack()
-              : history.push("/projects");
+            locationState?.from === "#/projects"
+              ? navigate(-1) // go back one page
+              : navigate("/projects");
           }}
         >
           <FontAwesomeIcon icon="times" />
-        </button>
-        <h4 className="projects-name card-title m-2">{project.name}</h4>
+        </Button>
+        <Card.Title as="h4" className="projects-name m-2">
+          {project.name}
+        </Card.Title>
         {/* If the image is a video, make it behave like a gif, otherwise leave the poster as-is */}
-        <video
+        <Card.Img
+          as="video"
+          variant="top"
           ref={videoRef}
-          className="projects-video card-img-top mx-auto"
+          className="projects-video mx-auto"
           autoPlay
           loop
           playsInline
@@ -94,8 +107,10 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
             data-testid="video-mp4"
           />
           Your browser doesn't support the video tag.
-        </video>
-        <p className="projects-about card-text mx-1 my-2">{project.about}</p>
+        </Card.Img>
+        <Card.Text className="projects-about mx-1 my-2">
+          {project.about}
+        </Card.Text>
         <p
           className={`projects-technology-header mb-0 ${
             isDarkMode ? "text-info" : ""
@@ -116,25 +131,27 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
         {/* If no project link is directly available, follow the directions on GitHub */}
         <div className="projects-links mb-2">
           {project.website && (
-            <a
-              className="projects-website btn btn-outline-success m-1"
+            <Button
+              variant="outline-success"
+              className="projects-website m-1"
               href={project.website}
               target="_blank"
               rel="noopener noreferrer"
             >
               <FontAwesomeIcon icon="external-link-alt" /> Demo
-            </a>
+            </Button>
           )}
-          <a
-            className="projects-repo btn btn-outline-primary m-2"
+          <Button
+            variant="outline-primary"
+            className="projects-repo m-2"
             href={project.repo}
             target="_blank"
             rel="noopener noreferrer"
           >
             <FontAwesomeIcon icon={["fab", "github"]} /> GitHub
-          </a>
+          </Button>
         </div>
-      </section>
+      </Card>
     );
   }
 };

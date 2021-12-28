@@ -1,12 +1,13 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef } from "react";
-import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
+import { Button, Card } from "react-bootstrap";
+import { Link, Route, Routes } from "react-router-dom";
 
 import "../scss/Projects.scss";
 import projectData from "../models/projects.json";
 import { Direction, OnClickProp } from "./App";
 import ProjectDetails from "./ProjectDetails";
 import ProjectError from "./ProjectError";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Type definitions of the JSON files
 export interface Project {
@@ -36,8 +37,6 @@ const Projects: React.FC<ProjectsProps> = ({
   innerRef,
   isDarkMode,
 }) => {
-  // path is the URL relative to the parent (/projects), while URL is the entire URL
-  const { path, url } = useRouteMatch();
   // Set the type of the imported JSON
   const projects = projectData as ProjectsJSON;
   // Save a reference to each project list
@@ -126,110 +125,121 @@ const Projects: React.FC<ProjectsProps> = ({
       <div className="projects-wrapper">
         <h3 className="projects-heading">Projects</h3>
         {/* Show either all projects or an individual project */}
-        <Switch>
-          <Route exact path={path}>
-            <ul className="projects-full-list">
-              {(Object.keys(projects) as [ProjectTypes]).map((type, index) => (
-                /* Each list item needs a key */
-                <li key={type} className="projects-type-list">
-                  {/* Apple does what others don't */}
-                  <h4 className="projects-type">
-                    {type === "ios" ? "iOS" : capitalize(type)}
-                  </h4>
-                  {/* Show a horizontal list of cards */}
-                  <div className="projects-scrolling-list">
-                    <button
-                      type="button"
-                      className={`projects-scroll-left btn ${
-                        isDarkMode ? "btn-info" : "btn-primary"
-                      }`}
-                      onClick={() => scrollList(index, Direction.Left)}
-                      aria-label={`Scroll ${type} projects left`}
-                    >
-                      <FontAwesomeIcon icon="arrow-left" />
-                    </button>
-                    <ul
-                      className="projects-list"
-                      ref={(el) => (projectsListRef.current[index] = el)}
-                      onScroll={(event) =>
-                        updateScrollButtonVisibility(
-                          event.target as HTMLUListElement
-                        )
-                      }
-                    >
-                      {projects[type].map((project) => (
-                        <li
-                          key={project.id}
-                          className={`card ${
-                            isDarkMode
-                              ? "bg-dark border-light"
-                              : "bg-light border-dark"
-                          }`}
-                        >
-                          {/* View more details about each project by clicking on the card */}
-                          <Link
-                            to={{
-                              pathname: `${url}/${type}/${project.id}`,
-                              state: { from: window.location.hash },
-                            }}
-                            className={`projects-link ${
-                              isDarkMode ? "text-light" : "text-dark"
-                            }`}
-                            aria-label={`Card for ${project.name}, click to learn more`}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              /* <> === React.Fragment */
+              <>
+                <ul className="projects-full-list">
+                  {(Object.keys(projects) as [ProjectTypes]).map(
+                    (type, index) => (
+                      /* Each list item needs a key */
+                      <li key={type} className="projects-type-list">
+                        {/* Apple does what others don't */}
+                        <h4 className="projects-type">
+                          {type === "ios" ? "iOS" : capitalize(type)}
+                        </h4>
+                        {/* Show a horizontal list of cards */}
+                        <div className="projects-scrolling-list">
+                          <Button
+                            variant={isDarkMode ? "info" : "primary"}
+                            type="button"
+                            className="projects-scroll-left"
+                            onClick={() => scrollList(index, Direction.Left)}
+                            aria-label={`Scroll ${type} projects left`}
                           >
-                            <h5 className="projects-name card-title m-2">
-                              {project.name}
-                            </h5>
-                            {/* Specifying the width and height will reduce CLS (2:3 for portrait) */}
-                            <img
-                              className="projects-image card-img-top mx-auto"
-                              src={project.image}
-                              alt={`Screenshot of ${project.name}`}
-                              width="280"
-                              height="420"
-                            />
-                            <p className="projects-about card-text mx-1 my-2">
-                              {project.about}
-                            </p>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                    <button
-                      type="button"
-                      className={`projects-scroll-right btn ${
-                        isDarkMode ? "btn-info" : "btn-primary"
-                      }`}
-                      onClick={() => scrollList(index, Direction.Right)}
-                      aria-label={`Scroll ${type} projects right`}
-                    >
-                      <FontAwesomeIcon icon="arrow-right" />
-                    </button>
-                  </div>
-                  <hr />
-                </li>
-              ))}
-            </ul>
-            <p className="projects-addendum">
-              ...And much more on{" "}
-              <a
-                className="projects-github-link"
-                href="https://github.com/abhiek187"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub!
-              </a>
-            </p>
-          </Route>
-          <Route path={`${path}/:projectType/:projectId`}>
-            <ProjectDetails isDarkMode={isDarkMode} />
-          </Route>
+                            <FontAwesomeIcon icon="arrow-left" />
+                          </Button>
+                          <ul
+                            className="projects-list"
+                            ref={(el) => (projectsListRef.current[index] = el)}
+                            onScroll={(event) =>
+                              updateScrollButtonVisibility(
+                                event.target as HTMLUListElement
+                              )
+                            }
+                          >
+                            {projects[type].map((project) => (
+                              <Card
+                                key={project.id}
+                                as="li"
+                                className={`${
+                                  isDarkMode
+                                    ? "bg-dark border-light"
+                                    : "bg-light border-dark"
+                                }`}
+                              >
+                                {/* View more details about each project by clicking on the card */}
+                                <Link
+                                  to={`${type}/${project.id}`}
+                                  state={{ from: window.location.hash }}
+                                  className={`projects-link ${
+                                    isDarkMode ? "text-light" : "text-dark"
+                                  }`}
+                                  aria-label={`Card for ${project.name}, click to learn more`}
+                                >
+                                  <Card.Title
+                                    as="h5"
+                                    className="projects-name m-2"
+                                  >
+                                    {project.name}
+                                  </Card.Title>
+                                  {/* Specifying the width and height will reduce CLS (2:3 for portrait) */}
+                                  <Card.Img
+                                    variant="top"
+                                    className="projects-image mx-auto"
+                                    src={project.image}
+                                    alt={`Screenshot of ${project.name}`}
+                                    width="280"
+                                    height="420"
+                                  />
+                                  <Card.Text className="projects-about mx-1 my-2">
+                                    {project.about}
+                                  </Card.Text>
+                                </Link>
+                              </Card>
+                            ))}
+                          </ul>
+                          <Button
+                            variant={isDarkMode ? "info" : "primary"}
+                            type="button"
+                            className="projects-scroll-right"
+                            onClick={() => scrollList(index, Direction.Right)}
+                            aria-label={`Scroll ${type} projects right`}
+                          >
+                            <FontAwesomeIcon icon="arrow-right" />
+                          </Button>
+                        </div>
+                        <hr />
+                      </li>
+                    )
+                  )}
+                </ul>
+                <p className="projects-addendum">
+                  ...And much more on{" "}
+                  <a
+                    className="projects-github-link"
+                    href="https://github.com/abhiek187"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub!
+                  </a>
+                </p>
+              </>
+            }
+          />
+          <Route
+            path=":projectType/:projectId"
+            element={<ProjectDetails isDarkMode={isDarkMode} />}
+          />
           {/* Otherwise this is not a valid path */}
-          <Route path={`${path}/:projectType`}>
-            <ProjectError isDarkMode={isDarkMode} />
-          </Route>
-        </Switch>
+          <Route
+            path=":projectType"
+            element={<ProjectError isDarkMode={isDarkMode} />}
+          />
+        </Routes>
       </div>
       <Link
         className="arrow-right"

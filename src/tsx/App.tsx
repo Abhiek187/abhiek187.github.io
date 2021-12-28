@@ -1,11 +1,7 @@
 import React, { useState, useEffect, createRef } from "react";
-import {
-  Route,
-  Link,
-  Switch,
-  withRouter,
-  RouteComponentProps,
-} from "react-router-dom";
+import { Button, ButtonGroup } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { Route, Routes, useLocation } from "react-router-dom";
 // import SwipeableRoutes from "react-swipeable-routes";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -26,13 +22,14 @@ export enum Direction {
   Right = "right",
 }
 
-const App: React.FC<RouteComponentProps> = ({ location }) => {
+const App: React.FC = () => {
   // Determines which direction to slide the components
   const [slideDirection, setSlideDirection] = useState<Direction>(
     Direction.Left
   );
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const nodeRef = createRef<HTMLDivElement>(); // removes the need for CSSTransition to call findDOMNode
+  const location = useLocation();
 
   useEffect(() => {
     // Change the title of the tab every page change
@@ -112,30 +109,36 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
           Software Engineer | Always Learning and Growing
         </h2>
       </header>
-      <nav className="links container-fluid btn-group">
+      <ButtonGroup as="nav" className="links container-fluid btn-group">
         {/* Redirect routes without reloading the browser */}
-        <Link
-          className="links-about btn btn-danger"
-          to="/about"
-          onClick={() => setSlider("about")}
-        >
-          About
-        </Link>
-        <Link
-          className="links-projects btn btn-warning"
-          to="/projects"
-          onClick={() => setSlider("projects")}
-        >
-          Projects
-        </Link>
-        <Link
-          className="links-contact btn btn-success"
-          to="/contact"
-          onClick={() => setSlider("contact")}
-        >
-          Contact
-        </Link>
-      </nav>
+        <LinkContainer to="about">
+          <Button
+            variant="danger"
+            className="links-about"
+            onClick={() => setSlider("about")}
+          >
+            About
+          </Button>
+        </LinkContainer>
+        <LinkContainer to="projects">
+          <Button
+            variant="warning"
+            className="links-projects"
+            onClick={() => setSlider("projects")}
+          >
+            Projects
+          </Button>
+        </LinkContainer>
+        <LinkContainer to="contact">
+          <Button
+            variant="success"
+            className="links-contact"
+            onClick={() => setSlider("contact")}
+          >
+            Contact
+          </Button>
+        </LinkContainer>
+      </ButtonGroup>
       <hr />
       <TransitionGroup
         className={`transition-group ${slideDirection}`}
@@ -147,43 +150,58 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
           timeout={{ enter: 600, exit: 600 }}
           classNames="slide"
         >
-          <Switch location={location}>
+          <Routes location={location}>
             {/* Ensure route works with any website url */}
-            <Route exact path={`${process.env.PUBLIC_URL}/`}>
-              {/* Default page */}
-              <main className="home container-fluid" ref={nodeRef}>
-                <p className="home-info">
-                  Hello and welcome to my website! Please click the links above
-                  to learn more about me.
-                </p>
-              </main>
-            </Route>
-            <Route path={`${process.env.PUBLIC_URL}/about`}>
-              <About onClickLink={setSlider} innerRef={nodeRef} />
-            </Route>
-            <Route path={`${process.env.PUBLIC_URL}/projects`}>
-              <Projects
-                onClickLink={setSlider}
-                isDarkMode={isDarkMode}
-                innerRef={nodeRef}
-              />
-            </Route>
-            <Route path={`${process.env.PUBLIC_URL}/contact`}>
-              <Contact
-                onClickLink={setSlider}
-                isDarkMode={isDarkMode}
-                innerRef={nodeRef}
-              />
-            </Route>
+            <Route
+              path="/"
+              element={
+                /* Default page */
+                <main className="home container-fluid" ref={nodeRef}>
+                  <p className="home-info">
+                    Hello and welcome to my website! Please click the links
+                    above to learn more about me.
+                  </p>
+                </main>
+              }
+            />
+            <Route
+              path="about"
+              element={<About onClickLink={setSlider} innerRef={nodeRef} />}
+            />
+            <Route
+              path="projects/*"
+              element={
+                <Projects
+                  onClickLink={setSlider}
+                  isDarkMode={isDarkMode}
+                  innerRef={nodeRef}
+                />
+              }
+            />
+            <Route
+              path="contact"
+              element={
+                <Contact
+                  onClickLink={setSlider}
+                  isDarkMode={isDarkMode}
+                  innerRef={nodeRef}
+                />
+              }
+            />
             {/* Ignore paths that take you to other repos, otherwise redirect to error page */}
-            <Route>
-              <main className="error container-fluid" ref={nodeRef}>
-                <p className={`error-message ${isDarkMode && "text-warning"}`}>
-                  Whoops! That path is invalid. Please click the links above.
-                </p>
-              </main>
-            </Route>
-          </Switch>
+            <Route
+              path="*"
+              element={
+                <main className="error container-fluid" ref={nodeRef}>
+                  <p
+                    className={`error-message ${isDarkMode && "text-warning"}`}
+                  >
+                    Whoops! That path is invalid. Please click the links above.
+                  </p>
+                </main>
+              }
+            />
+          </Routes>
         </CSSTransition>
       </TransitionGroup>
       <hr />
@@ -222,4 +240,4 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   );
 };
 
-export default withRouter(App); // Get access to match, location, and history
+export default App;

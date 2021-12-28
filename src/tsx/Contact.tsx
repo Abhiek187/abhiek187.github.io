@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "../scss/Contact.scss";
@@ -35,40 +36,42 @@ const Contact: React.FC<ContactProps> = ({
         <h3 className="contact-heading">Contact</h3>
         {/* Each link opens in a new tab */}
         <span className="contact-row">
-          <a
-            className="contact-resume btn btn-outline-danger"
+          <Button
+            variant="outline-danger"
+            className="contact-resume"
             href="resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FontAwesomeIcon icon="file-pdf" /> Resume
-          </a>
-          <a
-            className="contact-linkedin btn btn-outline-primary"
+          </Button>
+          <Button
+            variant="outline-primary"
+            className="contact-linkedin"
             href="https://www.linkedin.com/in/abhiek187"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FontAwesomeIcon icon={["fab", "linkedin-in"]} /> LinkedIn
-          </a>
-          <a
-            className={`contact-github btn btn-outline-${
-              isDarkMode ? "light" : "dark"
-            }`}
+          </Button>
+          <Button
+            variant={`outline-${isDarkMode ? "light" : "dark"}`}
+            className="contact-github"
             href="https://github.com/abhiek187"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FontAwesomeIcon icon={["fab", "github"]} /> GitHub
-          </a>
+          </Button>
           {/* Opens default email program */}
-          <a
-            className={`contact-email btn ${isDarkMode ? "dark" : ""}`}
+          <Button
+            variant={isDarkMode ? "dark" : ""}
+            className="contact-email"
             href="mailto:achaudhuri2011@yahoo.com"
             target="_top"
           >
             <FontAwesomeIcon icon="envelope" /> Email
-          </a>
+          </Button>
         </span>
       </div>
     </main>
