@@ -72,7 +72,7 @@ describe("Project Details", () => {
           }
 
           // If there's no website for the project, the website link shouldn't be present
-          const demoButton = screen.queryByRole("link", {
+          const demoButton = screen.queryByRole("button", {
             name: "Demo",
           }) as HTMLAnchorElement | null;
 
@@ -84,11 +84,24 @@ describe("Project Details", () => {
           expect(demoButton?.href ?? null).toBe(project.website);
 
           // Always display the repo link for the project
-          const repoButton = screen.getByRole("link", {
+          const repoButton = screen.getByRole("button", {
             name: "GitHub",
           }) as HTMLAnchorElement;
           expect(repoButton).toBeInTheDocument();
           expect(repoButton.href).toBe(project.repo);
+
+          // Check that the back button goes back to the projects list
+          const backButton = screen.getByLabelText(
+            /Go back/
+          ) as HTMLButtonElement;
+          fireEvent.click(backButton);
+
+          const smallProjectName = (await screen.findByRole("heading", {
+            name: project.name,
+            level: 5,
+          })) as HTMLHeadingElement;
+          expect(smallProjectName).toBeInTheDocument();
+          expect(repoButton).not.toBeInTheDocument();
         });
       }
     });

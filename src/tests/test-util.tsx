@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { HashRouter } from "react-router-dom";
+import { config } from "react-transition-group";
 import App, { Direction } from "../tsx/App";
 
 let buttonAbout: HTMLAnchorElement;
@@ -14,6 +15,9 @@ type DOMElements = {
 
 // Helper functions for testing
 const setupTests = (): DOMElements => {
+  // Disable transitions from react-transition-group
+  config.disabled = true;
+
   // App must be wrapped in a HashRouter
   render(
     <HashRouter basename={process.env.PUBLIC_URL}>
@@ -22,13 +26,13 @@ const setupTests = (): DOMElements => {
   );
 
   // Specify a button, not text
-  buttonAbout = screen.getByRole("link", {
+  buttonAbout = screen.getByRole("button", {
     name: "About",
   }) as HTMLAnchorElement;
-  buttonProjects = screen.getByRole("link", {
+  buttonProjects = screen.getByRole("button", {
     name: "Projects",
   }) as HTMLAnchorElement;
-  buttonContact = screen.getByRole("link", {
+  buttonContact = screen.getByRole("button", {
     name: "Contact",
   }) as HTMLAnchorElement;
   return { buttonAbout, buttonProjects, buttonContact };

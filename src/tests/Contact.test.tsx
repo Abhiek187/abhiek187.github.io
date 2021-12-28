@@ -19,16 +19,16 @@ describe("Contact", () => {
     fireEvent.click(buttonContact);
 
     // Wait until the slide transition ends so there's only one match
-    buttonResume = (await screen.findByRole("link", {
+    buttonResume = (await screen.findByRole("button", {
       name: /resume/i,
     })) as HTMLAnchorElement;
-    buttonLinkedin = (await screen.findByRole("link", {
+    buttonLinkedin = (await screen.findByRole("button", {
       name: /linkedin/i,
     })) as HTMLAnchorElement;
-    buttonGithub = (await screen.findByRole("link", {
+    buttonGithub = (await screen.findByRole("button", {
       name: /github/i,
     })) as HTMLAnchorElement;
-    buttonEmail = (await screen.findByRole("link", {
+    buttonEmail = (await screen.findByRole("button", {
       name: /email/i,
     })) as HTMLAnchorElement;
   });
@@ -45,22 +45,19 @@ describe("Contact", () => {
   });
 
   it("can view the resume", () => {
-    fireEvent.click(buttonResume);
+    // Instead of clicking the links, just check if they take users to the right page
     expect(buttonResume.href).toBe(`${window.location.origin}/resume.pdf`);
   });
 
   it("can view the LinkedIn profile", () => {
-    fireEvent.click(buttonLinkedin);
     expect(buttonLinkedin.href).toBe("https://www.linkedin.com/in/abhiek187");
   });
 
   it("can view the GitHub profile", () => {
-    fireEvent.click(buttonGithub);
     expect(buttonGithub.href).toBe("https://github.com/abhiek187");
   });
 
   it("can create an email", () => {
-    fireEvent.click(buttonEmail);
     expect(buttonEmail.href).toBe("mailto:achaudhuri2011@yahoo.com");
   });
 
