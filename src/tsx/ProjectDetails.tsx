@@ -96,17 +96,21 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
           role="application"
           aria-hidden={true}
         >
-          <source
-            src={`${project.gif}.webm`}
-            type="video/webm"
-            data-testid="video-webm"
-          />
-          <source
-            src={`${project.gif}.mp4`}
-            type="video/mp4"
-            data-testid="video-mp4"
-          />
-          Your browser doesn't support the video tag.
+          {project.gif !== null && (
+            <>
+              <source
+                src={`${project.gif}.webm`}
+                type="video/webm"
+                data-testid="video-webm"
+              />
+              <source
+                src={`${project.gif}.mp4`}
+                type="video/mp4"
+                data-testid="video-mp4"
+              />
+              Your browser doesn't support the video tag.
+            </>
+          )}
         </Card.Img>
         <Card.Text className="projects-about mx-1 my-2">
           {project.about}
@@ -134,7 +138,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
         <div className="projects-links mb-2">
           {project.website && (
             <Button
-              variant="outline-success"
+              variant={`outline-${isDarkMode ? "warning" : "success"}`}
               className="projects-website m-1"
               href={project.website}
               target="_blank"
@@ -144,7 +148,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
             </Button>
           )}
           <Button
-            variant="outline-primary"
+            variant={`outline-${isDarkMode ? "info" : "primary"}`}
             className="projects-repo m-2"
             href={project.repo}
             target="_blank"

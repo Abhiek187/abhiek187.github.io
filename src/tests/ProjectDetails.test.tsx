@@ -42,14 +42,19 @@ describe("Project Details", () => {
           expect(projectGif.playsInline).toBe(true);
           expect(projectGif.poster).toContain(project.image);
 
-          const videoWebM = screen.getByTestId(
+          // Projects without GIFs shouldn't contain any sources
+          const videoWebM = screen.queryByTestId(
             "video-webm"
-          ) as HTMLSourceElement;
-          expect(videoWebM.src).toContain(String(project.gif)); // a null src is ok
-          const videoMp4 = screen.getByTestId("video-mp4") as HTMLSourceElement;
-          expect(videoMp4.src).toContain(String(project.gif));
+          ) as HTMLSourceElement | null;
+          expect(videoWebM?.src ?? "null").toContain(String(project.gif));
+          const videoMp4 = screen.queryByTestId(
+            "video-mp4"
+          ) as HTMLSourceElement | null;
+          expect(videoMp4?.src ?? "null").toContain(String(project.gif));
           expect(projectGif).toHaveTextContent(
-            /Your browser doesn't support the video tag./
+            project.gif === null
+              ? ""
+              : /Your browser doesn't support the video tag./
           );
 
           const projectAbout = screen.getByText(
