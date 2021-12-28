@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -62,7 +63,7 @@ const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
         aria-label="Go to Projects"
         onClick={() => onClickLink("projects")}
       >
-        <i className="fas fa-arrow-right" />
+        <FontAwesomeIcon icon="arrow-right" />
       </Link>
     </main>
   );

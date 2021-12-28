@@ -5,6 +5,7 @@ import "../scss/ProjectDetails.scss";
 import { Project, ProjectTypes } from "./Projects";
 import ProjectError from "./ProjectError";
 import projectData from "../models/projects.json";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type ProjectDetailsProps = {
   isDarkMode: Boolean;
@@ -68,7 +69,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
               : history.push("/projects");
           }}
         >
-          <i className="fas fa-times" />
+          <FontAwesomeIcon icon="times" />
         </button>
         <h4 className="projects-name card-title m-2">{project.name}</h4>
         {/* If the image is a video, make it behave like a gif, otherwise leave the poster as-is */}
@@ -121,7 +122,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i className="fas fa-external-link-alt" /> Demo
+              <FontAwesomeIcon icon="external-link-alt" /> Demo
             </a>
           )}
           <a
@@ -130,7 +131,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fab fa-github" /> GitHub
+            <FontAwesomeIcon icon={["fab", "github"]} /> GitHub
           </a>
         </div>
       </section>

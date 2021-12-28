@@ -6,6 +6,7 @@ import projectData from "../models/projects.json";
 import { Direction, OnClickProp } from "./App";
 import ProjectDetails from "./ProjectDetails";
 import ProjectError from "./ProjectError";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Type definitions of the JSON files
 export interface Project {
@@ -120,7 +121,7 @@ const Projects: React.FC<ProjectsProps> = ({
         aria-label="Go to About"
         onClick={() => onClickLink("about")}
       >
-        <i className="fas fa-arrow-left" />
+        <FontAwesomeIcon icon="arrow-left" />
       </Link>
       <div className="projects-wrapper">
         <h3 className="projects-heading">Projects</h3>
@@ -145,7 +146,7 @@ const Projects: React.FC<ProjectsProps> = ({
                       onClick={() => scrollList(index, Direction.Left)}
                       aria-label={`Scroll ${type} projects left`}
                     >
-                      <i className="fas fa-arrow-left" />
+                      <FontAwesomeIcon icon="arrow-left" />
                     </button>
                     <ul
                       className="projects-list"
@@ -202,7 +203,7 @@ const Projects: React.FC<ProjectsProps> = ({
                       onClick={() => scrollList(index, Direction.Right)}
                       aria-label={`Scroll ${type} projects right`}
                     >
-                      <i className="fas fa-arrow-right" />
+                      <FontAwesomeIcon icon="arrow-right" />
                     </button>
                   </div>
                   <hr />
@@ -236,7 +237,7 @@ const Projects: React.FC<ProjectsProps> = ({
         aria-label="Go to Contact"
         onClick={() => onClickLink("contact")}
       >
-        <i className="fas fa-arrow-right" />
+        <FontAwesomeIcon icon="arrow-right" />
       </Link>
     </main>
   );
