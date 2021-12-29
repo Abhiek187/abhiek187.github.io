@@ -15,6 +15,7 @@ import projectData from "../models/projects.json";
 
 type ProjectDetailsProps = {
   isDarkMode: Boolean;
+  innerRef: React.RefObject<HTMLDivElement>;
 };
 
 export type ProjectParams = {
@@ -26,7 +27,10 @@ type LocationStateProps = {
   from: string;
 };
 
-const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
+const ProjectDetails: React.FC<ProjectDetailsProps> = ({
+  isDarkMode,
+  innerRef,
+}) => {
   // Get the project object (cool rhyme) from the project type and id
   const { projectType, projectId } = useParams<
     keyof ProjectParams
@@ -59,6 +63,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
     return (
       <Card
         as="section"
+        ref={innerRef}
         className={`project-details container-fluid mx-auto mb-2 ${
           isDarkMode
             ? "text-light bg-dark border-light"
