@@ -32,19 +32,6 @@ const App: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Change the title of the tab every page change
-    // With a HashRouter, the pathname will always be /
-    if (window.location.hash === "#/") {
-      document.title = "Abhishek Chaudhuri - Home";
-    } else if (
-      window.location.hash !== "#/about" &&
-      window.location.hash !== "#/projects" &&
-      window.location.hash !== "#/contact"
-    ) {
-      document.title = "Abhishek Chaudhuri - Error";
-    }
-
-    // Check where web scroll is for sticky navbar
     let navbar: HTMLElement | null = document.querySelector(".links");
     if (navbar === null) return;
     let navPosition: number = navbar.offsetTop;
@@ -61,6 +48,20 @@ const App: React.FC = () => {
     };
   }, []); // only componentDidMount()
 
+  useEffect(() => {
+    // Change the title of the tab every page change
+    // useLocation() ignores the hash at the beginning
+    if (location.pathname === "/") {
+      document.title = "Abhishek Chaudhuri - Home";
+    } else if (
+      location.pathname !== "/about" &&
+      location.pathname !== "/projects" &&
+      location.pathname !== "/contact"
+    ) {
+      document.title = "Abhishek Chaudhuri - Error";
+    }
+  }, [location]);
+
   const htmlDecode = (input: string): string | null => {
     // Unescape HTML characters (https://stackoverflow.com/a/34064434)
     const doc: Document = new DOMParser().parseFromString(input, "text/html");
@@ -69,10 +70,10 @@ const App: React.FC = () => {
 
   const setSlider = (dest: string): void => {
     // Check where to slide the components
-    if (window.location.hash === "#/contact") {
+    if (location.pathname === "/contact") {
       // At Contact, always slide right
       setSlideDirection(Direction.Right);
-    } else if (window.location.hash === "#/projects") {
+    } else if (location.pathname === "/projects") {
       // At Projects, check which link was clicked
       if (dest === "about") {
         setSlideDirection(Direction.Right);
