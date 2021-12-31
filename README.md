@@ -1,5 +1,7 @@
 # My Website
 
+![Screenshot of my website](screenshot.png)
+
 ## About
 
 This is my portfolio website created in React, inspired by Udacity's Front-End Web Development course. It showcases the projects I'm most passionate about with the creative freedom of developing a website. This repo will always be updated as I learn more about the best web practices and come up with ideas to further improve the website. You can check out [my website](https://abhiek187.github.io) to learn more and get in touch with me.
