@@ -80,6 +80,7 @@
 
   .projects-link {
     text-decoration: none;
+    height: 100%; /* Allow the whole card to be clickable */
   }
 }
 
