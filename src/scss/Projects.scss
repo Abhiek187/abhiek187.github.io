@@ -1,6 +1,6 @@
 /* Projects section */
 .projects-wrapper {
-  max-width: 90%; /* If the width of the cards extends further, add scrolling (using overflow) */
+  max-width: 90%; /* if the width of the cards extends further, add scrolling (using overflow) */
 }
 
 .projects-heading {
@@ -68,9 +68,9 @@
   }
 
   li {
-    position: static; /* Put behind the sticky navbar */
+    position: static; /* put behind the sticky navbar */
     min-width: 300px; /* min-width forces the cards to be at least this wide */
-    max-width: 300px; /* Seriously, keep this width */
+    max-width: 300px; /* seriously, keep this width */
     margin-bottom: 0.25rem;
   }
 
@@ -80,7 +80,7 @@
 
   .projects-link {
     text-decoration: none;
-    height: 100%; /* Allow the whole card to be clickable */
+    height: 100%; /* allow the whole card to be clickable */
   }
 }
 
