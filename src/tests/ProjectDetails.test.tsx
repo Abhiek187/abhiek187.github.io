@@ -2,6 +2,7 @@ import { fireEvent, screen } from "@testing-library/react";
 import { setupTests } from "./test-util";
 import { ProjectsJSON, ProjectTypes } from "../tsx/Projects";
 import projectData from "../models/projects.json";
+import { Transition } from "../tsx/App";
 
 describe("Project Details", () => {
   let buttonProjects: HTMLAnchorElement;
@@ -24,6 +25,12 @@ describe("Project Details", () => {
           ) as HTMLAnchorElement;
           expect(projectCard).toBeInTheDocument();
           fireEvent.click(projectCard);
+
+          // The fade transition should play instead of the sliding one
+          const transitionGroup = screen.getByTestId(
+            "transition"
+          ) as HTMLDivElement;
+          expect(transitionGroup.classList).toContain(Transition.Fade);
 
           // The project's name, GIF, and description should be shown
           const projectName = (await screen.findByRole("heading", {
@@ -101,6 +108,7 @@ describe("Project Details", () => {
           ) as HTMLButtonElement;
           fireEvent.click(backButton);
 
+          expect(transitionGroup.classList).toContain(Transition.Fade);
           const smallProjectName = (await screen.findByRole("heading", {
             name: project.name,
             level: 5,
