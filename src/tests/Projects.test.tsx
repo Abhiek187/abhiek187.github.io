@@ -1,5 +1,5 @@
 import { fireEvent, screen } from "@testing-library/react";
-import { Direction } from "../tsx/App";
+import { Transition } from "../tsx/App";
 import {
   setupTests,
   testBaseContent,
@@ -127,7 +127,7 @@ describe("Projects", () => {
     testFocusAbout();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    expect(transitionGroup.classList).toContain(Direction.Right);
+    expect(transitionGroup.classList).toContain(Transition.SlideRight);
   });
 
   it("navigates to Contact after clicking the right arrow", () => {
@@ -135,6 +135,6 @@ describe("Projects", () => {
     testFocusContact();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    expect(transitionGroup.classList).toContain(Direction.Left);
+    expect(transitionGroup.classList).toContain(Transition.SlideLeft);
   });
 });

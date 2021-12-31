@@ -1,5 +1,5 @@
 import { fireEvent, screen } from "@testing-library/react";
-import { Direction } from "../tsx/App";
+import { Transition } from "../tsx/App";
 import {
   setupTests,
   testBaseContent,
@@ -42,6 +42,6 @@ describe("About", () => {
 
     testFocusProjects();
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    expect(transitionGroup.classList).toContain(Direction.Left);
+    expect(transitionGroup.classList).toContain(Transition.SlideLeft);
   });
 });

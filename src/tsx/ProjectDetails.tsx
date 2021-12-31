@@ -12,10 +12,10 @@ import "../scss/ProjectDetails.scss";
 import { Project, ProjectTypes } from "./Projects";
 import ProjectError from "./ProjectError";
 import projectData from "../models/projects.json";
+import { OnClickProp } from "./App";
 
-type ProjectDetailsProps = {
+type ProjectDetailsProps = OnClickProp & {
   isDarkMode: Boolean;
-  innerRef: React.RefObject<HTMLDivElement>;
 };
 
 export type ProjectParams = {
@@ -28,8 +28,9 @@ type LocationStateProps = {
 };
 
 const ProjectDetails: React.FC<ProjectDetailsProps> = ({
-  isDarkMode,
+  onClickLink,
   innerRef,
+  isDarkMode,
 }) => {
   // Get the project object (cool rhyme) from the project type and id
   const { projectType, projectId } = useParams<
@@ -77,6 +78,8 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
           className={`projects-back ${isDarkMode ? "text-light" : "text-dark"}`}
           aria-label="Go back"
           onClick={() => {
+            onClickLink("projects");
+
             // Go back if the previous page was projects or push to go to projects
             locationState?.from === "#/projects"
               ? navigate(-1) // go back one page

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { HashRouter } from "react-router-dom";
 import { config } from "react-transition-group";
-import App, { Direction } from "../tsx/App";
+import App, { Transition } from "../tsx/App";
 
 let buttonAbout: HTMLAnchorElement;
 let buttonProjects: HTMLAnchorElement;
@@ -114,10 +114,10 @@ const testNavbar = (source: string): void => {
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
 
     // Check that the next component slides in the correct direction
-    const slideDirection: Direction =
+    const slideDirection: Transition =
       source === "Projects" || source === "Contact"
-        ? Direction.Right
-        : Direction.Left;
+        ? Transition.SlideRight
+        : Transition.SlideLeft;
     expect(transitionGroup.classList).toContain(slideDirection);
   });
 
@@ -126,8 +126,8 @@ const testNavbar = (source: string): void => {
     testFocusProjects();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    const slideDirection: Direction =
-      source === "Contact" ? Direction.Right : Direction.Left;
+    const slideDirection: Transition =
+      source === "Contact" ? Transition.SlideRight : Transition.SlideLeft;
     expect(transitionGroup.classList).toContain(slideDirection);
   });
 
@@ -136,8 +136,8 @@ const testNavbar = (source: string): void => {
     testFocusContact();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    const slideDirection: Direction =
-      source === "Contact" ? Direction.Right : Direction.Left;
+    const slideDirection: Transition =
+      source === "Contact" ? Transition.SlideRight : Transition.SlideLeft;
     expect(transitionGroup.classList).toContain(slideDirection);
   });
 };
