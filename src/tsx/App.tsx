@@ -155,7 +155,7 @@ const App: React.FC = () => {
         <CSSTransition
           key={location.pathname}
           nodeRef={nodeRef}
-          timeout={transition === Transition.Fade ? 300 : 600}
+          timeout={600}
           classNames="transition"
         >
           <Routes location={location}>

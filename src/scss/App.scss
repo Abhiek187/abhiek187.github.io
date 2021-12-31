@@ -50,6 +50,12 @@ main {
   }
 }
 
+.transition-group {
+  > :nth-child(2) {
+    position: fixed; /* Don't show the disappearing details card underneath the real card */
+  }
+}
+
 /* Transition effects (active === to, nonactive === from) */
 .slide-left {
   .transition-enter {
@@ -110,6 +116,8 @@ main {
   .transition-enter-active {
     opacity: 1;
     transform: scale(1);
+    /* The timeout on CSSTransition remains at 600ms so that things don't disappear
+     * before the slide transition finishes */
     transition: opacity 300ms, transform 300ms;
     width: 100%;
   }
