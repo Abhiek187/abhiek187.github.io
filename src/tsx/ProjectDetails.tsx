@@ -12,7 +12,7 @@ import "../scss/ProjectDetails.scss";
 import { Project, ProjectTypes } from "./Projects";
 import ProjectError from "./ProjectError";
 import projectData from "../models/projects.json";
-import { OnClickProp } from "./App";
+import { OnClickProp, Page } from "./App";
 
 type ProjectDetailsProps = OnClickProp & {
   isDarkMode: Boolean;
@@ -56,7 +56,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
     if (video !== null) {
       video.muted = true;
     }
-  });
+  }, [project?.name, videoRef]);
 
   if (projects === undefined || project === undefined) {
     return <ProjectError isDarkMode={isDarkMode} />;
@@ -78,7 +78,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
           className={`projects-back ${isDarkMode ? "text-light" : "text-dark"}`}
           aria-label="Go back"
           onClick={() => {
-            onClickLink("projects");
+            onClickLink(Page.Projects);
 
             // Go back if the previous page was projects or push to go to projects
             locationState?.from === "#/projects"

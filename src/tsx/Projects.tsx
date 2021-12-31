@@ -5,7 +5,7 @@ import { Link, Route, Routes } from "react-router-dom";
 
 import "../scss/Projects.scss";
 import projectData from "../models/projects.json";
-import { OnClickProp } from "./App";
+import { OnClickProp, Page } from "./App";
 import ProjectDetails from "./ProjectDetails";
 import ProjectError from "./ProjectError";
 
@@ -117,7 +117,7 @@ const Projects: React.FC<ProjectsProps> = ({
         className="arrow-left"
         to="/about"
         aria-label="Go to About"
-        onClick={() => onClickLink("about")}
+        onClick={() => onClickLink(Page.About)}
       >
         <FontAwesomeIcon icon="arrow-left" />
       </Link>
@@ -177,7 +177,7 @@ const Projects: React.FC<ProjectsProps> = ({
                                     isDarkMode ? "text-light" : "text-dark"
                                   }`}
                                   onClick={() =>
-                                    onClickLink(`${type}/${project.id}`)
+                                    onClickLink(Page.ProjectDetails)
                                   }
                                   aria-label={`Card for ${project.name}, click to learn more`}
                                 >
@@ -255,7 +255,7 @@ const Projects: React.FC<ProjectsProps> = ({
         className="arrow-right"
         to="/contact"
         aria-label="Go to Contact"
-        onClick={() => onClickLink("contact")}
+        onClick={() => onClickLink(Page.Contact)}
       >
         <FontAwesomeIcon icon="arrow-right" />
       </Link>

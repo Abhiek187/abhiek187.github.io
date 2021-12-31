@@ -1,5 +1,5 @@
 import { fireEvent, screen } from "@testing-library/react";
-import { Transition } from "../tsx/App";
+import { Page, Transition } from "../tsx/App";
 import {
   setupTests,
   testBaseContent,
@@ -61,7 +61,7 @@ describe("Contact", () => {
     expect(buttonEmail.href).toBe("mailto:achaudhuri2011@yahoo.com");
   });
 
-  testNavbar("Contact");
+  testNavbar(Page.Contact);
 
   it("navigates to Projects after clicking the left arrow", async () => {
     // Wait until there's only one left arrow

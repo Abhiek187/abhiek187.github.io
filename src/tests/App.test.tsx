@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import { Page } from "../tsx/App";
 import { setupTests, testBaseContent, testNavbar } from "./test-util";
 
 /* Testing Procedure:
@@ -45,5 +46,5 @@ describe("App", () => {
     expect(welcomeMessage).toBeInTheDocument();
   });
 
-  testNavbar("App");
+  testNavbar(Page.Home);
 });

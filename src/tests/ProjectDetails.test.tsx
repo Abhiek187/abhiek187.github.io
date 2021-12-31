@@ -1,16 +1,32 @@
 import { fireEvent, screen } from "@testing-library/react";
-import { setupTests } from "./test-util";
+import {
+  setupTests,
+  testFocusAbout,
+  testFocusContact,
+  testNavbar,
+} from "./test-util";
 import { ProjectsJSON, ProjectTypes } from "../tsx/Projects";
 import projectData from "../models/projects.json";
-import { Transition } from "../tsx/App";
+import { Page, Transition } from "../tsx/App";
 
 describe("Project Details", () => {
   let buttonProjects: HTMLAnchorElement;
+  let leftArrow: HTMLAnchorElement;
+  let rightArrow: HTMLAnchorElement;
   const projects = projectData as ProjectsJSON;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     ({ buttonProjects } = setupTests());
     fireEvent.click(buttonProjects);
+
+    const card = screen.getByLabelText(
+      /card for captain conundrum/i
+    ) as HTMLAnchorElement;
+    fireEvent.click(card);
+
+    [leftArrow, rightArrow] = (await screen.findAllByLabelText(
+      /Go to/
+    )) as HTMLAnchorElement[];
   });
 
   // Separate each test by type and name
@@ -18,13 +34,21 @@ describe("Project Details", () => {
     describe(`${type}`, () => {
       for (const project of projects[type]) {
         it(`displays all information about ${project.name}`, async () => {
+          // Go back to the projects page first (it's unsafe to reference buttonProjects here)
+          fireEvent.click(
+            screen.getByRole("button", {
+              name: "Projects",
+            })
+          );
+
           // Click the appropriate card
           const cardRegex: string = `Card for ${project.name}`;
-          const projectCard = screen.getByLabelText(
+          const projectCard = (await screen.findByLabelText(
             RegExp(cardRegex, "g")
-          ) as HTMLAnchorElement;
+          )) as HTMLAnchorElement;
           expect(projectCard).toBeInTheDocument();
           fireEvent.click(projectCard);
+          expect(window.location.hash).toBe(`#/projects/${type}/${project.id}`);
 
           // The fade transition should play instead of the sliding one
           const transitionGroup = screen.getByTestId(
@@ -119,4 +143,22 @@ describe("Project Details", () => {
       }
     });
   }
+
+  testNavbar(Page.ProjectDetails);
+
+  it("navigates to About after clicking the left arrow", () => {
+    fireEvent.click(leftArrow);
+    testFocusAbout();
+
+    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
+    expect(transitionGroup.classList).toContain(Transition.SlideRight);
+  });
+
+  it("navigates to Contact after clicking the right arrow", () => {
+    fireEvent.click(rightArrow);
+    testFocusContact();
+
+    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
+    expect(transitionGroup.classList).toContain(Transition.SlideLeft);
+  });
 });

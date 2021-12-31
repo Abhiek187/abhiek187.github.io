@@ -1,5 +1,5 @@
 import { fireEvent, screen } from "@testing-library/react";
-import { Transition } from "../tsx/App";
+import { Page, Transition } from "../tsx/App";
 import {
   setupTests,
   testBaseContent,
@@ -120,7 +120,7 @@ describe("Projects", () => {
     (window as any).pageYOffset = 0;
   });
 
-  testNavbar("Projects");
+  testNavbar(Page.Projects);
 
   it("navigates to About after clicking the left arrow", () => {
     fireEvent.click(leftArrow);

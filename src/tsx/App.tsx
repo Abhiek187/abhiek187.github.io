@@ -10,17 +10,28 @@ import About from "./About";
 import Projects from "./Projects";
 import Contact from "./Contact";
 
-// Prop type passed to all the child components
-export interface OnClickProp {
-  onClickLink: (dest: string) => void;
-  innerRef: React.RefObject<HTMLDivElement>;
-}
-
 // Possible transitions
 export enum Transition {
   SlideLeft = "slide-left",
   SlideRight = "slide-right",
   Fade = "my-fade", // bootstrap took the fade class
+}
+
+// Information about each route
+export enum Page {
+  Home,
+  Error,
+  About,
+  Projects,
+  Contact,
+  ProjectDetails,
+  ProjectError,
+}
+
+// Prop type passed to all the child components
+export interface OnClickProp {
+  onClickLink: (dest: Page) => void;
+  innerRef: React.RefObject<HTMLDivElement>;
 }
 
 const App: React.FC = () => {
@@ -69,7 +80,7 @@ const App: React.FC = () => {
     return doc.documentElement.textContent;
   };
 
-  const changeTransition = (dest: string) => {
+  const changeTransition = (dest: Page) => {
     const source: string = location.pathname;
 
     // Check how to transition between components based on the source and destination
@@ -84,9 +95,12 @@ const App: React.FC = () => {
       setTransition(Transition.SlideLeft);
     } else {
       // At Projects, check which link was clicked
-      if (dest === "about") {
+      if (dest === Page.About) {
         setTransition(Transition.SlideRight);
-      } else if (dest === "contact") {
+      } else if (
+        dest === Page.Contact ||
+        (dest === Page.Projects && source === "/projects")
+      ) {
         setTransition(Transition.SlideLeft);
       } else {
         setTransition(Transition.Fade);
@@ -123,7 +137,7 @@ const App: React.FC = () => {
           <Button
             variant="danger"
             className="links-about"
-            onClick={() => changeTransition("about")}
+            onClick={() => changeTransition(Page.About)}
           >
             About
           </Button>
@@ -132,7 +146,7 @@ const App: React.FC = () => {
           <Button
             variant="warning"
             className="links-projects"
-            onClick={() => changeTransition("projects")}
+            onClick={() => changeTransition(Page.Projects)}
           >
             Projects
           </Button>
@@ -141,7 +155,7 @@ const App: React.FC = () => {
           <Button
             variant="success"
             className="links-contact"
-            onClick={() => changeTransition("contact")}
+            onClick={() => changeTransition(Page.Contact)}
           >
             Contact
           </Button>

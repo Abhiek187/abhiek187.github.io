@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "../scss/About.scss";
-import { OnClickProp } from "./App";
+import { OnClickProp, Page } from "./App";
 
 const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
   useEffect(() => {
@@ -61,7 +61,7 @@ const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
         className="arrow-right"
         to="/projects"
         aria-label="Go to Projects"
-        onClick={() => onClickLink("projects")}
+        onClick={() => onClickLink(Page.Projects)}
       >
         <FontAwesomeIcon icon="arrow-right" />
       </Link>

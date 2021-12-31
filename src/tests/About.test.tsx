@@ -1,5 +1,5 @@
 import { fireEvent, screen } from "@testing-library/react";
-import { Transition } from "../tsx/App";
+import { Page, Transition } from "../tsx/App";
 import {
   setupTests,
   testBaseContent,
@@ -30,7 +30,7 @@ describe("About", () => {
     expect(bio).toBeInTheDocument();
   });
 
-  testNavbar("About");
+  testNavbar(Page.About);
 
   // Check that the arrow button navigates to the correct page with the correct slide transition
   it("navigates to Projects after clicking the right arrow", async () => {

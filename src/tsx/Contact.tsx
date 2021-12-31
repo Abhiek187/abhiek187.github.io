@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "../scss/Contact.scss";
-import { OnClickProp } from "./App";
+import { OnClickProp, Page } from "./App";
 
 type ContactProps = OnClickProp & {
   isDarkMode: boolean;
@@ -28,7 +28,7 @@ const Contact: React.FC<ContactProps> = ({
         className="arrow-left"
         to="/projects"
         aria-label="Go to Projects"
-        onClick={() => onClickLink("projects")}
+        onClick={() => onClickLink(Page.Projects)}
       >
         <FontAwesomeIcon icon="arrow-left" />
       </Link>
