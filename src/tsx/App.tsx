@@ -10,22 +10,34 @@ import About from "./About";
 import Projects from "./Projects";
 import Contact from "./Contact";
 
+// Possible transitions
+export enum Transition {
+  SlideLeft = "slide-left",
+  SlideRight = "slide-right",
+  Fade = "my-fade", // bootstrap took the fade class
+}
+
+// Information about each route
+export enum Page {
+  Home,
+  Error,
+  About,
+  Projects,
+  Contact,
+  ProjectDetails,
+  ProjectError,
+}
+
 // Prop type passed to all the child components
 export interface OnClickProp {
-  onClickLink: (dest: string) => void;
+  onClickLink: (dest: Page) => void;
   innerRef: React.RefObject<HTMLDivElement>;
 }
 
-// Possible sliding directions
-export enum Direction {
-  Left = "left",
-  Right = "right",
-}
-
 const App: React.FC = () => {
-  // Determines which direction to slide the components
-  const [slideDirection, setSlideDirection] = useState<Direction>(
-    Direction.Left
+  // Determines which animation to play when switching components
+  const [transition, setTransition] = useState<Transition>(
+    Transition.SlideLeft
   );
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const nodeRef = createRef<HTMLDivElement>(); // removes the need for CSSTransition to call findDOMNode
@@ -68,21 +80,31 @@ const App: React.FC = () => {
     return doc.documentElement.textContent;
   };
 
-  const setSlider = (dest: string): void => {
-    // Check where to slide the components
-    if (location.pathname === "/contact") {
+  const changeTransition = (dest: Page) => {
+    const source: string = location.pathname;
+
+    // Check how to transition between components based on the source and destination
+    if (source === "/") {
+      // At Home, always fade
+      setTransition(Transition.Fade);
+    } else if (source === "/contact") {
       // At Contact, always slide right
-      setSlideDirection(Direction.Right);
-    } else if (location.pathname === "/projects") {
-      // At Projects, check which link was clicked
-      if (dest === "about") {
-        setSlideDirection(Direction.Right);
-      } else {
-        setSlideDirection(Direction.Left);
-      }
+      setTransition(Transition.SlideRight);
+    } else if (source === "/about") {
+      // At About, always slide left
+      setTransition(Transition.SlideLeft);
     } else {
-      // At About, always slide left (default)
-      setSlideDirection(Direction.Left);
+      // At Projects, check which link was clicked
+      if (dest === Page.About) {
+        setTransition(Transition.SlideRight);
+      } else if (
+        dest === Page.Contact ||
+        (dest === Page.Projects && source === "/projects")
+      ) {
+        setTransition(Transition.SlideLeft);
+      } else {
+        setTransition(Transition.Fade);
+      }
     }
   };
 
@@ -115,7 +137,7 @@ const App: React.FC = () => {
           <Button
             variant="danger"
             className="links-about"
-            onClick={() => setSlider("about")}
+            onClick={() => changeTransition(Page.About)}
           >
             About
           </Button>
@@ -124,7 +146,7 @@ const App: React.FC = () => {
           <Button
             variant="warning"
             className="links-projects"
-            onClick={() => setSlider("projects")}
+            onClick={() => changeTransition(Page.Projects)}
           >
             Projects
           </Button>
@@ -133,7 +155,7 @@ const App: React.FC = () => {
           <Button
             variant="success"
             className="links-contact"
-            onClick={() => setSlider("contact")}
+            onClick={() => changeTransition(Page.Contact)}
           >
             Contact
           </Button>
@@ -141,14 +163,14 @@ const App: React.FC = () => {
       </ButtonGroup>
       <hr />
       <TransitionGroup
-        className={`transition-group ${slideDirection}`}
+        className={`transition-group ${transition}`}
         data-testid="transition"
       >
         <CSSTransition
           key={location.pathname}
           nodeRef={nodeRef}
-          timeout={{ enter: 600, exit: 600 }}
-          classNames="slide"
+          timeout={600}
+          classNames="transition"
         >
           <Routes location={location}>
             {/* Ensure route works with any website url */}
@@ -166,13 +188,15 @@ const App: React.FC = () => {
             />
             <Route
               path="about"
-              element={<About onClickLink={setSlider} innerRef={nodeRef} />}
+              element={
+                <About onClickLink={changeTransition} innerRef={nodeRef} />
+              }
             />
             <Route
               path="projects/*"
               element={
                 <Projects
-                  onClickLink={setSlider}
+                  onClickLink={changeTransition}
                   isDarkMode={isDarkMode}
                   innerRef={nodeRef}
                 />
@@ -182,7 +206,7 @@ const App: React.FC = () => {
               path="contact"
               element={
                 <Contact
-                  onClickLink={setSlider}
+                  onClickLink={changeTransition}
                   isDarkMode={isDarkMode}
                   innerRef={nodeRef}
                 />

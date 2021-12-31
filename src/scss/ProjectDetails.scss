@@ -15,6 +15,7 @@
   /* Portrait GIFs shouldn't be too tall and landscape GIFs should take up most of the card's width */
   max-width: 100%;
   max-height: 500px;
+  width: auto; /* don't make the videos bigger than they need to be */
 }
 
 .projects-technology-header {

@@ -8,7 +8,7 @@
 
   a {
     margin: 3% 0;
-    padding: 0 1%;
+    padding: 0 8px;
     font-size: 1.25em;
     box-shadow: 5px 5px darkgray;
   }
@@ -18,7 +18,7 @@
 .contact-linkedin:active,
 .contact-github:active,
 .contact-email:active {
-  transform: translateY(4px); /* Push down on buttons */
+  transform: translateY(4px); /* push down on buttons */
   box-shadow: 2px 2px black;
 }
 

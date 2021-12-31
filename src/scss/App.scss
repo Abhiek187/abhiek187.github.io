@@ -4,7 +4,7 @@
 body {
   /* Background fills entire screen */
   background: linear-gradient(indigo, cyan) no-repeat center fixed;
-  font-family: Verdana, Courier New, Arial, Sans-serif; /* Font that distinguishes 1ijlIJ5SoO0 */
+  font-family: Verdana, Courier New, Arial, Sans-serif; /* font that distinguishes 1ijlIJ5SoO0 */
 }
 
 header,
@@ -12,7 +12,7 @@ main,
 footer {
   color: variables.$dark-color;
   background-color: variables.$light-color;
-  padding: 0.5%; /* Create space between words and white rectangles */
+  padding: 0.5%; /* create space between words and white rectangles */
 }
 
 main {
@@ -50,42 +50,87 @@ main {
   }
 }
 
-/* Transition effects */
-.left {
-  .slide-enter {
-    transform: translate(110%);
-  }
-
-  .slide-exit.slide-exit-active {
-    transform: translate(-110%);
-    transition: 600ms ease-in-out;
-    position: relative;
+.transition-group {
+  > :nth-child(2) {
+    position: fixed; /* don't show the disappearing details card underneath the real card */
   }
 }
 
-.right {
-  .slide-enter {
-    transform: translate(-110%);
-  }
-
-  .slide-exit.slide-exit-active {
+/* Transition effects (active === to, nonactive === from) */
+.slide-left {
+  .transition-enter {
     transform: translate(110%);
-    transition: 600ms ease-in-out;
-    position: relative;
   }
-}
 
-.left,
-.right {
-  .slide-enter.slide-enter-active {
+  /* active classes need to appear AFTER nonactive classes,
+   * otherwise the new transform will be discarded and the transition won't take place
+   */
+  .transition-enter-active {
     transform: translate(0%);
     transition: 600ms ease-in-out;
     position: fixed;
-    width: 100%; /* Match contact's width with other components */
+    width: 100%; /* match contact's width with other components */
   }
 
-  .slide-exit {
+  .transition-exit {
     transform: translate(0%);
+  }
+
+  .transition-exit-active {
+    transform: translate(-110%);
+    transition: 600ms ease-in-out;
+    position: relative;
+  }
+}
+
+.slide-right {
+  .transition-enter {
+    transform: translate(-110%);
+  }
+
+  .transition-enter-active {
+    transform: translate(0%);
+    transition: 600ms ease-in-out;
+    position: fixed;
+    width: 100%; /* match contact's width with other components */
+  }
+
+  .transition-exit {
+    transform: translate(0%);
+  }
+
+  .transition-exit-active {
+    transform: translate(110%);
+    transition: 600ms ease-in-out;
+    position: relative;
+  }
+}
+
+/* Fade transition when selecting projects */
+.my-fade {
+  .transition-enter {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  .transition-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    /* The timeout on CSSTransition remains at 600ms so that things don't disappear
+     * before the slide transition finishes */
+    transition: opacity 300ms, transform 300ms;
+    width: 100%;
+  }
+
+  .transition-exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .transition-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 300ms, transform 300ms;
   }
 }
 
@@ -99,7 +144,7 @@ main {
   }
 
   .heading-headline {
-    font-weight: normal; /* Remove bold */
+    font-weight: normal; /* remove bold */
     font-size: 1.5em;
     padding-bottom: 0.5%;
   }
@@ -113,7 +158,7 @@ main {
   z-index: 10;
 
   a {
-    text-decoration: none; /* No underline normally */
+    text-decoration: none; /* no underline normally */
   }
 
   .links-about:hover,
@@ -124,14 +169,14 @@ main {
 }
 
 .sticky {
-  position: fixed; /* Keep navbar at the top of the page */
+  position: fixed; /* keep navbar at the top of the page */
   top: 0;
   left: 0;
 }
 
 /* Style main if sticky */
 .sticky ~ main {
-  padding-top: 20px; /* Transition smoothly between sticky and non-sticky */
+  padding-top: 20px; /* transition smoothly between sticky and non-sticky */
 }
 
 /* Arrows */
@@ -173,7 +218,7 @@ main {
 .home-info,
 .error-message {
   font-size: 1.2em;
-  margin: 0; /* Remove the default margins for paragraphs from Bootstrap */
+  margin: 0; /* remove the default margins for paragraphs from Bootstrap */
 }
 
 .error-message {

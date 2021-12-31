@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { HashRouter } from "react-router-dom";
 import { config } from "react-transition-group";
-import App, { Direction } from "../tsx/App";
+import App, { Page, Transition } from "../tsx/App";
 
 let buttonAbout: HTMLAnchorElement;
 let buttonProjects: HTMLAnchorElement;
@@ -17,6 +17,7 @@ type DOMElements = {
 const setupTests = (): DOMElements => {
   // Disable transitions from react-transition-group
   config.disabled = true;
+  window.location.hash = ""; // start at the home page before every test
 
   // App must be wrapped in a HashRouter
   render(
@@ -83,28 +84,28 @@ const testBaseContent = (): void => {
   expect(footerRight).toBeInTheDocument();
 };
 
-const testFocusAbout = (): void => {
+const testFocusAbout = () => {
   expect(window.location.hash).toBe("#/about");
   expect(buttonAbout.classList).toContain("active");
   expect(buttonProjects.classList).not.toContain("active");
   expect(buttonContact.classList).not.toContain("active");
 };
 
-const testFocusProjects = (): void => {
+const testFocusProjects = () => {
   expect(window.location.hash).toBe("#/projects");
   expect(buttonAbout.classList).not.toContain("active");
   expect(buttonProjects.classList).toContain("active");
   expect(buttonContact.classList).not.toContain("active");
 };
 
-const testFocusContact = (): void => {
+const testFocusContact = () => {
   expect(window.location.hash).toBe("#/contact");
   expect(buttonAbout.classList).not.toContain("active");
   expect(buttonProjects.classList).not.toContain("active");
   expect(buttonContact.classList).toContain("active");
 };
 
-const testNavbar = (source: string): void => {
+const testNavbar = (source: Page) => {
   // Tests to ensure the nav buttons navigate to the correct component
   it("navigates to About after clicking About", () => {
     fireEvent.click(buttonAbout);
@@ -113,12 +114,23 @@ const testNavbar = (source: string): void => {
     testFocusAbout();
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
 
-    // Check that the next component slides in the correct direction
-    const slideDirection: Direction =
-      source === "Projects" || source === "Contact"
-        ? Direction.Right
-        : Direction.Left;
-    expect(transitionGroup.classList).toContain(slideDirection);
+    // Check that the correct transition plays to the next component
+    let transition: Transition;
+
+    switch (source) {
+      case Page.About:
+        transition = Transition.SlideLeft;
+        break;
+      case Page.Projects:
+      case Page.ProjectDetails:
+      case Page.Contact:
+        transition = Transition.SlideRight;
+        break;
+      default:
+        transition = Transition.Fade;
+    }
+
+    expect(transitionGroup.classList).toContain(transition);
   });
 
   it("navigates to Projects after clicking Projects", () => {
@@ -126,9 +138,21 @@ const testNavbar = (source: string): void => {
     testFocusProjects();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    const slideDirection: Direction =
-      source === "Contact" ? Direction.Right : Direction.Left;
-    expect(transitionGroup.classList).toContain(slideDirection);
+    let transition: Transition;
+
+    switch (source) {
+      case Page.About:
+      case Page.Projects:
+        transition = Transition.SlideLeft;
+        break;
+      case Page.Contact:
+        transition = Transition.SlideRight;
+        break;
+      default:
+        transition = Transition.Fade;
+    }
+
+    expect(transitionGroup.classList).toContain(transition);
   });
 
   it("navigates to Contact after clicking Contact", () => {
@@ -136,9 +160,22 @@ const testNavbar = (source: string): void => {
     testFocusContact();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    const slideDirection: Direction =
-      source === "Contact" ? Direction.Right : Direction.Left;
-    expect(transitionGroup.classList).toContain(slideDirection);
+    let transition: Transition;
+
+    switch (source) {
+      case Page.About:
+      case Page.Projects:
+      case Page.ProjectDetails:
+        transition = Transition.SlideLeft;
+        break;
+      case Page.Contact:
+        transition = Transition.SlideRight;
+        break;
+      default:
+        transition = Transition.Fade;
+    }
+
+    expect(transitionGroup.classList).toContain(transition);
   });
 };
 

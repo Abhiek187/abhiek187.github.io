@@ -5,7 +5,7 @@ import { Link, Route, Routes } from "react-router-dom";
 
 import "../scss/Projects.scss";
 import projectData from "../models/projects.json";
-import { Direction, OnClickProp } from "./App";
+import { OnClickProp, Page } from "./App";
 import ProjectDetails from "./ProjectDetails";
 import ProjectError from "./ProjectError";
 
@@ -58,7 +58,7 @@ const Projects: React.FC<ProjectsProps> = ({
     }
   }, [isDarkMode]);
 
-  const scrollList = (index: number, direction: Direction) => {
+  const scrollList = (index: number, scrollRight: boolean) => {
     const { current: projectsLists } = projectsListRef;
     if (projectsLists[index] === null) return;
 
@@ -75,10 +75,9 @@ const Projects: React.FC<ProjectsProps> = ({
     // The cards have a width of 300px + 8px * 2 of margin
     projectsLists[index]!.scrollBy({
       top: 0,
-      left:
-        direction === Direction.Right
-          ? cardsToScroll * cardLength
-          : -cardsToScroll * cardLength,
+      left: scrollRight
+        ? cardsToScroll * cardLength
+        : -cardsToScroll * cardLength,
       behavior: "smooth",
     });
 
@@ -118,7 +117,7 @@ const Projects: React.FC<ProjectsProps> = ({
         className="arrow-left"
         to="/about"
         aria-label="Go to About"
-        onClick={() => onClickLink("about")}
+        onClick={() => onClickLink(Page.About)}
       >
         <FontAwesomeIcon icon="arrow-left" />
       </Link>
@@ -130,7 +129,7 @@ const Projects: React.FC<ProjectsProps> = ({
             path="/"
             element={
               /* <> === React.Fragment */
-              <>
+              <div ref={innerRef}>
                 <ul className="projects-full-list">
                   {(Object.keys(projects) as [ProjectTypes]).map(
                     (type, index) => (
@@ -146,7 +145,7 @@ const Projects: React.FC<ProjectsProps> = ({
                             variant={isDarkMode ? "info" : "primary"}
                             type="button"
                             className="projects-scroll-left"
-                            onClick={() => scrollList(index, Direction.Left)}
+                            onClick={() => scrollList(index, false)}
                             aria-label={`Scroll ${type} projects left`}
                           >
                             <FontAwesomeIcon icon="arrow-left" />
@@ -177,6 +176,9 @@ const Projects: React.FC<ProjectsProps> = ({
                                   className={`projects-link ${
                                     isDarkMode ? "text-light" : "text-dark"
                                   }`}
+                                  onClick={() =>
+                                    onClickLink(Page.ProjectDetails)
+                                  }
                                   aria-label={`Card for ${project.name}, click to learn more`}
                                 >
                                   <Card.Title
@@ -205,7 +207,7 @@ const Projects: React.FC<ProjectsProps> = ({
                             variant={isDarkMode ? "info" : "primary"}
                             type="button"
                             className="projects-scroll-right"
-                            onClick={() => scrollList(index, Direction.Right)}
+                            onClick={() => scrollList(index, true)}
                             aria-label={`Scroll ${type} projects right`}
                           >
                             <FontAwesomeIcon icon="arrow-right" />
@@ -227,17 +229,25 @@ const Projects: React.FC<ProjectsProps> = ({
                     GitHub!
                   </a>
                 </p>
-              </>
+              </div>
             }
           />
           <Route
             path=":projectType/:projectId"
-            element={<ProjectDetails isDarkMode={isDarkMode} />}
+            element={
+              <ProjectDetails
+                onClickLink={onClickLink}
+                innerRef={innerRef}
+                isDarkMode={isDarkMode}
+              />
+            }
           />
           {/* Otherwise this is not a valid path */}
           <Route
             path=":projectType"
-            element={<ProjectError isDarkMode={isDarkMode} />}
+            element={
+              <ProjectError innerRef={innerRef} isDarkMode={isDarkMode} />
+            }
           />
         </Routes>
       </div>
@@ -245,7 +255,7 @@ const Projects: React.FC<ProjectsProps> = ({
         className="arrow-right"
         to="/contact"
         aria-label="Go to Contact"
-        onClick={() => onClickLink("contact")}
+        onClick={() => onClickLink(Page.Contact)}
       >
         <FontAwesomeIcon icon="arrow-right" />
       </Link>

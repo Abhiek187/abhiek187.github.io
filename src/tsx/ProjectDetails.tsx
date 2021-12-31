@@ -12,8 +12,9 @@ import "../scss/ProjectDetails.scss";
 import { Project, ProjectTypes } from "./Projects";
 import ProjectError from "./ProjectError";
 import projectData from "../models/projects.json";
+import { OnClickProp, Page } from "./App";
 
-type ProjectDetailsProps = {
+type ProjectDetailsProps = OnClickProp & {
   isDarkMode: Boolean;
 };
 
@@ -26,7 +27,11 @@ type LocationStateProps = {
   from: string;
 };
 
-const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
+const ProjectDetails: React.FC<ProjectDetailsProps> = ({
+  onClickLink,
+  innerRef,
+  isDarkMode,
+}) => {
   // Get the project object (cool rhyme) from the project type and id
   const { projectType, projectId } = useParams<
     keyof ProjectParams
@@ -51,7 +56,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
     if (video !== null) {
       video.muted = true;
     }
-  });
+  }, [project?.name, videoRef]);
 
   if (projects === undefined || project === undefined) {
     return <ProjectError isDarkMode={isDarkMode} />;
@@ -59,6 +64,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
     return (
       <Card
         as="section"
+        ref={innerRef}
         className={`project-details container-fluid mx-auto mb-2 ${
           isDarkMode
             ? "text-light bg-dark border-light"
@@ -72,6 +78,8 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ isDarkMode }) => {
           className={`projects-back ${isDarkMode ? "text-light" : "text-dark"}`}
           aria-label="Go back"
           onClick={() => {
+            onClickLink(Page.Projects);
+
             // Go back if the previous page was projects or push to go to projects
             locationState?.from === "#/projects"
               ? navigate(-1) // go back one page

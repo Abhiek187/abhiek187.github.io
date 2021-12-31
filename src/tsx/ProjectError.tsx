@@ -6,13 +6,18 @@ import { ProjectParams } from "./ProjectDetails";
 
 type ProjectErrorProps = {
   isDarkMode: Boolean;
+  innerRef?: React.RefObject<HTMLDivElement>; // optional
 };
 
-const ProjectError: React.FC<ProjectErrorProps> = ({ isDarkMode }) => {
+const ProjectError: React.FC<ProjectErrorProps> = ({
+  isDarkMode,
+  innerRef = undefined,
+}) => {
   const { projectType, projectId } = useParams<ProjectParams>();
 
   return (
     <section
+      ref={innerRef}
       className={`project-error container-fluid fs-5 ${
         isDarkMode ? "text-warning" : ""
       }`}
