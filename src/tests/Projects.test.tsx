@@ -46,6 +46,14 @@ describe("Projects", () => {
 
       expect(typeHeading).toBeInTheDocument();
     }
+
+    // Check that the bottom GitHub link is present as well
+    const githubLink = screen.getByRole("link", {
+      name: "here.",
+    }) as HTMLAnchorElement;
+    expect(githubLink.href).toBe(
+      "https://github.com/Abhiek187/abhiek187.github.io"
+    );
   });
 
   it("shows each project card", () => {
