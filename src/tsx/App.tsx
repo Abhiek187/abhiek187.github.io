@@ -73,11 +73,14 @@ const App: React.FC = () => {
     const source: string = location.pathname;
 
     // Check how to transition between components based on the source and destination
-    if (source === "/contact") {
+    if (source === "/") {
+      // At Home, always fade
+      setTransition(Transition.Fade);
+    } else if (source === "/contact") {
       // At Contact, always slide right
       setTransition(Transition.SlideRight);
     } else if (source === "/about") {
-      // At About, always slide left (default)
+      // At About, always slide left
       setTransition(Transition.SlideLeft);
     } else {
       // At Projects, check which link was clicked
