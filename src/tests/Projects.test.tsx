@@ -48,9 +48,9 @@ describe("Projects", () => {
     }
 
     // Check that the bottom GitHub link is present as well
-    const githubLink = screen.getByRole("link", {
-      name: "here.",
-    }) as HTMLAnchorElement;
+    const githubLink = screen.getByLabelText(
+      /GitHub repo for My Portfolio Website/i
+    ) as HTMLAnchorElement;
     expect(githubLink.href).toBe(
       "https://github.com/Abhiek187/abhiek187.github.io"
     );

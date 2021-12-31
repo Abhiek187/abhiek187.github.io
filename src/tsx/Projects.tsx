@@ -219,15 +219,17 @@ const Projects: React.FC<ProjectsProps> = ({
                   )}
                 </ul>
                 <p className="projects-addendum">
-                  P.S. Check out the GitHub repo for this website{" "}
+                  P.S. Check out the{" "}
                   <a
                     className="projects-github-link"
                     href="https://github.com/Abhiek187/abhiek187.github.io"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="GitHub repo for My Portfolio Website"
                   >
-                    here.
-                  </a>
+                    GitHub repo
+                  </a>{" "}
+                  for this website as well.
                 </p>
               </div>
             }
