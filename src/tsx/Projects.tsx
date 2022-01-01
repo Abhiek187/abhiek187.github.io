@@ -128,7 +128,6 @@ const Projects: React.FC<ProjectsProps> = ({
           <Route
             path="/"
             element={
-              /* <> === React.Fragment */
               <div ref={innerRef}>
                 <ul className="projects-full-list">
                   {(Object.keys(projects) as [ProjectTypes]).map(
