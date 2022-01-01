@@ -105,6 +105,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
           aria-hidden={true}
         >
           {project.gif !== null && (
+            /* <> === React.Fragment */
             <>
               <source
                 src={`${project.gif}.webm`}
