@@ -1,5 +1,7 @@
 # My Website
 
+[![Node.js CI](https://github.com/Abhiek187/abhiek187.github.io/actions/workflows/node.js.yml/badge.svg?branch=feat%2Freact-ci)](https://github.com/Abhiek187/abhiek187.github.io/actions/workflows/node.js.yml)
+
 ![Screenshot of my website](screenshot.png)
 
 ## About
@@ -18,6 +20,7 @@ This is my portfolio website created in React, inspired by Udacity's Front-End W
 - Best practices for Progressive Web Apps
 - Efficient delivery of static content by utilizing WebP images and WebM videos
 - Search Engine Optimization (SEO)
+- CI/CD workflows after every commit or PR to main
 - Continuous updates and improvements
 
 ## Dependencies
