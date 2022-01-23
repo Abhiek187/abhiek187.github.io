@@ -1,6 +1,6 @@
 # My Website
 
-[![Node.js CI](https://github.com/Abhiek187/abhiek187.github.io/actions/workflows/node.js.yml/badge.svg?branch=feat%2Freact-ci)](https://github.com/Abhiek187/abhiek187.github.io/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/Abhiek187/abhiek187.github.io/actions/workflows/node.js.yml/badge.svg)](https://github.com/Abhiek187/abhiek187.github.io/actions/workflows/node.js.yml)
 
 ![Screenshot of my website](screenshot.png)
 
