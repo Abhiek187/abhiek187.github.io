@@ -1,4 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// @ts-ignore
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import React, { useEffect, useRef } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, Route, Routes } from "react-router-dom";
@@ -119,7 +121,7 @@ const Projects: React.FC<ProjectsProps> = ({
         aria-label="Go to About"
         onClick={() => onClickLink(Page.About)}
       >
-        <FontAwesomeIcon icon="arrow-left" />
+        <FontAwesomeIcon icon={solid("arrow-left")} />
       </Link>
       <div className="projects-wrapper">
         <h3 className="projects-heading">Projects</h3>
@@ -147,7 +149,7 @@ const Projects: React.FC<ProjectsProps> = ({
                             onClick={() => scrollList(index, false)}
                             aria-label={`Scroll ${type} projects left`}
                           >
-                            <FontAwesomeIcon icon="arrow-left" />
+                            <FontAwesomeIcon icon={solid("arrow-left")} />
                           </Button>
                           <ul
                             className="projects-list"
@@ -209,7 +211,7 @@ const Projects: React.FC<ProjectsProps> = ({
                             onClick={() => scrollList(index, true)}
                             aria-label={`Scroll ${type} projects right`}
                           >
-                            <FontAwesomeIcon icon="arrow-right" />
+                            <FontAwesomeIcon icon={solid("arrow-right")} />
                           </Button>
                         </div>
                         <hr />
@@ -258,7 +260,7 @@ const Projects: React.FC<ProjectsProps> = ({
         aria-label="Go to Contact"
         onClick={() => onClickLink(Page.Contact)}
       >
-        <FontAwesomeIcon icon="arrow-right" />
+        <FontAwesomeIcon icon={solid("arrow-right")} />
       </Link>
     </main>
   );

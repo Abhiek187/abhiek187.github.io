@@ -1,4 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// @ts-ignore
+import { brands, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -30,7 +32,7 @@ const Contact: React.FC<ContactProps> = ({
         aria-label="Go to Projects"
         onClick={() => onClickLink(Page.Projects)}
       >
-        <FontAwesomeIcon icon="arrow-left" />
+        <FontAwesomeIcon icon={solid("arrow-left")} />
       </Link>
       <div className="contact-wrapper">
         <h3 className="contact-heading">Contact</h3>
@@ -43,7 +45,7 @@ const Contact: React.FC<ContactProps> = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon="file-pdf" /> Resume
+            <FontAwesomeIcon icon={solid("file-pdf")} /> Resume
           </Button>
           <Button
             variant="outline-primary"
@@ -52,7 +54,7 @@ const Contact: React.FC<ContactProps> = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={["fab", "linkedin-in"]} /> LinkedIn
+            <FontAwesomeIcon icon={brands("linkedin-in")} /> LinkedIn
           </Button>
           <Button
             variant={`outline-${isDarkMode ? "light" : "dark"}`}
@@ -61,7 +63,7 @@ const Contact: React.FC<ContactProps> = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={["fab", "github"]} /> GitHub
+            <FontAwesomeIcon icon={brands("github")} /> GitHub
           </Button>
           {/* Opens default email program */}
           <Button
@@ -70,7 +72,7 @@ const Contact: React.FC<ContactProps> = ({
             href="mailto:achaudhuri2011@yahoo.com"
             target="_top"
           >
-            <FontAwesomeIcon icon="envelope" /> Email
+            <FontAwesomeIcon icon={solid("envelope")} /> Email
           </Button>
         </span>
       </div>
