@@ -43,10 +43,12 @@ main {
     flex: 1;
     padding-right: 10px;
     text-align: right;
+    cursor: pointer;
   }
 
   #theme-switch {
     margin-left: 0;
+    cursor: pointer;
   }
 }
 
@@ -160,12 +162,6 @@ main {
   a {
     text-decoration: none; /* no underline normally */
   }
-
-  .links-about:hover,
-  .links-projects:hover,
-  .links-contact:hover {
-    background-color: lightgray;
-  }
 }
 
 .sticky {
@@ -193,6 +189,7 @@ main {
   align-items: center;
   text-decoration: none;
   width: 2.5%;
+  transition: background-color 0.15s ease-in-out;
 }
 
 .arrow-left:hover,

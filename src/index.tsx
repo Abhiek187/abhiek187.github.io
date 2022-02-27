@@ -1,13 +1,3 @@
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faArrowLeft,
-  faArrowRight,
-  faEnvelope,
-  faExternalLinkAlt,
-  faFilePdf,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
-import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter } from "react-router-dom";
@@ -15,18 +5,6 @@ import { HashRouter } from "react-router-dom";
 import "./index.scss";
 import App from "./tsx/App";
 import * as serviceWorker from "./serviceWorker";
-
-// Add font awesome icons used in the app
-library.add(
-  faArrowLeft,
-  faArrowRight,
-  faFilePdf,
-  faLinkedinIn,
-  faGithub,
-  faEnvelope,
-  faTimes,
-  faExternalLinkAlt
-);
 
 ReactDOM.render(
   // Enable react router and work in GitHub Pages
