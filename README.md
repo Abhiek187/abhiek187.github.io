@@ -107,7 +107,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Branches
 
-Due to the way GitHub Pages is set up for user pages, this project has been split into 3 branches:
+Due to the way GitHub Pages is set up for user pages, this project has been split into 2 branches:
 
 ### main
 
@@ -116,10 +116,6 @@ This is the default branch for this repo, where all production code is held. See
 ### gh-pages
 
 This is the default branch gh-pages uses for deployment. It has all the minified content needed to properly deploy this on [abhiek187.github.io](https://abhiek187.github.io).
-
-### master
-
-GitHub used to require that all user pages be deployed to master. But as of 2020, any branch can host a user page. However, gh-pages will still throw an error if there isn't a master branch. So, this branch is used as a backup for gh-pages.
 
 ## Miscellaneous
 
