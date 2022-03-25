@@ -15,11 +15,12 @@
     {
       "src": "icon/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#ffffff",
+  "display": "minimal-ui",
+  "theme_color": "#000000",
   "background_color": "#ffffff"
 }
