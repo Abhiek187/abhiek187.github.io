@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOMClient from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 
 import "./index.scss";
@@ -7,14 +7,16 @@ import App from "./tsx/App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 
-ReactDOM.render(
+const container = document.getElementById("root") as HTMLDivElement;
+const root: ReactDOMClient.Root = ReactDOMClient.createRoot(container);
+
+root.render(
   // Enable react router and work in GitHub Pages
   <React.StrictMode>
     <HashRouter basename={process.env.PUBLIC_URL}>
       <App />
     </HashRouter>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
