@@ -19,7 +19,7 @@
     "sass": "^1.50.0",
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4",
-    "workbox-core": "^6.5.2",
+    "workbox-core": "^6.5.3",
     "workbox-expiration": "^6.5.2",
     "workbox-precaching": "^6.5.2",
     "workbox-routing": "^6.5.2",
