@@ -31,7 +31,7 @@ const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
   promoted to being the marketing director to increase the outreach of the club. After that, I became \
   the president of N2E, where I handled the process of recruiting 11 instructors and managing \
   workshops in 7 different languages. Through my time and commitment, I increased workshop attendance \
-  by 40% and earned a Leadership & Service Award from Rutgers.
+  by 50% and earned a Leadership & Service Award from Rutgers.
   
   My interests include front-end web and mobile development and machine learning. I regularly work on \
   and improve my projects on GitHub. Some of my past projects include a space shooter created in iOS, \
