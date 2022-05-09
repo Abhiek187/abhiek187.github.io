@@ -87,7 +87,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-To run the production build, run `serve -s build` and open [http://localhost:5000](http://localhost:5000) to view it in the browser.
+To run the production build, run `serve -s build` and open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm run eject`
 
