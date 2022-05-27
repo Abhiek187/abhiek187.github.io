@@ -48,9 +48,6 @@ const Projects: React.FC<ProjectsProps> = ({
 
   useEffect(() => {
     document.title = "Abhishek Chaudhuri - Projects";
-    document.querySelector(".links-about")?.classList.remove("active");
-    document.querySelector(".links-projects")?.classList.add("active");
-    document.querySelector(".links-contact")?.classList.remove("active");
 
     // Hide the scrolling buttons if possible on startup
     for (const list of projectsListRef.current) {

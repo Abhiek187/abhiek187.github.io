@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef } from "react";
+import React, { useState, useEffect, createRef, useRef } from "react";
 import { Button, ButtonGroup, Form, FormCheck } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Route, Routes, useLocation } from "react-router-dom";
@@ -43,20 +43,25 @@ const App: React.FC = () => {
   const nodeRef = createRef<HTMLDivElement>(); // removes the need for CSSTransition to call findDOMNode
   const location = useLocation();
 
+  // DOM elements
+  const navbar = useRef<HTMLDivElement>(null);
+  const linkAbout = useRef<HTMLButtonElement>(null);
+  const linkProjects = useRef<HTMLButtonElement>(null);
+  const linkContact = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
-    let navbar: HTMLElement | null = document.querySelector(".links");
-    if (navbar === null) return;
-    let navPosition: number = navbar.offsetTop;
+    if (navbar.current === null) return;
+    let navPosition: number = navbar.current.offsetTop;
 
     window.onscroll = () => {
       // If the scroll position is beyond the navbar, make it sticky
-      navbar = document.querySelector(".links");
-      if (navbar === null) return;
+      if (navbar.current === null) return;
       // Don't set navPosition to 0
-      navPosition = navbar.offsetTop === 0 ? navPosition : navbar.offsetTop;
+      navPosition =
+        navbar.current.offsetTop === 0 ? navPosition : navbar.current.offsetTop;
       window.pageYOffset >= navPosition
-        ? navbar.classList.add("sticky")
-        : navbar.classList.remove("sticky");
+        ? navbar.current.classList.add("sticky")
+        : navbar.current.classList.remove("sticky");
     };
   }, []); // only componentDidMount()
 
@@ -73,12 +78,6 @@ const App: React.FC = () => {
       document.title = "Abhishek Chaudhuri - Error";
     }
   }, [location]);
-
-  const htmlDecode = (input: string): string | null => {
-    // Unescape HTML characters (https://stackoverflow.com/a/34064434)
-    const doc: Document = new DOMParser().parseFromString(input, "text/html");
-    return doc.documentElement.textContent;
-  };
 
   const changeTransition = (dest: Page) => {
     const source: string = location.pathname;
@@ -117,7 +116,7 @@ const App: React.FC = () => {
           htmlFor="theme-switch"
           aria-label={isDarkMode ? "dark mode on" : "dark mode off"}
         >
-          {isDarkMode ? htmlDecode("&#x1F31C;") : htmlDecode("&#x1F31E;")}
+          {isDarkMode ? "🌜" : "🌞"}
         </FormCheck.Label>
         <FormCheck.Input
           type="checkbox"
@@ -131,13 +130,19 @@ const App: React.FC = () => {
           Software Engineer | Always Learning and Growing
         </h2>
       </header>
-      <ButtonGroup as="nav" className="links container-fluid">
+      <ButtonGroup as="nav" className="links container-fluid" ref={navbar}>
         {/* Redirect routes without reloading the browser */}
         <LinkContainer to="about">
           <Button
             variant="danger"
             className="links-about"
-            onClick={() => changeTransition(Page.About)}
+            ref={linkAbout}
+            onClick={() => {
+              changeTransition(Page.About);
+              linkAbout.current?.classList.add("active");
+              linkProjects.current?.classList.remove("active");
+              linkContact.current?.classList.remove("active");
+            }}
           >
             About
           </Button>
@@ -146,7 +151,13 @@ const App: React.FC = () => {
           <Button
             variant="warning"
             className="links-projects"
-            onClick={() => changeTransition(Page.Projects)}
+            ref={linkProjects}
+            onClick={() => {
+              changeTransition(Page.Projects);
+              linkAbout.current?.classList.remove("active");
+              linkProjects.current?.classList.add("active");
+              linkContact.current?.classList.remove("active");
+            }}
           >
             Projects
           </Button>
@@ -155,7 +166,13 @@ const App: React.FC = () => {
           <Button
             variant="success"
             className="links-contact"
-            onClick={() => changeTransition(Page.Contact)}
+            ref={linkContact}
+            onClick={() => {
+              changeTransition(Page.Contact);
+              linkAbout.current?.classList.remove("active");
+              linkProjects.current?.classList.remove("active");
+              linkContact.current?.classList.add("active");
+            }}
           >
             Contact
           </Button>

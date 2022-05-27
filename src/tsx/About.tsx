@@ -10,9 +10,6 @@ import { OnClickProp, Page } from "./App";
 const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
   useEffect(() => {
     document.title = "Abhishek Chaudhuri - About";
-    document.querySelector(".links-about")?.classList.add("active");
-    document.querySelector(".links-projects")?.classList.remove("active");
-    document.querySelector(".links-contact")?.classList.remove("active");
   }, []);
 
   // Forward slashes (\) prevent all the newlines from being rendered

@@ -19,9 +19,6 @@ const Contact: React.FC<ContactProps> = ({
 }) => {
   useEffect(() => {
     document.title = "Abhishek Chaudhuri - Contact";
-    document.querySelector(".links-about")?.classList.remove("active");
-    document.querySelector(".links-projects")?.classList.remove("active");
-    document.querySelector(".links-contact")?.classList.add("active");
   }, []);
 
   return (
