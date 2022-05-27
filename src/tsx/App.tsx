@@ -79,12 +79,6 @@ const App: React.FC = () => {
     }
   }, [location]);
 
-  const htmlDecode = (input: string): string | null => {
-    // Unescape HTML characters (https://stackoverflow.com/a/34064434)
-    const doc: Document = new DOMParser().parseFromString(input, "text/html");
-    return doc.documentElement.textContent;
-  };
-
   const changeTransition = (dest: Page) => {
     const source: string = location.pathname;
 
@@ -122,7 +116,7 @@ const App: React.FC = () => {
           htmlFor="theme-switch"
           aria-label={isDarkMode ? "dark mode on" : "dark mode off"}
         >
-          {isDarkMode ? htmlDecode("&#x1F31C;") : htmlDecode("&#x1F31E;")}
+          {isDarkMode ? "🌜" : "🌞"}
         </FormCheck.Label>
         <FormCheck.Input
           type="checkbox"
