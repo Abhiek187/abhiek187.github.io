@@ -35,7 +35,7 @@ To create a local copy, you'll need the following command-line programs:
 - git: `apt-get install git`
 - npm (part of Node.js):
 
-```
+```bash
 sudo apt update
 sudo apt install nodejs npm
 ```
@@ -50,7 +50,7 @@ Click on [this link](https://abhiek187.github.io) to view my website on GitHub P
 
 Start by setting up the local environment:
 
-```
+```bash
 git clone https://github.com/Abhiek187/abhiek187.github.io.git
 cd abhiek187.github.io
 npm install
