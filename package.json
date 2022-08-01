@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://abhiek187.github.io",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/fontawesome-svg-core": "^6.1.2",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
@@ -22,7 +22,7 @@
     "workbox-core": "^6.5.3",
     "workbox-expiration": "^6.5.3",
     "workbox-precaching": "^6.5.3",
-    "workbox-routing": "^6.5.3",
+    "workbox-routing": "^6.5.4",
     "workbox-strategies": "^6.5.3"
   },
   "devDependencies": {
