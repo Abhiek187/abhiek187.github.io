@@ -111,7 +111,7 @@
         "Financial Modeling Prep",
         "SQLite"
       ],
-      "website": "https://how-to-stock.herokuapp.com/",
+      "website": "https://how-to-stock-3.fly.dev/",
       "repo": "https://github.com/Abhiek187/how-to-stock"
     },
     {
@@ -151,7 +151,7 @@
       "gif": "/img/web/giphy-gif-search",
       "about": "A showcase of the GIPHY API created at HackRU Spring 2018. By default, the trending GIFs are shown, but users can also search by keyword.",
       "technology": ["Node.js", "Handlebars", "CSS", "GIPHY"],
-      "website": "https://glacial-garden-54215.herokuapp.com/",
+      "website": "https://glacial-garden-54215.onrender.com/",
       "repo": "https://github.com/Abhiek187/Giphy-Gif-Search"
     }
   ],
