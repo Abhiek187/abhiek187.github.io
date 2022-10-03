@@ -14,31 +14,42 @@ const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
 
   // Forward slashes (\) prevent all the newlines from being rendered
   const bio: string = `
-  Why hello there! My name is Abhishek. I'm a software engineer with a desire to innovate and \
-  improve society one line of code at a time. Whether it's a website, a mobile app, or an API, I \
-  enjoy building applications that benefit the end-user.
+  Why hello there! My name is Abhishek. I'm a software engineer eager to innovate and improve \
+  society one line of code at a time. Whether it's a website, a mobile app, or an API, I enjoy \
+  building applications that benefit the end-user.
 
   The three words I live by are dream, conquer, and inspire. I dream of the opportunities that lie \
-  ahead. I conquer the challenges that come my way. And I inspire others by helping them go through a \
-  similar journey. The cycle always repeats itself as new challenges present themselves.
+  ahead. I conquer the challenges that come my way. And I inspire others by helping them go through \
+  a similar journey. The cycle repeats as new challenges present themselves. I'm always learning \
+  new things and growing as a software engineer.
 
-  I'm a recent graduate of Rutgers University-New Brunswick. I studied Electrical & Computer \
-  Engineering as an undergraduate and Software Engineering as a graduate. During my time, I joined \
-  the N2E coding club where I taught students how to code from Novice 2 Expert. Pretty soon, I was \
-  promoted to being the marketing director to increase the outreach of the club. After that, I became \
-  the president of N2E, where I handled the process of recruiting 11 instructors and managing \
-  workshops in 7 different languages. Through my time and commitment, I increased workshop attendance \
-  by 50% and earned a Leadership & Service Award from Rutgers.
+  I currently work at Prudential Financial as an Associate Mobile Developer. I develop mobile \
+  applications & frameworks for the enterprise, with an emphasis on developing secure, \
+  offline-first native iOS & Android apps for businesses in emerging markets. Eventually, I took \
+  on more of a leadership role as I laid the roadmap for delivering features in each sprint \
+  during PI planning.
   
-  My interests include front-end web and mobile development and machine learning. I regularly work on \
-  and improve my projects on GitHub. Some of my past projects include a space shooter created in iOS, \
-  an Android game that uses machine learning to recognize handwritten digits, a cheat sheet of all \
-  the languages I know, and of course, this very website!
-
-  Besides coding, I enjoy exercising, playing the flute, and playing video games in my spare time.
+  As a team player, I regularly help my teammates through code reviews, debug sessions, and \
+  detailed documentation. I always show empathy by making sure future teammates don't experience \
+  the same roadblocks I dealt with. For example, I shared 100+ pages of technical documentation \
+  with my teammates and other engineers using Confluence. I also helped develop reference apps for \
+  iOS, Android, and React Native that standardized MVVM architecture patterns, REST APIs, and \
+  OAuth authentication with biometrics. By streamlining knowledge sharing and app development, \
+  I reduced the amount of time engineers needed to learn new tech, allowing them to focus on \
+  delivering business outcomes.
   
-  In the future, I plan to expand my knowledge of front-end and back-end development and become a \
-  full-stack developer.
+  I'm also not afraid to go outside my comfort zone. My role goes beyond mobile development, such \
+  as developing websites, APIs, or shell scripts. During a company hackathon, I quickly learned \
+  how to build an Angular website that monitored the status of various Prudential resources in \
+  1 week. I received praise from senior executives for going above and beyond with the front end \
+  of the website.
+  
+  My interests include full-stack web and mobile development, with a fascination for cloud computing \
+  and machine learning. I regularly work on and improve my projects on GitHub. Some of my past \
+  projects include a space shooter created in iOS, an Android game that uses machine learning to \
+  recognize handwritten digits, a cheat sheet of all the languages I know, and of course, this very \
+  website! Besides coding, I enjoy exercising, playing the flute, and playing video games in my \
+  spare time.
   `;
 
   return (
@@ -50,7 +61,7 @@ const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
             className="about-headshot"
             src="/img/headshot.webp"
             alt="Headshot of Abhishek"
-            width="233.33"
+            width="262.5"
             height="175"
           />
           <p className="about-bio">{bio}</p>
