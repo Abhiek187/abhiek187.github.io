@@ -23,7 +23,7 @@ const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
   a similar journey. The cycle repeats as new challenges present themselves. I'm always learning \
   new things and growing as a software engineer.
 
-  I currently work at Prudential Financial as an Associate Mobile Developer. I develop mobile \
+  I currently work at Prudential Financial as a Software Engineer. I develop mobile \
   applications & frameworks for the enterprise, with an emphasis on developing secure, \
   offline-first native iOS & Android apps for businesses in emerging markets. Eventually, I took \
   on more of a leadership role as I laid the roadmap for delivering features in each sprint \
