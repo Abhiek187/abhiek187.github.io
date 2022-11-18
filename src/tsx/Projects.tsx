@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // @ts-ignore
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import React, { useEffect, useRef } from "react";
+import { Octokit } from "octokit";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, Route, Routes } from "react-router-dom";
 
@@ -10,6 +11,7 @@ import projectData from "../models/projects.json";
 import { OnClickProp, Page } from "./App";
 import ProjectDetails from "./ProjectDetails";
 import ProjectError from "./ProjectError";
+import { OctokitResponse } from "@octokit/types";
 
 // Type definitions of the JSON files
 export interface Project {
@@ -46,6 +48,48 @@ const Projects: React.FC<ProjectsProps> = ({
     Array(Object.keys(projects).length)
   );
 
+  const getGithubStats = useCallback(async () => {
+    const octokit = new Octokit();
+
+    // Call the GitHub API for each project in parallel
+    // Rate limit of 60/hr w/o a token and 5000/hr with a token
+    // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#requests-from-personal-accounts
+    const reqs: Promise<OctokitResponse<any, number>>[] = [];
+
+    for (const projectType of Object.keys(projects) as [ProjectTypes]) {
+      for (const project of projects[projectType]) {
+        // Get the repo name from the end of the repo URL
+        const repoSplit = project.repo.split("/");
+        const repoName = repoSplit[repoSplit.length - 1];
+
+        const req = octokit.request("GET /repos/{owner}/{repo}", {
+          owner: "Abhiek187",
+          repo: repoName,
+        });
+        reqs.push(req);
+      }
+    }
+
+    // Then collect all the results and display for each project
+    // Promise.all fails fast, while allSettled will handle all promises
+    const resps = await Promise.allSettled(reqs);
+
+    for (const resp of resps) {
+      if (resp.status === "rejected") {
+        console.error(resp.reason);
+        return;
+      }
+
+      const { data } = resp.value;
+      const watchers = data.subscribers_count;
+      const forks = data.forks; // can also use forks_count or network_count
+      // Stars used to be called watchers on GitHub
+      const stars = data.watchers; // can also use stargazers_count or watchers_count
+
+      console.log(`${watchers} watchers, ${forks} forks, and ${stars} stars`);
+    }
+  }, [projects]);
+
   useEffect(() => {
     document.title = "Abhishek Chaudhuri - Projects";
 
@@ -55,7 +99,9 @@ const Projects: React.FC<ProjectsProps> = ({
         updateScrollButtonVisibility(list);
       }
     }
-  }, [isDarkMode]);
+
+    getGithubStats();
+  }, [getGithubStats, isDarkMode]);
 
   const scrollList = (index: number, scrollRight: boolean) => {
     const { current: projectsLists } = projectsListRef;
