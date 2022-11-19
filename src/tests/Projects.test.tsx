@@ -31,7 +31,7 @@ describe("Projects", () => {
     testBaseContent();
 
     // Check that each project type is shown
-    for (const type of Object.keys(projects) as [ProjectTypes]) {
+    for (const type of Object.keys(projects) as ProjectTypes[]) {
       let typeHeading: HTMLHeadingElement;
 
       if (type === "ios") {

@@ -20,7 +20,7 @@ export interface Project {
   image: string;
   gif: string | null;
   about: string;
-  technology: [string];
+  technology: string[];
   website: string | null;
   repo: string;
   watchers?: number;
@@ -65,7 +65,7 @@ const Projects: React.FC<ProjectsProps> = ({
     const reqs: Promise<UserRepos>[] = [];
     const flatProjects: Project[] = [];
 
-    for (const projectType of Object.keys(projects) as [ProjectTypes]) {
+    for (const projectType of Object.keys(projects) as ProjectTypes[]) {
       for (const project of projects[projectType]) {
         // Get the repo name from the end of the repo URL
         const repoSplit = project.repo.split("/");
@@ -101,7 +101,7 @@ const Projects: React.FC<ProjectsProps> = ({
     let pi = 0;
     const newProjects = { ...projects };
 
-    for (const projectType of Object.keys(projects) as [ProjectTypes]) {
+    for (const projectType of Object.keys(projects) as ProjectTypes[]) {
       for (let i = 0; i < projects[projectType].length; i++) {
         newProjects[projectType][i] = flatProjects[pi];
         pi++;

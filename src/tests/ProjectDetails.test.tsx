@@ -30,7 +30,7 @@ describe("Project Details", () => {
   });
 
   // Separate each test by type and name
-  for (const type of Object.keys(projects) as [ProjectTypes]) {
+  for (const type of Object.keys(projects) as ProjectTypes[]) {
     describe(`${type}`, () => {
       for (const project of projects[type]) {
         it(`displays all information about ${project.name}`, async () => {
