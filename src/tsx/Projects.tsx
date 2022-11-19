@@ -46,6 +46,8 @@ const Projects: React.FC<ProjectsProps> = ({
 }) => {
   // Set the type of the imported JSON
   const [projects, setProjects] = useState(projectData as ProjectsJSON);
+  const fetchedStats = useRef<Boolean>(false);
+
   // Save a reference to each project list
   const projectsListRef = useRef<(HTMLUListElement | null)[]>(
     Array(Object.keys(projects).length)
@@ -121,7 +123,11 @@ const Projects: React.FC<ProjectsProps> = ({
       }
     }
 
-    getGithubStats();
+    // Only fetch the stats once when the component loads
+    if (!fetchedStats.current) {
+      getGithubStats();
+      fetchedStats.current = true;
+    }
   }, [getGithubStats, isDarkMode]);
 
   const scrollList = (index: number, scrollRight: boolean) => {
