@@ -28,7 +28,8 @@ This is my portfolio website created in React, inspired by Udacity's Front-End W
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br>
 [React Router](https://reacttraining.com/react-router) was used to create the single-page experience.<br>
-[gh-pages](https://github.com/tschaub/gh-pages) was used to deploy the website to the gh-pages branch.
+[gh-pages](https://github.com/tschaub/gh-pages) was used to deploy the website to the gh-pages branch.<br>
+The [GitHub API](https://docs.github.com/en/rest) was used to get the watchers, forks, and stars from each repo.
 
 To create a local copy, you'll need the following command-line programs:
 

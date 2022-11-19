@@ -82,6 +82,8 @@
   .projects-link {
     text-decoration: none;
     height: 100%; /* allow the whole card to be clickable */
+    display: flex;
+    flex-direction: column;
   }
 }
 
