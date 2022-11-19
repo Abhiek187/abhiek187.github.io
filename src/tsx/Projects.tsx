@@ -248,7 +248,7 @@ const Projects: React.FC<ProjectsProps> = ({
                                   <Card.Text className="projects-about mx-1 my-2">
                                     {project.about}
                                   </Card.Text>
-                                  <Card.Footer>
+                                  <Card.Footer className="projects-footer mx-0">
                                     <span aria-label="blank watchers">
                                       <FontAwesomeIcon icon={solid("eye")} />{" "}
                                       {numberFormatter.format(888e6)}
