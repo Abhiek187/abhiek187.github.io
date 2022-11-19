@@ -187,6 +187,13 @@ const Projects: React.FC<ProjectsProps> = ({
   const showStat = (stat?: number): string =>
     stat === undefined ? "-" : numberFormatter.format(stat);
 
+  // Can't do short-circuiting since 0 is falsy
+  // Note that unit should be singular to pluralize it correctly
+  const showStatLabel = (unit: string, stat?: number): string =>
+    (stat === undefined ? "blank" : stat.toString()) +
+    " " +
+    (stat === 1 ? unit : `${unit}s`);
+
   return (
     <main className="projects container-fluid" ref={innerRef}>
       <Link
@@ -275,17 +282,32 @@ const Projects: React.FC<ProjectsProps> = ({
                                     {project.about}
                                   </Card.Text>
                                   <Card.Footer className="projects-footer mx-0">
-                                    <span aria-label="blank watchers">
+                                    <span
+                                      aria-label={`${showStatLabel(
+                                        "watcher",
+                                        project.watchers
+                                      )}`}
+                                    >
                                       <FontAwesomeIcon icon={solid("eye")} />{" "}
                                       {showStat(project.watchers)}
                                     </span>
-                                    <span aria-label="blank forks">
+                                    <span
+                                      aria-label={`${showStatLabel(
+                                        "fork",
+                                        project.forks
+                                      )}`}
+                                    >
                                       <FontAwesomeIcon
                                         icon={solid("code-fork")}
                                       />{" "}
                                       {showStat(project.forks)}
                                     </span>
-                                    <span aria-label="blank stars">
+                                    <span
+                                      aria-label={`${showStatLabel(
+                                        "star",
+                                        project.stars
+                                      )}`}
+                                    >
                                       <FontAwesomeIcon icon={solid("star")} />{" "}
                                       {showStat(project.stars)}
                                     </span>
