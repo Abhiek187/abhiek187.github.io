@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen, within } from "@testing-library/react";
 import { Page, Transition } from "../tsx/App";
 import {
   setupTests,
@@ -59,13 +59,18 @@ describe("Projects", () => {
   it("shows each project card", () => {
     for (const type of Object.keys(projects) as [ProjectTypes]) {
       for (const project of projects[type]) {
+        // Query within the card
+        const card = screen.getByLabelText(
+          `Card for ${project.name}, click to learn more`
+        ) as HTMLAnchorElement;
+
         // The project's name, image, and description should be shown
-        const projectName = screen.getByRole("heading", {
+        const projectName = within(card).getByRole("heading", {
           name: project.name,
         }) as HTMLHeadingElement;
         expect(projectName).toBeInTheDocument();
 
-        const projectImage = screen.getByAltText(
+        const projectImage = within(card).getByAltText(
           `Screenshot of ${project.name}`
         ) as HTMLImageElement;
         expect(projectImage).toBeInTheDocument();
@@ -74,10 +79,18 @@ describe("Projects", () => {
           `${window.location.origin}${encodeURI(project.image)}`
         );
 
-        const projectAbout = screen.getByText(
+        const projectAbout = within(card).getByText(
           project.about
         ) as HTMLParagraphElement;
         expect(projectAbout).toBeInTheDocument();
+
+        // Check that the eye, fork, and star icons are present in the footer (initially blank)
+        for (const stat of ["watchers", "forks", "stars"]) {
+          const blankStat = within(card).getByLabelText(
+            `blank ${stat}`
+          ) as HTMLSpanElement;
+          expect(blankStat).toBeInTheDocument();
+        }
 
         // Make sure the other categories aren't present in the list
         expect(screen.queryByText(project.repo)).not.toBeInTheDocument();
