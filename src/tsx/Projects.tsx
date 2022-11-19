@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // @ts-ignore
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { Endpoints } from "@octokit/types";
 import { Octokit } from "octokit";
 import React, { useCallback, useEffect, useRef } from "react";
 import { Button, Card } from "react-bootstrap";
@@ -11,7 +12,6 @@ import projectData from "../models/projects.json";
 import { OnClickProp, Page } from "./App";
 import ProjectDetails from "./ProjectDetails";
 import ProjectError from "./ProjectError";
-import { OctokitResponse } from "@octokit/types";
 
 // Type definitions of the JSON files
 export interface Project {
@@ -48,13 +48,18 @@ const Projects: React.FC<ProjectsProps> = ({
     Array(Object.keys(projects).length)
   );
 
-  const getGithubStats = useCallback(async () => {
-    const octokit = new Octokit();
+  // If a project were to blow up, format the numbers like 1K or 1M to fit them within the cards
+  const numberFormatter = Intl.NumberFormat("en", { notation: "compact" });
 
+  const getGithubStats = useCallback(async () => {
     // Call the GitHub API for each project in parallel
     // Rate limit of 60/hr w/o a token and 5000/hr with a token
     // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#requests-from-personal-accounts
-    const reqs: Promise<OctokitResponse<any, number>>[] = [];
+    const octokit = new Octokit();
+
+    // Get the response type of the endpoint being called
+    type UserRepos = Endpoints["GET /repos/{owner}/{repo}"]["response"];
+    const reqs: Promise<UserRepos>[] = [];
 
     for (const projectType of Object.keys(projects) as [ProjectTypes]) {
       for (const project of projects[projectType]) {
@@ -100,7 +105,7 @@ const Projects: React.FC<ProjectsProps> = ({
       }
     }
 
-    getGithubStats();
+    //getGithubStats();
   }, [getGithubStats, isDarkMode]);
 
   const scrollList = (index: number, scrollRight: boolean) => {
@@ -243,6 +248,22 @@ const Projects: React.FC<ProjectsProps> = ({
                                   <Card.Text className="projects-about mx-1 my-2">
                                     {project.about}
                                   </Card.Text>
+                                  <Card.Footer>
+                                    <span aria-label="blank watchers">
+                                      <FontAwesomeIcon icon={solid("eye")} />{" "}
+                                      {numberFormatter.format(888e6)}
+                                    </span>
+                                    <span aria-label="blank forks">
+                                      <FontAwesomeIcon
+                                        icon={solid("code-fork")}
+                                      />{" "}
+                                      {numberFormatter.format(888e6)}
+                                    </span>
+                                    <span aria-label="blank stars">
+                                      <FontAwesomeIcon icon={solid("star")} />{" "}
+                                      {numberFormatter.format(888e6)}
+                                    </span>
+                                  </Card.Footer>
                                 </Link>
                               </Card>
                             ))}
