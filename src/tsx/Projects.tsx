@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { Endpoints } from "@octokit/types";
 import { Octokit } from "octokit";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, Route, Routes } from "react-router-dom";
 
@@ -23,10 +23,13 @@ export interface Project {
   technology: [string];
   website: string | null;
   repo: string;
+  watchers?: number;
+  forks?: number;
+  stars?: number;
 }
 
 export type ProjectTypes = "ios" | "android" | "web" | "other";
-export type ProjectsJSON = Record<ProjectTypes, [Project]>; // record === dictionary/hashmap
+export type ProjectsJSON = Record<ProjectTypes, Project[]>; // record === dictionary/hashmap
 
 // Extend the OnClickProp interface
 type ProjectsProps = OnClickProp & {
@@ -42,7 +45,7 @@ const Projects: React.FC<ProjectsProps> = ({
   isDarkMode,
 }) => {
   // Set the type of the imported JSON
-  const projects = projectData as ProjectsJSON;
+  const [projects, setProjects] = useState(projectData as ProjectsJSON);
   // Save a reference to each project list
   const projectsListRef = useRef<(HTMLUListElement | null)[]>(
     Array(Object.keys(projects).length)
@@ -60,6 +63,7 @@ const Projects: React.FC<ProjectsProps> = ({
     // Get the response type of the endpoint being called
     type UserRepos = Endpoints["GET /repos/{owner}/{repo}"]["response"];
     const reqs: Promise<UserRepos>[] = [];
+    const flatProjects: Project[] = [];
 
     for (const projectType of Object.keys(projects) as [ProjectTypes]) {
       for (const project of projects[projectType]) {
@@ -72,6 +76,7 @@ const Projects: React.FC<ProjectsProps> = ({
           repo: repoName,
         });
         reqs.push(req);
+        flatProjects.push(project);
       }
     }
 
@@ -79,20 +84,31 @@ const Projects: React.FC<ProjectsProps> = ({
     // Promise.all fails fast, while allSettled will handle all promises
     const resps = await Promise.allSettled(reqs);
 
-    for (const resp of resps) {
+    resps.forEach((resp, i) => {
       if (resp.status === "rejected") {
         console.error(resp.reason);
-        return;
+      } else {
+        // Assign each project with its corresponding stats
+        const { data } = resp.value;
+        flatProjects[i].watchers = data.subscribers_count;
+        flatProjects[i].forks = data.forks; // can also use forks_count or network_count
+        // Stars used to be called watchers on GitHub
+        flatProjects[i].stars = data.watchers; // can also use stargazers_count or watchers_counts
       }
+    });
 
-      const { data } = resp.value;
-      const watchers = data.subscribers_count;
-      const forks = data.forks; // can also use forks_count or network_count
-      // Stars used to be called watchers on GitHub
-      const stars = data.watchers; // can also use stargazers_count or watchers_count
+    // Map flatProjects to a new projects state
+    let pi = 0;
+    const newProjects = { ...projects };
 
-      console.log(`${watchers} watchers, ${forks} forks, and ${stars} stars`);
+    for (const projectType of Object.keys(projects) as [ProjectTypes]) {
+      for (let i = 0; i < projects[projectType].length; i++) {
+        newProjects[projectType][i] = flatProjects[pi];
+        pi++;
+      }
     }
+
+    setProjects(newProjects);
   }, [projects]);
 
   useEffect(() => {
@@ -105,7 +121,7 @@ const Projects: React.FC<ProjectsProps> = ({
       }
     }
 
-    //getGithubStats();
+    getGithubStats();
   }, [getGithubStats, isDarkMode]);
 
   const scrollList = (index: number, scrollRight: boolean) => {
@@ -160,6 +176,10 @@ const Projects: React.FC<ProjectsProps> = ({
       rightScrollingButton?.classList.remove("d-none");
     }
   };
+
+  // Show a hyphen as a placeholder until the number is fetched
+  const showStat = (stat?: number): string =>
+    stat === undefined ? "-" : numberFormatter.format(stat);
 
   return (
     <main className="projects container-fluid" ref={innerRef}>
@@ -251,17 +271,17 @@ const Projects: React.FC<ProjectsProps> = ({
                                   <Card.Footer className="projects-footer mx-0">
                                     <span aria-label="blank watchers">
                                       <FontAwesomeIcon icon={solid("eye")} />{" "}
-                                      {numberFormatter.format(888e6)}
+                                      {showStat(project.watchers)}
                                     </span>
                                     <span aria-label="blank forks">
                                       <FontAwesomeIcon
                                         icon={solid("code-fork")}
                                       />{" "}
-                                      {numberFormatter.format(888e6)}
+                                      {showStat(project.forks)}
                                     </span>
                                     <span aria-label="blank stars">
                                       <FontAwesomeIcon icon={solid("star")} />{" "}
-                                      {numberFormatter.format(888e6)}
+                                      {showStat(project.stars)}
                                     </span>
                                   </Card.Footer>
                                 </Link>
