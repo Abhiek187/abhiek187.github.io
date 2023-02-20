@@ -1,6 +1,24 @@
 {
   "ios": [
     {
+      "id": "ez-recipes-ios",
+      "name": "EZ Recipes (iOS)",
+      "image": "/img/ios/ez-recipes.webp",
+      "gif": "/img/ios/ez-recipes",
+      "about": "An iOS app that lets chefs find low-effort recipes that can be made in under an hour, use common kitchen ingredients, and can produce multiple servings. On one page, chefs can view what the recipe looks like, its nutritional qualities, the total cooking time, all the ingredients needed, and step-by-step instructions showing what ingredients and equipment are required per step. Each recipe can be shared so other chefs can learn how to make the same recipes.",
+      "technology": [
+        "Swift",
+        "SwiftUI",
+        "Fastlane",
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "Docker"
+      ],
+      "website": null,
+      "repo": "https://github.com/Abhiek187/ez-recipes-ios"
+    },
+    {
       "id": "captain-conundrum",
       "name": "Captain Conundrum",
       "image": "/img/ios/captain-conundrum.webp",
@@ -63,6 +81,24 @@
   ],
   "android": [
     {
+      "id": "ez-recipes-android",
+      "name": "EZ Recipes (Android)",
+      "image": "/img/android/ez-recipes.webp",
+      "gif": "/img/android/ez-recipes",
+      "about": "An Android app that lets chefs find low-effort recipes that can be made in under an hour, use common kitchen ingredients, and can produce multiple servings. On one page, chefs can view what the recipe looks like, its nutritional qualities, the total cooking time, all the ingredients needed, and step-by-step instructions showing what ingredients and equipment are required per step. Each recipe can be shared so other chefs can learn how to make the same recipes.",
+      "technology": [
+        "Kotlin",
+        "Jetpack Compose",
+        "Fastlane",
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "Docker"
+      ],
+      "website": "https://play.google.com/store/apps/details?id=com.abhiek.ezrecipes",
+      "repo": "https://github.com/Abhiek187/ez-recipes-android"
+    },
+    {
       "id": "brain-smarts",
       "name": "Brain Smarts",
       "image": "/img/android/brain-smarts.webp",
@@ -94,6 +130,23 @@
     }
   ],
   "web": [
+    {
+      "id": "ez-recipes-web",
+      "name": "EZ Recipes (Web)",
+      "image": "/img/web/ez-recipes.webp",
+      "gif": "/img/web/ez-recipes",
+      "about": "A website that lets chefs find low-effort recipes that can be made in under an hour, use common kitchen ingredients, and can produce multiple servings. On one page, chefs can view what the recipe looks like, its nutritional qualities, the total cooking time, all the ingredients needed, and step-by-step instructions showing what ingredients and equipment are required per step. Each recipe can be shared so other chefs can learn how to make the same recipes.",
+      "technology": [
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "Angular",
+        "SCSS",
+        "Docker"
+      ],
+      "website": "https://ez-recipes-web.onrender.com/",
+      "repo": "https://github.com/Abhiek187/ez-recipes-web"
+    },
     {
       "id": "how-to-stock",
       "name": "How to Stock",
