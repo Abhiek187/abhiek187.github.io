@@ -31,12 +31,13 @@ const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
   
   As a team player, I regularly help my teammates through code reviews, debug sessions, and \
   detailed documentation. I always show empathy by making sure future teammates don't experience \
-  the same roadblocks I dealt with. For example, I shared 100+ pages of technical documentation \
+  the same roadblocks I dealt with. For example, I shared 200+ pages of technical documentation \
   with my teammates and other engineers using Confluence. I also helped develop reference apps for \
   iOS, Android, and React Native that standardized MVVM architecture patterns, REST APIs, and \
-  OAuth authentication with biometrics. By streamlining knowledge sharing and app development, \
-  I reduced the amount of time engineers needed to learn new tech, allowing them to focus on \
-  delivering business outcomes.
+  OIDC authentication with biometrics. In addition, I ensure all apps feature automated unit \
+  testing, security testing, and deployment using CI/CD pipelines. By streamlining knowledge \
+  sharing and app development, I reduced the amount of time engineers needed to learn new tech, \
+  allowing them to focus on delivering business outcomes.
   
   I'm also not afraid to go outside my comfort zone. My role goes beyond mobile development, such \
   as developing websites, APIs, or shell scripts. During a company hackathon, I quickly learned \
