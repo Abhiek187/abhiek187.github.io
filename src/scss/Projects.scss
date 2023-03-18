@@ -1,3 +1,5 @@
+@use "variables";
+
 /* Projects section */
 .projects-wrapper {
   max-width: 90%; /* if the width of the cards extends further, add scrolling (using overflow) */
@@ -30,7 +32,9 @@
   width: 50px;
   height: 50px;
   opacity: 0.75;
-  transition: opacity 0.15s ease-in-out;
+  transition: opacity 0.15s ease-in-out, color variables.$color-transition,
+    background-color variables.$color-transition,
+    border-color variables.$color-transition;
   /* Move the buttons about halfway into the left and rightmost cards */
   align-self: center;
   z-index: 2;
@@ -73,6 +77,9 @@
     min-width: 300px; /* min-width forces the cards to be at least this wide */
     max-width: 300px; /* seriously, keep this width */
     margin-bottom: 0.25rem;
+    transition: color variables.$color-transition,
+      background-color variables.$color-transition,
+      border-color variables.$color-transition;
   }
 
   :not(:last-child) {
@@ -84,6 +91,7 @@
     height: 100%; /* allow the whole card to be clickable */
     display: flex;
     flex-direction: column;
+    transition: color variables.$color-transition;
   }
 }
 
