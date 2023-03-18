@@ -49,6 +49,8 @@ const App: React.FC = () => {
   const linkProjects = useRef<HTMLButtonElement>(null);
   const linkContact = useRef<HTMLButtonElement>(null);
 
+  const currentYear = new Date().getFullYear();
+
   useEffect(() => {
     if (navbar.current === null) return;
     let navPosition: number = navbar.current.offsetTop;
@@ -106,8 +108,6 @@ const App: React.FC = () => {
       }
     }
   };
-
-  const getCurrentYear = (): number => new Date().getFullYear();
 
   return (
     <div className={`App ${isDarkMode ? "dark" : ""}`}>
@@ -276,7 +276,7 @@ const App: React.FC = () => {
           >
             MIT License
           </a>{" "}
-          Copyright &copy; 2019 - {getCurrentYear()} Abhishek Chaudhuri
+          Copyright &copy; 2019 - {currentYear} Abhishek Chaudhuri
         </span>
       </footer>
     </div>
