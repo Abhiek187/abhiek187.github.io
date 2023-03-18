@@ -22,6 +22,12 @@
   box-shadow: 2px 2px black;
 }
 
+.contact-github,
+.contact-email {
+  transition: color variables.$color-transition,
+    border-color variables.$color-transition;
+}
+
 /* Mimic Bootstrap's button outline */
 .contact-email {
   color: indigo;

@@ -1,8 +1,11 @@
+@use "variables";
+
 .projects-back {
   position: absolute; /* position the back button at the top left of the card */
   padding: 0;
   font-size: 1.5em;
-  transition: transform 0.2s ease-in-out; /* animate the X button growing on hover */
+  /* Animate the X button growing on hover */
+  transition: transform 0.2s ease-in-out, color variables.$color-transition;
 }
 
 .projects-back:hover {
@@ -15,6 +18,9 @@
 
 .project-details {
   position: static;
+  transition: color variables.$color-transition,
+    background-color variables.$color-transition,
+    border-color variables.$color-transition;
 }
 
 .projects-video {
@@ -26,4 +32,5 @@
 
 .projects-technology-header {
   color: blue; /* light theme only */
+  transition: color variables.$color-transition;
 }

@@ -2,4 +2,5 @@
 
 .project-error {
   color: variables.$red-700;
+  transition: color variables.$color-transition;
 }

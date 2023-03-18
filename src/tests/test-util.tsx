@@ -79,9 +79,15 @@ const testBaseContent = (): void => {
 
   const footerLeft = screen.getByText("React") as HTMLAnchorElement;
   const footerRight = screen.getByText("MIT License") as HTMLAnchorElement;
+  // Check that the copyright year range is up-to-date
+  const currentYear: number = new Date().getFullYear();
+  const copyrightYear = screen.getByText(
+    new RegExp(`2019 - ${currentYear}`, "g")
+  ) as HTMLSpanElement;
 
   expect(footerLeft).toBeInTheDocument();
   expect(footerRight).toBeInTheDocument();
+  expect(copyrightYear).toBeInTheDocument();
 };
 
 const testFocusAbout = () => {
