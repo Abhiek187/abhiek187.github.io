@@ -274,7 +274,7 @@ const App: React.FC = () => {
           >
             MIT License
           </a>{" "}
-          Copyright &copy; 2019 Abhishek Chaudhuri
+          Copyright &copy; 2019 - 2023 Abhishek Chaudhuri
         </span>
       </footer>
     </div>
