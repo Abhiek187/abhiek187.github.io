@@ -107,6 +107,8 @@ const App: React.FC = () => {
     }
   };
 
+  const getCurrentYear = (): number => new Date().getFullYear();
+
   return (
     <div className={`App ${isDarkMode ? "dark" : ""}`}>
       {/* Switch to toggle between light and dark mode */}
@@ -274,7 +276,7 @@ const App: React.FC = () => {
           >
             MIT License
           </a>{" "}
-          Copyright &copy; 2019 - 2023 Abhishek Chaudhuri
+          Copyright &copy; 2019 - {getCurrentYear()} Abhishek Chaudhuri
         </span>
       </footer>
     </div>
