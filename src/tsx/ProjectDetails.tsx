@@ -1,6 +1,9 @@
+import {
+  faUpRightFromSquare,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// @ts-ignore
-import { brands, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import React, { createRef, useEffect } from "react";
 import { Badge, Button, Card } from "react-bootstrap";
 import {
@@ -88,7 +91,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
               : navigate("/projects");
           }}
         >
-          <FontAwesomeIcon icon={solid("xmark")} />
+          <FontAwesomeIcon icon={faXmark} />
         </Button>
         <Card.Title as="h4" className="projects-name m-2">
           {project.name}
@@ -155,7 +158,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FontAwesomeIcon icon={solid("up-right-from-square")} /> Demo
+              <FontAwesomeIcon icon={faUpRightFromSquare} /> Demo
             </Button>
           )}
           <Button
@@ -165,7 +168,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={brands("github")} /> GitHub
+            <FontAwesomeIcon icon={faGithub} /> GitHub
           </Button>
         </div>
       </Card>

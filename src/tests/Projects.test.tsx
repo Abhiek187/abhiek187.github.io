@@ -9,6 +9,7 @@ import {
 } from "./test-util";
 import { capitalize, ProjectsJSON, ProjectTypes } from "../tsx/Projects";
 import projectData from "../models/projects.json";
+import { vi } from "vitest";
 
 describe("Projects", () => {
   let buttonProjects: HTMLAnchorElement;
@@ -105,7 +106,7 @@ describe("Projects", () => {
     ) as HTMLButtonElement[];
     const projectsLists = screen.getAllByRole("list") as HTMLUListElement[];
     // Mock the scrollBy method since it's not defined by default
-    HTMLUListElement.prototype.scrollBy = jest.fn();
+    HTMLUListElement.prototype.scrollBy = vi.fn();
 
     for (const [index, scrollButton] of scrollButtons.entries()) {
       // [0, 1] -> 1, [2, 3] -> 2, etc.
@@ -116,7 +117,7 @@ describe("Projects", () => {
       expect(projectsList.scrollBy).toHaveBeenCalled();
     }
 
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it("makes the navbar sticky when scrolling down", () => {
@@ -125,19 +126,19 @@ describe("Projects", () => {
       // eslint-disable-next-line testing-library/no-node-access
       (screen.getByText("About") as HTMLAnchorElement).parentElement;
     expect(window.pageYOffset).toBe(0);
-    expect(navbar?.classList).not.toContain("sticky");
+    expect(Array.from(navbar?.classList ?? ["sticky"])).not.toContain("sticky");
 
     // Simulate a scroll by changing the pageYOffset and activating a scroll event
     (window as any).pageYOffset = 1000;
     fireEvent.scroll(window);
     expect(window.pageYOffset).toBeGreaterThan(0);
-    expect(navbar?.classList).toContain("sticky");
+    expect(Array.from(navbar?.classList ?? [])).toContain("sticky");
 
     // navbar.offsetTop is 0, so make pageYOffset less than that to force the navbar to not be sticky
     (window as any).pageYOffset = -1;
     fireEvent.scroll(window);
     expect(window.pageYOffset).toBeLessThan(0);
-    expect(navbar?.classList).not.toContain("sticky");
+    expect(Array.from(navbar?.classList ?? ["sticky"])).not.toContain("sticky");
     (window as any).pageYOffset = 0;
   });
 
@@ -148,7 +149,9 @@ describe("Projects", () => {
     testFocusAbout();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    expect(transitionGroup.classList).toContain(Transition.SlideRight);
+    expect(Array.from(transitionGroup.classList)).toContain(
+      Transition.SlideRight
+    );
   });
 
   it("navigates to Contact after clicking the right arrow", () => {
@@ -156,6 +159,8 @@ describe("Projects", () => {
     testFocusContact();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    expect(transitionGroup.classList).toContain(Transition.SlideLeft);
+    expect(Array.from(transitionGroup.classList)).toContain(
+      Transition.SlideLeft
+    );
   });
 });

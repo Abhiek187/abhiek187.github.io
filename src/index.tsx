@@ -13,7 +13,7 @@ const root: ReactDOMClient.Root = ReactDOMClient.createRoot(container);
 root.render(
   // Enable react router and work in GitHub Pages
   <React.StrictMode>
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter basename={import.meta.env.BASE_URL}>
       <App />
     </HashRouter>
   </React.StrictMode>

@@ -54,7 +54,9 @@ describe("Project Details", () => {
           const transitionGroup = screen.getByTestId(
             "transition"
           ) as HTMLDivElement;
-          expect(transitionGroup.classList).toContain(Transition.Fade);
+          expect(Array.from(transitionGroup.classList)).toContain(
+            Transition.Fade
+          );
 
           // The project's name, GIF, and description should be shown
           const projectName = (await screen.findByRole("heading", {
@@ -132,7 +134,9 @@ describe("Project Details", () => {
           ) as HTMLButtonElement;
           fireEvent.click(backButton);
 
-          expect(transitionGroup.classList).toContain(Transition.Fade);
+          expect(Array.from(transitionGroup.classList)).toContain(
+            Transition.Fade
+          );
           const smallProjectName = (await screen.findByRole("heading", {
             name: project.name,
             level: 5,
@@ -151,7 +155,9 @@ describe("Project Details", () => {
     testFocusAbout();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    expect(transitionGroup.classList).toContain(Transition.SlideRight);
+    expect(Array.from(transitionGroup.classList)).toContain(
+      Transition.SlideRight
+    );
   });
 
   it("navigates to Contact after clicking the right arrow", () => {
@@ -159,6 +165,8 @@ describe("Project Details", () => {
     testFocusContact();
 
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    expect(transitionGroup.classList).toContain(Transition.SlideLeft);
+    expect(Array.from(transitionGroup.classList)).toContain(
+      Transition.SlideLeft
+    );
   });
 });

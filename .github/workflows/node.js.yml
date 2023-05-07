@@ -42,7 +42,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: npm ci
+      - run: npm ci --omit=dev
       - run: npm run build
 
       - uses: JamesIves/github-pages-deploy-action@v4
