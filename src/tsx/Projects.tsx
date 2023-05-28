@@ -7,7 +7,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Endpoints } from "@octokit/types";
-import { Octokit } from "octokit";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, Route, Routes } from "react-router-dom";
@@ -65,6 +64,8 @@ const Projects: React.FC<ProjectsProps> = ({
     // Call the GitHub API for each project in parallel
     // Rate limit of 60/hr w/o a token and 5000/hr with a token
     // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#requests-from-personal-accounts
+    // Dynamically import Octokit to chunk the build
+    const { Octokit } = await import("octokit");
     const octokit = new Octokit();
 
     // Get the response type of the endpoint being called
