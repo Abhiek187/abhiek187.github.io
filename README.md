@@ -22,11 +22,13 @@ This is my portfolio website created in React, inspired by Udacity's Front-End W
 - Efficient delivery of static content by utilizing WebP images and WebM videos
 - Search Engine Optimization (SEO)
 - CI/CD workflows after every commit or PR to main
+- Vite for the development server
+- SWC, a Rust-based compiler for bundling the website
 - Continuous updates and improvements
 
 ## Dependencies
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br>
+This project was bootstrapped with [Vite](https://vitejs.dev/).<br>
 [React Router](https://reacttraining.com/react-router) was used to create the single-page experience.<br>
 [gh-pages](https://github.com/tschaub/gh-pages) was used to deploy the website to the gh-pages branch.<br>
 The [GitHub API](https://docs.github.com/en/rest) was used to get the watchers, forks, and stars from each repo.
@@ -40,8 +42,6 @@ To create a local copy, you'll need the following command-line programs:
 sudo apt update
 sudo apt install nodejs npm
 ```
-
-- serve: `npm i serve`
 
 ## Running the Program
 
@@ -66,7 +66,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open http://localhost:5173/ to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
@@ -75,8 +75,8 @@ Note: Service workers (aka offline functionality) will not work in development m
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs all tests using Vitest.<br>
+See the section about [running tests](https://vitest.dev/) for more information.
 
 ### `npm run build`
 
@@ -86,25 +86,17 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+See the section about [building](https://vitejs.dev/guide/build.html) for more information.
 
-To run the production build, run `serve -s build` and open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `npm run serve`
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point, you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However, we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Runs the production build locally. Open http://localhost:4173/ to view it in the browser.
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can learn more in the [Vite documentation](https://vitejs.dev/guide/).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To learn React, check out the [React documentation](https://react.dev/).
 
 ## Branches
 
