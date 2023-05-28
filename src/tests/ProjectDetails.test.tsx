@@ -44,7 +44,7 @@ describe("Project Details", () => {
           // Click the appropriate card
           const cardRegex: string = `Card for ${project.name}`;
           const projectCard = (await screen.findByLabelText(
-            RegExp(cardRegex, "g")
+            RegExp(cardRegex)
           )) as HTMLAnchorElement;
           expect(projectCard).toBeInTheDocument();
           fireEvent.click(projectCard);

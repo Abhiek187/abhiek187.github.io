@@ -27,6 +27,10 @@ describe("Projects", () => {
     )) as HTMLAnchorElement[];
   });
 
+  afterEach(async () => {
+    vi.resetAllMocks();
+  });
+
   it("shows all project types", () => {
     expect(window.location.hash).toBe("#/projects");
     testBaseContent();
@@ -116,8 +120,6 @@ describe("Projects", () => {
 
       expect(projectsList.scrollBy).toHaveBeenCalled();
     }
-
-    vi.resetAllMocks();
   });
 
   it("makes the navbar sticky when scrolling down", () => {
@@ -125,21 +127,27 @@ describe("Projects", () => {
     const navbar: HTMLElement | null =
       // eslint-disable-next-line testing-library/no-node-access
       (screen.getByText("About") as HTMLAnchorElement).parentElement;
-    expect(window.pageYOffset).toBe(0);
+    expect(window.scrollY).toBe(0);
     expect(Array.from(navbar?.classList ?? ["sticky"])).not.toContain("sticky");
 
     // Simulate a scroll by changing the pageYOffset and activating a scroll event
-    (window as any).pageYOffset = 1000;
-    fireEvent.scroll(window);
-    expect(window.pageYOffset).toBeGreaterThan(0);
+    fireEvent.scroll(window, { target: { scrollY: 1000 } });
+    if (window.onscroll !== null) {
+      window.onscroll(new Event("scroll")); // forcibly call window.onscroll
+    }
+
+    expect(window.scrollY).toBeGreaterThan(0);
     expect(Array.from(navbar?.classList ?? [])).toContain("sticky");
 
     // navbar.offsetTop is 0, so make pageYOffset less than that to force the navbar to not be sticky
-    (window as any).pageYOffset = -1;
-    fireEvent.scroll(window);
-    expect(window.pageYOffset).toBeLessThan(0);
+    fireEvent.scroll(window, { target: { scrollY: -1 } });
+    if (window.onscroll !== null) {
+      window.onscroll(new Event("scroll"));
+    }
+
+    expect(window.scrollY).toBeLessThan(0);
     expect(Array.from(navbar?.classList ?? ["sticky"])).not.toContain("sticky");
-    (window as any).pageYOffset = 0;
+    (window as any).scrollY = 0;
   });
 
   testNavbar(Page.Projects);

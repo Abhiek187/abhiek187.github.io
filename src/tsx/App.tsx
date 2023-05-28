@@ -61,7 +61,7 @@ const App: React.FC = () => {
       // Don't set navPosition to 0
       navPosition =
         navbar.current.offsetTop === 0 ? navPosition : navbar.current.offsetTop;
-      window.pageYOffset >= navPosition
+      window.scrollY >= navPosition
         ? navbar.current.classList.add("sticky")
         : navbar.current.classList.remove("sticky");
     };
