@@ -253,7 +253,7 @@ const App: React.FC = () => {
           Made using{" "}
           <a
             className="foot-react"
-            href="https://reactjs.org/"
+            href="https://react.dev/"
             target="_blank"
             rel="noopener noreferrer"
           >
