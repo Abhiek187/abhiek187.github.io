@@ -22,6 +22,10 @@ export default defineConfig({
     eslint(),
     VitePWA({
       registerType: "autoUpdate",
+      workbox: {
+        // Don't precache files more than 2 MB
+        globPatterns: ["**/*.{js,css,html,ico,jpg,png,svg,pdf,webp}"],
+      },
       manifest: {
         short_name: "Abhishek Chaudhuri",
         name: "Abhishek Chaudhuri - Portfolio Website",
