@@ -25,6 +25,8 @@ export default defineConfig({
       workbox: {
         // Don't precache files more than 2 MB
         globPatterns: ["**/*.{js,css,html,ico,jpg,png,svg,pdf,webp}"],
+        // Exclude routes belonging to other repos
+        navigateFallbackAllowlist: [/^\/$/, /^\/#\//],
       },
       manifest: {
         short_name: "Abhishek Chaudhuri",
