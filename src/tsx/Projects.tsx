@@ -1,8 +1,12 @@
+import {
+  faArrowLeft,
+  faArrowRight,
+  faCodeFork,
+  faEye,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// @ts-ignore
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { Endpoints } from "@octokit/types";
-import { Octokit } from "octokit";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, Route, Routes } from "react-router-dom";
@@ -60,6 +64,8 @@ const Projects: React.FC<ProjectsProps> = ({
     // Call the GitHub API for each project in parallel
     // Rate limit of 60/hr w/o a token and 5000/hr with a token
     // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#requests-from-personal-accounts
+    // Dynamically import Octokit to chunk the build
+    const { Octokit } = await import("octokit");
     const octokit = new Octokit();
 
     // Get the response type of the endpoint being called
@@ -202,7 +208,7 @@ const Projects: React.FC<ProjectsProps> = ({
         aria-label="Go to About"
         onClick={() => onClickLink(Page.About)}
       >
-        <FontAwesomeIcon icon={solid("arrow-left")} />
+        <FontAwesomeIcon icon={faArrowLeft} />
       </Link>
       <div className="projects-wrapper">
         <h3 className="projects-heading">Projects</h3>
@@ -230,7 +236,7 @@ const Projects: React.FC<ProjectsProps> = ({
                             onClick={() => scrollList(index, false)}
                             aria-label={`Scroll ${type} projects left`}
                           >
-                            <FontAwesomeIcon icon={solid("arrow-left")} />
+                            <FontAwesomeIcon icon={faArrowLeft} />
                           </Button>
                           <ul
                             className="projects-list"
@@ -288,7 +294,7 @@ const Projects: React.FC<ProjectsProps> = ({
                                         project.watchers
                                       )}`}
                                     >
-                                      <FontAwesomeIcon icon={solid("eye")} />{" "}
+                                      <FontAwesomeIcon icon={faEye} />{" "}
                                       {showStat(project.watchers)}
                                     </span>
                                     <span
@@ -297,9 +303,7 @@ const Projects: React.FC<ProjectsProps> = ({
                                         project.forks
                                       )}`}
                                     >
-                                      <FontAwesomeIcon
-                                        icon={solid("code-fork")}
-                                      />{" "}
+                                      <FontAwesomeIcon icon={faCodeFork} />{" "}
                                       {showStat(project.forks)}
                                     </span>
                                     <span
@@ -308,7 +312,7 @@ const Projects: React.FC<ProjectsProps> = ({
                                         project.stars
                                       )}`}
                                     >
-                                      <FontAwesomeIcon icon={solid("star")} />{" "}
+                                      <FontAwesomeIcon icon={faStar} />{" "}
                                       {showStat(project.stars)}
                                     </span>
                                   </Card.Footer>
@@ -323,7 +327,7 @@ const Projects: React.FC<ProjectsProps> = ({
                             onClick={() => scrollList(index, true)}
                             aria-label={`Scroll ${type} projects right`}
                           >
-                            <FontAwesomeIcon icon={solid("arrow-right")} />
+                            <FontAwesomeIcon icon={faArrowRight} />
                           </Button>
                         </div>
                         <hr />
@@ -372,7 +376,7 @@ const Projects: React.FC<ProjectsProps> = ({
         aria-label="Go to Contact"
         onClick={() => onClickLink(Page.Contact)}
       >
-        <FontAwesomeIcon icon={solid("arrow-right")} />
+        <FontAwesomeIcon icon={faArrowRight} />
       </Link>
     </main>
   );

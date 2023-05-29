@@ -1,6 +1,10 @@
+import {
+  faArrowLeft,
+  faEnvelope,
+  faFilePdf,
+} from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// @ts-ignore
-import { brands, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -29,7 +33,7 @@ const Contact: React.FC<ContactProps> = ({
         aria-label="Go to Projects"
         onClick={() => onClickLink(Page.Projects)}
       >
-        <FontAwesomeIcon icon={solid("arrow-left")} />
+        <FontAwesomeIcon icon={faArrowLeft} />
       </Link>
       <div className="contact-wrapper">
         <h3 className="contact-heading">Contact</h3>
@@ -42,7 +46,7 @@ const Contact: React.FC<ContactProps> = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={solid("file-pdf")} /> Resume
+            <FontAwesomeIcon icon={faFilePdf} /> Resume
           </Button>
           <Button
             variant="outline-primary"
@@ -51,7 +55,7 @@ const Contact: React.FC<ContactProps> = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={brands("linkedin-in")} /> LinkedIn
+            <FontAwesomeIcon icon={faLinkedinIn} /> LinkedIn
           </Button>
           <Button
             variant={`outline-${isDarkMode ? "light" : "dark"}`}
@@ -60,7 +64,7 @@ const Contact: React.FC<ContactProps> = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={brands("github")} /> GitHub
+            <FontAwesomeIcon icon={faGithub} /> GitHub
           </Button>
           {/* Opens default email program */}
           <Button
@@ -69,7 +73,7 @@ const Contact: React.FC<ContactProps> = ({
             href="mailto:achaudhuri2011@yahoo.com"
             target="_top"
           >
-            <FontAwesomeIcon icon={solid("envelope")} /> Email
+            <FontAwesomeIcon icon={faEnvelope} /> Email
           </Button>
         </span>
       </div>

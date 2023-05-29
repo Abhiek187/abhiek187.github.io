@@ -82,7 +82,7 @@ const testBaseContent = (): void => {
   // Check that the copyright year range is up-to-date
   const currentYear: number = new Date().getFullYear();
   const copyrightYear = screen.getByText(
-    new RegExp(`2019 - ${currentYear}`, "g")
+    new RegExp(`2019 - ${currentYear}`)
   ) as HTMLSpanElement;
 
   expect(footerLeft).toBeInTheDocument();
@@ -92,23 +92,23 @@ const testBaseContent = (): void => {
 
 const testFocusAbout = () => {
   expect(window.location.hash).toBe("#/about");
-  expect(buttonAbout.classList).toContain("active");
-  expect(buttonProjects.classList).not.toContain("active");
-  expect(buttonContact.classList).not.toContain("active");
+  expect(Array.from(buttonAbout.classList)).toContain("active");
+  expect(Array.from(buttonProjects.classList)).not.toContain("active");
+  expect(Array.from(buttonContact.classList)).not.toContain("active");
 };
 
 const testFocusProjects = () => {
   expect(window.location.hash).toBe("#/projects");
-  expect(buttonAbout.classList).not.toContain("active");
-  expect(buttonProjects.classList).toContain("active");
-  expect(buttonContact.classList).not.toContain("active");
+  expect(Array.from(buttonAbout.classList)).not.toContain("active");
+  expect(Array.from(buttonProjects.classList)).toContain("active");
+  expect(Array.from(buttonContact.classList)).not.toContain("active");
 };
 
 const testFocusContact = () => {
   expect(window.location.hash).toBe("#/contact");
-  expect(buttonAbout.classList).not.toContain("active");
-  expect(buttonProjects.classList).not.toContain("active");
-  expect(buttonContact.classList).toContain("active");
+  expect(Array.from(buttonAbout.classList)).not.toContain("active");
+  expect(Array.from(buttonProjects.classList)).not.toContain("active");
+  expect(Array.from(buttonContact.classList)).toContain("active");
 };
 
 const testNavbar = (source: Page) => {
@@ -136,7 +136,7 @@ const testNavbar = (source: Page) => {
         transition = Transition.Fade;
     }
 
-    expect(transitionGroup.classList).toContain(transition);
+    expect(Array.from(transitionGroup.classList)).toContain(transition);
   });
 
   it("navigates to Projects after clicking Projects", () => {
@@ -158,7 +158,7 @@ const testNavbar = (source: Page) => {
         transition = Transition.Fade;
     }
 
-    expect(transitionGroup.classList).toContain(transition);
+    expect(Array.from(transitionGroup.classList)).toContain(transition);
   });
 
   it("navigates to Contact after clicking Contact", () => {
@@ -181,7 +181,7 @@ const testNavbar = (source: Page) => {
         transition = Transition.Fade;
     }
 
-    expect(transitionGroup.classList).toContain(transition);
+    expect(Array.from(transitionGroup.classList)).toContain(transition);
   });
 };
 

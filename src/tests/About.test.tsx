@@ -42,6 +42,8 @@ describe("About", () => {
 
     testFocusProjects();
     const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
-    expect(transitionGroup.classList).toContain(Transition.SlideLeft);
+    expect(Array.from(transitionGroup.classList)).toContain(
+      Transition.SlideLeft
+    );
   });
 });
