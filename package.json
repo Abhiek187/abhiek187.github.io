@@ -39,7 +39,7 @@
     "vite": "^4.3.5",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-pwa": "^0.15.1",
-    "vitest": "^0.31.0"
+    "vitest": "^0.31.1"
   },
   "scripts": {
     "start": "vite",
