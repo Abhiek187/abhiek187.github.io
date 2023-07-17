@@ -12,6 +12,13 @@ updates:
     # Check the npm registry for updates every week (on Mondays)
     schedule:
       interval: "weekly"
+    groups:
+      fortawesome:
+        patterns:
+          - "@fortawesome/*"
+      types:
+        patterns:
+          - "@types/*"
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
