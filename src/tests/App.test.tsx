@@ -1,4 +1,6 @@
 import { screen } from "@testing-library/react";
+import { expect } from "vitest";
+
 import { Page } from "../tsx/App";
 import { setupTests, testBaseContent, testNavbar } from "./test-util";
 

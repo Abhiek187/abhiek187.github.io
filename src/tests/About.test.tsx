@@ -1,4 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react";
+import { expect } from "vitest";
+
 import { Page, Transition } from "../tsx/App";
 import {
   setupTests,

@@ -1,6 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { HashRouter } from "react-router-dom";
 import { config } from "react-transition-group";
+import { expect } from "vitest";
+
 import App, { Page, Transition } from "../tsx/App";
 
 let buttonAbout: HTMLAnchorElement;
