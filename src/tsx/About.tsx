@@ -22,28 +22,23 @@ const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
   a similar journey. The cycle repeats as new challenges present themselves. I'm always learning \
   new things and growing as a software engineer.
 
-  I currently work at Prudential Financial as a Software Engineer. I develop mobile \
-  applications & frameworks for the enterprise, with an emphasis on developing secure, \
-  offline-first native iOS & Android apps for businesses in emerging markets. Eventually, I took \
-  on more of a leadership role as I laid the roadmap for delivering features in each sprint \
-  during PI planning.
-  
-  As a team player, I regularly help my teammates through code reviews, debug sessions, and \
-  detailed documentation. I always show empathy by making sure future teammates don't experience \
-  the same roadblocks I dealt with. For example, I shared 200+ pages of technical documentation \
-  with my teammates and other engineers using Confluence. I also helped develop reference apps for \
-  iOS, Android, and React Native that standardized MVVM architecture patterns, REST APIs, and \
-  OIDC authentication with biometrics. In addition, I ensure all apps feature automated unit \
-  testing, security testing, and deployment using CI/CD pipelines. By streamlining knowledge \
-  sharing and app development, I reduced the amount of time engineers needed to learn new tech, \
-  allowing them to focus on delivering business outcomes.
-  
-  I'm also not afraid to go outside my comfort zone. My role goes beyond mobile development, such \
-  as developing websites, APIs, or shell scripts. During a company hackathon, I quickly learned \
-  how to build an Angular website that monitored the status of various Prudential resources in \
-  1 week. I received praise from senior executives for going above and beyond with the front end \
-  of the website.
-  
+  At Prudential, I started my career maintaining iOS & Android enterprise apps and developing \
+  offline-first mobile solutions for emerging markets. Eventually, I took on more of a \
+  leadership role as I helped mentor newer teammates and planned the roadmap for features every \
+  quarter. Over time, I built empathy for developers who struggled at first and sought to deliver \
+  the best developer experience. My accomplishments include creating 200+ pages of technical \
+  documentation on Confluence, shared internally with 3500+ total views. I also created 12 CI/CD \
+  pipelines for our mobile apps & libraries using Jenkins and Fastlane to automate the testing, \
+  building, and deployment processes. These reference apps are designed to be reusable by other \
+  developers, so they spend less time bootstraping the project, and more time delivering \
+  business impact while staying compliant with the company's standards.
+
+  My goal is to make onboarding and everyday processes simpler and more efficient for new \
+  developers compared to when I joined. As a team player, I regularly help my teammates through \
+  code reviews, debug sessions, and detailed documentation. I've also received praise for quickly \
+  adapting to various technologies, whether it's developing a website, building an API, \
+  automating with shell scripts, or provisioning infrastructure in the cloud.
+
   My interests include full-stack web and mobile development, with a fascination for cloud computing \
   and machine learning. I regularly work on and improve my projects on GitHub. Some of my past \
   projects include a space shooter created in iOS, an Android game that uses machine learning to \
