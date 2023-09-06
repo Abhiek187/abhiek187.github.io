@@ -12,7 +12,7 @@
   transform: scale(1.2);
 }
 
-.fa-times {
+:global(.fa-times) {
   font-size: 2em;
 }
 
@@ -21,6 +21,11 @@
   transition: color variables.$color-transition,
     background-color variables.$color-transition,
     border-color variables.$color-transition;
+}
+
+.name {
+  font-size: 1.3em;
+  font-weight: bold;
 }
 
 .video {

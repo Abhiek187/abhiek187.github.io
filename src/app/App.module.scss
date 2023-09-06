@@ -185,8 +185,8 @@ footer {
 }
 
 // Arrows
-.fa-arrow-left,
-.fa-arrow-right {
+:global(.fa-arrow-left),
+:global(.fa-arrow-right) {
   font-size: 2em;
 }
 
@@ -244,23 +244,26 @@ footer {
   width: 100%;
 }
 
-.foot-react,
+.react,
+.mit,
 :global(.projects-github-link) {
   color: var(--bs-indigo);
   transition: color variables.$color-transition;
 }
 
-.dark .foot-react,
+.dark .react,
+.dark .mit,
 .dark :global(.projects-github-link) {
   color: var(--bs-cyan);
 }
 
-.dark .foot-react:hover,
+.dark .react:hover,
+.dark .mit:hover,
 .dark :global(.projects-github-link):hover {
   color: #0aa8bd; // slightly darker than cyan
 }
 
-.foot-react-img {
+.react-img {
   width: 1.7em;
 }
 

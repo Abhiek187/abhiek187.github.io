@@ -95,7 +95,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
         >
           <FontAwesomeIcon icon={faXmark} />
         </Button>
-        <Card.Title as="h4" className="projects-name m-2">
+        <Card.Title as="h4" className={`${styles.name} m-2`}>
           {project.name}
         </Card.Title>
         {/* If the image is a video, make it behave like a gif, otherwise leave the poster as-is */}

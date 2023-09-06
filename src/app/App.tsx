@@ -62,8 +62,8 @@ const App: React.FC = () => {
       navPosition =
         navbar.current.offsetTop === 0 ? navPosition : navbar.current.offsetTop;
       window.scrollY >= navPosition
-        ? navbar.current.classList.add("sticky")
-        : navbar.current.classList.remove("sticky");
+        ? navbar.current.classList.add(styles.sticky)
+        : navbar.current.classList.remove(styles.sticky);
     };
   }, []); // only componentDidMount()
 
@@ -258,7 +258,7 @@ const App: React.FC = () => {
         <span className={styles["foot-left"]}>
           Made using{" "}
           <a
-            className="foot-react"
+            className={styles.react}
             href="https://react.dev/"
             target="_blank"
             rel="noopener noreferrer"
@@ -266,7 +266,7 @@ const App: React.FC = () => {
             React
           </a>
           <img
-            className="foot-react-img"
+            className={styles["react-img"]}
             src="/img/logo.svg"
             alt="React logo (an atom)"
             width="20"
@@ -275,7 +275,7 @@ const App: React.FC = () => {
         </span>
         <span className={styles["foot-right"]}>
           <a
-            className={styles["foot-react"]}
+            className={styles.mit}
             target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/Abhiek187/abhiek187.github.io/blob/main/LICENSE"

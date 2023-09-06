@@ -38,8 +38,8 @@
   align-self: center;
   z-index: 2;
 
-  .fa-arrow-left,
-  .fa-arrow-right {
+  :global(.fa-arrow-left),
+  :global(.fa-arrow-right) {
     font-size: 1.5em;
   }
 }

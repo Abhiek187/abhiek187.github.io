@@ -69,7 +69,7 @@ const Contact: React.FC<ContactProps> = ({
           {/* Opens default email program */}
           <Button
             variant=""
-            className={`${styles.email} ${isDarkMode ? "dark" : ""}`}
+            className={`${styles.email} ${isDarkMode ? styles.dark : ""}`}
             href="mailto:achaudhuri2011@yahoo.com"
             target="_top"
           >
