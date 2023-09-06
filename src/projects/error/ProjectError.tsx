@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import "../scss/ProjectError.scss";
-import { ProjectParams } from "./ProjectDetails";
+import "./ProjectError.scss";
+import { ProjectParams } from "../details/ProjectDetails";
 
 type ProjectErrorProps = {
   isDarkMode: Boolean;

@@ -9,8 +9,8 @@ import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import "../scss/Contact.scss";
-import { OnClickProp, Page } from "./App";
+import "./Contact.scss";
+import { OnClickProp, Page } from "../app/App";
 
 type ContactProps = OnClickProp & {
   isDarkMode: boolean;

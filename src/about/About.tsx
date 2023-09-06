@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import "../scss/About.scss";
-import { OnClickProp, Page } from "./App";
+import "./About.scss";
+import { OnClickProp, Page } from "../app/App";
 
 const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
   useEffect(() => {

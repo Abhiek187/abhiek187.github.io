@@ -6,10 +6,10 @@ import {
   testFocusAbout,
   testFocusContact,
   testNavbar,
-} from "./test-util";
-import { ProjectsJSON, ProjectTypes } from "../tsx/Projects";
-import projectData from "../models/projects.json";
-import { Page, Transition } from "../tsx/App";
+} from "../../utils/test-util";
+import { ProjectsJSON, ProjectTypes } from "../Projects";
+import projectData from "../projects.json";
+import { Page, Transition } from "../../app/App";
 
 describe("Project Details", () => {
   let buttonProjects: HTMLAnchorElement;

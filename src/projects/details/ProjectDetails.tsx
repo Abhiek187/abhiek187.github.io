@@ -13,11 +13,11 @@ import {
   useParams,
 } from "react-router-dom";
 
-import "../scss/ProjectDetails.scss";
-import { Project, ProjectTypes } from "./Projects";
-import ProjectError from "./ProjectError";
-import projectData from "../models/projects.json";
-import { OnClickProp, Page } from "./App";
+import "./ProjectDetails.scss";
+import { Project, ProjectTypes } from "../Projects";
+import ProjectError from "../error/ProjectError";
+import projectData from "../projects.json";
+import { OnClickProp, Page } from "../../app/App";
 
 type ProjectDetailsProps = OnClickProp & {
   isDarkMode: Boolean;

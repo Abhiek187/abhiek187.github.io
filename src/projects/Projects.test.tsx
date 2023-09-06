@@ -1,16 +1,16 @@
 import { fireEvent, screen, within } from "@testing-library/react";
 import { expect, vi } from "vitest";
 
-import { Page, Transition } from "../tsx/App";
+import { Page, Transition } from "../app/App";
 import {
   setupTests,
   testBaseContent,
   testNavbar,
   testFocusAbout,
   testFocusContact,
-} from "./test-util";
-import { capitalize, ProjectsJSON, ProjectTypes } from "../tsx/Projects";
-import projectData from "../models/projects.json";
+} from "../utils/test-util";
+import { capitalize, ProjectsJSON, ProjectTypes } from "./Projects";
+import projectData from "./projects.json";
 
 describe("Projects", () => {
   let buttonProjects: HTMLAnchorElement;

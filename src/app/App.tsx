@@ -5,10 +5,10 @@ import { Route, Routes, useLocation } from "react-router-dom";
 // import SwipeableRoutes from "react-swipeable-routes";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import "../scss/App.scss";
-import About from "./About";
-import Projects from "./Projects";
-import Contact from "./Contact";
+import "./App.scss";
+import About from "../about/About";
+import Projects from "../projects/Projects";
+import Contact from "../contact/Contact";
 
 // Possible transitions
 export enum Transition {

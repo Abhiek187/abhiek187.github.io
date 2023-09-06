@@ -11,11 +11,11 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, Route, Routes } from "react-router-dom";
 
-import "../scss/Projects.scss";
-import projectData from "../models/projects.json";
-import { OnClickProp, Page } from "./App";
-import ProjectDetails from "./ProjectDetails";
-import ProjectError from "./ProjectError";
+import "./Projects.scss";
+import projectData from "./projects.json";
+import { OnClickProp, Page } from "../app/App";
+import ProjectDetails from "./details/ProjectDetails";
+import ProjectError from "./error/ProjectError";
 
 // Type definitions of the JSON files
 export interface Project {

@@ -3,8 +3,8 @@ import ReactDOMClient from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 
 import "./index.scss";
-import App from "./tsx/App";
-import reportWebVitals from "./reportWebVitals";
+import App from "./app/App";
+import reportWebVitals from "./utils/reportWebVitals";
 
 const container = document.getElementById("root") as HTMLDivElement;
 const root: ReactDOMClient.Root = ReactDOMClient.createRoot(container);
