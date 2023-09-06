@@ -1,22 +1,21 @@
 @use "../variables";
 
-/* Projects section */
-.projects-wrapper {
-  max-width: 90%; /* if the width of the cards extends further, add scrolling (using overflow) */
+.wrapper {
+  max-width: 90%; // if the width of the cards extends further, add scrolling (using overflow)
 }
 
-.projects-heading {
+.heading {
   margin-top: 0.5rem;
 }
 
-.projects-full-list {
-  /* Remove bullet points and the padding they add to the left */
+.full-list {
+  // Remove bullet points and the padding they add to the left
   list-style-type: none;
   padding-left: 0;
 }
 
-.projects-scrolling-list {
-  /* Allow the scrolling buttons to overlap the projects list */
+.scrolling-list {
+  // Allow the scrolling buttons to overlap the projects list
   display: grid;
 
   > * {
@@ -25,9 +24,9 @@
   }
 }
 
-.projects-scroll-left,
-.projects-scroll-right {
-  /* Make the buttons circular */
+.scroll-left,
+.scroll-right {
+  // Make the buttons circular
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -35,7 +34,7 @@
   transition: opacity 0.15s ease-in-out, color variables.$color-transition,
     background-color variables.$color-transition,
     border-color variables.$color-transition;
-  /* Move the buttons about halfway into the left and rightmost cards */
+  // Move the buttons about halfway into the left and rightmost cards
   align-self: center;
   z-index: 2;
 
@@ -45,37 +44,37 @@
   }
 }
 
-.projects-scroll-left:hover,
-.projects-scroll-right:hover {
+.scroll-left:hover,
+.scroll-right:hover {
   opacity: 1;
 }
 
-.projects-scroll-left {
+.scroll-left {
   justify-self: start;
   margin-left: -15px;
 }
 
-.projects-scroll-right {
+.scroll-right {
   justify-self: end;
   margin-right: -15px;
 }
 
-.projects-list {
+.list {
   padding-left: 0;
   display: flex;
   overflow: auto;
   margin-left: 10px;
   margin-right: 10px;
 
-  /* Remove the margin at the edges to keep the scroll buttons aligned properly */
+  // Remove the margin at the edges to keep the scroll buttons aligned properly
   :not(:first-child) {
     margin-left: 0.5rem;
   }
 
   li {
-    position: static; /* put behind the sticky navbar */
-    min-width: 300px; /* min-width forces the cards to be at least this wide */
-    max-width: 300px; /* seriously, keep this width */
+    position: static; // put behind the sticky navbar
+    min-width: 300px; // min-width forces the cards to be at least this wide
+    max-width: 300px; // seriously, keep this width
     margin-bottom: 0.25rem;
     transition: color variables.$color-transition,
       background-color variables.$color-transition,
@@ -86,22 +85,22 @@
     margin-right: 0.5rem;
   }
 
-  .projects-link {
+  .link {
     text-decoration: none;
-    height: 100%; /* allow the whole card to be clickable */
+    height: 100%; // allow the whole card to be clickable
     display: flex;
     flex-direction: column;
     transition: color variables.$color-transition;
   }
 }
 
-.projects-name {
+.name {
   font-size: 1.3em;
   font-weight: bold;
 }
 
-.projects-image {
-  /* Scale the images so they fit within their cards */
+.image {
+  // Scale the images so they fit within their cards
   max-width: 95%;
   height: auto;
 }

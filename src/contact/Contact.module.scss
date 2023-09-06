@@ -1,7 +1,6 @@
 @use "../variables";
 
-/* Contact section */
-.contact-row {
+.row {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -14,47 +13,47 @@
   }
 }
 
-.contact-resume:active,
-.contact-linkedin:active,
-.contact-github:active,
-.contact-email:active {
-  transform: translateY(4px); /* push down on buttons */
+.resume:active,
+.linkedin:active,
+.github:active,
+.email:active {
+  transform: translateY(4px); // push down on buttons
   box-shadow: 2px 2px black;
 }
 
-.contact-github,
-.contact-email {
+.github,
+.email {
   transition: color variables.$color-transition,
     border-color variables.$color-transition;
 }
 
-/* Mimic Bootstrap's button outline */
-.contact-email {
+// Mimic Bootstrap's button outline
+.email {
   color: indigo;
   border-color: indigo;
 }
 
-.contact-email:hover {
+.email:hover {
   color: white;
   background-color: indigo;
   border-color: indigo;
 }
 
-.contact-email:focus {
-  box-shadow: 0 0 0 0.25rem rgba(75, 0, 130, 0.5); /* indigo = #4B0082 */
+.email:focus {
+  box-shadow: 0 0 0 0.25rem rgba(75, 0, 130, 0.5); // indigo = #4B0082
 }
 
-.contact-email.dark {
+.email.dark {
   color: variables.$indigo-400;
   border-color: variables.$indigo-400;
 }
 
-.contact-email.dark:hover {
+.email.dark:hover {
   color: black;
   background-color: variables.$indigo-400;
   border-color: variables.$indigo-400;
 }
 
-.contact-email.dark:focus {
+.email.dark:focus {
   box-shadow: 0 0 0 0.25rem rgba(133, 64, 245, 0.5);
 }

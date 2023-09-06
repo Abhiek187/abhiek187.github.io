@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import "./About.scss";
+import styles from "./About.module.scss";
 import { OnClickProp, Page } from "../app/App";
 
 const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
@@ -53,13 +53,13 @@ const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
         <h3 className="about-heading">About</h3>
         <div className="about-container">
           <img
-            className="about-headshot"
+            className={styles.headshot}
             src="/img/headshot.webp"
             alt="Headshot of Abhishek"
             width="262.5"
             height="175"
           />
-          <p className="about-bio">{bio}</p>
+          <p className={styles.bio}>{bio}</p>
         </div>
       </div>
       <Link

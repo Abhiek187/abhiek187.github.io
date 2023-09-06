@@ -9,7 +9,7 @@ import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import "./Contact.scss";
+import styles from "./Contact.module.scss";
 import { OnClickProp, Page } from "../app/App";
 
 type ContactProps = OnClickProp & {
@@ -38,10 +38,10 @@ const Contact: React.FC<ContactProps> = ({
       <div className="contact-wrapper">
         <h3 className="contact-heading">Contact</h3>
         {/* Each link opens in a new tab */}
-        <span className="contact-row">
+        <span className={styles.row}>
           <Button
             variant="outline-danger"
-            className="contact-resume"
+            className={styles.resume}
             href="resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
@@ -50,7 +50,7 @@ const Contact: React.FC<ContactProps> = ({
           </Button>
           <Button
             variant="outline-primary"
-            className="contact-linkedin"
+            className={styles.linkedin}
             href="https://www.linkedin.com/in/abhiek187"
             target="_blank"
             rel="noopener noreferrer"
@@ -59,7 +59,7 @@ const Contact: React.FC<ContactProps> = ({
           </Button>
           <Button
             variant={`outline-${isDarkMode ? "light" : "dark"}`}
-            className="contact-github"
+            className={styles.github}
             href="https://github.com/abhiek187"
             target="_blank"
             rel="noopener noreferrer"
@@ -69,7 +69,7 @@ const Contact: React.FC<ContactProps> = ({
           {/* Opens default email program */}
           <Button
             variant=""
-            className={`contact-email ${isDarkMode ? "dark" : ""}`}
+            className={`${styles.email} ${isDarkMode ? "dark" : ""}`}
             href="mailto:achaudhuri2011@yahoo.com"
             target="_top"
           >

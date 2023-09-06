@@ -5,7 +5,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 // import SwipeableRoutes from "react-swipeable-routes";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import "./App.scss";
+import styles from "./App.module.scss";
 import About from "../about/About";
 import Projects from "../projects/Projects";
 import Contact from "../contact/Contact";
@@ -110,29 +110,33 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className={`App ${isDarkMode ? "dark" : ""}`}>
+    <div className={`${styles.app} ${isDarkMode ? styles.dark : ""}`}>
       {/* Switch to toggle between light and dark mode */}
-      <Form.Check type="switch" className="theme-container">
+      <Form.Check type="switch" className={styles["theme-container"]}>
         <FormCheck.Label
-          className="theme-label"
-          htmlFor="theme-switch"
+          className={styles["theme-label"]}
+          htmlFor={styles["theme-switch"]}
           aria-label={isDarkMode ? "dark mode on" : "dark mode off"}
         >
           {isDarkMode ? "🌜" : "🌞"}
         </FormCheck.Label>
         <FormCheck.Input
           type="checkbox"
-          id="theme-switch"
+          id={styles["theme-switch"]}
           onClick={() => setIsDarkMode(!isDarkMode)}
         />
       </Form.Check>
-      <header className="heading container-fluid">
-        <h1 className="heading-name">Abhishek Chaudhuri</h1>
-        <h2 className="heading-headline">
+      <header className={`${styles.heading} container-fluid`}>
+        <h1 className={styles.name}>Abhishek Chaudhuri</h1>
+        <h2 className={styles.headline}>
           Software Engineer | Always Learning and Growing
         </h2>
       </header>
-      <ButtonGroup as="nav" className="links container-fluid" ref={navbar}>
+      <ButtonGroup
+        as="nav"
+        className={`${styles.links} container-fluid`}
+        ref={navbar}
+      >
         {/* Redirect routes without reloading the browser */}
         <LinkContainer to="about">
           <Button
@@ -182,7 +186,7 @@ const App: React.FC = () => {
       </ButtonGroup>
       <hr />
       <TransitionGroup
-        className={`transition-group ${transition}`}
+        className={`${styles["transition-group"]} ${transition}`}
         data-testid="transition"
       >
         <CSSTransition
@@ -198,7 +202,7 @@ const App: React.FC = () => {
               element={
                 /* Default page */
                 <main className="home container-fluid" ref={nodeRef}>
-                  <p className="home-info">
+                  <p className={styles["home-info"]}>
                     Hello and welcome to my website! Please click the links
                     above to learn more about me.
                   </p>
@@ -237,7 +241,9 @@ const App: React.FC = () => {
               element={
                 <main className="error container-fluid" ref={nodeRef}>
                   <p
-                    className={`error-message ${isDarkMode && "text-warning"}`}
+                    className={`${styles["error-message"]} ${
+                      isDarkMode && "text-warning"
+                    }`}
                   >
                     Whoops! That path is invalid. Please click the links above.
                   </p>
@@ -248,8 +254,8 @@ const App: React.FC = () => {
         </CSSTransition>
       </TransitionGroup>
       <hr />
-      <footer className="foot container-fluid">
-        <span className="foot-left">
+      <footer className={`${styles.foot} container-fluid`}>
+        <span className={styles["foot-left"]}>
           Made using{" "}
           <a
             className="foot-react"
@@ -267,9 +273,9 @@ const App: React.FC = () => {
             height="20"
           />
         </span>
-        <span className="foot-right">
+        <span className={styles["foot-right"]}>
           <a
-            className="foot-mit"
+            className={styles["foot-react"]}
             target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/Abhiek187/abhiek187.github.io/blob/main/LICENSE"

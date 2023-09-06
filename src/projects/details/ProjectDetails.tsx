@@ -13,7 +13,7 @@ import {
   useParams,
 } from "react-router-dom";
 
-import "./ProjectDetails.scss";
+import styles from "./ProjectDetails.module.scss";
 import { Project, ProjectTypes } from "../Projects";
 import ProjectError from "../error/ProjectError";
 import projectData from "../projects.json";
@@ -70,7 +70,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
       <Card
         as="section"
         ref={innerRef}
-        className={`project-details container-fluid mx-auto mb-2 ${
+        className={`${styles.details} container-fluid mx-auto mb-2 ${
           isDarkMode
             ? "text-light bg-dark border-light"
             : "text-dark bg-light border-dark"
@@ -80,7 +80,9 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
         <Button
           variant=""
           type="button"
-          className={`projects-back ${isDarkMode ? "text-light" : "text-dark"}`}
+          className={`${styles.back} ${
+            isDarkMode ? "text-light" : "text-dark"
+          }`}
           aria-label="Go back"
           onClick={() => {
             onClickLink(Page.Projects);
@@ -101,7 +103,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
           as="video"
           variant="top"
           ref={videoRef}
-          className="projects-video mx-auto"
+          className={`${styles.video} mx-auto`}
           autoPlay
           loop
           playsInline
@@ -130,7 +132,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
           {project.about}
         </Card.Text>
         <p
-          className={`projects-technology-header mb-0 ${
+          className={`${styles["technology-header"]} mb-0 ${
             isDarkMode ? "text-info" : ""
           }`}
         >
