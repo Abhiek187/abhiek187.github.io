@@ -11,7 +11,6 @@ import {
 } from "../utils/test-util";
 import { capitalize, ProjectsJSON, ProjectTypes } from "./Projects";
 import projectData from "./projects.json";
-import styles from "./Projects.module.scss";
 
 describe("Projects", () => {
   let buttonProjects: HTMLAnchorElement;
