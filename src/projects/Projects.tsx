@@ -11,11 +11,11 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, Route, Routes } from "react-router-dom";
 
-import "../scss/Projects.scss";
-import projectData from "../models/projects.json";
-import { OnClickProp, Page } from "./App";
-import ProjectDetails from "./ProjectDetails";
-import ProjectError from "./ProjectError";
+import styles from "./Projects.module.scss";
+import projectData from "./projects.json";
+import { OnClickProp, Page } from "../app/App";
+import ProjectDetails from "./details/ProjectDetails";
+import ProjectError from "./error/ProjectError";
 
 // Type definitions of the JSON files
 export interface Project {
@@ -210,15 +210,15 @@ const Projects: React.FC<ProjectsProps> = ({
       >
         <FontAwesomeIcon icon={faArrowLeft} />
       </Link>
-      <div className="projects-wrapper">
-        <h3 className="projects-heading">Projects</h3>
+      <div className={styles.wrapper}>
+        <h3 className={styles.heading}>Projects</h3>
         {/* Show either all projects or an individual project */}
         <Routes>
           <Route
             path="/"
             element={
               <div ref={innerRef}>
-                <ul className="projects-full-list">
+                <ul className={styles["full-list"]}>
                   {(Object.keys(projects) as [ProjectTypes]).map(
                     (type, index) => (
                       /* Each list item needs a key */
@@ -228,18 +228,18 @@ const Projects: React.FC<ProjectsProps> = ({
                           {type === "ios" ? "iOS" : capitalize(type)}
                         </h4>
                         {/* Show a horizontal list of cards */}
-                        <div className="projects-scrolling-list">
+                        <div className={styles["scrolling-list"]}>
                           <Button
                             variant={isDarkMode ? "info" : "primary"}
                             type="button"
-                            className="projects-scroll-left"
+                            className={styles["scroll-left"]}
                             onClick={() => scrollList(index, false)}
                             aria-label={`Scroll ${type} projects left`}
                           >
                             <FontAwesomeIcon icon={faArrowLeft} />
                           </Button>
                           <ul
-                            className="projects-list"
+                            className={styles.list}
                             ref={(el) => (projectsListRef.current[index] = el)}
                             onScroll={(event) =>
                               updateScrollButtonVisibility(
@@ -261,7 +261,7 @@ const Projects: React.FC<ProjectsProps> = ({
                                 <Link
                                   to={`${type}/${project.id}`}
                                   state={{ from: window.location.hash }}
-                                  className={`projects-link ${
+                                  className={`${styles.link} ${
                                     isDarkMode ? "text-light" : "text-dark"
                                   }`}
                                   onClick={() =>
@@ -271,14 +271,14 @@ const Projects: React.FC<ProjectsProps> = ({
                                 >
                                   <Card.Title
                                     as="h5"
-                                    className="projects-name m-2"
+                                    className={`${styles.name} m-2`}
                                   >
                                     {project.name}
                                   </Card.Title>
                                   {/* Specifying the width and height will reduce CLS (2:3 for portrait) */}
                                   <Card.Img
                                     variant="top"
-                                    className="projects-image mx-auto"
+                                    className={`${styles.image} mx-auto`}
                                     src={project.image}
                                     alt={`Screenshot of ${project.name}`}
                                     width="280"
@@ -323,7 +323,7 @@ const Projects: React.FC<ProjectsProps> = ({
                           <Button
                             variant={isDarkMode ? "info" : "primary"}
                             type="button"
-                            className="projects-scroll-right"
+                            className={styles["scroll-right"]}
                             onClick={() => scrollList(index, true)}
                             aria-label={`Scroll ${type} projects right`}
                           >

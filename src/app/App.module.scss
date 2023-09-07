@@ -1,19 +1,19 @@
-@use "variables";
+@use "../variables";
 
-/* General styles */
+// General styles
 body {
-  /* Background fills entire screen */
+  // Background fills entire screen
   background: linear-gradient(indigo, cyan) no-repeat center fixed;
-  font-family: Verdana, Courier New, Arial, Sans-serif; /* font that distinguishes 1ijlIJ5SoO0 */
+  font-family: Verdana, Courier New, Arial, Sans-serif; // font that distinguishes 1ijlIJ5SoO0
 }
 
 header,
 main,
 footer {
-  padding: 0.5%; /* create space between words and white rectangles */
+  padding: 0.5%; // create space between words and white rectangles
 }
 
-.App {
+.app {
   text-align: center;
   margin: 3%;
   margin-top: 1%;
@@ -23,7 +23,7 @@ footer {
   footer {
     color: variables.$dark-color;
     background-color: variables.$light-color;
-    /* Transition betweeen light and dark mode */
+    // Transition betweeen light and dark mode
     transition: color variables.$color-transition,
       background-color variables.$color-transition;
   }
@@ -33,8 +33,8 @@ footer {
   }
 }
 
-.App.dark {
-  /* Dark themes */
+.app.dark {
+  // Dark themes
   header,
   main,
   footer {
@@ -45,7 +45,7 @@ footer {
 
 .theme-container {
   display: flex;
-  padding-left: 0; /* remove default padding */
+  padding-left: 0; // remove default padding
 
   .theme-label {
     flex: 1;
@@ -62,68 +62,69 @@ footer {
 
 .transition-group {
   > :nth-child(2) {
-    position: fixed; /* don't show the disappearing details card underneath the real card */
+    position: fixed; // don't show the disappearing details card underneath the real card
   }
 }
 
-/* Transition effects (active === to, nonactive === from) */
-.slide-left {
-  .transition-enter {
+// Transition effects (active === to, nonactive === from)
+// :global = don't turn into a unique class
+:global(.slide-left) {
+  :global(.transition-enter) {
     transform: translate(110%);
   }
 
   /* active classes need to appear AFTER nonactive classes,
    * otherwise the new transform will be discarded and the transition won't take place
    */
-  .transition-enter-active {
+  :global(.transition-enter-active) {
     transform: translate(0%);
     transition: 600ms ease-in-out;
     position: fixed;
-    width: 100%; /* match contact's width with other components */
+    width: 100%; // match contact's width with other components
   }
 
-  .transition-exit {
+  :global(.transition-exit) {
     transform: translate(0%);
   }
 
-  .transition-exit-active {
+  :global(.transition-exit-active) {
     transform: translate(-110%);
     transition: 600ms ease-in-out;
     position: relative;
   }
 }
 
-.slide-right {
-  .transition-enter {
+:global(.slide-right) {
+  :global(.transition-enter) {
     transform: translate(-110%);
   }
 
-  .transition-enter-active {
+  :global(.transition-enter-active) {
     transform: translate(0%);
     transition: 600ms ease-in-out;
     position: fixed;
-    width: 100%; /* match contact's width with other components */
+    width: 100%; // match contact's width with other components
   }
 
-  .transition-exit {
+  :global(.transition-exit) {
     transform: translate(0%);
   }
 
-  .transition-exit-active {
+  :global(.transition-exit-active) {
     transform: translate(110%);
     transition: 600ms ease-in-out;
     position: relative;
   }
 }
 
-/* Fade transition when selecting projects */
-.my-fade {
-  .transition-enter {
+// Fade transition when selecting projects
+:global(.my-fade) {
+  :global(.transition-enter) {
     opacity: 0;
     transform: scale(0.9);
   }
 
-  .transition-enter-active {
+  :global(.transition-enter-active) {
     opacity: 1;
     transform: scale(1);
     /* The timeout on CSSTransition remains at 600ms so that things don't disappear
@@ -132,35 +133,35 @@ footer {
     width: 100%;
   }
 
-  .transition-exit {
+  :global(.transition-exit) {
     opacity: 1;
     transform: scale(1);
   }
 
-  .transition-exit-active {
+  :global(.transition-exit-active) {
     opacity: 0;
     transform: scale(0.9);
     transition: opacity 300ms, transform 300ms;
   }
 }
 
-/* Heading */
+// Heading
 .heading {
   padding-bottom: 0;
 
-  .heading-name {
+  .name {
     font-size: 2em;
     font-weight: bold;
   }
 
-  .heading-headline {
-    font-weight: normal; /* remove bold */
+  .headline {
+    font-weight: normal; // remove bold
     font-size: 1.5em;
     padding-bottom: 0.5%;
   }
 }
 
-/* Nav */
+// Nav
 .links {
   display: flex;
   justify-content: center;
@@ -168,30 +169,30 @@ footer {
   z-index: 10;
 
   a {
-    text-decoration: none; /* no underline normally */
+    text-decoration: none; // no underline normally
   }
 }
 
 .sticky {
-  position: fixed; /* keep navbar at the top of the page */
+  position: fixed; // keep navbar at the top of the page
   top: 0;
   left: 0;
 }
 
-/* Style main if sticky */
+// Style main if sticky
 .sticky ~ main {
-  padding-top: 20px; /* transition smoothly between sticky and non-sticky */
+  padding-top: 20px; // transition smoothly between sticky and non-sticky
 }
 
-/* Arrows */
-.fa-arrow-left,
-.fa-arrow-right {
+// Arrows
+:global(.fa-arrow-left),
+:global(.fa-arrow-right) {
   font-size: 2em;
 }
 
-.arrow-left,
-.arrow-right {
-  /* Center the arrows vertically and horizontally in the containers */
+:global(.arrow-left),
+:global(.arrow-right) {
+  // Center the arrows vertically and horizontally in the containers
   display: flex;
   justify-content: center;
   align-items: center;
@@ -200,30 +201,30 @@ footer {
   transition: background-color 0.15s ease-in-out;
 }
 
-.arrow-left:hover,
-.arrow-right:hover {
+:global(.arrow-left):hover,
+:global(.arrow-right):hover {
   background-color: lightgray;
 }
 
-.about,
-.projects,
-.contact {
-  /* Place the arrows near the edges and the main content in the middle */
+:global(.about),
+:global(.projects),
+:global(.contact) {
+  // Place the arrows near the edges and the main content in the middle
   display: flex;
   justify-content: space-between;
 }
 
-.about-wrapper,
-.contact-wrapper {
+:global(.about-wrapper),
+:global(.contact-wrapper) {
   width: 90%;
   margin: auto;
 }
 
-/* Home & Error */
+// Home & Error
 .home-info,
 .error-message {
   font-size: 1.2em;
-  margin: 0; /* remove the default margins for paragraphs from Bootstrap */
+  margin: 0; // remove the default margins for paragraphs from Bootstrap
 }
 
 .error-message {
@@ -231,7 +232,7 @@ footer {
   transition: color variables.$color-transition;
 }
 
-/* Footer */
+// Footer
 .foot {
   display: flex;
   flex-wrap: wrap;
@@ -243,31 +244,31 @@ footer {
   width: 100%;
 }
 
-.foot-react,
-.foot-mit,
-.projects-github-link {
+.react,
+.mit,
+:global(.projects-github-link) {
   color: var(--bs-indigo);
   transition: color variables.$color-transition;
 }
 
-.dark .foot-react,
-.dark .foot-mit,
-.dark .projects-github-link {
+.dark .react,
+.dark .mit,
+.dark :global(.projects-github-link) {
   color: var(--bs-cyan);
 }
 
-.dark .foot-react:hover,
-.dark .foot-mit:hover,
-.dark .projects-github-link:hover {
-  color: #0aa8bd; /* slightly darker than cyan */
+.dark .react:hover,
+.dark .mit:hover,
+.dark :global(.projects-github-link):hover {
+  color: #0aa8bd; // slightly darker than cyan
 }
 
-.foot-react-img {
+.react-img {
   width: 1.7em;
 }
 
 @media screen and (min-width: 400px) {
-  /* Footer text on same line in big viewport */
+  // Footer text on same line in big viewport
   .foot-left {
     width: 50%;
     text-align: left;

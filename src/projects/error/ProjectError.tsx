@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import "../scss/ProjectError.scss";
-import { ProjectParams } from "./ProjectDetails";
+import styles from "./ProjectError.module.scss";
+import { ProjectParams } from "../details/ProjectDetails";
 
 type ProjectErrorProps = {
   isDarkMode: Boolean;
@@ -18,7 +18,7 @@ const ProjectError: React.FC<ProjectErrorProps> = ({
   return (
     <section
       ref={innerRef}
-      className={`project-error container-fluid fs-5 ${
+      className={`${styles.error} container-fluid fs-5 ${
         isDarkMode ? "text-warning" : ""
       }`}
     >

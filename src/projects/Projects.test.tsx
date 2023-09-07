@@ -1,16 +1,16 @@
 import { fireEvent, screen, within } from "@testing-library/react";
 import { expect, vi } from "vitest";
 
-import { Page, Transition } from "../tsx/App";
+import { Page, Transition } from "../app/App";
 import {
   setupTests,
   testBaseContent,
   testNavbar,
   testFocusAbout,
   testFocusContact,
-} from "./test-util";
-import { capitalize, ProjectsJSON, ProjectTypes } from "../tsx/Projects";
-import projectData from "../models/projects.json";
+} from "../utils/test-util";
+import { capitalize, ProjectsJSON, ProjectTypes } from "./Projects";
+import projectData from "./projects.json";
 
 describe("Projects", () => {
   let buttonProjects: HTMLAnchorElement;
@@ -129,7 +129,11 @@ describe("Projects", () => {
       // eslint-disable-next-line testing-library/no-node-access
       (screen.getByText("About") as HTMLAnchorElement).parentElement;
     expect(window.scrollY).toBe(0);
-    expect(Array.from(navbar?.classList ?? ["sticky"])).not.toContain("sticky");
+    expect(
+      Array.from(navbar?.classList ?? ["sticky"]).some((c) =>
+        c.includes("sticky")
+      )
+    ).toBe(false);
 
     // Simulate a scroll by changing the pageYOffset and activating a scroll event
     fireEvent.scroll(window, { target: { scrollY: 1000 } });
@@ -138,7 +142,9 @@ describe("Projects", () => {
     }
 
     expect(window.scrollY).toBeGreaterThan(0);
-    expect(Array.from(navbar?.classList ?? [])).toContain("sticky");
+    expect(
+      Array.from(navbar?.classList ?? []).some((c) => c.includes("sticky"))
+    ).toBe(true);
 
     // navbar.offsetTop is 0, so make pageYOffset less than that to force the navbar to not be sticky
     fireEvent.scroll(window, { target: { scrollY: -1 } });
@@ -147,7 +153,11 @@ describe("Projects", () => {
     }
 
     expect(window.scrollY).toBeLessThan(0);
-    expect(Array.from(navbar?.classList ?? ["sticky"])).not.toContain("sticky");
+    expect(
+      Array.from(navbar?.classList ?? ["sticky"]).some((c) =>
+        c.includes("sticky")
+      )
+    ).toBe(false);
     (window as any).scrollY = 0;
   });
 

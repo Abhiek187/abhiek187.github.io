@@ -1,6 +1,6 @@
-@use "variables";
+@use "../../variables";
 
-.project-error {
+.error {
   color: variables.$red-700;
   transition: color variables.$color-transition;
 }
