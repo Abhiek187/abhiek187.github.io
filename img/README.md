@@ -4,11 +4,15 @@ To optimize media content on browsers, Google recommends converting all JPEG/PNG
 
 ## PNG --> WebP
 
-`cwebp -q 50 IMG.png -o IMG.webp`
+```bash
+cwebp -q 50 IMG.png -o IMG.webp
+```
 
 ## GIF --> MP4
 
-`ffmpeg -i IMG.gif -pix_fmt yuv420p -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -movflags faststart IMG.mp4`
+```bash
+ffmpeg -i IMG.gif -pix_fmt yuv420p -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -movflags faststart IMG.mp4
+```
 
 Note that this command is different from the one provided in the article below to fix playback issues on Windows and Safari.
 
