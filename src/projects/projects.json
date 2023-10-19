@@ -134,7 +134,7 @@
       "id": "aws-shop",
       "name": "AWS Shop",
       "image": "/img/web/aws-shop.webp",
-      "gif": null,
+      "gif": "/img/web/aws-shop",
       "about": "A basic shopping app that utilizes various AWS services. It is designed to help users new to AWS understand what each service offers and their costs. The architecture is designed with cost optimization and operational excellence in mind. Serverless tools help reduce the costs and everything is written as code to help test, version, and automate much of the application, infrastructure, and security of the project.",
       "technology": [
         "CloudFormation",
