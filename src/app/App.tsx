@@ -39,7 +39,8 @@ const App: React.FC = () => {
   const [transition, setTransition] = useState<Transition>(
     Transition.SlideLeft
   );
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(prefersDark);
   const nodeRef = createRef<HTMLDivElement>(); // removes the need for CSSTransition to call findDOMNode
   const location = useLocation();
 

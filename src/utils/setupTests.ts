@@ -7,6 +7,16 @@ import { cleanup } from "@testing-library/react";
 // extends Vitest's expect method with methods from react-testing-library
 import "@testing-library/jest-dom/vitest";
 
+global.matchMedia =
+  global.matchMedia ||
+  function () {
+    return {
+      matches: false,
+      addListener: function () {},
+      removeListener: function () {},
+    };
+  };
+
 // runs a cleanup after each test case (e.g. clearing jsdom)
 afterEach(() => {
   cleanup();
