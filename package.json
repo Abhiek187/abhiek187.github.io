@@ -30,7 +30,7 @@
     "@types/react-router-bootstrap": "^0.26.6",
     "@types/react-router-dom": "^5.1.7",
     "@types/react-transition-group": "^4.4.9",
-    "@vitejs/plugin-react-swc": "^3.4.1",
+    "@vitejs/plugin-react-swc": "^3.5.0",
     "@vitest/coverage-v8": "^0.34.6",
     "eslint": "^8.54.0",
     "eslint-config-react-app": "^7.0.1",
