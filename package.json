@@ -33,7 +33,7 @@
     "@types/react-transition-group": "^4.4.10",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "@vitest/coverage-v8": "^1.0.4",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
     "eslint-config-react-app": "^7.0.1",
     "gh-pages": "^6.1.0",
     "jsdom": "^23.0.1",
