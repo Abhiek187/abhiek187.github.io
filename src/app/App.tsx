@@ -135,6 +135,8 @@ const App: React.FC = () => {
       </header>
       <ButtonGroup
         as="nav"
+        // role is implied by <nav> as "navigation", not "group"
+        role=""
         className={`${styles.links} container-fluid`}
         ref={navbar}
       >
