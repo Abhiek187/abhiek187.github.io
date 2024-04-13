@@ -3,7 +3,7 @@
 [![Node.js CI](https://github.com/Abhiek187/abhiek187.github.io/actions/workflows/node.js.yml/badge.svg)](https://github.com/Abhiek187/abhiek187.github.io/actions/workflows/node.js.yml)
 [![CodeQL](https://github.com/Abhiek187/abhiek187.github.io/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Abhiek187/abhiek187.github.io/actions/workflows/codeql-analysis.yml)
 
-![Screenshot of my website](screenshot.png)
+![Screenshot of my website](public/screenshots/screenshot-desktop.png)
 
 ## About
 
