@@ -18,7 +18,9 @@ Note that this command is different from the one provided in the article below t
 
 ## GIF --> WebM
 
-`ffmpeg -i IMG.gif -c vp9 -b:v 0 -crf 41 IMG.webm`
+```bash
+ffmpeg -i IMG.gif -c vp9 -b:v 0 -crf 41 IMG.webm
+```
 
 ## Articles
 
