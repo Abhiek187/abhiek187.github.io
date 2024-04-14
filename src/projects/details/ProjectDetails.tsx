@@ -117,14 +117,9 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
             /* <> === React.Fragment */
             <>
               <source
-                src={`${project.gif}.webm`}
+                src={project.gif}
                 type="video/webm"
                 data-testid="video-webm"
-              />
-              <source
-                src={`${project.gif}.mp4`}
-                type="video/mp4"
-                data-testid="video-mp4"
               />
               Your browser doesn't support the video tag.
             </>
