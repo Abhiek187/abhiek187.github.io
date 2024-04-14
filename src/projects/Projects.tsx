@@ -8,7 +8,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Endpoints } from "@octokit/types";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Button, Card } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import { Link, Route, Routes } from "react-router-dom";
 
 import styles from "./Projects.module.scss";
