@@ -82,10 +82,6 @@ describe("Project Details", () => {
             "video-webm"
           ) as HTMLSourceElement | null;
           expect(videoWebM?.src ?? "null").toContain(String(project.gif));
-          const videoMp4 = screen.queryByTestId(
-            "video-mp4"
-          ) as HTMLSourceElement | null;
-          expect(videoMp4?.src ?? "null").toContain(String(project.gif));
           expect(projectGif).toHaveTextContent(
             project.gif === null
               ? ""

@@ -31,10 +31,12 @@ export default defineConfig({
       manifest: {
         short_name: "Abhishek Chaudhuri",
         name: "Abhishek Chaudhuri - Portfolio Website",
+        description:
+          "Learn more about Abhishek Chaudhuri: Rutgers Alumnus & Software Engineer on his personal website. Check out his portfolio of projects ranging from web development, mobile development, game design, and machine learning.",
         icons: [
           {
             src: "favicon.ico",
-            sizes: "64x64 32x32 24x24 16x16",
+            sizes: "48x48",
             type: "image/x-icon",
           },
           {
@@ -46,13 +48,29 @@ export default defineConfig({
             src: "icon/android-chrome-512x512.png",
             sizes: "512x512",
             type: "image/png",
-            purpose: "any maskable",
+            purpose: "any",
           },
         ],
         start_url: "/",
         display: "minimal-ui",
         theme_color: "#000000",
         background_color: "#ffffff",
+        screenshots: [
+          {
+            src: "screenshots/screenshot-desktop.png",
+            sizes: "2360x1640",
+            type: "image/png",
+            form_factor: "wide",
+            label: "Home screen",
+          },
+          {
+            src: "screenshots/screenshot-mobile.png",
+            sizes: "1082x2402",
+            type: "image/png",
+            form_factor: "narrow",
+            label: "Home screen",
+          },
+        ],
       },
     }),
   ],

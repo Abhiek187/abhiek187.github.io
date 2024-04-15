@@ -1,5 +1,8 @@
 import React, { useState, useEffect, createRef, useRef } from "react";
-import { Button, ButtonGroup, Form, FormCheck } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Form from "react-bootstrap/Form";
+import FormCheck from "react-bootstrap/FormCheck";
 import { LinkContainer } from "react-router-bootstrap";
 import { Route, Routes, useLocation } from "react-router-dom";
 // import SwipeableRoutes from "react-swipeable-routes";

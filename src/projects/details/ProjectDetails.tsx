@@ -5,7 +5,9 @@ import {
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { createRef, useEffect } from "react";
-import { Badge, Button, Card } from "react-bootstrap";
+import Badge from "react-bootstrap/Badge";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import {
   NavigateFunction,
   useLocation,
@@ -115,14 +117,9 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
             /* <> === React.Fragment */
             <>
               <source
-                src={`${project.gif}.webm`}
+                src={project.gif}
                 type="video/webm"
                 data-testid="video-webm"
-              />
-              <source
-                src={`${project.gif}.mp4`}
-                type="video/mp4"
-                data-testid="video-mp4"
               />
               Your browser doesn't support the video tag.
             </>
