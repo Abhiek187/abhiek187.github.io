@@ -22,6 +22,14 @@ Note that this command is different from the one provided in the article below t
 ffmpeg -i IMG.gif -c vp9 -b:v 0 -crf 41 IMG.webm
 ```
 
+## MP4 --> WebM
+
+```bash
+ffmpeg -i IMG.mp4 -c:v libvpx-vp9 -crf 30 -b:v 0 -b:a 128k -c:a libopus IMG.webm
+```
+
+Alternatively, you can use [VLC media player](https://www.videolan.org) to convert all the media files.
+
 ## Articles
 
 [Serve images in modern formats](https://web.dev/uses-webp-images/?utm_source=lighthouse&utm_medium=devtools)
