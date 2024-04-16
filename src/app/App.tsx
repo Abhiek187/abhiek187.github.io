@@ -12,24 +12,8 @@ import styles from "./App.module.scss";
 import About from "../about/About";
 import Projects from "../projects/Projects";
 import Contact from "../contact/Contact";
-
-// Possible transitions
-export enum Transition {
-  SlideLeft = "slide-left",
-  SlideRight = "slide-right",
-  Fade = "my-fade", // bootstrap took the fade class
-}
-
-// Information about each route
-export enum Page {
-  Home,
-  Error,
-  About,
-  Projects,
-  Contact,
-  ProjectDetails,
-  ProjectError,
-}
+import Page from "../enums/Page";
+import Transition from "../enums/Transition";
 
 // Prop type passed to all the child components
 export interface OnClickProp {

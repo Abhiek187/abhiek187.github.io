@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 import { expect } from "vitest";
 
-import { Page } from "./App";
 import { setupTests, testBaseContent, testNavbar } from "../utils/test-util";
+import Page from "../enums/Page";
 
 /* Testing Procedure:
  * - Start by rendering the App -> it should render without crashing

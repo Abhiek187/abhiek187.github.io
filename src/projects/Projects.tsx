@@ -14,9 +14,11 @@ import { Link, Route, Routes } from "react-router-dom";
 
 import styles from "./Projects.module.scss";
 import projectData from "./projects.json";
-import { OnClickProp, Page } from "../app/App";
+import { OnClickProp } from "../app/App";
 import ProjectDetails from "./details/ProjectDetails";
 import ProjectError from "./error/ProjectError";
+import Page from "../enums/Page";
+import capitalize from "../utils/capitalize";
 
 // Type definitions of the JSON files
 export interface Project {
@@ -41,9 +43,6 @@ type ProjectsProps = OnClickProp & {
   isDarkMode: boolean;
 };
 
-export const capitalize = (str: string): string =>
-  str.charAt(0).toUpperCase() + str.slice(1);
-
 const Projects: React.FC<ProjectsProps> = ({
   onClickLink,
   innerRef,
@@ -51,7 +50,7 @@ const Projects: React.FC<ProjectsProps> = ({
 }) => {
   // Set the type of the imported JSON
   const [projects, setProjects] = useState(projectData as ProjectsJSON);
-  const fetchedStats = useRef<Boolean>(false);
+  const fetchedStats = useRef<boolean>(false);
 
   // Save a reference to each project list
   const projectsListRef = useRef<(HTMLUListElement | null)[]>(
@@ -152,7 +151,7 @@ const Projects: React.FC<ProjectsProps> = ({
     }
 
     // The cards have a width of 300px + 8px * 2 of margin
-    projectsLists[index]!.scrollBy({
+    projectsLists[index]?.scrollBy({
       top: 0,
       left: scrollRight
         ? cardsToScroll * cardLength

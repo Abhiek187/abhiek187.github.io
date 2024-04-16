@@ -1,13 +1,14 @@
 import { fireEvent, screen } from "@testing-library/react";
 import { expect } from "vitest";
 
-import { Page, Transition } from "../app/App";
 import {
   setupTests,
   testBaseContent,
   testNavbar,
   testFocusProjects,
 } from "../utils/test-util";
+import Page from "../enums/Page";
+import Transition from "../enums/Transition";
 
 describe("About", () => {
   let buttonAbout: HTMLAnchorElement;

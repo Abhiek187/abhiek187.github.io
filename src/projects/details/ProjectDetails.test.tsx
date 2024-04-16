@@ -9,7 +9,8 @@ import {
 } from "../../utils/test-util";
 import { ProjectsJSON, ProjectTypes } from "../Projects";
 import projectData from "../projects.json";
-import { Page, Transition } from "../../app/App";
+import Transition from "../../enums/Transition";
+import Page from "../../enums/Page";
 
 describe("Project Details", () => {
   let buttonProjects: HTMLAnchorElement;
@@ -113,7 +114,6 @@ describe("Project Details", () => {
           }) as HTMLAnchorElement | null;
 
           if (demoButton !== null) {
-            // eslint-disable-next-line jest/no-conditional-expect
             expect(demoButton).toBeInTheDocument();
           }
 

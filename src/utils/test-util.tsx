@@ -3,7 +3,9 @@ import { HashRouter } from "react-router-dom";
 import { config } from "react-transition-group";
 import { expect } from "vitest";
 
-import App, { Page, Transition } from "../app/App";
+import App from "../app/App";
+import Transition from "../enums/Transition";
+import Page from "../enums/Page";
 
 let buttonAbout: HTMLAnchorElement;
 let buttonProjects: HTMLAnchorElement;

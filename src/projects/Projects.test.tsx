@@ -1,7 +1,6 @@
 import { fireEvent, screen, within } from "@testing-library/react";
 import { expect, vi } from "vitest";
 
-import { Page, Transition } from "../app/App";
 import {
   setupTests,
   testBaseContent,
@@ -9,8 +8,11 @@ import {
   testFocusAbout,
   testFocusContact,
 } from "../utils/test-util";
-import { capitalize, ProjectsJSON, ProjectTypes } from "./Projects";
+import { ProjectsJSON, ProjectTypes } from "./Projects";
 import projectData from "./projects.json";
+import Page from "../enums/Page";
+import Transition from "../enums/Transition";
+import capitalize from "../utils/capitalize";
 
 describe("Projects", () => {
   let buttonProjects: HTMLAnchorElement;
@@ -125,9 +127,9 @@ describe("Projects", () => {
 
   it("makes the navbar sticky when scrolling down", () => {
     // Test that the navbar is sticky after scrolling down far enough
-    const navbar: HTMLElement | null =
-      // eslint-disable-next-line testing-library/no-node-access
-      (screen.getByText("About") as HTMLAnchorElement).parentElement;
+    const navbar: HTMLElement | null = (
+      screen.getByText("About") as HTMLAnchorElement
+    ).parentElement;
     expect(window.scrollY).toBe(0);
     expect(
       Array.from(navbar?.classList ?? ["sticky"]).some((c) =>
@@ -158,7 +160,7 @@ describe("Projects", () => {
         c.includes("sticky")
       )
     ).toBe(false);
-    (window as any).scrollY = 0;
+    window.scrollY = 0;
   });
 
   testNavbar(Page.Projects);

@@ -19,10 +19,11 @@ import styles from "./ProjectDetails.module.scss";
 import { Project, ProjectTypes } from "../Projects";
 import ProjectError from "../error/ProjectError";
 import projectData from "../projects.json";
-import { OnClickProp, Page } from "../../app/App";
+import { OnClickProp } from "../../app/App";
+import Page from "../../enums/Page";
 
 type ProjectDetailsProps = OnClickProp & {
-  isDarkMode: Boolean;
+  isDarkMode: boolean;
 };
 
 export type ProjectParams = {
