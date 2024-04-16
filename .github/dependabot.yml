@@ -19,6 +19,7 @@ updates:
       types:
         patterns:
           - "@types/*"
+          - "@typescript-eslint/*"
       vitest:
         patterns:
           - "*vitest*"

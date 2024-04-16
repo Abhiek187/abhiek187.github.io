@@ -27,20 +27,22 @@
     "@testing-library/react": "^15.0.2",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.7",
-    "@types/react": "^18.2.78",
+    "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
     "@types/react-router-bootstrap": "^0.26.6",
     "@types/react-router-dom": "^5.1.7",
     "@types/react-transition-group": "^4.4.10",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "@vitest/coverage-v8": "^1.5.0",
     "eslint": "^8.57.0",
-    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
     "gh-pages": "^6.1.1",
     "jsdom": "^24.0.0",
     "typescript": "^5.4.5",
     "vite": "^5.2.8",
-    "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-pwa": "^0.19.8",
     "vitest": "^1.2.2"
   },
@@ -48,15 +50,10 @@
     "start": "vite",
     "build": "vite build && cp build/index.html build/404.html",
     "serve": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "vitest run --coverage",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
