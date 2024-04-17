@@ -113,7 +113,7 @@ describe("Projects", () => {
     ) as HTMLButtonElement[];
     const projectsLists = screen.getAllByRole("list") as HTMLUListElement[];
     // Mock the scrollBy method since it's not defined by default
-    HTMLUListElement.prototype.scrollBy = vi.fn();
+    HTMLUListElement.prototype.scrollBy = vi.fn(() => {});
 
     for (const [index, scrollButton] of scrollButtons.entries()) {
       // [0, 1] -> 1, [2, 3] -> 2, etc.
