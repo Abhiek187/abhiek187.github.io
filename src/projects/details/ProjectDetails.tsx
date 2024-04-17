@@ -16,7 +16,7 @@ import {
 } from "react-router-dom";
 
 import styles from "./ProjectDetails.module.scss";
-import { Project, ProjectTypes } from "../Projects";
+import { Project, ProjectTypes } from "../list/ProjectList";
 import ProjectError from "../error/ProjectError";
 import projectData from "../projects.json";
 import { OnClickProp } from "../../app/App";
