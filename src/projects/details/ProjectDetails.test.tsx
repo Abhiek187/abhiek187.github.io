@@ -7,7 +7,7 @@ import {
   testFocusContact,
   testNavbar,
 } from "../../utils/test-util";
-import { ProjectsJSON, ProjectTypes } from "../Projects";
+import { ProjectsJSON, ProjectTypes } from "../list/ProjectList";
 import projectData from "../projects.json";
 import Transition from "../../enums/Transition";
 import Page from "../../enums/Page";
