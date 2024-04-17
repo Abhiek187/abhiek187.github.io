@@ -6,6 +6,7 @@ import {
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Endpoints } from "@octokit/types";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
