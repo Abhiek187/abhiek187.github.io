@@ -27,6 +27,7 @@ export default tseslint.config(
         ...globals.es2020,
       },
       parserOptions: {
+        // Open issue: https://github.com/typescript-eslint/typescript-eslint/issues/8891
         project: true,
         tsconfigRootDir: __dirname, // use import.meta.dirname in Node 20+
       },
