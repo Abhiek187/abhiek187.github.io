@@ -13,13 +13,15 @@ updates:
     schedule:
       interval: "weekly"
     groups:
+      eslint:
+        patterns:
+          - "*eslint*"
       fortawesome:
         patterns:
           - "@fortawesome/*"
       types:
         patterns:
           - "@types/*"
-          - "@typescript-eslint/*"
       vitest:
         patterns:
           - "*vitest*"
