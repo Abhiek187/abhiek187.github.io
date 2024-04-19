@@ -20,7 +20,7 @@ export default tseslint.config(
    */
   {
     files: ["**/*.ts", "**/*.tsx"],
-    ignores: ["dist"],
+    ignores: ["build/**, coverage/**"],
     languageOptions: {
       globals: {
         ...globals.browser,
