@@ -1,13 +1,13 @@
-import { ReportCallback } from "web-vitals";
+import { MetricType } from "web-vitals";
 
-const reportWebVitals = (onPerfEntry?: ReportCallback) => {
+const reportWebVitals = (onPerfEntry?: (metric: MetricType) => void) => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
-    import("web-vitals").then(({ onCLS, onFID, onFCP, onLCP, onTTFB }) => {
-      onCLS(onPerfEntry);
-      onFID(onPerfEntry);
-      onFCP(onPerfEntry);
-      onLCP(onPerfEntry);
-      onTTFB(onPerfEntry);
+    import("web-vitals").then(({ onCLS, onINP, onFCP, onLCP, onTTFB }) => {
+      onCLS(onPerfEntry); // Cumulative Layout Shift
+      onINP(onPerfEntry); // Interaction to Next Paint
+      onFCP(onPerfEntry); // First Contentful Paint
+      onLCP(onPerfEntry); // Largest Contentful Paint
+      onTTFB(onPerfEntry); // Time to First Byte
     });
   }
 };
