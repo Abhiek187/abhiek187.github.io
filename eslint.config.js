@@ -1,5 +1,5 @@
 import eslint from "@eslint/js";
-import react from "eslint-plugin-react/configs/recommended.js";
+import reactRecommended from "eslint-plugin-react/configs/recommended.js";
 import reactRefresh from "eslint-plugin-react-refresh";
 import globals from "globals";
 import path from "path";
@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 export default tseslint.config(
   {
     // Global ignores
-    ignores: ["build/", "coverage/"],
+    ignores: ["build/", "coverage/", "*.js"],
   },
   eslint.configs.recommended,
   // Use TS config only for TS files: https://stackoverflow.com/a/64488474
@@ -22,7 +22,7 @@ export default tseslint.config(
     ...config,
     files: ["**/*.ts", "**/*.tsx"],
   })),
-  react,
+  reactRecommended,
   /* Follow https://github.com/facebook/react/pull/28773 &
    * https://github.com/facebook/react/issues/28313
    * until eslint-plugin-react-hooks supports flat configs
