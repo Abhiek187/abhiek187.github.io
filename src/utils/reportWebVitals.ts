@@ -2,7 +2,7 @@ import { MetricType } from "web-vitals";
 
 const reportWebVitals = (onPerfEntry?: (metric: MetricType) => void) => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
-    import("web-vitals").then(({ onCLS, onINP, onFCP, onLCP, onTTFB }) => {
+    void import("web-vitals").then(({ onCLS, onINP, onFCP, onLCP, onTTFB }) => {
       onCLS(onPerfEntry); // Cumulative Layout Shift
       onINP(onPerfEntry); // Interaction to Next Paint
       onFCP(onPerfEntry); // First Contentful Paint

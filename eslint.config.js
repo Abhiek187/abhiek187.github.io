@@ -36,7 +36,7 @@ export default tseslint.config(
       },
       parserOptions: {
         // Open issue: https://github.com/typescript-eslint/typescript-eslint/issues/8891
-        project: true,
+        project: ["./tsconfig.json", "./tsconfig.node.json"],
         tsconfigRootDir: __dirname, // use import.meta.dirname in Node 20+
       },
     },
@@ -49,6 +49,7 @@ export default tseslint.config(
     rules: {
       // Suppress errors for missing 'import React' in files
       "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },

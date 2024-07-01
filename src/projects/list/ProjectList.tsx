@@ -50,8 +50,8 @@ const ProjectList: React.FC<ProjectListProps> = ({
   const fetchedStats = useRef<boolean>(false);
 
   // Save a reference to each project list
-  const projectsListRef = useRef<(HTMLUListElement | null)[]>(
-    Array(Object.keys(projects).length)
+  const projectsListRef = useRef(
+    Array<HTMLUListElement | null>(Object.keys(projects).length)
   );
 
   // If a project were to blow up, format the numbers like 1K or 1M to fit them within the cards
@@ -62,7 +62,7 @@ const ProjectList: React.FC<ProjectListProps> = ({
     // Rate limit of 60/hr w/o a token and 5000/hr with a token
     // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#requests-from-personal-accounts
     // Dynamically import Octokit to chunk the build
-    const { Octokit } = await import("octokit");
+    const { Octokit } = await import("@octokit/core");
     const octokit = new Octokit();
 
     // Get the response type of the endpoint being called
@@ -128,7 +128,7 @@ const ProjectList: React.FC<ProjectListProps> = ({
 
     // Only fetch the stats once when the component loads
     if (!fetchedStats.current) {
-      getGithubStats();
+      void getGithubStats();
       fetchedStats.current = true;
     }
   }, [getGithubStats, isDarkMode]);
@@ -136,11 +136,13 @@ const ProjectList: React.FC<ProjectListProps> = ({
   const scrollList = (index: number, scrollRight: boolean) => {
     const { current: projectsLists } = projectsListRef;
     if (projectsLists[index] === null) return;
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+    const projectsList = projectsLists[index] as HTMLUListElement;
 
     // Scroll multiple cards if the viewport is wide enough
     const cardLength: number = 316;
     let cardsToScroll: number = Math.floor(
-      projectsLists[index]!.clientWidth / cardLength
+      projectsList.clientWidth / cardLength
     );
 
     if (cardsToScroll === 0) {
@@ -157,7 +159,7 @@ const ProjectList: React.FC<ProjectListProps> = ({
     });
 
     // Call this in case onScroll isn't triggered
-    updateScrollButtonVisibility(projectsLists[index]!);
+    updateScrollButtonVisibility(projectsList);
   };
 
   const updateScrollButtonVisibility = (projectsList: HTMLUListElement) => {

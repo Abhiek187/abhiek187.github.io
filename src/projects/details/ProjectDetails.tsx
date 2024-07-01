@@ -122,7 +122,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                 type="video/webm"
                 data-testid="video-webm"
               />
-              Your browser doesn't support the video tag.
+              Your browser doesn&apos;t support the video tag.
             </>
           )}
         </Card.Img>
