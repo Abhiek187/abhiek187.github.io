@@ -22,14 +22,13 @@ describe("Project Details", () => {
     ({ buttonProjects } = setupTests());
     fireEvent.click(buttonProjects);
 
-    const card = screen.getByLabelText(
+    const card = screen.getByLabelText<HTMLAnchorElement>(
       /card for captain conundrum/i
-    ) as HTMLAnchorElement;
+    );
     fireEvent.click(card);
 
-    [leftArrow, rightArrow] = (await screen.findAllByLabelText(
-      /Go to/
-    )) as HTMLAnchorElement[];
+    [leftArrow, rightArrow] =
+      await screen.findAllByLabelText<HTMLAnchorElement>(/Go to/);
   });
 
   // Separate each test by type and name
@@ -46,31 +45,33 @@ describe("Project Details", () => {
 
           // Click the appropriate card
           const cardRegex: string = `Card for ${project.name}`;
-          const projectCard = (await screen.findByLabelText(
+          const projectCard = await screen.findByLabelText<HTMLAnchorElement>(
             RegExp(cardRegex)
-          )) as HTMLAnchorElement;
+          );
           expect(projectCard).toBeInTheDocument();
           fireEvent.click(projectCard);
           expect(window.location.hash).toBe(`#/projects/${type}/${project.id}`);
 
           // The fade transition should play instead of the sliding one
-          const transitionGroup = screen.getByTestId(
-            "transition"
-          ) as HTMLDivElement;
+          const transitionGroup =
+            screen.getByTestId<HTMLDivElement>("transition");
           expect(Array.from(transitionGroup.classList)).toContain(
             Transition.Fade
           );
 
           // The project's name, GIF, and description should be shown
-          const projectName = (await screen.findByRole("heading", {
-            name: project.name,
-          })) as HTMLHeadingElement;
+          const projectName = await screen.findByRole<HTMLHeadingElement>(
+            "heading",
+            {
+              name: project.name,
+            }
+          );
           expect(projectName).toBeInTheDocument();
 
           // Check for all the required attributes for a pseudo GIF video
-          const projectGif = screen.getByRole("application", {
+          const projectGif = screen.getByRole<HTMLVideoElement>("application", {
             hidden: true,
-          }) as HTMLVideoElement;
+          });
           expect(projectGif).toBeInTheDocument();
           expect(projectGif.autoplay).toBe(true);
           expect(projectGif.loop).toBe(true);
@@ -79,9 +80,8 @@ describe("Project Details", () => {
           expect(projectGif.poster).toContain(project.image);
 
           // Projects without GIFs shouldn't contain any sources
-          const videoWebM = screen.queryByTestId(
-            "video-webm"
-          ) as HTMLSourceElement | null;
+          const videoWebM =
+            screen.queryByTestId<HTMLSourceElement>("video-webm");
           expect(videoWebM?.src ?? "null").toContain(String(project.gif));
           expect(projectGif).toHaveTextContent(
             project.gif === null
@@ -89,9 +89,9 @@ describe("Project Details", () => {
               : /Your browser doesn't support the video tag./
           );
 
-          const projectAbout = screen.getByText(
+          const projectAbout = screen.getByText<HTMLParagraphElement>(
             project.about
-          ) as HTMLParagraphElement;
+          );
           expect(projectAbout).toBeInTheDocument();
 
           // All technologies used should be shown
@@ -100,18 +100,18 @@ describe("Project Details", () => {
             let techBadge: HTMLParagraphElement;
 
             if (tech === "React") {
-              techBadge = screen.getAllByText(tech)[0] as HTMLParagraphElement;
+              techBadge = screen.getAllByText<HTMLParagraphElement>(tech)[0];
             } else {
-              techBadge = screen.getByText(tech) as HTMLParagraphElement;
+              techBadge = screen.getByText<HTMLParagraphElement>(tech);
             }
 
             expect(techBadge).toBeInTheDocument();
           }
 
           // If there's no website for the project, the website link shouldn't be present
-          const demoButton = screen.queryByRole("button", {
+          const demoButton = screen.queryByRole<HTMLAnchorElement>("button", {
             name: "Demo",
-          }) as HTMLAnchorElement | null;
+          });
 
           if (demoButton !== null) {
             expect(demoButton).toBeInTheDocument();
@@ -120,25 +120,27 @@ describe("Project Details", () => {
           expect(demoButton?.href ?? null).toBe(project.website);
 
           // Always display the repo link for the project
-          const repoButton = screen.getByRole("button", {
+          const repoButton = screen.getByRole<HTMLAnchorElement>("button", {
             name: "GitHub",
-          }) as HTMLAnchorElement;
+          });
           expect(repoButton).toBeInTheDocument();
           expect(repoButton.href).toBe(project.repo);
 
           // Check that the back button goes back to the projects list
-          const backButton = screen.getByLabelText(
-            /Go back/
-          ) as HTMLButtonElement;
+          const backButton =
+            screen.getByLabelText<HTMLButtonElement>(/Go back/);
           fireEvent.click(backButton);
 
           expect(Array.from(transitionGroup.classList)).toContain(
             Transition.Fade
           );
-          const smallProjectName = (await screen.findByRole("heading", {
-            name: project.name,
-            level: 5,
-          })) as HTMLHeadingElement;
+          const smallProjectName = await screen.findByRole<HTMLHeadingElement>(
+            "heading",
+            {
+              name: project.name,
+              level: 5,
+            }
+          );
           expect(smallProjectName).toBeInTheDocument();
           expect(repoButton).not.toBeInTheDocument();
         });
@@ -152,7 +154,7 @@ describe("Project Details", () => {
     fireEvent.click(leftArrow);
     testFocusAbout();
 
-    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
+    const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");
     expect(Array.from(transitionGroup.classList)).toContain(
       Transition.SlideRight
     );
@@ -162,7 +164,7 @@ describe("Project Details", () => {
     fireEvent.click(rightArrow);
     testFocusContact();
 
-    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
+    const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");
     expect(Array.from(transitionGroup.classList)).toContain(
       Transition.SlideLeft
     );

@@ -12,8 +12,16 @@ const __dirname = path.dirname(__filename);
 
 // Preview: npx @eslint/config-inspector
 export default tseslint.config(
+  {
+    // Global ignores
+    ignores: ["build/", "coverage/"],
+  },
   eslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
+  // Use TS config only for TS files: https://stackoverflow.com/a/64488474
+  ...tseslint.configs.recommendedTypeChecked.map((config) => ({
+    ...config,
+    files: ["**/*.ts", "**/*.tsx"],
+  })),
   react,
   /* Follow https://github.com/facebook/react/pull/28773 &
    * https://github.com/facebook/react/issues/28313
@@ -21,7 +29,6 @@ export default tseslint.config(
    */
   {
     files: ["**/*.ts", "**/*.tsx"],
-    ignores: ["build/**, coverage/**"],
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -40,6 +47,8 @@ export default tseslint.config(
       "react-refresh": reactRefresh,
     },
     rules: {
+      // Suppress errors for missing 'import React' in files
+      "react/react-in-jsx-scope": "off",
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },

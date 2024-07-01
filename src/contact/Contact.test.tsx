@@ -22,18 +22,18 @@ describe("Contact", () => {
     fireEvent.click(buttonContact);
 
     // Wait until the slide transition ends so there's only one match
-    buttonResume = (await screen.findByRole("button", {
+    buttonResume = await screen.findByRole<HTMLAnchorElement>("button", {
       name: /resume/i,
-    })) as HTMLAnchorElement;
-    buttonLinkedin = (await screen.findByRole("button", {
+    });
+    buttonLinkedin = await screen.findByRole<HTMLAnchorElement>("button", {
       name: /linkedin/i,
-    })) as HTMLAnchorElement;
-    buttonGithub = (await screen.findByRole("button", {
+    });
+    buttonGithub = await screen.findByRole<HTMLAnchorElement>("button", {
       name: /github/i,
-    })) as HTMLAnchorElement;
-    buttonEmail = (await screen.findByRole("button", {
+    });
+    buttonEmail = await screen.findByRole<HTMLAnchorElement>("button", {
       name: /email/i,
-    })) as HTMLAnchorElement;
+    });
   });
 
   // Test that the resume, LinkedIn, GitHub, and email links are valid
@@ -68,13 +68,13 @@ describe("Contact", () => {
 
   it("navigates to Projects after clicking the left arrow", async () => {
     // Wait until there's only one left arrow
-    const leftArrow = (await screen.findByLabelText(
+    const leftArrow = await screen.findByLabelText<HTMLAnchorElement>(
       /Go to Projects/
-    )) as HTMLAnchorElement;
+    );
     fireEvent.click(leftArrow);
 
     testFocusProjects();
-    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
+    const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");
     expect(Array.from(transitionGroup.classList)).toContain(
       Transition.SlideRight
     );

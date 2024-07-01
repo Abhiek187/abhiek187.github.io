@@ -44,7 +44,7 @@ describe("App", () => {
     expect(window.location.hash).toBe("");
     testBaseContent();
 
-    const welcomeMessage = screen.getByText(/welcome/) as HTMLParagraphElement;
+    const welcomeMessage = screen.getByText<HTMLParagraphElement>(/welcome/);
     expect(welcomeMessage).toBeInTheDocument();
   });
 

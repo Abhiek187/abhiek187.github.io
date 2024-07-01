@@ -21,12 +21,11 @@ describe("Projects", () => {
     fireEvent.click(buttonProjects);
 
     // Substring match
-    [leftArrow, rightArrow] = (await screen.findAllByLabelText(
-      /Go to/
-    )) as HTMLAnchorElement[];
+    [leftArrow, rightArrow] =
+      await screen.findAllByLabelText<HTMLAnchorElement>(/Go to/);
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     vi.resetAllMocks();
   });
 
@@ -41,7 +40,7 @@ describe("Projects", () => {
     fireEvent.click(leftArrow);
     testFocusAbout();
 
-    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
+    const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");
     expect(Array.from(transitionGroup.classList)).toContain(
       Transition.SlideRight
     );
@@ -51,7 +50,7 @@ describe("Projects", () => {
     fireEvent.click(rightArrow);
     testFocusContact();
 
-    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
+    const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");
     expect(Array.from(transitionGroup.classList)).toContain(
       Transition.SlideLeft
     );

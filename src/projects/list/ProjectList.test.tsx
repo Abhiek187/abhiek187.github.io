@@ -10,12 +10,12 @@ describe("Project List", () => {
   let buttonProjects: HTMLAnchorElement;
   const projects = projectData as ProjectsJSON;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     ({ buttonProjects } = setupTests());
     fireEvent.click(buttonProjects);
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     vi.resetAllMocks();
   });
 
@@ -28,22 +28,22 @@ describe("Project List", () => {
       let typeHeading: HTMLHeadingElement;
 
       if (type === "ios") {
-        typeHeading = screen.getByRole("heading", {
+        typeHeading = screen.getByRole<HTMLHeadingElement>("heading", {
           name: "iOS",
-        }) as HTMLHeadingElement;
+        });
       } else {
-        typeHeading = screen.getByRole("heading", {
+        typeHeading = screen.getByRole<HTMLHeadingElement>("heading", {
           name: capitalize(type),
-        }) as HTMLHeadingElement;
+        });
       }
 
       expect(typeHeading).toBeInTheDocument();
     }
 
     // Check that the bottom GitHub link is present as well
-    const githubLink = screen.getByLabelText(
+    const githubLink = screen.getByLabelText<HTMLAnchorElement>(
       /GitHub repo for My Portfolio Website/i
-    ) as HTMLAnchorElement;
+    );
     expect(githubLink.href).toBe(
       "https://github.com/Abhiek187/abhiek187.github.io"
     );
@@ -53,35 +53,38 @@ describe("Project List", () => {
     for (const type of Object.keys(projects) as [ProjectTypes]) {
       for (const project of projects[type]) {
         // Query within the card
-        const card = screen.getByLabelText(
+        const card = screen.getByLabelText<HTMLAnchorElement>(
           `Card for ${project.name}, click to learn more`
-        ) as HTMLAnchorElement;
+        );
 
         // The project's name, image, and description should be shown
-        const projectName = within(card).getByRole("heading", {
-          name: project.name,
-        }) as HTMLHeadingElement;
+        const projectName = within(card).getByRole<HTMLHeadingElement>(
+          "heading",
+          {
+            name: project.name,
+          }
+        );
         expect(projectName).toBeInTheDocument();
 
-        const projectImage = within(card).getByAltText(
+        const projectImage = within(card).getByAltText<HTMLImageElement>(
           `Screenshot of ${project.name}`
-        ) as HTMLImageElement;
+        );
         expect(projectImage).toBeInTheDocument();
         // If there are any special characters in the image's url, encode them
         expect(projectImage.src).toBe(
           `${window.location.origin}${encodeURI(project.image)}`
         );
 
-        const projectAbout = within(card).getByText(
+        const projectAbout = within(card).getByText<HTMLParagraphElement>(
           project.about
-        ) as HTMLParagraphElement;
+        );
         expect(projectAbout).toBeInTheDocument();
 
         // Check that the eye, fork, and star icons are present in the footer (initially blank)
         for (const stat of ["watchers", "forks", "stars"]) {
-          const blankStat = within(card).getByLabelText(
+          const blankStat = within(card).getByLabelText<HTMLSpanElement>(
             `blank ${stat}`
-          ) as HTMLSpanElement;
+          );
           expect(blankStat).toBeInTheDocument();
         }
 
@@ -93,10 +96,8 @@ describe("Project List", () => {
 
   it("scrolls each list after clicking the horizontal scroll buttons", () => {
     // Test that the position of each horizontal list changes when clicking the scroll buttons
-    const scrollButtons = screen.getAllByLabelText(
-      /Scroll/
-    ) as HTMLButtonElement[];
-    const projectsLists = screen.getAllByRole("list") as HTMLUListElement[];
+    const scrollButtons = screen.getAllByLabelText<HTMLButtonElement>(/Scroll/);
+    const projectsLists = screen.getAllByRole<HTMLUListElement>("list");
     // Mock the scrollBy method since it's not defined by default
     HTMLUListElement.prototype.scrollBy = vi.fn(() => {});
 
@@ -106,15 +107,15 @@ describe("Project List", () => {
         projectsLists[Math.floor(index / 2) + 1];
       fireEvent.click(scrollButton);
 
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(projectsList.scrollBy).toHaveBeenCalled();
     }
   });
 
   it("makes the navbar sticky when scrolling down", () => {
     // Test that the navbar is sticky after scrolling down far enough
-    const navbar: HTMLElement | null = (
-      screen.getByText("About") as HTMLAnchorElement
-    ).parentElement;
+    const navbar: HTMLElement | null =
+      screen.getByText<HTMLAnchorElement>("About").parentElement;
     expect(window.scrollY).toBe(0);
     expect(
       Array.from(navbar?.classList ?? ["sticky"]).some((c) =>
