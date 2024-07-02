@@ -10,7 +10,8 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
 import styles from "./Contact.module.scss";
-import { OnClickProp, Page } from "../app/App";
+import { OnClickProp } from "../app/App";
+import Page from "../enums/Page";
 
 type ContactProps = OnClickProp & {
   isDarkMode: boolean;

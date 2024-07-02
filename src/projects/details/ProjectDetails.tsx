@@ -16,13 +16,14 @@ import {
 } from "react-router-dom";
 
 import styles from "./ProjectDetails.module.scss";
-import { Project, ProjectTypes } from "../Projects";
+import { Project, ProjectTypes } from "../list/ProjectList";
 import ProjectError from "../error/ProjectError";
 import projectData from "../projects.json";
-import { OnClickProp, Page } from "../../app/App";
+import { OnClickProp } from "../../app/App";
+import Page from "../../enums/Page";
 
 type ProjectDetailsProps = OnClickProp & {
-  isDarkMode: Boolean;
+  isDarkMode: boolean;
 };
 
 export type ProjectParams = {
@@ -121,7 +122,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                 type="video/webm"
                 data-testid="video-webm"
               />
-              Your browser doesn't support the video tag.
+              Your browser doesn&apos;t support the video tag.
             </>
           )}
         </Card.Img>

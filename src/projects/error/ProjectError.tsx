@@ -5,7 +5,7 @@ import styles from "./ProjectError.module.scss";
 import { ProjectParams } from "../details/ProjectDetails";
 
 type ProjectErrorProps = {
-  isDarkMode: Boolean;
+  isDarkMode: boolean;
   innerRef?: React.RefObject<HTMLDivElement>; // optional
 };
 
@@ -22,7 +22,7 @@ const ProjectError: React.FC<ProjectErrorProps> = ({
         isDarkMode ? "text-warning" : ""
       }`}
     >
-      Error: Project (type: {projectType}, id: {projectId}) doesn't exist.
+      Error: Project (type: {projectType}, id: {projectId}) doesn&apos;t exist.
     </section>
   );
 };

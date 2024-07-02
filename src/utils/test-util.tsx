@@ -3,7 +3,9 @@ import { HashRouter } from "react-router-dom";
 import { config } from "react-transition-group";
 import { expect } from "vitest";
 
-import App, { Page, Transition } from "../app/App";
+import App from "../app/App";
+import Transition from "../enums/Transition";
+import Page from "../enums/Page";
 
 let buttonAbout: HTMLAnchorElement;
 let buttonProjects: HTMLAnchorElement;
@@ -29,26 +31,25 @@ const setupTests = (): DOMElements => {
   );
 
   // Specify a button, not text
-  buttonAbout = screen.getByRole("button", {
+  buttonAbout = screen.getByRole<HTMLAnchorElement>("button", {
     name: "About",
-  }) as HTMLAnchorElement;
-  buttonProjects = screen.getByRole("button", {
+  });
+  buttonProjects = screen.getByRole<HTMLAnchorElement>("button", {
     name: "Projects",
-  }) as HTMLAnchorElement;
-  buttonContact = screen.getByRole("button", {
+  });
+  buttonContact = screen.getByRole<HTMLAnchorElement>("button", {
     name: "Contact",
-  }) as HTMLAnchorElement;
+  });
   return { buttonAbout, buttonProjects, buttonContact };
 };
 
 const testBaseContent = (): void => {
   // Check that the header, navbar, and footer are present in every page
-  const headingName = screen.getByText(
-    "Abhishek Chaudhuri"
-  ) as HTMLHeadingElement;
-  const headingHeadline = screen.getByText(
+  const headingName =
+    screen.getByText<HTMLHeadingElement>("Abhishek Chaudhuri");
+  const headingHeadline = screen.getByText<HTMLHeadingElement>(
     /Software Engineer \| Always Learning and Growing/
-  ) as HTMLHeadingElement;
+  );
 
   expect(headingName).toBeInTheDocument();
   expect(headingName.tagName).toBe("H1");
@@ -59,7 +60,7 @@ const testBaseContent = (): void => {
   // &#x1F31E; = sun (light), &#x1F31C; = moon (dark)
   const lightColor: string = "rgb(248, 249, 250);"; // #f8f9fa
   const darkColor: string = "rgb(33, 37, 41);"; // #212529
-  let themeLabel = screen.getByLabelText("🌞") as HTMLLabelElement;
+  let themeLabel = screen.getByLabelText<HTMLLabelElement>("🌞");
   expect(themeLabel).toBeInTheDocument();
   fireEvent.click(themeLabel);
   expect(headingName).toHaveStyle({
@@ -67,7 +68,7 @@ const testBaseContent = (): void => {
     backgroundColor: darkColor,
   });
 
-  themeLabel = screen.getByLabelText("🌜") as HTMLLabelElement;
+  themeLabel = screen.getByLabelText<HTMLLabelElement>("🌜");
   expect(themeLabel).toBeInTheDocument();
   fireEvent.click(themeLabel); // revert back to light theme for the rest of the tests
   expect(headingName).toHaveStyle({
@@ -79,13 +80,13 @@ const testBaseContent = (): void => {
   expect(buttonProjects).toBeInTheDocument();
   expect(buttonContact).toBeInTheDocument();
 
-  const footerLeft = screen.getByText("React") as HTMLAnchorElement;
-  const footerRight = screen.getByText("MIT License") as HTMLAnchorElement;
+  const footerLeft = screen.getByText<HTMLAnchorElement>("React");
+  const footerRight = screen.getByText<HTMLAnchorElement>("MIT License");
   // Check that the copyright year range is up-to-date
   const currentYear: number = new Date().getFullYear();
-  const copyrightYear = screen.getByText(
+  const copyrightYear = screen.getByText<HTMLSpanElement>(
     new RegExp(`2019 - ${currentYear}`)
-  ) as HTMLSpanElement;
+  );
 
   expect(footerLeft).toBeInTheDocument();
   expect(footerRight).toBeInTheDocument();
@@ -120,7 +121,7 @@ const testNavbar = (source: Page) => {
 
     // Check that the correct button is active
     testFocusAbout();
-    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
+    const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");
 
     // Check that the correct transition plays to the next component
     let transition: Transition;
@@ -145,7 +146,7 @@ const testNavbar = (source: Page) => {
     fireEvent.click(buttonProjects);
     testFocusProjects();
 
-    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
+    const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");
     let transition: Transition;
 
     switch (source) {
@@ -167,7 +168,7 @@ const testNavbar = (source: Page) => {
     fireEvent.click(buttonContact);
     testFocusContact();
 
-    const transitionGroup = screen.getByTestId("transition") as HTMLDivElement;
+    const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");
     let transition: Transition;
 
     switch (source) {

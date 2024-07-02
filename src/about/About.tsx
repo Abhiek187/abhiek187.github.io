@@ -4,7 +4,8 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./About.module.scss";
-import { OnClickProp, Page } from "../app/App";
+import { OnClickProp } from "../app/App";
+import Page from "../enums/Page";
 
 const About: React.FC<OnClickProp> = ({ onClickLink, innerRef }) => {
   useEffect(() => {
