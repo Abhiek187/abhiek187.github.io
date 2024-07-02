@@ -73,6 +73,10 @@ You will also see any lint errors in the console.
 
 Note: Service workers (aka offline functionality) will not work in development mode.
 
+### `npm run lint`
+
+Lints all files using ESLint.
+
 ### `npm test`
 
 Runs all tests using Vitest.<br>

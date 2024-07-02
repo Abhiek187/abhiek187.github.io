@@ -13,7 +13,8 @@
         "TypeScript",
         "Node.js",
         "Express",
-        "Docker"
+        "Docker",
+        "MongoDB"
       ],
       "website": null,
       "repo": "https://github.com/Abhiek187/ez-recipes-ios"
@@ -93,7 +94,8 @@
         "TypeScript",
         "Node.js",
         "Express",
-        "Docker"
+        "Docker",
+        "MongoDB"
       ],
       "website": "https://play.google.com/store/apps/details?id=com.abhiek.ezrecipes",
       "repo": "https://github.com/Abhiek187/ez-recipes-android"
@@ -177,7 +179,8 @@
         "Express",
         "Angular",
         "SCSS",
-        "Docker"
+        "Docker",
+        "MongoDB"
       ],
       "website": "https://ez-recipes-web.onrender.com/",
       "repo": "https://github.com/Abhiek187/ez-recipes-web"

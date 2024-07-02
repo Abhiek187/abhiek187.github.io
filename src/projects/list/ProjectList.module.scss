@@ -1,0 +1,98 @@
+@use "../../variables";
+
+.full-list {
+  // Remove bullet points and the padding they add to the left
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.scrolling-list {
+  // Allow the scrolling buttons to overlap the projects list
+  display: grid;
+
+  > * {
+    grid-row-start: 1;
+    grid-column-start: 1;
+  }
+}
+
+.scroll-left,
+.scroll-right {
+  // Make the buttons circular
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  opacity: 0.75;
+  transition: opacity 0.15s ease-in-out, color variables.$color-transition,
+    background-color variables.$color-transition,
+    border-color variables.$color-transition;
+  // Move the buttons about halfway into the left and rightmost cards
+  align-self: center;
+  z-index: 2;
+
+  :global(.fa-arrow-left),
+  :global(.fa-arrow-right) {
+    font-size: 1.5em;
+  }
+}
+
+.scroll-left:hover,
+.scroll-right:hover {
+  opacity: 1;
+}
+
+.scroll-left {
+  justify-self: start;
+  margin-left: -15px;
+}
+
+.scroll-right {
+  justify-self: end;
+  margin-right: -15px;
+}
+
+.list {
+  padding-left: 0;
+  display: flex;
+  overflow: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  // Remove the margin at the edges to keep the scroll buttons aligned properly
+  :not(:first-child) {
+    margin-left: 0.5rem;
+  }
+
+  li {
+    position: static; // put behind the sticky navbar
+    min-width: 300px; // min-width forces the cards to be at least this wide
+    max-width: 300px; // seriously, keep this width
+    margin-bottom: 0.25rem;
+    transition: color variables.$color-transition,
+      background-color variables.$color-transition,
+      border-color variables.$color-transition;
+  }
+
+  :not(:last-child) {
+    margin-right: 0.5rem;
+  }
+
+  .link {
+    text-decoration: none;
+    height: 100%; // allow the whole card to be clickable
+    display: flex;
+    flex-direction: column;
+    transition: color variables.$color-transition;
+  }
+}
+
+.name {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.image {
+  // Scale the images so they fit within their cards
+  max-width: 95%;
+  height: auto;
+}
