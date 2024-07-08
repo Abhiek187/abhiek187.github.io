@@ -2,7 +2,7 @@ import { fireEvent, screen, within } from "@testing-library/react";
 import { expect, vi } from "vitest";
 
 import { setupTests, testBaseContent } from "../../utils/test-util";
-import { ProjectsJSON, ProjectTypes } from "./ProjectList";
+import { ProjectsJSON } from "./ProjectList";
 import projectData from "../projects.json";
 import capitalize from "../../utils/capitalize";
 
@@ -24,7 +24,7 @@ describe("Project List", () => {
     testBaseContent();
 
     // Check that each project type is shown
-    for (const type of Object.keys(projects) as ProjectTypes[]) {
+    for (const type of Object.keys(projects) as (keyof ProjectsJSON)[]) {
       let typeHeading: HTMLHeadingElement;
 
       if (type === "ios") {
@@ -50,7 +50,7 @@ describe("Project List", () => {
   });
 
   it("shows each project card", () => {
-    for (const type of Object.keys(projects) as [ProjectTypes]) {
+    for (const type of Object.keys(projects) as (keyof ProjectsJSON)[]) {
       for (const project of projects[type]) {
         // Query within the card
         const card = screen.getByLabelText<HTMLAnchorElement>(

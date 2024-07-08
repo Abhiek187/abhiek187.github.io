@@ -6,7 +6,6 @@ import {
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Endpoints } from "@octokit/types";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -17,6 +16,7 @@ import projectData from "../projects.json";
 import Page from "../../enums/Page";
 import capitalize from "../../utils/capitalize";
 import { OnClickProp } from "../../app/App";
+import GitHubAPI from "../../api/GitHubAPI";
 
 // Type definitions of the JSON files
 export interface Project {
@@ -58,61 +58,7 @@ const ProjectList: React.FC<ProjectListProps> = ({
   const numberFormatter = Intl.NumberFormat("en", { notation: "compact" });
 
   const getGithubStats = useCallback(async () => {
-    // Call the GitHub API for each project in parallel
-    // Rate limit of 60/hr w/o a token and 5000/hr with a token
-    // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#requests-from-personal-accounts
-    // Dynamically import Octokit to chunk the build
-    const { Octokit } = await import("@octokit/core");
-    const octokit = new Octokit();
-
-    // Get the response type of the endpoint being called
-    type UserRepos = Endpoints["GET /repos/{owner}/{repo}"]["response"];
-    const reqs: Promise<UserRepos>[] = [];
-    const flatProjects: Project[] = [];
-
-    for (const projectType of Object.keys(projects) as ProjectTypes[]) {
-      for (const project of projects[projectType]) {
-        // Get the repo name from the end of the repo URL
-        const repoSplit = project.repo.split("/");
-        const repoName = repoSplit[repoSplit.length - 1];
-
-        const req = octokit.request("GET /repos/{owner}/{repo}", {
-          owner: "Abhiek187",
-          repo: repoName,
-        });
-        reqs.push(req);
-        flatProjects.push(project);
-      }
-    }
-
-    // Then collect all the results and display for each project
-    // Promise.all fails fast, while allSettled will handle all promises
-    const resps = await Promise.allSettled(reqs);
-
-    resps.forEach((resp, i) => {
-      if (resp.status === "rejected") {
-        console.error(resp.reason);
-      } else {
-        // Assign each project with its corresponding stats
-        const { data } = resp.value;
-        flatProjects[i].watchers = data.subscribers_count;
-        flatProjects[i].forks = data.forks; // can also use forks_count or network_count
-        // Stars used to be called watchers on GitHub
-        flatProjects[i].stars = data.watchers; // can also use stargazers_count or watchers_counts
-      }
-    });
-
-    // Map flatProjects to a new projects state
-    let pi = 0;
-    const newProjects = { ...projects };
-
-    for (const projectType of Object.keys(projects) as ProjectTypes[]) {
-      for (let i = 0; i < projects[projectType].length; i++) {
-        newProjects[projectType][i] = flatProjects[pi];
-        pi++;
-      }
-    }
-
+    const newProjects = await GitHubAPI.getStats(projects);
     setProjects(newProjects);
   }, [projects]);
 
@@ -202,106 +148,116 @@ const ProjectList: React.FC<ProjectListProps> = ({
   return (
     <div ref={innerRef}>
       <ul className={styles["full-list"]}>
-        {(Object.keys(projects) as [ProjectTypes]).map((type, index) => (
-          /* Each list item needs a key */
-          <li key={type} className="projects-type-list">
-            {/* Apple does what others don't */}
-            <h4 className="projects-type">
-              {type === "ios" ? "iOS" : capitalize(type)}
-            </h4>
-            {/* Show a horizontal list of cards */}
-            <div className={styles["scrolling-list"]}>
-              <Button
-                variant={isDarkMode ? "info" : "primary"}
-                type="button"
-                className={styles["scroll-left"]}
-                onClick={() => scrollList(index, false)}
-                aria-label={`Scroll ${type} projects left`}
-              >
-                <FontAwesomeIcon icon={faArrowLeft} />
-              </Button>
-              <ul
-                className={styles.list}
-                ref={(el) => (projectsListRef.current[index] = el)}
-                onScroll={(event) =>
-                  updateScrollButtonVisibility(event.target as HTMLUListElement)
-                }
-              >
-                {projects[type].map((project) => (
-                  <Card
-                    key={project.id}
-                    as="li"
-                    className={`${
-                      isDarkMode
-                        ? "bg-dark border-light"
-                        : "bg-light border-dark"
-                    }`}
-                  >
-                    {/* View more details about each project by clicking on the card */}
-                    <Link
-                      to={`${type}/${project.id}`}
-                      state={{ from: window.location.hash }}
-                      className={`${styles.link} ${
-                        isDarkMode ? "text-light" : "text-dark"
+        {(Object.keys(projects) as (keyof ProjectsJSON)[]).map(
+          (type, index) => (
+            /* Each list item needs a key */
+            <li key={type} className="projects-type-list">
+              {/* Apple does what others don't */}
+              <h4 className="projects-type">
+                {type === "ios" ? "iOS" : capitalize(type)}
+              </h4>
+              {/* Show a horizontal list of cards */}
+              <div className={styles["scrolling-list"]}>
+                <Button
+                  variant={isDarkMode ? "info" : "primary"}
+                  type="button"
+                  className={styles["scroll-left"]}
+                  onClick={() => scrollList(index, false)}
+                  aria-label={`Scroll ${type} projects left`}
+                >
+                  <FontAwesomeIcon icon={faArrowLeft} />
+                </Button>
+                <ul
+                  className={styles.list}
+                  ref={(el) => (projectsListRef.current[index] = el)}
+                  onScroll={(event) =>
+                    updateScrollButtonVisibility(
+                      event.target as HTMLUListElement
+                    )
+                  }
+                >
+                  {projects[type].map((project) => (
+                    <Card
+                      key={project.id}
+                      as="li"
+                      className={`${
+                        isDarkMode
+                          ? "bg-dark border-light"
+                          : "bg-light border-dark"
                       }`}
-                      onClick={() => onClickLink(Page.ProjectDetails)}
-                      aria-label={`Card for ${project.name}, click to learn more`}
                     >
-                      <Card.Title as="h5" className={`${styles.name} m-2`}>
-                        {project.name}
-                      </Card.Title>
-                      {/* Specifying the width and height will reduce CLS (2:3 for portrait) */}
-                      <Card.Img
-                        variant="top"
-                        className={`${styles.image} mx-auto`}
-                        src={project.image}
-                        alt={`Screenshot of ${project.name}`}
-                        width="280"
-                        height="420"
-                      />
-                      <Card.Text className="projects-about mx-1 my-2">
-                        {project.about}
-                      </Card.Text>
-                      <Card.Footer className="projects-footer mx-0">
-                        <span
-                          aria-label={`${showStatLabel(
-                            "watcher",
-                            project.watchers
-                          )}`}
-                        >
-                          <FontAwesomeIcon icon={faEye} />{" "}
-                          {showStat(project.watchers)}
-                        </span>
-                        <span
-                          aria-label={`${showStatLabel("fork", project.forks)}`}
-                        >
-                          <FontAwesomeIcon icon={faCodeFork} />{" "}
-                          {showStat(project.forks)}
-                        </span>
-                        <span
-                          aria-label={`${showStatLabel("star", project.stars)}`}
-                        >
-                          <FontAwesomeIcon icon={faStar} />{" "}
-                          {showStat(project.stars)}
-                        </span>
-                      </Card.Footer>
-                    </Link>
-                  </Card>
-                ))}
-              </ul>
-              <Button
-                variant={isDarkMode ? "info" : "primary"}
-                type="button"
-                className={styles["scroll-right"]}
-                onClick={() => scrollList(index, true)}
-                aria-label={`Scroll ${type} projects right`}
-              >
-                <FontAwesomeIcon icon={faArrowRight} />
-              </Button>
-            </div>
-            <hr />
-          </li>
-        ))}
+                      {/* View more details about each project by clicking on the card */}
+                      <Link
+                        to={`${type}/${project.id}`}
+                        state={{ from: window.location.hash }}
+                        className={`${styles.link} ${
+                          isDarkMode ? "text-light" : "text-dark"
+                        }`}
+                        onClick={() => onClickLink(Page.ProjectDetails)}
+                        aria-label={`Card for ${project.name}, click to learn more`}
+                      >
+                        <Card.Title as="h5" className={`${styles.name} m-2`}>
+                          {project.name}
+                        </Card.Title>
+                        {/* Specifying the width and height will reduce CLS (2:3 for portrait) */}
+                        <Card.Img
+                          variant="top"
+                          className={`${styles.image} mx-auto`}
+                          src={project.image}
+                          alt={`Screenshot of ${project.name}`}
+                          width="280"
+                          height="420"
+                        />
+                        <Card.Text className="projects-about mx-1 my-2">
+                          {project.about}
+                        </Card.Text>
+                        <Card.Footer className="projects-footer mx-0">
+                          <span
+                            aria-label={`${showStatLabel(
+                              "watcher",
+                              project.watchers
+                            )}`}
+                          >
+                            <FontAwesomeIcon icon={faEye} />{" "}
+                            {showStat(project.watchers)}
+                          </span>
+                          <span
+                            aria-label={`${showStatLabel(
+                              "fork",
+                              project.forks
+                            )}`}
+                          >
+                            <FontAwesomeIcon icon={faCodeFork} />{" "}
+                            {showStat(project.forks)}
+                          </span>
+                          <span
+                            aria-label={`${showStatLabel(
+                              "star",
+                              project.stars
+                            )}`}
+                          >
+                            <FontAwesomeIcon icon={faStar} />{" "}
+                            {showStat(project.stars)}
+                          </span>
+                        </Card.Footer>
+                      </Link>
+                    </Card>
+                  ))}
+                </ul>
+                <Button
+                  variant={isDarkMode ? "info" : "primary"}
+                  type="button"
+                  className={styles["scroll-right"]}
+                  onClick={() => scrollList(index, true)}
+                  aria-label={`Scroll ${type} projects right`}
+                >
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </Button>
+              </div>
+              <hr />
+            </li>
+          )
+        )}
       </ul>
       <p className="projects-addendum">
         P.S. Check out the{" "}

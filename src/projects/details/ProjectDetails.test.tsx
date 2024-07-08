@@ -7,7 +7,7 @@ import {
   testFocusContact,
   testNavbar,
 } from "../../utils/test-util";
-import { ProjectsJSON, ProjectTypes } from "../list/ProjectList";
+import { ProjectsJSON } from "../list/ProjectList";
 import projectData from "../projects.json";
 import Transition from "../../enums/Transition";
 import Page from "../../enums/Page";
@@ -32,7 +32,7 @@ describe("Project Details", () => {
   });
 
   // Separate each test by type and name
-  for (const type of Object.keys(projects) as ProjectTypes[]) {
+  for (const type of Object.keys(projects) as (keyof ProjectsJSON)[]) {
     describe(`${type}`, () => {
       for (const project of projects[type]) {
         it(`displays all information about ${project.name}`, async () => {
