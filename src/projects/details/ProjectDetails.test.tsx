@@ -1,4 +1,5 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { UserEvent } from "@testing-library/user-event";
 import { expect } from "vitest";
 
 import {
@@ -16,16 +17,17 @@ describe("Project Details", () => {
   let buttonProjects: HTMLAnchorElement;
   let leftArrow: HTMLAnchorElement;
   let rightArrow: HTMLAnchorElement;
+  let user: UserEvent;
   const projects = projectData as ProjectsJSON;
 
   beforeEach(async () => {
-    ({ buttonProjects } = setupTests());
-    fireEvent.click(buttonProjects);
+    ({ buttonProjects, user } = setupTests());
+    await user.click(buttonProjects);
 
     const card = screen.getByLabelText<HTMLAnchorElement>(
       /card for captain conundrum/i
     );
-    fireEvent.click(card);
+    await user.click(card);
 
     [leftArrow, rightArrow] =
       await screen.findAllByLabelText<HTMLAnchorElement>(/Go to/);
@@ -37,7 +39,7 @@ describe("Project Details", () => {
       for (const project of projects[type]) {
         it(`displays all information about ${project.name}`, async () => {
           // Go back to the projects page first (it's unsafe to reference buttonProjects here)
-          fireEvent.click(
+          await user.click(
             screen.getByRole("button", {
               name: "Projects",
             })
@@ -49,7 +51,7 @@ describe("Project Details", () => {
             RegExp(cardRegex)
           );
           expect(projectCard).toBeInTheDocument();
-          fireEvent.click(projectCard);
+          await user.click(projectCard);
           expect(window.location.hash).toBe(`#/projects/${type}/${project.id}`);
 
           // The fade transition should play instead of the sliding one
@@ -129,7 +131,7 @@ describe("Project Details", () => {
           // Check that the back button goes back to the projects list
           const backButton =
             screen.getByLabelText<HTMLButtonElement>(/Go back/);
-          fireEvent.click(backButton);
+          await user.click(backButton);
 
           expect(Array.from(transitionGroup.classList)).toContain(
             Transition.Fade
@@ -150,8 +152,8 @@ describe("Project Details", () => {
 
   testNavbar(Page.ProjectDetails);
 
-  it("navigates to About after clicking the left arrow", () => {
-    fireEvent.click(leftArrow);
+  it("navigates to About after clicking the left arrow", async () => {
+    await user.click(leftArrow);
     testFocusAbout();
 
     const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");
@@ -160,8 +162,8 @@ describe("Project Details", () => {
     );
   });
 
-  it("navigates to Contact after clicking the right arrow", () => {
-    fireEvent.click(rightArrow);
+  it("navigates to Contact after clicking the right arrow", async () => {
+    await user.click(rightArrow);
     testFocusContact();
 
     const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");

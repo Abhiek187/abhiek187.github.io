@@ -22,9 +22,9 @@ describe("Project List", () => {
     vi.clearAllMocks();
   });
 
-  it("shows all project types", () => {
+  it("shows all project types", async () => {
     expect(window.location.hash).toBe("#/projects");
-    testBaseContent();
+    await testBaseContent();
 
     // Check that each project type is shown
     for (const type of Object.keys(projects) as (keyof ProjectsJSON)[]) {

@@ -1,4 +1,5 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { UserEvent } from "@testing-library/user-event";
 import { expect } from "vitest";
 
 import {
@@ -16,10 +17,11 @@ describe("Contact", () => {
   let buttonLinkedin: HTMLAnchorElement;
   let buttonGithub: HTMLAnchorElement;
   let buttonEmail: HTMLAnchorElement;
+  let user: UserEvent;
 
   beforeEach(async () => {
-    ({ buttonContact } = setupTests());
-    fireEvent.click(buttonContact);
+    ({ buttonContact, user } = setupTests());
+    await user.click(buttonContact);
 
     // Wait until the slide transition ends so there's only one match
     buttonResume = await screen.findByRole<HTMLAnchorElement>("button", {
@@ -37,9 +39,9 @@ describe("Contact", () => {
   });
 
   // Test that the resume, LinkedIn, GitHub, and email links are valid
-  it("shows all contact information", () => {
+  it("shows all contact information", async () => {
     expect(window.location.hash).toBe("#/contact");
-    testBaseContent();
+    await testBaseContent();
 
     expect(buttonResume).toBeInTheDocument();
     expect(buttonLinkedin).toBeInTheDocument();
@@ -71,7 +73,7 @@ describe("Contact", () => {
     const leftArrow = await screen.findByLabelText<HTMLAnchorElement>(
       /Go to Projects/
     );
-    fireEvent.click(leftArrow);
+    await user.click(leftArrow);
 
     testFocusProjects();
     const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");

@@ -1,4 +1,5 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { UserEvent } from "@testing-library/user-event";
 import { expect, vi } from "vitest";
 
 import {
@@ -15,10 +16,11 @@ describe("Projects", () => {
   let buttonProjects: HTMLAnchorElement;
   let leftArrow: HTMLAnchorElement;
   let rightArrow: HTMLAnchorElement;
+  let user: UserEvent;
 
   beforeEach(async () => {
-    ({ buttonProjects } = setupTests());
-    fireEvent.click(buttonProjects);
+    ({ buttonProjects, user } = setupTests());
+    await user.click(buttonProjects);
 
     // Substring match
     [leftArrow, rightArrow] =
@@ -26,18 +28,19 @@ describe("Projects", () => {
   });
 
   afterEach(() => {
-    vi.resetAllMocks();
+    // Don't reset spies or mock implementations, according to: https://stackoverflow.com/a/59792748
+    vi.clearAllMocks();
   });
 
-  it("shows all base project content", () => {
+  it("shows all base project content", async () => {
     expect(window.location.hash).toBe("#/projects");
-    testBaseContent();
+    await testBaseContent();
   });
 
   testNavbar(Page.Projects);
 
-  it("navigates to About after clicking the left arrow", () => {
-    fireEvent.click(leftArrow);
+  it("navigates to About after clicking the left arrow", async () => {
+    await user.click(leftArrow);
     testFocusAbout();
 
     const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");
@@ -46,8 +49,8 @@ describe("Projects", () => {
     );
   });
 
-  it("navigates to Contact after clicking the right arrow", () => {
-    fireEvent.click(rightArrow);
+  it("navigates to Contact after clicking the right arrow", async () => {
+    await user.click(rightArrow);
     testFocusContact();
 
     const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");

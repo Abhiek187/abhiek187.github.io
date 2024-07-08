@@ -39,10 +39,10 @@ describe("App", () => {
     setupTests();
   });
 
-  it("renders without crashing", () => {
+  it("renders without crashing", async () => {
     // The home page should show up
     expect(window.location.hash).toBe("");
-    testBaseContent();
+    await testBaseContent();
 
     const welcomeMessage = screen.getByText<HTMLParagraphElement>(/welcome/);
     expect(welcomeMessage).toBeInTheDocument();
