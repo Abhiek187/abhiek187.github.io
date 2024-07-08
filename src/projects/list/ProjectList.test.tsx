@@ -1,4 +1,5 @@
 import { fireEvent, screen, within } from "@testing-library/react";
+import { UserEvent } from "@testing-library/user-event";
 import { expect, vi } from "vitest";
 
 import { setupTests, testBaseContent } from "../../utils/test-util";
@@ -8,15 +9,17 @@ import capitalize from "../../utils/capitalize";
 
 describe("Project List", () => {
   let buttonProjects: HTMLAnchorElement;
+  let user: UserEvent;
   const projects = projectData as ProjectsJSON;
 
-  beforeEach(() => {
-    ({ buttonProjects } = setupTests());
-    fireEvent.click(buttonProjects);
+  beforeEach(async () => {
+    ({ buttonProjects, user } = setupTests());
+    await user.click(buttonProjects);
   });
 
   afterEach(() => {
-    vi.resetAllMocks();
+    // Don't reset spies or mock implementations, according to: https://stackoverflow.com/a/59792748
+    vi.clearAllMocks();
   });
 
   it("shows all project types", () => {
@@ -80,12 +83,12 @@ describe("Project List", () => {
         );
         expect(projectAbout).toBeInTheDocument();
 
-        // Check that the eye, fork, and star icons are present in the footer (initially blank)
-        for (const stat of ["watchers", "forks", "stars"]) {
-          const blankStat = within(card).getByLabelText<HTMLSpanElement>(
-            `blank ${stat}`
+        // Check that the eye, fork, and star icons are present in the footer
+        for (const stat of ["watcher", "fork", "star"]) {
+          const statLabel = within(card).getByLabelText<HTMLSpanElement>(
+            RegExp(stat)
           );
-          expect(blankStat).toBeInTheDocument();
+          expect(statLabel).toBeInTheDocument();
         }
 
         // Make sure the other categories aren't present in the list
@@ -94,7 +97,7 @@ describe("Project List", () => {
     }
   });
 
-  it("scrolls each list after clicking the horizontal scroll buttons", () => {
+  it("scrolls each list after clicking the horizontal scroll buttons", async () => {
     // Test that the position of each horizontal list changes when clicking the scroll buttons
     const scrollButtons = screen.getAllByLabelText<HTMLButtonElement>(/Scroll/);
     const projectsLists = screen.getAllByRole<HTMLUListElement>("list");
@@ -105,7 +108,7 @@ describe("Project List", () => {
       // [0, 1] -> 1, [2, 3] -> 2, etc.
       const projectsList: HTMLUListElement =
         projectsLists[Math.floor(index / 2) + 1];
-      fireEvent.click(scrollButton);
+      await user.click(scrollButton);
 
       // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(projectsList.scrollBy).toHaveBeenCalled();

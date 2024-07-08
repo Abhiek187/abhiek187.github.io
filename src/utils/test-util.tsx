@@ -1,11 +1,14 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { HashRouter } from "react-router-dom";
 import { config } from "react-transition-group";
-import { expect } from "vitest";
+import { expect, vi } from "vitest";
 
 import App from "../app/App";
 import Transition from "../enums/Transition";
 import Page from "../enums/Page";
+import GitHubAPI from "../api/GitHubAPI";
+import projectData from "../projects/projects.json";
+import userEvent, { UserEvent } from "@testing-library/user-event";
 
 let buttonAbout: HTMLAnchorElement;
 let buttonProjects: HTMLAnchorElement;
@@ -15,7 +18,36 @@ type DOMElements = {
   buttonAbout: HTMLAnchorElement;
   buttonProjects: HTMLAnchorElement;
   buttonContact: HTMLAnchorElement;
+  user: UserEvent;
 };
+
+// Mock the GitHub API to avoid getting rate-limited during tests
+vi.spyOn(GitHubAPI, "getStats").mockResolvedValue({
+  ios: projectData.ios.map((project) => ({
+    ...project,
+    watchers: 1,
+    forks: 0,
+    stars: 2,
+  })),
+  android: projectData.android.map((project) => ({
+    ...project,
+    watchers: 1,
+    forks: 0,
+    stars: 2,
+  })),
+  web: projectData.web.map((project) => ({
+    ...project,
+    watchers: 1,
+    forks: 0,
+    stars: 2,
+  })),
+  other: projectData.other.map((project) => ({
+    ...project,
+    watchers: 1,
+    forks: 0,
+    stars: 2,
+  })),
+});
 
 // Helper functions for testing
 const setupTests = (): DOMElements => {
@@ -40,7 +72,8 @@ const setupTests = (): DOMElements => {
   buttonContact = screen.getByRole<HTMLAnchorElement>("button", {
     name: "Contact",
   });
-  return { buttonAbout, buttonProjects, buttonContact };
+  const user = userEvent.setup();
+  return { buttonAbout, buttonProjects, buttonContact, user };
 };
 
 const testBaseContent = (): void => {
