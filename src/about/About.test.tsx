@@ -1,4 +1,5 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { UserEvent } from "@testing-library/user-event";
 import { expect } from "vitest";
 
 import {
@@ -12,16 +13,17 @@ import Transition from "../enums/Transition";
 
 describe("About", () => {
   let buttonAbout: HTMLAnchorElement;
+  let user: UserEvent;
 
-  beforeEach(() => {
-    ({ buttonAbout } = setupTests()); // parentheses required for redeclaration
-    fireEvent.click(buttonAbout);
+  beforeEach(async () => {
+    ({ buttonAbout, user } = setupTests()); // parentheses required for redeclaration
+    await user.click(buttonAbout);
   });
 
-  it("shows a headshot and bio", () => {
+  it("shows a headshot and bio", async () => {
     // The About page should show the relevant information
     expect(window.location.hash).toBe("#/about");
-    testBaseContent();
+    await testBaseContent();
 
     const headshot = screen.getByAltText<HTMLImageElement>(
       "Headshot of Abhishek"
@@ -41,7 +43,7 @@ describe("About", () => {
     const rightArrow = await screen.findByLabelText<HTMLAnchorElement>(
       /Go to Projects/
     );
-    fireEvent.click(rightArrow);
+    await user.click(rightArrow);
 
     testFocusProjects();
     const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");

@@ -19,6 +19,9 @@ updates:
       fortawesome:
         patterns:
           - "@fortawesome/*"
+      testing-library:
+        patterns:
+          - "@testing-library/*"
       types:
         patterns:
           - "@types/*"

@@ -1,21 +1,54 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent, { UserEvent } from "@testing-library/user-event";
 import { HashRouter } from "react-router-dom";
 import { config } from "react-transition-group";
-import { expect } from "vitest";
+import { expect, vi } from "vitest";
 
 import App from "../app/App";
 import Transition from "../enums/Transition";
 import Page from "../enums/Page";
+import GitHubAPI from "../api/GitHubAPI";
+import projectData from "../projects/projects.json";
 
 let buttonAbout: HTMLAnchorElement;
 let buttonProjects: HTMLAnchorElement;
 let buttonContact: HTMLAnchorElement;
+let user: UserEvent;
 
 type DOMElements = {
   buttonAbout: HTMLAnchorElement;
   buttonProjects: HTMLAnchorElement;
   buttonContact: HTMLAnchorElement;
+  user: UserEvent;
 };
+
+// Mock the GitHub API to avoid getting rate-limited during tests
+vi.spyOn(GitHubAPI, "getStats").mockResolvedValue({
+  ios: projectData.ios.map((project) => ({
+    ...project,
+    watchers: 1,
+    forks: 0,
+    stars: 2,
+  })),
+  android: projectData.android.map((project) => ({
+    ...project,
+    watchers: 1,
+    forks: 0,
+    stars: 2,
+  })),
+  web: projectData.web.map((project) => ({
+    ...project,
+    watchers: 1,
+    forks: 0,
+    stars: 2,
+  })),
+  other: projectData.other.map((project) => ({
+    ...project,
+    watchers: 1,
+    forks: 0,
+    stars: 2,
+  })),
+});
 
 // Helper functions for testing
 const setupTests = (): DOMElements => {
@@ -40,10 +73,11 @@ const setupTests = (): DOMElements => {
   buttonContact = screen.getByRole<HTMLAnchorElement>("button", {
     name: "Contact",
   });
-  return { buttonAbout, buttonProjects, buttonContact };
+  user = userEvent.setup();
+  return { buttonAbout, buttonProjects, buttonContact, user };
 };
 
-const testBaseContent = (): void => {
+const testBaseContent = async () => {
   // Check that the header, navbar, and footer are present in every page
   const headingName =
     screen.getByText<HTMLHeadingElement>("Abhishek Chaudhuri");
@@ -62,7 +96,7 @@ const testBaseContent = (): void => {
   const darkColor: string = "rgb(33, 37, 41);"; // #212529
   let themeLabel = screen.getByLabelText<HTMLLabelElement>("🌞");
   expect(themeLabel).toBeInTheDocument();
-  fireEvent.click(themeLabel);
+  await user.click(themeLabel);
   expect(headingName).toHaveStyle({
     color: lightColor,
     backgroundColor: darkColor,
@@ -70,7 +104,7 @@ const testBaseContent = (): void => {
 
   themeLabel = screen.getByLabelText<HTMLLabelElement>("🌜");
   expect(themeLabel).toBeInTheDocument();
-  fireEvent.click(themeLabel); // revert back to light theme for the rest of the tests
+  await user.click(themeLabel); // revert back to light theme for the rest of the tests
   expect(headingName).toHaveStyle({
     color: darkColor,
     backgroundColor: lightColor,
@@ -116,8 +150,8 @@ const testFocusContact = () => {
 
 const testNavbar = (source: Page) => {
   // Tests to ensure the nav buttons navigate to the correct component
-  it("navigates to About after clicking About", () => {
-    fireEvent.click(buttonAbout);
+  it("navigates to About after clicking About", async () => {
+    await user.click(buttonAbout);
 
     // Check that the correct button is active
     testFocusAbout();
@@ -142,8 +176,8 @@ const testNavbar = (source: Page) => {
     expect(Array.from(transitionGroup.classList)).toContain(transition);
   });
 
-  it("navigates to Projects after clicking Projects", () => {
-    fireEvent.click(buttonProjects);
+  it("navigates to Projects after clicking Projects", async () => {
+    await user.click(buttonProjects);
     testFocusProjects();
 
     const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");
@@ -164,8 +198,8 @@ const testNavbar = (source: Page) => {
     expect(Array.from(transitionGroup.classList)).toContain(transition);
   });
 
-  it("navigates to Contact after clicking Contact", () => {
-    fireEvent.click(buttonContact);
+  it("navigates to Contact after clicking Contact", async () => {
+    await user.click(buttonContact);
     testFocusContact();
 
     const transitionGroup = screen.getByTestId<HTMLDivElement>("transition");

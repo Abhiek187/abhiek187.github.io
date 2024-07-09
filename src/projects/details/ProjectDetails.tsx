@@ -8,12 +8,7 @@ import React, { createRef, useEffect } from "react";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import {
-  NavigateFunction,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import styles from "./ProjectDetails.module.scss";
 import { Project, ProjectTypes } from "../list/ProjectList";
@@ -48,7 +43,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
   const project: Project | undefined = projects?.find(
     (proj) => proj.id === projectId
   );
-  const navigate: NavigateFunction = useNavigate();
+  const navigate = useNavigate();
   const locationState = useLocation().state as LocationStateProps | null;
   const videoRef = createRef<HTMLVideoElement>();
 
