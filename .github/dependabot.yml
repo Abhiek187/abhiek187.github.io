@@ -28,6 +28,9 @@ updates:
       vitest:
         patterns:
           - "*vitest*"
+    ignore:
+      - dependency-name: "eslint"
+        versions: ["9.x"]
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
