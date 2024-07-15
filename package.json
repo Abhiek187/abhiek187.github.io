@@ -35,7 +35,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/react-transition-group": "^4.4.10",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "@vitest/coverage-v8": "^2.0.1",
+    "@vitest/coverage-v8": "^2.0.2",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
