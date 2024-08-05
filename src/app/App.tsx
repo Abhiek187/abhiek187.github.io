@@ -49,9 +49,12 @@ const App: React.FC = () => {
       // Don't set navPosition to 0
       navPosition =
         navbar.current.offsetTop === 0 ? navPosition : navbar.current.offsetTop;
-      window.scrollY >= navPosition
-        ? navbar.current.classList.add(styles.sticky)
-        : navbar.current.classList.remove(styles.sticky);
+
+      if (window.scrollY >= navPosition) {
+        navbar.current.classList.add(styles.sticky);
+      } else {
+        navbar.current.classList.remove(styles.sticky);
+      }
     };
   }, []); // only componentDidMount()
 
