@@ -86,9 +86,11 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
             onClickLink(Page.Projects);
 
             // Go back if the previous page was projects or push to go to projects
-            locationState?.from === "#/projects"
-              ? navigate(-1) // go back one page
-              : navigate("/projects");
+            if (locationState?.from === "#/projects") {
+              navigate(-1); // go back one page
+            } else {
+              navigate("/projects");
+            }
           }}
         >
           <FontAwesomeIcon icon={faXmark} />
