@@ -81,4 +81,11 @@ export default defineConfig({
       all: false,
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern-compiler",
+      },
+    },
+  },
 });
