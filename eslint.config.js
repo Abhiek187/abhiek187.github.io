@@ -1,5 +1,6 @@
 import eslint from "@eslint/js";
 import reactRecommended from "eslint-plugin-react/configs/recommended.js";
+import hooksPlugin from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import globals from "globals";
 import path from "path";
@@ -23,27 +24,26 @@ export default tseslint.config(
     files: ["**/*.ts", "**/*.tsx"],
   })),
   reactRecommended,
-  /* Follow https://github.com/facebook/react/pull/28773 &
-   * https://github.com/facebook/react/issues/28313
-   * until eslint-plugin-react-hooks supports flat configs
-   */
   {
     files: ["**/*.ts", "**/*.tsx"],
     languageOptions: {
       globals: {
         ...globals.browser,
         ...globals.es2020,
+        ...globals.node,
       },
       parserOptions: {
-        // Open issue: https://github.com/typescript-eslint/typescript-eslint/issues/8891
+        ecmaVersion: "latest",
         project: ["./tsconfig.json", "./tsconfig.node.json"],
         tsconfigRootDir: __dirname, // use import.meta.dirname in Node 20+
+        sourceType: "module",
       },
     },
     linterOptions: {
       reportUnusedDisableDirectives: true,
     },
     plugins: {
+      "react-hooks": hooksPlugin,
       "react-refresh": reactRefresh,
     },
     rules: {
@@ -54,6 +54,7 @@ export default tseslint.config(
         "warn",
         { allowConstantExport: true },
       ],
+      ...hooksPlugin.configs.recommended.rules,
     },
     settings: {
       react: {
