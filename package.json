@@ -20,7 +20,7 @@
     "react-router-dom": "^6.27.0",
     "react-transition-group": "^4.4.5",
     "sass-embedded": "^1.80.3",
-    "web-vitals": "^4.2.3"
+    "web-vitals": "^4.2.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
