@@ -87,9 +87,9 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
 
             // Go back if the previous page was projects or push to go to projects
             if (locationState?.from === "#/projects") {
-              navigate(-1); // go back one page
+              void navigate(-1); // go back one page
             } else {
-              navigate("/projects");
+              void navigate("/projects");
             }
           }}
         >
