@@ -1,10 +1,8 @@
 import React, { useState, useEffect, createRef, useRef } from "react";
-import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Form from "react-bootstrap/Form";
 import FormCheck from "react-bootstrap/FormCheck";
-import { LinkContainer } from "react-router-bootstrap";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { NavLink, Route, Routes, useLocation } from "react-router-dom";
 // import SwipeableRoutes from "react-swipeable-routes";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -33,9 +31,9 @@ const App: React.FC = () => {
 
   // DOM elements
   const navbar = useRef<HTMLDivElement>(null);
-  const linkAbout = useRef<HTMLButtonElement>(null);
-  const linkProjects = useRef<HTMLButtonElement>(null);
-  const linkContact = useRef<HTMLButtonElement>(null);
+  const linkAbout = useRef<HTMLAnchorElement>(null);
+  const linkProjects = useRef<HTMLAnchorElement>(null);
+  const linkContact = useRef<HTMLAnchorElement>(null);
 
   const currentYear = new Date().getFullYear();
 
@@ -131,51 +129,45 @@ const App: React.FC = () => {
         ref={navbar}
       >
         {/* Redirect routes without reloading the browser */}
-        <LinkContainer to="about">
-          <Button
-            variant="danger"
-            className="links-about"
-            ref={linkAbout}
-            onClick={() => {
-              changeTransition(Page.About);
-              linkAbout.current?.classList.add("active");
-              linkProjects.current?.classList.remove("active");
-              linkContact.current?.classList.remove("active");
-            }}
-          >
-            About
-          </Button>
-        </LinkContainer>
-        <LinkContainer to="projects">
-          <Button
-            variant="warning"
-            className="links-projects"
-            ref={linkProjects}
-            onClick={() => {
-              changeTransition(Page.Projects);
-              linkAbout.current?.classList.remove("active");
-              linkProjects.current?.classList.add("active");
-              linkContact.current?.classList.remove("active");
-            }}
-          >
-            Projects
-          </Button>
-        </LinkContainer>
-        <LinkContainer to="contact">
-          <Button
-            variant="success"
-            className="links-contact"
-            ref={linkContact}
-            onClick={() => {
-              changeTransition(Page.Contact);
-              linkAbout.current?.classList.remove("active");
-              linkProjects.current?.classList.remove("active");
-              linkContact.current?.classList.add("active");
-            }}
-          >
-            Contact
-          </Button>
-        </LinkContainer>
+        <NavLink
+          to="about"
+          className="links-about btn btn-danger"
+          ref={linkAbout}
+          onClick={() => {
+            changeTransition(Page.About);
+            linkAbout.current?.classList.add("active");
+            linkProjects.current?.classList.remove("active");
+            linkContact.current?.classList.remove("active");
+          }}
+        >
+          About
+        </NavLink>
+        <NavLink
+          to="projects"
+          className="links-projects btn btn-warning"
+          ref={linkProjects}
+          onClick={() => {
+            changeTransition(Page.Projects);
+            linkAbout.current?.classList.remove("active");
+            linkProjects.current?.classList.add("active");
+            linkContact.current?.classList.remove("active");
+          }}
+        >
+          Projects
+        </NavLink>
+        <NavLink
+          to="contact"
+          className="links-contact btn btn-success"
+          ref={linkContact}
+          onClick={() => {
+            changeTransition(Page.Contact);
+            linkAbout.current?.classList.remove("active");
+            linkProjects.current?.classList.remove("active");
+            linkContact.current?.classList.add("active");
+          }}
+        >
+          Contact
+        </NavLink>
       </ButtonGroup>
       <hr />
       <TransitionGroup

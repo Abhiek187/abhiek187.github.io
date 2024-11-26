@@ -64,13 +64,13 @@ const setupTests = (): DOMElements => {
   );
 
   // Specify a button, not text
-  buttonAbout = screen.getByRole<HTMLAnchorElement>("button", {
+  buttonAbout = screen.getByRole<HTMLAnchorElement>("link", {
     name: "About",
   });
-  buttonProjects = screen.getByRole<HTMLAnchorElement>("button", {
+  buttonProjects = screen.getByRole<HTMLAnchorElement>("link", {
     name: "Projects",
   });
-  buttonContact = screen.getByRole<HTMLAnchorElement>("button", {
+  buttonContact = screen.getByRole<HTMLAnchorElement>("link", {
     name: "Contact",
   });
   user = userEvent.setup();
