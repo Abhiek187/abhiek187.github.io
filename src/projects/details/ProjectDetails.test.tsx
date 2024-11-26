@@ -40,7 +40,7 @@ describe("Project Details", () => {
         it(`displays all information about ${project.name}`, async () => {
           // Go back to the projects page first (it's unsafe to reference buttonProjects here)
           await user.click(
-            screen.getByRole("button", {
+            screen.getByRole("link", {
               name: "Projects",
             })
           );
