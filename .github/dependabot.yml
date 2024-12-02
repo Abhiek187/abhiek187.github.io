@@ -13,22 +13,11 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      eslint:
-        patterns:
-          - "*eslint*"
-          - "globals"
+      dev:
+        dependency-type: "development"
       fortawesome:
         patterns:
           - "@fortawesome/*"
-      testing-library:
-        patterns:
-          - "@testing-library/*"
-      types:
-        patterns:
-          - "@types/*"
-      vitest:
-        patterns:
-          - "*vitest*"
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
