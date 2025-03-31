@@ -18,6 +18,10 @@ updates:
       fortawesome:
         patterns:
           - "@fortawesome/*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
