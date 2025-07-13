@@ -14,7 +14,8 @@
         "Node.js",
         "Express",
         "Docker",
-        "MongoDB"
+        "MongoDB",
+        "Firebase"
       ],
       "website": null,
       "repo": "https://github.com/Abhiek187/ez-recipes-ios"
@@ -95,7 +96,8 @@
         "Node.js",
         "Express",
         "Docker",
-        "MongoDB"
+        "MongoDB",
+        "Firebase"
       ],
       "website": "https://play.google.com/store/apps/details?id=com.abhiek.ezrecipes",
       "repo": "https://github.com/Abhiek187/ez-recipes-android"
@@ -180,7 +182,8 @@
         "Angular",
         "SCSS",
         "Docker",
-        "MongoDB"
+        "MongoDB",
+        "Firebase"
       ],
       "website": "https://ez-recipes-web.onrender.com/",
       "repo": "https://github.com/Abhiek187/ez-recipes-web"
