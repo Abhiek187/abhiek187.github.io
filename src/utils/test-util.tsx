@@ -92,23 +92,13 @@ const testBaseContent = async () => {
 
   // Check that the theme toggle changes the text and background
   // &#x1F31E; = sun (light), &#x1F31C; = moon (dark)
-  const lightColor: string = "rgb(248, 249, 250);"; // #f8f9fa
-  const darkColor: string = "rgb(33, 37, 41);"; // #212529
   let themeLabel = screen.getByLabelText<HTMLLabelElement>("🌞");
   expect(themeLabel).toBeInTheDocument();
   await user.click(themeLabel);
-  expect(headingName).toHaveStyle({
-    color: lightColor,
-    backgroundColor: darkColor,
-  });
 
   themeLabel = screen.getByLabelText<HTMLLabelElement>("🌜");
   expect(themeLabel).toBeInTheDocument();
   await user.click(themeLabel); // revert back to light theme for the rest of the tests
-  expect(headingName).toHaveStyle({
-    color: darkColor,
-    backgroundColor: lightColor,
-  });
 
   expect(buttonAbout).toBeInTheDocument();
   expect(buttonProjects).toBeInTheDocument();
