@@ -7,9 +7,9 @@ import projectsData from "../projects/projects.json";
 const requestMock = vi.fn();
 
 vi.mock("@octokit/core", () => ({
-  Octokit: vi.fn(() => ({
-    request: requestMock,
-  })),
+  Octokit: class MockOctokit {
+    request = requestMock;
+  },
 }));
 
 describe("GitHubAPI", () => {
