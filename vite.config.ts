@@ -78,7 +78,6 @@ export default defineConfig({
     setupFiles: "./src/utils/setupTests.ts",
     coverage: {
       provider: "v8",
-      all: false,
     },
   },
   css: {
