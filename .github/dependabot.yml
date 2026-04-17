@@ -12,6 +12,8 @@ updates:
     # Check the npm registry for updates every week (on Mondays)
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 3
     groups:
       bootstrap:
         patterns:
