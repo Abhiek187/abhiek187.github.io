@@ -51,9 +51,6 @@
     "eslint-plugin-react": {
       "eslint": ">=9"
     },
-    "eslint-plugin-react-hooks": {
-      "eslint": ">=9"
-    },
     "vite-plugin-pwa": {
       "vite": ">=7"
     }

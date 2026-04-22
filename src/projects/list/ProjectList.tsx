@@ -62,23 +62,6 @@ const ProjectList: React.FC<ProjectListProps> = ({
     setProjects(newProjects);
   }, [projects]);
 
-  useEffect(() => {
-    document.title = "Abhishek Chaudhuri - Projects";
-
-    // Hide the scrolling buttons if possible on startup
-    for (const list of projectsListRef.current) {
-      if (list !== null && list !== undefined) {
-        updateScrollButtonVisibility(list);
-      }
-    }
-
-    // Only fetch the stats once when the component loads
-    if (!fetchedStats.current) {
-      void getGithubStats();
-      fetchedStats.current = true;
-    }
-  }, [getGithubStats, isDarkMode]);
-
   const scrollList = (index: number, scrollRight: boolean) => {
     const { current: projectsLists } = projectsListRef;
     if (projectsLists[index] === null) return;
@@ -144,6 +127,25 @@ const ProjectList: React.FC<ProjectListProps> = ({
     (stat === undefined ? "blank" : stat.toString()) +
     " " +
     (stat === 1 ? unit : `${unit}s`);
+
+  useEffect(() => {
+    document.title = "Abhishek Chaudhuri - Projects";
+  }, []);
+
+  useEffect(() => {
+    // Hide the scrolling buttons if possible on startup
+    for (const list of projectsListRef.current) {
+      if (list !== null && list !== undefined) {
+        updateScrollButtonVisibility(list);
+      }
+    }
+
+    // Only fetch the stats once when the component loads
+    if (!fetchedStats.current) {
+      void getGithubStats();
+      fetchedStats.current = true;
+    }
+  }, [getGithubStats, isDarkMode]);
 
   return (
     <div ref={innerRef}>
