@@ -39,7 +39,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
   const { projectType, projectId } = useParams<
     keyof ProjectParams
   >() as ProjectParams;
-  const projects: Project[] | undefined = projectData[projectType] as Project[];
+  const projects: Project[] | undefined = projectData[projectType];
   const project: Project | undefined = projects?.find(
     (proj) => proj.id === projectId
   );
