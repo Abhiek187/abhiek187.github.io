@@ -50,9 +50,6 @@
   "overrides": {
     "eslint-plugin-react": {
       "eslint": ">=9"
-    },
-    "vite-plugin-pwa": {
-      "vite": ">=7"
     }
   },
   "scripts": {
