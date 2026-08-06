@@ -1,7 +1,7 @@
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import styles from "./About.module.scss";
 import { OnClickProp } from "../app/App";

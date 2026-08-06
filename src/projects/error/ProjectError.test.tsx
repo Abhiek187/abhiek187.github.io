@@ -12,8 +12,8 @@ const mocks = vi.hoisted<{ projectParams: ProjectParams }>(() => ({
   },
 }));
 
-vi.mock("react-router-dom", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("react-router-dom")>()),
+vi.mock("react-router", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("react-router")>()),
   useParams: vi.fn(() => mocks.projectParams),
 }));
 

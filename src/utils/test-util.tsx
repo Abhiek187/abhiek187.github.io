@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent, { UserEvent } from "@testing-library/user-event";
-import { HashRouter } from "react-router-dom";
+import { HashRouter } from "react-router";
 import { config } from "react-transition-group";
 import { expect, vi } from "vitest";
 

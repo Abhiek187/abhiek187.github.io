@@ -2,7 +2,7 @@ import React, { useState, useEffect, createRef, useRef } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Form from "react-bootstrap/Form";
 import FormCheck from "react-bootstrap/FormCheck";
-import { NavLink, Route, Routes, useLocation } from "react-router-dom";
+import { NavLink, Route, Routes, useLocation } from "react-router";
 // import SwipeableRoutes from "react-swipeable-routes";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
