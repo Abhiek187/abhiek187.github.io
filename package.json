@@ -16,7 +16,7 @@
     "react": "^19.2.8",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.8",
-    "react-router": "^8.3.0",
+    "react-router": "^8.3.1",
     "react-transition-group": "^4.4.5",
     "sass-embedded": "^1.103.1",
     "web-vitals": "^6.2.1"
